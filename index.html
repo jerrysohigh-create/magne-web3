@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAGNE.AI | Web3-Native AI Infrastructure</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="assets/mobile-responsive.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
+  <link rel="stylesheet" href="assets/mobile-responsive.css">
   <style>
-    /* Override CSS for new structure */
     :root {
       --bg-primary: #0a0a0c;
       --bg-secondary: #0f0f12;
@@ -21,479 +19,167 @@
       --text-primary: #ffffff;
       --text-secondary: rgba(255, 255, 255, 0.5);
       --text-tertiary: rgba(255, 255, 255, 0.3);
-      --accent: #FFD700;
+      --accent: #00d4d4;
       --accent-secondary: #00ff88;
     }
 
-    /* Background Effects */
-    .bg-grid {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image: 
-        linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-
-    .bg-glow {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      z-index: 0;
-      background: 
-        radial-gradient(ellipse at 20% 10%, rgba(255, 215, 0, 0.12) 0%, transparent 40%),
-        radial-gradient(ellipse at 80% 90%, rgba(255, 215, 0, 0.08) 0%, transparent 40%);
-    }
-
-    #network-bg {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.6;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
-
-    @keyframes glow {
-      0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
-      50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
-    }
-
-    .animate { animation: fadeInUp 0.8s ease-out; }
-    .anim-up { animation: fadeInUp 0.6s ease-out; }
-    .anim-delay-1 { animation-delay: 0.1s; }
-    .anim-delay-2 { animation-delay: 0.2s; }
-    .anim-delay-3 { animation-delay: 0.3s; }
-    .anim-delay-4 { animation-delay: 0.4s; }
-
-    /* Hero Section */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 8rem 2rem 4rem;
-      position: relative;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255, 215, 0, 0.08);
-      border: 1px solid rgba(255, 215, 0, 0.2);
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      color: var(--accent);
-      margin-bottom: 2rem;
-      font-size: 0.85rem;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      max-width: 900px;
-    }
-
-    .hero-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      max-width: 700px;
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-tag {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      padding: 0.4rem 0.9rem;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    /* Stack Section */
-    .stack-section {
-      padding: 6rem 2rem;
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .section-subtitle {
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      margin-bottom: 3rem;
-    }
-
-    .stack-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .stack-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      text-align: left;
-      transition: all 0.3s;
-    }
-
-    .stack-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-    }
-
-    .stack-card-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .stack-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.75rem;
-      color: var(--accent);
-    }
-
-    .stack-card p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    /* Why Section */
-    .why-section {
-      padding: 6rem 2rem;
-      text-align: center;
-      background: var(--bg-secondary);
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .why-item {
-      padding: 1.5rem;
-      color: var(--text-secondary);
-      font-size: 1rem;
-    }
-
-    .why-item::before {
-      content: '✓ ';
-      color: var(--accent);
-    }
-
-    /* Network Section */
-    .network-section {
-      padding: 6rem 2rem;
-      text-align: center;
-    }
-
-    .network-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      max-width: 900px;
-      margin: 3rem auto;
-    }
-
-    .network-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      text-align: left;
-    }
-
-    .network-card h3 {
-      color: var(--accent);
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-    }
-
-    .network-info {
-      display: grid;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .network-info-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.9rem;
-    }
-
-    .network-info-row span:first-child {
-      color: var(--text-secondary);
-    }
-
-    .network-info-row span:last-child {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
       color: var(--text-primary);
-      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    .network-status {
-      display: inline-block;
-      background: rgba(0, 255, 136, 0.1);
-      border: 1px solid rgba(0, 255, 136, 0.3);
-      color: var(--accent-secondary);
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      margin-bottom: 1rem;
+    #node-bg {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0; opacity: 0.5; pointer-events: none;
     }
 
-    /* Token Section */
-    .token-section {
-      padding: 6rem 2rem;
-      text-align: center;
-      background: var(--bg-secondary);
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
-
-    .token-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      max-width: 1000px;
-      margin: 3rem auto;
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-logo-img { height: 20px; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent); color: #000 !important;
+      padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none;
     }
+    .nav-cta:hover { opacity: 0.9; }
 
-    .token-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
+    main { position: relative; z-index: 1; }
+
+    .content-wrapper { position: relative; z-index: 1; width: min(1200px, calc(100% - 48px)); margin: 0 auto; }
+
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+      padding: 8rem 2rem 4rem; position: relative;
     }
-
-    .token-item h4 {
-      color: var(--accent);
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
+    .hero::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 700px;
+      background: radial-gradient(ellipse at center, rgba(0,212,212,0.06) 0%, transparent 70%);
+      pointer-events: none;
     }
-
-    .token-item p {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
+    .hero-eyebrow {
+      font-size: 0.8rem; color: var(--accent); letter-spacing: 3px;
+      text-transform: uppercase; margin-bottom: 1.5rem;
     }
-
-    .token-notice {
-      max-width: 700px;
-      margin: 2rem auto 0;
-      padding: 1rem;
-      background: rgba(255, 215, 0, 0.05);
-      border: 1px solid rgba(255, 215, 0, 0.1);
-      border-radius: 8px;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.15;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-
-    /* Developer Section */
-    .dev-section {
-      padding: 6rem 2rem;
-      text-align: center;
+    .hero-sub { font-size: 1.15rem; color: var(--text-secondary); max-width: 650px; margin-bottom: 3rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-bottom: 2rem; }
+    .hero-tag {
+      background: var(--bg-card); border: 1px solid var(--border);
+      padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; color: var(--text-secondary);
     }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
-    .dev-steps {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      max-width: 900px;
-      margin: 3rem auto;
+    .btn-primary {
+      background: var(--accent); color: #000; padding: 1rem 2.5rem;
+      border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s;
     }
-
-    .dev-step {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem 2rem;
-      flex: 1;
-      min-width: 200px;
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,212,212,0.3); }
+    .btn-secondary {
+      background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary);
+      padding: 1rem 2.5rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s;
     }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-    .dev-step-num {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
+    section { padding: 6rem 2rem; }
+    .section-title { font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem; }
+    .section-subtitle { color: var(--text-secondary); text-align: center; margin-bottom: 3rem; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 2rem; transition: all 0.3s;
     }
+    .card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+    .card p { color: var(--text-secondary); font-size: 0.95rem; }
 
-    .dev-step h4 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
+    .info-table {
+      width: 100%; border-collapse: collapse; margin: 2rem 0;
+      background: var(--bg-card); border-radius: 12px; overflow: hidden;
     }
+    .info-table th, .info-table td { padding: 1rem 1.5rem; text-align: left; border-bottom: 1px solid var(--border); }
+    .info-table th { color: var(--accent); font-weight: 600; background: rgba(0,0,0,0.2); }
+    .info-table tr:last-child td { border-bottom: none; }
+    .info-table td:first-child { color: var(--text-secondary); width: 200px; }
+    .info-table td:last-child { color: var(--text-primary); font-family: 'JetBrains Mono', monospace; }
 
-    .dev-step p {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
+    .token-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
+    .token-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center; }
+    .token-item h4 { color: var(--accent); font-size: 1rem; margin-bottom: 0.5rem; }
+    .token-item p { color: var(--text-secondary); font-size: 0.85rem; }
+
+    .roadmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .roadmap-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+    .roadmap-item.completed { border-color: rgba(0,255,136,0.3); }
+    .roadmap-item.in-progress { border-color: rgba(0,212,212,0.3); }
+    .roadmap-status { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.7rem; margin-bottom: 0.75rem; }
+    .roadmap-item.completed .roadmap-status { background: rgba(0,255,136,0.1); color: var(--accent-secondary); }
+    .roadmap-item.in-progress .roadmap-status { background: rgba(0,212,212,0.1); color: var(--accent); }
+    .roadmap-item.planned .roadmap-status { background: rgba(255,255,255,0.05); color: var(--text-secondary); }
+    .roadmap-time { font-size: 0.9rem; color: var(--accent); margin-bottom: 0.5rem; font-weight: 600; }
+    .roadmap-item h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .roadmap-item p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.5; }
+
+    .network-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; }
+    .network-status { display: inline-block; background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.3); color: var(--accent-secondary); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; margin-bottom: 1rem; }
+    .network-card h3 { color: var(--accent); font-size: 1.3rem; margin-bottom: 1rem; }
+
+    footer {
+      text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border);
+      color: var(--text-tertiary); font-size: 0.9rem;
     }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+    .footer-links-secondary { display: flex; justify-content: center; gap: 2rem; margin-top: 0.75rem; }
+    .footer-links-secondary a { font-size: 0.85rem; }
 
-    .dev-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .notice { background: rgba(0,212,212,0.05); border: 1px solid rgba(0,212,212,0.15); border-radius: 8px; padding: 1rem; font-size: 0.85rem; color: var(--text-secondary); margin-top: 2rem; }
 
-    /* Roadmap Section */
-    .roadmap-section {
-      padding: 6rem 2rem;
-      text-align: center;
-      background: var(--bg-secondary);
-    }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .animate { opacity: 0; }
+    .animate.visible { animation: fadeInUp 0.6s ease-out forwards; }
 
-    .roadmap-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 1100px;
-      margin: 3rem auto;
-      text-align: left;
-    }
-
-    .roadmap-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-    }
-
-    .roadmap-item.completed {
-      border-color: rgba(0, 255, 136, 0.3);
-    }
-
-    .roadmap-item.completed .roadmap-status {
-      background: rgba(0, 255, 136, 0.1);
-      color: var(--accent-secondary);
-    }
-
-    .roadmap-item.in-progress {
-      border-color: rgba(255, 215, 0, 0.3);
-    }
-
-    .roadmap-item.in-progress .roadmap-status {
-      background: rgba(255, 215, 0, 0.1);
-      color: var(--accent);
-    }
-
-    .roadmap-item.planned .roadmap-status {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-secondary);
-    }
-
-    .roadmap-time {
-      font-size: 0.9rem;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-      font-weight: 600;
-    }
-
-    .roadmap-item h4 {
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .roadmap-item p {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-
-    .roadmap-status {
-      display: inline-block;
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.7rem;
-      margin-bottom: 0.75rem;
-    }
-
-    /* Transparency Section */
-    .transparency-section {
-      padding: 6rem 2rem;
-      text-align: center;
-    }
-
-    .transparency-content {
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-
-    .transparency-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* Mobile Responsive */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.2rem; }
-      .hero-subtitle { font-size: 1rem; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2rem; }
+      section { padding: 4rem 1.5rem; }
       .section-title { font-size: 1.8rem; }
-      .stack-grid { grid-template-columns: 1fr; }
-      .network-cards { grid-template-columns: 1fr; }
-      .token-grid { grid-template-columns: repeat(2, 1fr); }
-      .dev-steps { flex-direction: column; }
-      .roadmap-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="bg-grid"></div>
-  <div class="bg-glow"></div>
-  
+  <canvas id="node-bg"></canvas>
 
   <nav>
     <div class="nav-brand">
@@ -514,281 +200,209 @@
   </nav>
 
   <main>
-    <!-- 01 Hero -->
+    <!-- Hero -->
     <section class="hero">
-      <div class="hero-badge">
-        <span>🔗</span>
-        <span>Web3-Native AI Infrastructure</span>
-      </div>
+      <div class="hero-eyebrow">Web3-Native AI Infrastructure</div>
       <h1>The Web3-native AI infrastructure built for secure devices, AI compute, and decentralized ownership.</h1>
-      <p class="hero-subtitle">MAGNE.AI connects secure mobile hardware, MAGNE L1, M Hash L2, and DePIN compute incentives into one Web3-native AI ecosystem.</p>
+      <p class="hero-sub">MAGNE.AI connects secure mobile hardware, MAGNE L1, M Hash L2, and DePIN compute incentives into one Web3-native AI ecosystem.</p>
       <div class="hero-tags">
         <span class="hero-tag">MAGNE L1 Testnet Live</span>
         <span class="hero-tag">M Hash L2 Testnet Live</span>
         <span class="hero-tag">$MHA Native Token</span>
         <span class="hero-tag">Hardware-Secured Web3</span>
-        <span class="hero-tag">DePIN-Ready</span>
       </div>
-      <div class="hero-buttons">
+      <div class="hero-ctas">
         <a href="developers.html" class="btn-primary">Start Building</a>
         <a href="network.html" class="btn-secondary">Explore Network</a>
         <a href="token.html" class="btn-secondary">Read Tokenomics</a>
       </div>
     </section>
 
-    <!-- 02 Web3 Stack -->
-    <section class="stack-section">
-      <h2 class="section-title">One ecosystem. Four integrated layers.</h2>
-      <p class="section-subtitle">From secure device to decentralized infrastructure</p>
-      <div class="stack-grid">
-        <div class="stack-card">
-          <div class="stack-card-icon">📱</div>
-          <h3>Secure Device Layer</h3>
-          <p>MAGNE.AI Phone Gen1 provides hardware-secured Web3 access, private dual-space architecture, secure element protection, and NFC-based encrypted asset backup.</p>
-        </div>
-        <div class="stack-card">
-          <div class="stack-card-icon">⛓️</div>
-          <h3>MAGNE L1</h3>
-          <p>MAGNE L1 is the EVM-compatible base network designed to support native Web3 applications, asset ownership, and ecosystem-level coordination.</p>
-        </div>
-        <div class="stack-card">
-          <div class="stack-card-icon">🚀</div>
-          <h3>M Hash L2</h3>
-          <p>M Hash L2 is an OP Stack-based Layer 2 testnet designed for scalable smart contracts, lower-cost transactions, and developer experimentation.</p>
-        </div>
-        <div class="stack-card">
-          <div class="stack-card-icon">🌐</div>
-          <h3>DePIN + AI Compute</h3>
-          <p>MAGNE.AI is designed to evolve toward device-based infrastructure participation, AI compute contribution, and governance-approved incentive programs.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 Why MAGNE.AI -->
-    <section class="why-section">
-      <h2 class="section-title">Why MAGNE.AI is different</h2>
-      <div class="why-grid">
-        <div class="why-item">Hardware-secured wallet experience</div>
-        <div class="why-item">Mobile-native Web3 access</div>
-        <div class="why-item">Native L1 + L2 architecture</div>
-        <div class="why-item">AI compute participation roadmap</div>
-        <div class="why-item">Device incentive mining design</div>
-        <div class="why-item">Compliance-ready global product stack</div>
-      </div>
-    </section>
-
-    <!-- 04 Testnet Network Status -->
-    <section class="network-section">
-      <h2 class="section-title">Testnet Network</h2>
-      <p class="section-subtitle">Connect to MAGNE testnets and start building</p>
-      <div class="network-cards">
-        <div class="network-card">
-          <span class="network-status">Testnet Live</span>
-          <h3>MAGNE L1 Testnet</h3>
-          <div class="network-info">
-            <div class="network-info-row">
-              <span>Chain ID</span>
-              <span>20250810</span>
-            </div>
-            <div class="network-info-row">
-              <span>Symbol</span>
-              <span>MHA</span>
-            </div>
-            <div class="network-info-row">
-              <span>RPC</span>
-              <span>rpc.testnet.magicalhash.com</span>
-            </div>
-            <div class="network-info-row">
-              <span>Explorer</span>
-              <span>explorer.testnet.magicalhash.com</span>
-            </div>
+    <!-- Web3 Stack -->
+    <section>
+      <div class="content-wrapper">
+        <h2 class="section-title animate">One ecosystem. Four integrated layers.</h2>
+        <p class="section-subtitle animate">From secure device to decentralized infrastructure</p>
+        <div class="grid-4">
+          <div class="card animate">
+            <div class="card-icon">📱</div>
+            <h3>Secure Device Layer</h3>
+            <p>MAGNE.AI Phone Gen1 provides hardware-secured Web3 access, private dual-space architecture, secure element protection, and NFC-based encrypted asset backup.</p>
           </div>
-          <a href="developers.html" class="btn-primary" style="width:100%; text-align:center;">View Network Config</a>
-        </div>
-        <div class="network-card">
-          <span class="network-status">Testnet Live</span>
-          <h3>M Hash L2 Testnet</h3>
-          <div class="network-info">
-            <div class="network-info-row">
-              <span>Chain ID</span>
-              <span>20250827</span>
-            </div>
-            <div class="network-info-row">
-              <span>Symbol</span>
-              <span>MHA</span>
-            </div>
-            <div class="network-info-row">
-              <span>RPC</span>
-              <span>l2-rpc.testnet.magicalhash.com</span>
-            </div>
-            <div class="network-info-row">
-              <span>Explorer</span>
-              <span>l2-explorer.testnet.magicalhash.com</span>
-            </div>
+          <div class="card animate">
+            <div class="card-icon">⛓️</div>
+            <h3>MAGNE L1</h3>
+            <p>MAGNE L1 is the EVM-compatible base network designed to support native Web3 applications, asset ownership, and ecosystem-level coordination.</p>
           </div>
-          <a href="network.html" class="btn-primary" style="width:100%; text-align:center;">View Network Details</a>
+          <div class="card animate">
+            <div class="card-icon">🚀</div>
+            <h3>M Hash L2</h3>
+            <p>M Hash L2 is an OP Stack-based Layer 2 testnet designed for scalable smart contracts, lower-cost transactions, and developer experimentation.</p>
+          </div>
+          <div class="card animate">
+            <div class="card-icon">🌐</div>
+            <h3>DePIN + AI Compute</h3>
+            <p>MAGNE.AI is designed to evolve toward device-based infrastructure participation, AI compute contribution, and governance-approved incentive programs.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 05 $MHA Token Utility -->
-    <section class="token-section">
-      <h2 class="section-title">$MHA powers the MAGNE.AI economy</h2>
-      <p class="section-subtitle">The native utility token across all ecosystem layers</p>
-      <div class="token-grid">
-        <div class="token-item">
-          <h4>Gas</h4>
-          <p>Network transaction fees</p>
-        </div>
-        <div class="token-item">
-          <h4>Staking</h4>
-          <p>Validator participation</p>
-        </div>
-        <div class="token-item">
-          <h4>Governance</h4>
-          <p>On-chain voting</p>
-        </div>
-        <div class="token-item">
-          <h4>Device Incentives</h4>
-          <p>DePIN participation</p>
-        </div>
-        <div class="token-item">
-          <h4>Compute Rewards</h4>
-          <p>AI services</p>
-        </div>
-        <div class="token-item">
-          <h4>Ecosystem Access</h4>
-          <p>Premium features</p>
-        </div>
-      </div>
-      <div class="token-notice">
-        Token-related information is provided for technical and ecosystem communication purposes only and does not constitute investment advice, financial advice, or a guarantee of rewards or returns.
-      </div>
-    </section>
-
-    <!-- 06 Hardware-Powered DePIN -->
-    <section class="stack-section">
-      <h2 class="section-title">From smartphone to infrastructure node</h2>
-      <p class="section-subtitle">Device-based participation in the MAGNE ecosystem</p>
-      <div class="stack-grid" style="max-width: 800px;">
-        <div class="stack-card">
-          <div class="stack-card-icon">📱</div>
-          <h3>MAGNE.AI Phone Gen1</h3>
-          <p>MAGNE.AI Phone Gen1 is designed as a secure Web3 access device and a future DePIN participation endpoint. Device-related incentive programs may be based on device capability, uptime, contribution quality, network demand, and governance-approved reward rules.</p>
+    <!-- Why MAGNE.AI -->
+    <section style="background: var(--bg-secondary);">
+      <div class="content-wrapper">
+        <h2 class="section-title animate">Why MAGNE.AI is different</h2>
+        <div class="grid-3">
+          <div class="card animate" style="text-align:center;">
+            <h3>Hardware-secured wallet</h3>
+          </div>
+          <div class="card animate" style="text-align:center;">
+            <h3>Mobile-native Web3 access</h3>
+          </div>
+          <div class="card animate" style="text-align:center;">
+            <h3>Native L1 + L2 architecture</h3>
+          </div>
+          <div class="card animate" style="text-align:center;">
+            <h3>AI compute participation</h3>
+          </div>
+          <div class="card animate" style="text-align:center;">
+            <h3>Device incentive design</h3>
+          </div>
+          <div class="card animate" style="text-align:center;">
+            <h3>Compliance-ready stack</h3>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 07 Developer Quickstart -->
-    <section class="dev-section">
-      <h2 class="section-title">Build on MAGNE L1 and M Hash L2</h2>
-      <p class="section-subtitle">Get started in three steps</p>
-      <div class="dev-steps">
-        <div class="dev-step">
-          <div class="dev-step-num">1</div>
-          <h4>Add Network</h4>
-          <p>Configure your wallet with testnet Chain IDs</p>
-        </div>
-        <div class="dev-step">
-          <div class="dev-step-num">2</div>
-          <h4>Get Testnet MHA</h4>
-          <p>Request test tokens from the faucet</p>
-        </div>
-        <div class="dev-step">
-          <div class="dev-step-num">3</div>
-          <h4>Deploy Contract</h4>
-          <p>Build and deploy your smart contracts</p>
-        </div>
-      </div>
-      <div class="dev-buttons">
-        <a href="developers.html" class="btn-primary">Network Config</a>
-        <a href="developers.html" class="btn-secondary">Developer Docs</a>
-        <a href="developers.html" class="btn-secondary">Build Smart Contract</a>
-      </div>
-    </section>
-
-    <!-- 08 Security & Compliance -->
-    <section class="stack-section" style="background: var(--bg-secondary);">
-      <h2 class="section-title">Built on secure hardware and compliance readiness</h2>
-      <p class="section-subtitle">Security architecture and certification progress</p>
-      <div class="stack-grid" style="max-width: 900px;">
-        <div class="stack-card">
-          <div class="stack-card-icon">🔐</div>
-          <h3>Security Architecture</h3>
-          <p>MAGNE.AI combines CC EAL2+ TEE architecture, CC EAL6+ secure element design, NFC-based encrypted backup, and hardware-rooted key protection.</p>
-          <a href="https://jerrysohigh-create.github.io/magne-web/magne-security.html" class="btn-secondary" target="_blank" style="margin-top: 1rem; display: inline-block;">View Security</a>
-        </div>
-        <div class="stack-card">
-          <div class="stack-card-icon">📋</div>
-          <h3>Compliance Status</h3>
-          <p>GMS readiness, GSMA TAC registration, and global certification progress for international deployment.</p>
-          <a href="https://jerrysohigh-create.github.io/magne-web/magne-compliance.html" class="btn-secondary" target="_blank" style="margin-top: 1rem; display: inline-block;">View Compliance</a>
+    <!-- Testnet Network -->
+    <section>
+      <div class="content-wrapper">
+        <h2 class="section-title animate">Testnet Network</h2>
+        <p class="section-subtitle animate">Connect to MAGNE testnets and start building</p>
+        <div class="grid-2">
+          <div class="network-card animate">
+            <span class="network-status">Testnet Live</span>
+            <h3>MAGNE L1 Testnet</h3>
+            <table class="info-table">
+              <tr><td>Chain ID</td><td>20250810</td></tr>
+              <tr><td>Symbol</td><td>MHA</td></tr>
+              <tr><td>RPC</td><td>rpc.testnet.magicalhash.com</td></tr>
+              <tr><td>Explorer</td><td>explorer.testnet.magicalhash.com</td></tr>
+            </table>
+            <a href="developers.html" class="btn-primary" style="width:100%; text-align:center; display:block;">View Config</a>
+          </div>
+          <div class="network-card animate">
+            <span class="network-status">Testnet Live</span>
+            <h3>M Hash L2 Testnet</h3>
+            <table class="info-table">
+              <tr><td>Chain ID</td><td>20250827</td></tr>
+              <tr><td>Symbol</td><td>MHA</td></tr>
+              <tr><td>RPC</td><td>l2-rpc.testnet.magicalhash.com</td></tr>
+              <tr><td>Explorer</td><td>l2-explorer.testnet.magicalhash.com</td></tr>
+            </table>
+            <a href="network.html" class="btn-primary" style="width:100%; text-align:center; display:block;">View Details</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 09 Roadmap Preview -->
-    <section class="roadmap-section">
-      <h2 class="section-title">Execution Roadmap</h2>
-      <p class="section-subtitle">Planned milestones and progress</p>
-      <div class="roadmap-grid">
-        <div class="roadmap-item completed">
-          <span class="roadmap-status">Completed</span>
-          <div class="roadmap-time">2025 Q3–Q4</div>
-          <h4>Testnet Launch</h4>
-          <p>MAGNE L1 testnet, M Hash L2 testnet, explorer, faucet, developer documentation.</p>
+    <!-- Token Utility -->
+    <section style="background: var(--bg-secondary);">
+      <div class="content-wrapper">
+        <h2 class="section-title animate">$MHA powers the MAGNE.AI economy</h2>
+        <p class="section-subtitle animate">The native utility token across all ecosystem layers</p>
+        <div class="token-grid animate">
+          <div class="token-item">
+            <h4>Gas</h4>
+            <p>Network fees</p>
+          </div>
+          <div class="token-item">
+            <h4>Staking</h4>
+            <p>Validation</p>
+          </div>
+          <div class="token-item">
+            <h4>Governance</h4>
+            <p>On-chain voting</p>
+          </div>
+          <div class="token-item">
+            <h4>Device Incentives</h4>
+            <p>DePIN rewards</p>
+          </div>
+          <div class="token-item">
+            <h4>Compute Rewards</h4>
+            <p>AI services</p>
+          </div>
+          <div class="token-item">
+            <h4>Ecosystem Access</h4>
+            <p>Premium features</p>
+          </div>
         </div>
-        <div class="roadmap-item in-progress">
-          <span class="roadmap-status">In Progress</span>
-          <div class="roadmap-time">2026 Q1</div>
-          <h4>Token Readiness</h4>
-          <p>Exchange due diligence, audit reports, legal opinion, ecosystem campaign preparation.</p>
-        </div>
-        <div class="roadmap-item planned">
-          <span class="roadmap-status">Planned</span>
-          <div class="roadmap-time">2026 Q2</div>
-          <h4>Phone Launch</h4>
-          <p>MAGNE.AI Phone Gen1 mass production readiness, Web3 wallet integration, device incentive pilot.</p>
-        </div>
-        <div class="roadmap-item planned">
-          <span class="roadmap-status">Planned</span>
-          <div class="roadmap-time">2026 Q3+</div>
-          <h4>Mainnet Expansion</h4>
-          <p>Mainnet launch, DePIN compute network, AI agent ecosystem, partner DApps.</p>
+        <div class="notice animate">
+          Token-related information is provided for technical and ecosystem communication purposes only and does not constitute investment advice, financial advice, or a guarantee of rewards or returns.
         </div>
       </div>
     </section>
 
-    <!-- 10 Legal & Transparency -->
-    <section class="transparency-section">
-      <h2 class="section-title">Legal & Transparency</h2>
-      <p class="transparency-content">
-        MAGNE.AI maintains archived project materials, legal review documents, audit reports, and risk disclosures to support transparency for users, developers, partners, and exchange due diligence.
-      </p>
-      <div class="transparency-buttons">
-        <a href="transparency.html" class="btn-primary">View Document Center</a>
-        <a href="transparency.html" class="btn-secondary">Download Archived Whitepaper</a>
-        <a href="transparency.html" class="btn-secondary">Download Legal Opinion</a>
+    <!-- Roadmap -->
+    <section>
+      <div class="content-wrapper">
+        <h2 class="section-title animate">Execution Roadmap</h2>
+        <p class="section-subtitle animate">Planned milestones and progress</p>
+        <div class="roadmap-grid">
+          <div class="roadmap-item completed animate">
+            <span class="roadmap-status">Completed</span>
+            <div class="roadmap-time">2025 Q3–Q4</div>
+            <h4>Testnet Launch</h4>
+            <p>MAGNE L1 testnet, M Hash L2 testnet, explorer, faucet, developer documentation.</p>
+          </div>
+          <div class="roadmap-item in-progress animate">
+            <span class="roadmap-status">In Progress</span>
+            <div class="roadmap-time">2026 Q1</div>
+            <h4>Token Readiness</h4>
+            <p>Exchange due diligence, audit reports, legal opinion, ecosystem campaign preparation.</p>
+          </div>
+          <div class="roadmap-item planned animate">
+            <span class="roadmap-status">Planned</span>
+            <div class="roadmap-time">2026 Q2</div>
+            <h4>Phone Launch</h4>
+            <p>MAGNE.AI Phone Gen1 mass production readiness, Web3 wallet integration, device incentive pilot.</p>
+          </div>
+          <div class="roadmap-item planned animate">
+            <span class="roadmap-status">Planned</span>
+            <div class="roadmap-time">2026 Q3+</div>
+            <h4>Mainnet Expansion</h4>
+            <p>Mainnet launch, DePIN compute network, AI agent ecosystem, partner DApps.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 11 Community CTA -->
-    <section class="hero" style="min-height: 60vh; padding: 6rem 2rem;">
+    <!-- Transparency CTA -->
+    <section style="background: var(--bg-secondary); text-align: center;">
+      <div class="content-wrapper">
+        <h2 class="section-title animate">Legal & Transparency</h2>
+        <p class="section-subtitle animate">Access archived materials and legal documentation</p>
+        <div class="hero-ctas animate">
+          <a href="transparency.html" class="btn-primary">View Document Center</a>
+          <a href="transparency.html" class="btn-secondary">Download Legal Opinion</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community CTA -->
+    <section class="hero" style="min-height: 60vh;">
       <h1 style="font-size: 2.5rem;">Join the MAGNE.AI Web3 ecosystem</h1>
-      <p class="hero-subtitle" style="margin-bottom: 2rem;">Build, participate, and explore the next generation of secure device-powered Web3 infrastructure.</p>
-      <div class="hero-buttons">
+      <p class="hero-sub">Build, participate, and explore the next generation of secure device-powered Web3 infrastructure.</p>
+      <div class="hero-ctas">
         <a href="community.html" class="btn-primary">Join Community</a>
         <a href="learn.html" class="btn-secondary">Read Docs</a>
-        <a href="https://magne.ai" class="btn-secondary" target="_blank">Explore MAGNE Phone</a>
+        <a href="https://magne.ai" class="btn-secondary" target="_blank">Explore Phone</a>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="footer-brand">
-      <img src="assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
-      <p>The Web3-native AI Phone</p>
-    </div>
     <div class="footer-links">
       <a href="learn.html">Learn</a>
       <a href="developers.html">Developers</a>
@@ -797,20 +411,85 @@
       <a href="ecosystem.html">Ecosystem</a>
       <a href="transparency.html">Transparency</a>
     </div>
-    <div class="footer-socials">
-      <a href="https://x.com/Magne_Ai" target="_blank" aria-label="X">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
-      <a href="https://t.me/MagneAI" target="_blank" aria-label="Telegram">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      </a>
-      <a href="https://discord.gg/tX2xRAkd" target="_blank" aria-label="Discord">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-      </a>
+    <div class="footer-links-secondary">
+      <a href="https://x.com/Magne_Ai" target="_blank">X (Twitter)</a>
+      <a href="https://t.me/MagneAI" target="_blank">Telegram</a>
+      <a href="https://discord.gg/tX2xRAkd" target="_blank">Discord</a>
     </div>
-    <p class="footer-copyright">© 2025 MAGNE.AI. All rights reserved.</p>
+    <p style="margin-top: 1.5rem;">© 2025 MAGNE.AI. All rights reserved.</p>
   </footer>
 
   <script>
+    // Node background animation
+    const canvas = document.getElementById('node-bg');
+    const ctx = canvas.getContext('2d');
+    let nodes = [];
+    let width, height;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    class Node {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 2 + 1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 212, 212, 0.5)';
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 60; i++) nodes.push(new Node());
+
+    function drawLines() {
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = 'rgba(0, 212, 212, ' + (1 - dist / 150) * 0.15 + ')';
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      nodes.forEach(n => { n.update(); n.draw(); });
+      drawLines();
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
