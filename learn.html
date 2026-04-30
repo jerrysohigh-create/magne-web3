@@ -6,165 +6,70 @@
   <title>Learn | MAGNE.AI</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.min.js"></script>
   <style>
     :root {
       --bg-primary: #0a0a0c;
       --bg-secondary: #0f0f12;
       --bg-card: rgba(255, 255, 255, 0.03);
-      --bg-card-hover: rgba(255, 255, 255, 0.05);
       --border: rgba(255, 255, 255, 0.06);
-      --border-hover: rgba(255, 255, 255, 0.12);
       --text-primary: #ffffff;
       --text-secondary: rgba(255, 255, 255, 0.5);
-      --text-tertiary: rgba(255, 255, 255, 0.3);
       --accent: #FFD700;
-      --accent-secondary: #00ff88;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Outfit', -apple-system, sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    #node-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-    }
-
+    body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1rem 3rem;
-      display: flex; justify-content: space-between; align-items: center;
-      background: rgba(10, 10, 12, 0.92);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(10, 10, 12, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
     }
     .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
     .nav-brand a { color: var(--text-secondary); text-decoration: none; }
-    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
-    .nav-logo-img { height: 20px; width: auto; display: block; }
+    .nav-logo-img { height: 20px; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent); }
-    .nav-links a.active { color: var(--accent); }
-    .nav-cta {
-      background: var(--accent); color: #000 !important;
-      padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none;
-    }
-    .nav-cta:hover { opacity: 0.9; }
-
-    main { position: relative; z-index: 1; }
-
-    .content-wrapper { position: relative; z-index: 1; width: min(1200px, calc(100% - 48px)); margin: 0 auto; }
-
-    .hero {
-      min-height: 60vh; display: flex; flex-direction: column;
-      justify-content: center; align-items: center; text-align: center;
-      padding: 8rem 2rem 4rem; position: relative;
-    }
-    .hero::before {
-      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 900px; height: 700px;
-      background: radial-gradient(ellipse at center, rgba(255,215,0,0.2) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      font-size: 0.8rem; color: var(--accent); letter-spacing: 3px;
-      text-transform: uppercase; margin-bottom: 1.5rem;
-    }
-    .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.15;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.85) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .hero-sub { font-size: 1.15rem; color: var(--text-secondary); max-width: 650px; margin-bottom: 3rem; }
-
-    section { padding: 6rem 2rem; }
-    .section-title { font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 1rem; }
-    .section-subtitle { color: var(--text-secondary); text-align: center; margin-bottom: 3rem; }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-
-    .card {
-      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
-      padding: 2rem; transition: all 0.3s;
-    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .nav-cta { background: var(--accent); color: #000 !important; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; }
+    main { position: relative; z-index: 1; padding-top: 80px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 0; }
+    section:nth-child(even) { background: var(--bg-secondary); }
+    h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; }
+    h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+    h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; }
+    p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; }
+    .hero { text-align: center; padding: 8rem 2rem 6rem; }
+    .hero h1 { background: linear-gradient(135deg, #fff, rgba(255,255,255,0.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 3.5rem; }
+    .hero p { max-width: 700px; margin: 0 auto 2rem; font-size: 1.2rem; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-header p { max-width: 600px; margin: 0 auto; }
+    .grid { display: grid; gap: 1.5rem; }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: all 0.3s; }
     .card:hover { border-color: var(--accent); transform: translateY(-4px); }
     .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-    .card h3 { font-size: 1.2rem; margin-bottom: 0.75rem; }
-    .card p { color: var(--text-secondary); font-size: 0.95rem; }
-    .card-link { display: inline-block; margin-top: 1rem; color: var(--accent); text-decoration: none; font-weight: 500; }
-    .card-link:hover { text-decoration: underline; }
-
-    .info-box {
-      background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.15);
-      border-radius: 12px; padding: 2rem; margin: 2rem 0;
-    }
-    .info-box h3 { color: var(--accent); margin-bottom: 1rem; }
-    .info-box p { color: var(--text-secondary); line-height: 1.8; }
-
-    .btn-primary {
-      background: var(--accent); color: #000; padding: 1rem 2.5rem;
-      border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s;
-    }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,215,0,0.3); }
-
-    .list-card {
-      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
-      padding: 1.5rem 2rem; transition: all 0.3s;
-    }
-    .list-card:hover { border-color: var(--accent); }
-    .list-card h4 { color: var(--accent); margin-bottom: 0.5rem; }
-    .list-card p { color: var(--text-secondary); font-size: 0.9rem; }
-
-    footer {
-      text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border);
-      color: var(--text-tertiary); font-size: 0.9rem;
-    }
+    footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem; }
     footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
     footer a:hover { color: var(--accent); }
-    .footer-brand-logo { text-align: center; margin-bottom: 1.5rem; }
-    .footer-brand-logo .footer-brand-img { height: 24px; width: auto; margin-bottom: 0.5rem; }
-    .footer-brand-logo p { color: var(--text-secondary); font-size: 0.85rem; }
+    .footer-brand-logo { margin-bottom: 1.5rem; }
+    .footer-brand-img { height: 24px; margin-bottom: 0.5rem; }
+    .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; }
     .footer-socials { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
     .footer-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); transition: all 0.2s; }
     .footer-icon:hover { border-color: var(--accent); color: var(--accent); }
     .footer-icon svg { width: 18px; height: 18px; }
     .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
-    .footer-links-secondary { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
-    .footer-links-secondary a { font-size: 0.85rem; }
-    .trademark-notice { font-size: 0.8rem; color: var(--text-secondary); margin-top: 1rem; }
+    .footer-links-secondary { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; font-size: 0.85rem; }
+    .trademark-notice { font-size: 0.8rem; margin-top: 1rem; }
     .trademark-notice a { color: var(--accent); }
-
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    .animate { opacity: 0; }
-    .animate.visible { animation: fadeInUp 0.6s ease-out forwards; }
-
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      .hero h1 { font-size: 2rem; }
-      section { padding: 4rem 1.5rem; }
-      .section-title { font-size: 1.8rem; }
-    }
-  </style>
-  <style>
+    .copyright { margin-top: 1.5rem; opacity: 0.5; }
+    @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .nav-links { display: none; } h1 { font-size: 2.2rem; } h2 { font-size: 1.8rem; } .hero h1 { font-size: 2.5rem; } }
   </style>
 </head>
 <body>
-  
-
   <nav>
     <div class="nav-brand">
-      <a href="https://magne.ai" class="nav-logo">
-        <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
-      </a>
+      <a href="https://magne.ai"><img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a>
     </div>
     <ul class="nav-links">
       <li><a href="index.html">HOME</a></li>
@@ -181,115 +86,86 @@
   <main>
     <!-- Hero -->
     <section class="hero">
-      <div class="hero-eyebrow">Learn</div>
       <h1>What is MAGNE.AI?</h1>
-      <p class="hero-sub">MAGNE.AI is a Web3-native AI smartphone and blockchain infrastructure project combining secure mobile hardware, MAGNE L1, M Hash L2, and decentralized AI compute participation.</p>
+      <p>MAGNE.AI is a Web3-native AI smartphone and blockchain infrastructure project combining secure mobile hardware, MAGNE L1, M Hash L2, and decentralized AI compute participation.</p>
     </section>
 
     <!-- Web3 Stack -->
     <section>
-      <div class="content-wrapper">
-        <h2 class="section-title">The MAGNE.AI Web3 Stack</h2>
-        <p class="section-subtitle">From secure device to decentralized infrastructure</p>
-        <div class="grid-3">
+      <div class="container">
+        <div class="section-header">
+          <h2>The MAGNE.AI Web3 Stack</h2>
+          <p>From secure device to decentralized infrastructure</p>
+        </div>
+        <div class="grid grid-3">
           <div class="card">
             <div class="card-icon">📱</div>
             <h3>Secure Device Layer</h3>
-            <p>MAGNE.AI Phone Gen1 provides hardware-secured Web3 access, private dual-space architecture, secure element protection, and NFC-based encrypted asset backup.</p>
+            <p>MAGNE.AI Phone Gen1 provides hardware-secured Web3 access with private dual-space architecture and NFC-based encrypted asset backup.</p>
           </div>
           <div class="card">
             <div class="card-icon">⛓️</div>
             <h3>MAGNE L1</h3>
-            <p>MAGNE L1 is the EVM-compatible base network designed to support native Web3 applications, asset ownership, and ecosystem-level coordination.</p>
+            <p>EVM-compatible base network designed for native Web3 applications, asset ownership, and ecosystem coordination.</p>
           </div>
           <div class="card">
             <div class="card-icon">🚀</div>
             <h3>M Hash L2</h3>
-            <p>M Hash L2 is an OP Stack-based Layer 2 testnet designed for scalable smart contracts, lower-cost transactions, and developer experimentation.</p>
+            <p>OP Stack-based Layer 2 for scalable smart contracts, lower-cost transactions, and developer experimentation.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- $MHA Token -->
-    <section style="background: var(--bg-secondary);">
-      <div class="content-wrapper">
-        <h2 class="section-title">What is $MHA?</h2>
-        <p class="section-subtitle">The native utility token powering the MAGNE ecosystem</p>
-        <div class="card" style="max-width: 800px; margin: 0 auto;">
-          <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem;">
-            $MHA is the native utility token of the MAGNE ecosystem. It serves as the backbone of the entire MAGNE economy, enabling various functions across the platform.
-          </p>
-          <div class="grid-3">
-            <div>
-              <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Gas</h4>
-              <p style="color: var(--text-secondary); font-size: 0.9rem;">Transaction fees on MAGNE L1 and M Hash L2</p>
-            </div>
-            <div>
-              <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Staking</h4>
-              <p style="color: var(--text-secondary); font-size: 0.9rem;">Participate as validator or delegate</p>
-            </div>
-            <div>
-              <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Governance</h4>
-              <p style="color: var(--text-secondary); font-size: 0.9rem;">On-chain voting for protocol decisions</p>
-            </div>
-          </div>
-          <a href="token.html" class="card-link">Learn more about $MHA →</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Proof of Work -->
+    <!-- Key Features -->
     <section>
-      <div class="content-wrapper">
-        <h2 class="section-title">What is Proof-of-Work?</h2>
-        <p class="section-subtitle">The consensus mechanism securing the MAGNE network</p>
-        <div class="info-box">
-          <h3>How It Works</h3>
-          <p>Proof-of-Work (PoW) is a consensus mechanism used by blockchain networks to validate transactions and secure the network. Miners compete to solve complex mathematical puzzles to add new blocks to the chain.</p>
+      <div class="container">
+        <div class="section-header">
+          <h2>Key Features</h2>
         </div>
-        <div class="grid-3">
-          <div class="list-card">
-            <h4>Security</h4>
-            <p>Requires enormous computational power to attack the network</p>
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-icon">🔐</div>
+            <h3>Hardware-Secured Wallet</h3>
+            <p>Secure Enclave-based key storage with multi-factor authentication and hardware-backed transaction signing.</p>
           </div>
-          <div class="list-card">
-            <h4>Decentralization</h4>
-            <p>Anyone with mining hardware can participate</p>
+          <div class="card">
+            <div class="card-icon">🌐</div>
+            <h3>Mobile-Native Web3 Access</h3>
+            <p>Purpose-built device for Web3 with integrated DApp browser, NFT gallery, and token management.</p>
           </div>
-          <div class="list-card">
-            <h4>Incentives</h4>
-            <p>Miners are rewarded with newly minted tokens and transaction fees</p>
+          <div class="card">
+            <div class="card-icon">🔗</div>
+            <h3>Native L1 + L2 Architecture</h3>
+            <p>Designed from the ground up with MAGNE L1 as the foundation and M Hash L2 for scalability.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- DePIN -->
-    <section style="background: var(--bg-secondary);">
-      <div class="content-wrapper">
-        <h2 class="section-title">What is DePIN?</h2>
-        <p class="section-subtitle">Decentralized Physical Infrastructure Networks</p>
-        <div class="card" style="max-width: 800px; margin: 0 auto; text-align: center;">
-          <div class="card-icon">🌐</div>
-          <p style="color: var(--text-secondary); line-height: 1.8;">
-            DePIN (Decentralized Physical Infrastructure Networks) enables users to contribute real-world resources—like compute, bandwidth, and storage—to earn network rewards. MAGNE.AI is designed to evolve toward device-based infrastructure participation where users can share idle compute from their MAGNE devices.
-          </p>
-          <p style="color: var(--accent); margin-top: 1rem; font-size: 0.9rem;">
-            Device-related incentive programs may be based on device capability, uptime, contribution quality, and governance-approved reward rules.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Get Started -->
     <section>
-      <div class="content-wrapper" style="text-align: center;">
-        <h2 class="section-title">Ready to Learn More?</h2>
-        <p class="section-subtitle">Explore the MAGNE.AI ecosystem</p>
-        <div class="hero-ctas animate" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
-          <a href="developers.html" class="btn-primary">Start Building</a>
-          <a href="network.html" class="btn-primary" style="background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border);">Explore Network</a>
+      <div class="container">
+        <div class="section-header">
+          <h2>DePIN + AI Compute</h2>
+          <p>Device-based infrastructure participation and AI compute contribution</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-icon">💎</div>
+            <h3>Device Incentives</h3>
+            <p>Earn rewards by participating in network validation and providing compute resources.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🤖</div>
+            <h3>AI Compute Participation</h3>
+            <p>Contribute device resources to AI model training and inference for network rewards.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🛡️</div>
+            <h3>Compliance-Ready Stack</h3>
+            <p>Built-in KYC/AML compliance features for regulated markets and enterprise adoption.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -300,93 +176,18 @@
       <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
       <p>The Web3-native AI Phone</p>
     </div>
-    <div class="footer-socials" aria-label="Official MAGNE.AI channels">
-      <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-      <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
-      <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+    <div class="footer-socials">
+      <a href="https://x.com/Magne_Ai" target="_blank" class="footer-icon" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://t.me/MagneAI" target="_blank" class="footer-icon" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <a href="https://discord.gg/tX2xRAkd" target="_blank" class="footer-icon" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
     </div>
     <div class="footer-links">
       <a href="https://magne.ai/privacy-policy.html">Privacy Policy</a>
       <a href="https://magne.ai/magne-contact.html">Contact</a>
       <a href="https://magne.ai/media-kit.html">Media Kit</a>
     </div>
-    <p class="trademark-notice">
-    MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process 
-    (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO Serial: 99311528</a>).
-    </p>
-    <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+    <p class="trademark-notice">MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO Serial: 99311528</a>).</p>
+    <p class="copyright">© 2026 MAGNE.AI. All rights reserved.</p>
   </footer>
-
- 
-  <canvas id="node-bg" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
-
-  <script>
-    const canvas = document.getElementById('node-bg');
-    const ctx = canvas.getContext('2d');
-    let nodes = [];
-    let width, height;
-
-    function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    class Node {
-      constructor() { this.reset(); }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 2 + 2;
-        this.baseRadius = this.radius;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-        this.radius = this.baseRadius;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.2)';
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < 50; i++) nodes.push(new Node());
-
-    function drawLines() {
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = 'rgba(255, 215, 0, 0.05)';
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = 'rgba(10, 10, 12, 0.3)';
-      ctx.fillRect(0, 0, width, height);
-      nodes.forEach(n => { n.update(); n.draw(); });
-      drawLines();
-      requestAnimationFrame(animate);
-    }
-    animate();
-  </script>
-
 </body>
 </html>
