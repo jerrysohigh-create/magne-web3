@@ -421,8 +421,8 @@
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.9)';
-        ctx.shadowBlur = 15;
+        ctx.fillStyle = 'rgba(255, 215, 0, 0.5)';
+        ctx.shadowBlur = 5;
         ctx.shadowColor = 'rgba(255, 215, 0, 0.6)';
         ctx.fill();
         ctx.shadowBlur = 0;
