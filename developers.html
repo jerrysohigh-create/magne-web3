@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developers | MAGNE.AI</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="assets/mobile-responsive.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <nav>
+    <div class="nav-brand">
+      <a href="https://magne.ai" class="nav-logo">
+        <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="learn.html">LEARN</a></li>
+      <li><a href="developers.html" class="active">DEVELOPERS</a></li>
+      <li><a href="network.html">NETWORK</a></li>
+      <li><a href="token.html">TOKEN</a></li>
+      <li><a href="ecosystem.html">ECOSYSTEM</a></li>
+      <li><a href="transparency.html">TRANSPARENCY</a></li>
+    </ul>
+    <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank">Preorder</a>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" style="min-height: 50vh; padding: 8rem 2rem 4rem;">
+      <h1>Developer Hub</h1>
+      <p class="hero-subtitle">Build on MAGNE L1 and M Hash L2 with our developer tools, network configurations, and documentation.</p>
+    </section>
+
+    <!-- Network Config -->
+    <section style="padding: 4rem 2rem;">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--accent);">Network Configuration</h2>
+        
+        <!-- MAGNE L1 -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
+          <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent);">MAGNE L1 Testnet</h3>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; overflow-x: auto;">
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary);">Network Name:</span> <span style="color: var(--text-primary);">MAGNE L1 Testnet</span></div>
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary);">RPC URL:</span> <span style="color: var(--text-primary);">https://rpc.testnet.magicalhash.com</span></div>
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary);">Chain ID:</span> <span style="color: var(--text-primary);">20250810</span></div>
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary);">Currency Symbol:</span> <span style="color: var(--text-primary);">MHA</span></div>
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary);">Block Explorer:</span> <span style="color: var(--text-primary);">https://explorer.testnet.magicalhash.com</span></div>
+            <div><span style="color: var(--text-secondary);">Faucet:</span> <span style="color: var(--text-primary);">https://faucet.testnet.magicalhash.com</span></div>
+          </div>
+        </div>
+
+        <!-- M Hash L2 -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem;">
+          <h3 style="font-size: 1.2rem; margin-bottom: 1rem; color: var(--accent);">M Hash L2 Testnet</h3>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; overflow-x: auto;">
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary);">Network Name:</span> <span style="color: var(--text-primary);">M Hash L2 Testnet</span></div>
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary);">RPC URL:</span> <span style="color: var(--text-primary);">https://l2-rpc.testnet.magicalhash.com</span></div>
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary);">Chain ID:</span> <span style="color: var(--text-primary);">20250827</span></div>
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary);">Currency Symbol:</span> <span style="color: var(--text-primary);">MHA</span></div>
+            <div style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary);">Block Explorer:</span> <span style="color: var(--text-primary);">https://l2-explorer.testnet.magicalhash.com</span></div>
+            <div><span style="color: var(--text-secondary);">Faucet:</span> <span style="color: var(--text-primary);">https://faucet.testnet.magicalhash.com</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quickstart -->
+    <section style="padding: 4rem 2rem; background: var(--bg-secondary);">
+      <div style="max-width: 900px; margin: 0 auto;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--accent);">Developer Quickstart</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+          <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+            <div style="font-size: 2rem; color: var(--accent); margin-bottom: 1rem;">1</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Add Network</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Configure your wallet (MetaMask, Rabby, etc.) with the testnet Chain ID and RPC URL.</p>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+            <div style="font-size: 2rem; color: var(--accent); margin-bottom: 1rem;">2</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Get Testnet MHA</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Visit the faucet to receive testnet MHA tokens for development and testing.</p>
+          </div>
+          <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+            <div style="font-size: 2rem; color: var(--accent); margin-bottom: 1rem;">3</div>
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Deploy Contract</h3>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Use Hardhat, Foundry, or your preferred toolkit to deploy smart contracts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section style="padding: 4rem 2rem;">
+      <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--accent);">Developer Tools</h2>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="https://explorer.testnet.magicalhash.com" class="btn-secondary" target="_blank">L1 Explorer</a>
+          <a href="https://l2-explorer.testnet.magicalhash.com" class="btn-secondary" target="_blank">L2 Explorer</a>
+          <a href="https://faucet.testnet.magicalhash.com" class="btn-secondary" target="_blank">Faucet</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <img src="assets/brand/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+      <p>The Web3-native AI Phone</p>
+    </div>
+    <div class="footer-links">
+      <a href="learn.html">Learn</a>
+      <a href="developers.html">Developers</a>
+      <a href="network.html">Network</a>
+      <a href="token.html">Token</a>
+      <a href="ecosystem.html">Ecosystem</a>
+      <a href="transparency.html">Transparency</a>
+    </div>
+    <p class="footer-copyright">© 2025 MAGNE.AI. All rights reserved.</p>
+  </footer>
+</body>
+</html>
