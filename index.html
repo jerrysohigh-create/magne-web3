@@ -10,15 +10,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-primary: #0a0e17;
-      --bg-secondary: #0f1520;
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
       --bg-card: rgba(255, 255, 255, 0.03);
-      --accent: #00d4d4;
-      --accent-glow: rgba(0, 212, 212, 0.3);
-      --gold: #ffd700;
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
       --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.6);
-      --border: rgba(255, 255, 255, 0.08);
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.3);
+      --accent: #00d4d4;
+      --accent-secondary: #00ff88;
+      --accent-purple: #a855f7;
+      --accent-gold: #ffd700;
+      --accent-pink: #ff6482;
+      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
     * {
@@ -32,14 +39,14 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: var(--font-main);
       background: var(--bg-primary);
       color: var(--text-primary);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* Animated Background */
+    /* Background Effects */
     .bg-grid {
       position: fixed;
       top: 0;
@@ -51,28 +58,22 @@
       background-image: 
         linear-gradient(rgba(0, 212, 212, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 212, 212, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
+      background-size: 60px 60px;
     }
 
     .bg-glow {
       position: fixed;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
       z-index: 0;
-      background: radial-gradient(ellipse at 30% 20%, rgba(0, 212, 212, 0.08) 0%, transparent 50%),
-                  radial-gradient(ellipse at 70% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
-      animation: glowPulse 15s ease-in-out infinite;
+      background: 
+        radial-gradient(ellipse at 20% 10%, rgba(0, 212, 212, 0.12) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 90%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
     }
 
-    @keyframes glowPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
-
-    /* Canvas Background */
     #network-bg {
       position: fixed;
       top: 0;
@@ -81,7 +82,7 @@
       height: 100%;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.5;
+      opacity: 0.4;
     }
 
     /* Navigation */
@@ -91,31 +92,22 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 1rem 2rem;
-      background: rgba(10, 14, 23, 0.8);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner {
-      max-width: 1400px;
-      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0.75rem 2rem;
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-brand {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--text-primary);
-      text-decoration: none;
     }
 
-    .nav-brand svg {
+    .nav-logo {
       height: 28px;
       opacity: 0.9;
     }
@@ -124,6 +116,7 @@
       display: flex;
       align-items: center;
       gap: 2rem;
+      list-style: none;
     }
 
     .nav-links a {
@@ -131,7 +124,7 @@
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
-      transition: color 0.3s ease;
+      transition: color 0.2s;
     }
 
     .nav-links a:hover {
@@ -139,24 +132,26 @@
     }
 
     .nav-cta {
-      background: var(--accent) !important;
+      background: var(--accent);
       color: #000 !important;
       padding: 0.6rem 1.25rem;
       border-radius: 8px;
       font-weight: 600 !important;
+      text-decoration: none;
+      transition: all 0.2s;
     }
 
     .nav-cta:hover {
-      box-shadow: 0 0 20px var(--accent-glow);
+      box-shadow: 0 0 20px rgba(0, 212, 212, 0.4);
     }
 
-    /* Main Content */
+    /* Main */
     main {
       position: relative;
       z-index: 1;
     }
 
-    /* Hero Section */
+    /* Hero */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -164,7 +159,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 8rem 2rem 4rem;
+      padding: 7rem 2rem 4rem;
       position: relative;
     }
 
@@ -201,7 +196,7 @@
       font-weight: 800;
       line-height: 1.1;
       margin-bottom: 1.5rem;
-      background: linear-gradient(135deg, var(--text-primary) 0%, rgba(255,255,255,0.8) 100%);
+      background: linear-gradient(135deg, var(--text-primary) 0%, rgba(255,255,255,0.7) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -234,7 +229,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      transition: all 0.3s ease;
+      transition: all 0.2s;
     }
 
     .btn-primary:hover {
@@ -244,7 +239,7 @@
 
     .btn-secondary {
       background: var(--bg-card);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-hover);
       color: var(--text-primary);
       padding: 1rem 2rem;
       border-radius: 10px;
@@ -253,7 +248,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      transition: all 0.3s ease;
+      transition: all 0.2s;
     }
 
     .btn-secondary:hover {
@@ -262,44 +257,41 @@
     }
 
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* Stats Section */
     .stats-section {
       padding: 6rem 2rem;
-      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      background: var(--bg-secondary);
     }
 
-    .stats-header {
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
       text-align: center;
       margin-bottom: 4rem;
     }
 
-    .stats-header h2 {
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
       font-weight: 700;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
-    .stats-header p {
+    .section-header p {
       color: var(--text-secondary);
       font-size: 1.1rem;
     }
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
-      max-width: 1400px;
-      margin: 0 auto;
     }
 
     .stat-card {
@@ -320,19 +312,19 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--gold));
+      background: linear-gradient(90deg, var(--accent), var(--accent-purple));
       opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .stat-card:hover::before {
-      opacity: 1;
+      transition: opacity 0.3s;
     }
 
     .stat-card:hover {
       transform: translateY(-5px);
-      border-color: rgba(0, 212, 212, 0.2);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .stat-card:hover::before {
+      opacity: 1;
     }
 
     .stat-icon {
@@ -341,17 +333,16 @@
     }
 
     .stat-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-family: var(--font-mono);
+      font-size: clamp(2rem, 4vw, 2.75rem);
       font-weight: 700;
       color: var(--accent);
       margin-bottom: 0.5rem;
       line-height: 1.2;
     }
 
-    .stat-value.gold {
-      color: var(--gold);
-    }
+    .stat-value.gold { color: var(--accent-gold); }
+    .stat-value.purple { color: var(--accent-purple); }
 
     .stat-label {
       color: var(--text-secondary);
@@ -360,7 +351,7 @@
     }
 
     .stat-note {
-      color: rgba(255, 255, 255, 0.4);
+      color: var(--text-tertiary);
       font-size: 0.8rem;
       margin-top: 0.5rem;
     }
@@ -370,29 +361,10 @@
       padding: 6rem 2rem;
     }
 
-    .section-header {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 4rem;
-    }
-
-    .section-header h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .section-header p {
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-    }
-
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
     }
 
     .feature-card {
@@ -405,45 +377,51 @@
       transition: all 0.3s ease;
     }
 
-    .feature-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(0, 212, 212, 0.3);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-    }
-
     .feature-card::after {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(0, 212, 212, 0.05) 0%, transparent 50%);
-      pointer-events: none;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .feature-card:hover::after {
+      opacity: 1;
     }
 
     .feature-icon {
-      width: 64px;
-      height: 64px;
-      background: linear-gradient(135deg, rgba(0, 212, 212, 0.2) 0%, rgba(0, 212, 212, 0.05) 100%);
-      border: 1px solid rgba(0, 212, 212, 0.3);
-      border-radius: 16px;
+      width: 56px;
+      height: 56px;
+      background: rgba(0, 212, 212, 0.1);
+      border: 1px solid rgba(0, 212, 212, 0.2);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.75rem;
+      font-size: 1.5rem;
       margin-bottom: 1.5rem;
     }
 
     .feature-card h3 {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
     .feature-card p {
       color: var(--text-secondary);
       line-height: 1.7;
+      font-size: 0.95rem;
     }
 
     /* Network Section */
@@ -452,18 +430,11 @@
       background: var(--bg-secondary);
     }
 
-    .network-visual {
-      max-width: 1000px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
     .network-diagram {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 24px;
       padding: 3rem;
-      margin-bottom: 3rem;
       position: relative;
       overflow: hidden;
     }
@@ -476,34 +447,37 @@
       right: 0;
       bottom: 0;
       background: 
-        radial-gradient(circle at 20% 30%, rgba(0, 212, 212, 0.1) 0%, transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.08) 0%, transparent 30%);
+        radial-gradient(circle at 20% 30%, rgba(0, 212, 212, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.06) 0%, transparent 40%);
       pointer-events: none;
     }
 
+    .network-flow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
     .network-node {
-      display: inline-flex;
+      display: flex;
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
       padding: 1.5rem 2rem;
-      background: rgba(0, 212, 212, 0.1);
-      border: 1px solid rgba(0, 212, 212, 0.3);
+      background: rgba(0, 212, 212, 0.08);
+      border: 1px solid rgba(0, 212, 212, 0.2);
       border-radius: 16px;
-      margin: 1rem;
-      position: relative;
+      transition: all 0.3s;
     }
 
-    .network-node::after {
-      content: '↔';
-      position: absolute;
-      right: -2rem;
-      color: var(--accent);
-      font-size: 1.5rem;
-    }
-
-    .network-node:last-child::after {
-      display: none;
+    .network-node:hover {
+      background: rgba(0, 212, 212, 0.12);
+      border-color: rgba(0, 212, 212, 0.4);
+      transform: translateY(-3px);
     }
 
     .network-node-icon {
@@ -511,8 +485,15 @@
     }
 
     .network-node-label {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .network-arrow {
+      font-size: 1.5rem;
+      color: var(--accent);
+      opacity: 0.5;
     }
 
     /* CTA Section */
@@ -526,11 +507,12 @@
     .cta-section::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(ellipse at center, rgba(0, 212, 212, 0.1) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150%;
+      height: 150%;
+      background: radial-gradient(ellipse at center, rgba(0, 212, 212, 0.1) 0%, transparent 60%);
       pointer-events: none;
     }
 
@@ -575,11 +557,11 @@
     }
 
     .footer-brand {
-      max-width: 300px;
+      max-width: 280px;
     }
 
     .footer-brand svg {
-      height: 32px;
+      height: 28px;
       opacity: 0.9;
       margin-bottom: 1rem;
     }
@@ -596,7 +578,7 @@
     }
 
     .footer-col h4 {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -616,7 +598,7 @@
       color: var(--text-secondary);
       text-decoration: none;
       font-size: 0.9rem;
-      transition: color 0.3s ease;
+      transition: color 0.2s;
     }
 
     .footer-col a:hover {
@@ -647,17 +629,24 @@
       color: var(--text-secondary);
       text-decoration: none;
       font-size: 0.85rem;
-      transition: color 0.3s ease;
+      transition: color 0.2s;
     }
 
     .footer-legal a:hover {
       color: var(--accent);
     }
 
-    /* Mobile Responsive */
+    .trademark-notice {
+      color: var(--text-tertiary);
+      font-size: 0.75rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    /* Mobile */
     @media (max-width: 768px) {
       nav {
-        padding: 1rem;
+        padding: 0.75rem 1rem;
       }
 
       .nav-links {
@@ -665,7 +654,7 @@
       }
 
       .hero {
-        padding: 6rem 1.5rem 3rem;
+        padding: 5rem 1.5rem 3rem;
       }
 
       .hero-cta {
@@ -686,6 +675,14 @@
         grid-template-columns: 1fr;
       }
 
+      .network-flow {
+        flex-direction: column;
+      }
+
+      .network-arrow {
+        transform: rotate(90deg);
+      }
+
       .footer-top {
         flex-direction: column;
       }
@@ -699,23 +696,6 @@
         flex-direction: column;
         text-align: center;
       }
-
-      .network-node {
-        display: block;
-        margin: 1rem 0;
-      }
-
-      .network-node::after {
-        display: none;
-      }
-    }
-
-    /* Trademarks */
-    .trademark-notice {
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 0.75rem;
-      margin-top: 2rem;
-      text-align: center;
     }
   </style>
 </head>
@@ -727,26 +707,28 @@
 
   <!-- Navigation -->
   <nav>
-    <div class="nav-inner">
-      <a href="https://magne.ai" class="nav-brand">
-        <svg viewBox="0 0 120 40" fill="currentColor">
+    <div class="nav-brand">
+      <a href="https://magne.ai">
+        <svg class="nav-logo" viewBox="0 0 160 40" fill="currentColor">
           <text x="0" y="30" font-size="24" font-weight="700" fill="white">MAGNE</text>
-          <text x="70" y="30" font-size="24" font-weight="400" fill="#00d4d4">.AI</text>
+          <text x="88" y="30" font-size="24" font-weight="400" fill="#00d4d4">.AI</text>
         </svg>
       </a>
-      <div class="nav-links">
-        <a href="#stats">Network Stats</a>
-        <a href="#features">Features</a>
-        <a href="#network">Network</a>
-        <a href="https://docs.magne.ai" target="_blank">Docs</a>
-        <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank">Get MAGNE</a>
-      </div>
     </div>
+    <ul class="nav-links">
+      <li><a href="https://magne.ai">Home</a></li>
+      <li><a href="https://magne.ai/magne-phone.html">Phone</a></li>
+      <li><a href="https://magne.ai/magne-security.html">Security</a></li>
+      <li><a href="https://magne.ai/magne-compliance.html">Compliance</a></li>
+      <li><a href="https://magne.ai/magne-network.html">Network</a></li>
+      <li><a href="https://magne.ai/faq.html">FAQ</a></li>
+    </ul>
+    <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank">Preorder</a>
   </nav>
 
-  <!-- Main Content -->
+  <!-- Main -->
   <main>
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero">
       <div class="hero-badge">
         <span>Live Network</span>
@@ -766,131 +748,126 @@
       </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- Stats -->
     <section id="stats" class="stats-section">
-      <div class="stats-header">
-        <h2>Network Statistics</h2>
-        <p>Real-time data from the MAGNE.AI blockchain network</p>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon">⚡</div>
-          <div class="stat-value" id="tps">5,000+</div>
-          <div class="stat-label">Transactions per Second</div>
+      <div class="section-inner">
+        <div class="section-header">
+          <h2>Network Statistics</h2>
+          <p>Real-time data from the MAGNE.AI blockchain network</p>
         </div>
-        <div class="stat-card">
-          <div class="stat-icon">⏱️</div>
-          <div class="stat-value">400ms</div>
-          <div class="stat-label">Block Time</div>
-          <div class="stat-note">And getting faster</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🔢</div>
-          <div class="stat-value" id="total-tx">2.4M</div>
-          <div class="stat-label">Total Transactions</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🔐</div>
-          <div class="stat-value">1,247</div>
-          <div class="stat-label">Validator Nodes</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🌱</div>
-          <div class="stat-value gold" id="carbon">Net Positive</div>
-          <div class="stat-label">Net Carbon Impact</div>
-          <div class="stat-note">Energy efficient</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">💰</div>
-          <div class="stat-value">&lt;$0.0025</div>
-          <div class="stat-label">Median Fee per Transaction</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">🎨</div>
-          <div class="stat-value" id="nfts">847K</div>
-          <div class="stat-label">NFTs Minted</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">👥</div>
-          <div class="stat-value" id="accounts">125K</div>
-          <div class="stat-label">Active Accounts</div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-value">5,000+</div>
+            <div class="stat-label">Transactions per Second</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⏱️</div>
+            <div class="stat-value">400ms</div>
+            <div class="stat-label">Block Time</div>
+            <div class="stat-note">And getting faster</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🔢</div>
+            <div class="stat-value">2.4M</div>
+            <div class="stat-label">Total Transactions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🔐</div>
+            <div class="stat-value">1,247</div>
+            <div class="stat-label">Validator Nodes</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🌱</div>
+            <div class="stat-value gold">Net Positive</div>
+            <div class="stat-label">Net Carbon Impact</div>
+            <div class="stat-note">Energy efficient</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💰</div>
+            <div class="stat-value">&lt;$0.0025</div>
+            <div class="stat-label">Median Fee per Transaction</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🎨</div>
+            <div class="stat-value purple">847K</div>
+            <div class="stat-label">NFTs Minted</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-value">125K</div>
+            <div class="stat-label">Active Accounts</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Features -->
     <section id="features" class="features-section">
-      <div class="section-header">
-        <h2>Built for Mass Adoption</h2>
-        <p>Performance and efficiency designed for the next billion users</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🚀</div>
-          <h3>Fast Block Times</h3>
-          <p>
-            Don't keep your users waiting. MAGNE.AI has block times of 400 milliseconds — and as hardware gets faster, so will the network.
-          </p>
+      <div class="section-inner">
+        <div class="section-header">
+          <h2>Built for Mass Adoption</h2>
+          <p>Performance and efficiency designed for the next billion users</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">📈</div>
-          <h3>High Throughput</h3>
-          <p>
-            Get big, quick. MAGNE.AI is made to handle thousands of transactions per second, and fees for both developers and users remain less than $0.0025.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🛡️</div>
-          <h3>Secure & Decentralized</h3>
-          <p>
-            The MAGNE.AI network is validated by thousands of nodes that operate independently of each other, ensuring your data remains secure and censorship resistant.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Energy Efficient</h3>
-          <p>
-            MAGNE focuses on efficiency through protocol and infrastructure optimizations across L1/L2 and execution tooling. Energy characteristics may vary by network configuration and workload.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📱</div>
-          <h3>5G Ready</h3>
-          <p>
-            MAGNE.AI is built for worldwide deployment, with full 5G support and carrier compatibility across major regions. Whether for travel, international users, or global Web3 applications.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🌍</div>
-          <h3>Global Scale</h3>
-          <p>
-            Seamless network access and regulatory compliance across jurisdictions. Built for developers and enterprises deploying worldwide applications.
-          </p>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3>Fast Block Times</h3>
+            <p>Don't keep your users waiting. MAGNE.AI has block times of 400 milliseconds — and as hardware gets faster, so will the network.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>High Throughput</h3>
+            <p>Get big, quick. MAGNE.AI is made to handle thousands of transactions per second, with fees remaining less than $0.0025.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Secure & Decentralized</h3>
+            <p>The MAGNE.AI network is validated by thousands of nodes that operate independently, ensuring your data remains secure and censorship resistant.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Energy Efficient</h3>
+            <p>MAGNE focuses on efficiency through protocol and infrastructure optimizations across L1/L2 and execution tooling.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>5G Ready</h3>
+            <p>MAGNE.AI is built for worldwide deployment, with full 5G support and carrier compatibility across major regions.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <h3>Global Scale</h3>
+            <p>Seamless network access and regulatory compliance across jurisdictions. Built for developers and enterprises.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Network Visualization -->
+    <!-- Network -->
     <section id="network" class="network-section">
-      <div class="section-header">
-        <h2>Network Architecture</h2>
-        <p>Distributed infrastructure powering the MAGNE.AI ecosystem</p>
-      </div>
-      <div class="network-visual">
+      <div class="section-inner">
+        <div class="section-header">
+          <h2>Network Architecture</h2>
+          <p>Distributed infrastructure powering the MAGNE.AI ecosystem</p>
+        </div>
         <div class="network-diagram">
-          <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem;">
+          <div class="network-flow">
             <div class="network-node">
               <div class="network-node-icon">🌐</div>
               <div class="network-node-label">L1 Blockchain</div>
             </div>
+            <div class="network-arrow">→</div>
             <div class="network-node">
               <div class="network-node-icon">⚙️</div>
               <div class="network-node-label">L2 Scaling</div>
             </div>
+            <div class="network-arrow">→</div>
             <div class="network-node">
               <div class="network-node-icon">🔧</div>
               <div class="network-node-label">Execution Layer</div>
             </div>
+            <div class="network-arrow">→</div>
             <div class="network-node">
               <div class="network-node-icon">🔗</div>
               <div class="network-node-label">Cross-Chain</div>
@@ -900,13 +877,11 @@
       </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- CTA -->
     <section class="cta-section">
       <div class="cta-content">
         <h2>Join the MAGNE.AI Community</h2>
-        <p>
-          It's time to join the thousands of creators, builders, and developers using MAGNE.AI.
-        </p>
+        <p>It's time to join the thousands of creators, builders, and developers using MAGNE.AI.</p>
         <div class="hero-cta">
           <a href="https://payment.magne.ai/buy" class="btn-primary" target="_blank">
             Payments on MAGNE.AI →
@@ -921,9 +896,9 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <svg viewBox="0 0 120 40" fill="currentColor">
+          <svg viewBox="0 0 160 40" fill="currentColor">
             <text x="0" y="30" font-size="24" font-weight="700" fill="white">MAGNE</text>
-            <text x="70" y="30" font-size="24" font-weight="400" fill="#00d4d4">.AI</text>
+            <text x="88" y="30" font-size="24" font-weight="400" fill="#00d4d4">.AI</text>
           </svg>
           <p>Building the next generation of high-performance blockchain infrastructure.</p>
         </div>
@@ -984,14 +959,14 @@
     window.addEventListener('resize', resizeCanvas);
 
     const nodes = [];
-    const numNodes = 50;
+    const numNodes = 60;
 
     for (let i = 0; i < numNodes; i++) {
       nodes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
         radius: Math.random() * 2 + 1
       });
     }
@@ -999,7 +974,6 @@
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw connections
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
@@ -1008,7 +982,7 @@
 
           if (distance < 150) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 212, 212, ${0.2 - distance / 750})`;
+            ctx.strokeStyle = `rgba(0, 212, 212, ${0.15 - distance / 1000})`;
             ctx.lineWidth = 1;
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -1017,18 +991,15 @@
         }
       }
 
-      // Draw nodes
       nodes.forEach(node => {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 212, 212, 0.8)';
+        ctx.fillStyle = 'rgba(0, 212, 212, 0.7)';
         ctx.fill();
 
-        // Update position
         node.x += node.vx;
         node.y += node.vy;
 
-        // Wrap around edges
         if (node.x < 0) node.x = canvas.width;
         if (node.x > canvas.width) node.x = 0;
         if (node.y < 0) node.y = canvas.height;
