@@ -107,7 +107,7 @@ body {
 
  .nav-brand img,
  .nav-logo-img {
- height: 24px !important;
+ height: 20px !important;
  width: auto !important;
  max-width: 140px !important;
  }
@@ -546,7 +546,7 @@ footer {
 
 .footer-brand-logo img,
 .footer-brand-img {
-  height: 24px !important;
+  height: 20px !important;
   width: auto !important;
   margin-bottom: 0.75rem;
   opacity: 0.9;
