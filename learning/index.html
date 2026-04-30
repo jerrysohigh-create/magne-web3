@@ -9,6 +9,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="../assets/mobile-responsive.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .doc-hero { padding: 10rem 2rem 4rem; text-align: center; }
+    .doc-hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .doc-hero p { color: var(--text-secondary); font-size: 1.2rem; }
+    .doc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 0 2rem 4rem; max-width: 1200px; margin: 0 auto; }
+    .doc-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: all 0.3s; }
+    .doc-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .doc-card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .doc-card h3 { font-size: 1.3rem; margin-bottom: 0.75rem; color: var(--text-primary); }
+    .doc-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; }
+    .doc-card a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    .doc-card a:hover { text-decoration: underline; }
+  </style>
 </head>
 <body>
   <div class="bg-grid"></div>
@@ -32,51 +45,49 @@
   </nav>
 
   <main>
-    <section class="hero" style="min-height: 60vh; padding-top: 8rem;">
+    <div class="doc-hero">
       <h1>Learning Center</h1>
-      <p class="hero-subtitle">Master the MAGNE ecosystem with our comprehensive documentation</p>
-    </section>
+      <p>Master the MAGNE ecosystem with our comprehensive documentation</p>
+    </div>
 
-    <section class="features" style="padding: 4rem 2rem;">
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">📚</div>
-          <h3>Getting Started</h3>
-          <p>New to MAGNE.AI? Start with understanding what MAGNE is and how it works.</p>
-          <a href="what-is-magne.html" class="btn-link">Learn More →</a>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⛏️</div>
-          <h3>Proof-of-Work</h3>
-          <p>Understand the consensus mechanism that secures the MAGNE network.</p>
-          <a href="proof-of-work.html" class="btn-link">Learn More →</a>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">💰</div>
-          <h3>$MHA Token</h3>
-          <p>Learn about the native token powering the MAGNE ecosystem.</p>
-          <a href="mha-token.html" class="btn-link">Learn More →</a>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📊</div>
-          <h3>Tokenomics</h3>
-          <p>Explore the economic model and token distribution.</p>
-          <a href="tokenomics.html" class="btn-link">Learn More →</a>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🏛️</div>
-          <h3>Governance</h3>
-          <p>Understand how $MHA holders participate in network decisions.</p>
-          <a href="governance.html" class="btn-link">Learn More →</a>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📱</div>
-          <h3>Magne dApp</h3>
-          <p>Discover the gateway to the MAGNE ecosystem.</p>
-          <a href="magne-dapp.html" class="btn-link">Learn More →</a>
-        </div>
+    <div class="doc-grid">
+      <div class="doc-card">
+        <div class="doc-card-icon">📚</div>
+        <h3>Getting Started</h3>
+        <p>New to MAGNE.AI? Start with understanding what MAGNE is and how it works.</p>
+        <a href="what-is-magne.html">Learn More →</a>
       </div>
-    </section>
+      <div class="doc-card">
+        <div class="doc-card-icon">⛏️</div>
+        <h3>Proof-of-Work</h3>
+        <p>Understand the consensus mechanism that secures the MAGNE network.</p>
+        <a href="proof-of-work.html">Learn More →</a>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-icon">💰</div>
+        <h3>$MHA Token</h3>
+        <p>Learn about the native token powering the MAGNE ecosystem.</p>
+        <a href="mha-token.html">Learn More →</a>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-icon">📊</div>
+        <h3>Tokenomics</h3>
+        <p>Explore the economic model and token distribution.</p>
+        <a href="tokenomics.html">Learn More →</a>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-icon">🏛️</div>
+        <h3>Governance</h3>
+        <p>Understand how $MHA holders participate in network decisions.</p>
+        <a href="governance.html">Learn More →</a>
+      </div>
+      <div class="doc-card">
+        <div class="doc-card-icon">📱</div>
+        <h3>Magne dApp</h3>
+        <p>Discover the gateway to the MAGNE ecosystem.</p>
+        <a href="magne-dapp.html">Learn More →</a>
+      </div>
+    </div>
   </main>
 </body>
 </html>
