@@ -91,19 +91,18 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 0 2rem;
+      padding: 1rem 3rem;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      background: linear-gradient(180deg, #0d1117 0%, rgba(13, 17, 23, 0.98) 100%);
-      backdrop-filter: blur(10px);
+      background: rgba(10, 10, 12, 0.92);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      height: 60px;
     }
 
     .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
-    .nav-brand a { color: #fff; text-decoration: none; font-size: 1.3rem; font-weight: 700; }
-    .nav-brand a span { color: var(--accent); }
-    .nav-logo { display: none; }
+    .nav-brand a { color: var(--accent); text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
     .nav-logo-img { height: 20px; width: auto; display: block; }
 
     .footer-brand-img {
@@ -116,42 +115,30 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 2rem;
       list-style: none;
-      margin-left: 3rem;
     }
 
     .nav-links a {
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--accent);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 500;
-      letter-spacing: 0.5px;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      transition: all 0.2s;
+      transition: color 0.2s;
     }
 
     .nav-links a:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .nav-links a.active {
-      color: var(--accent-blue);
-      background: rgba(77, 166, 255, 0.1);
+      color: var(--accent);
     }
 
     .nav-cta {
       background: var(--accent);
       color: #000 !important;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
       font-weight: 600 !important;
-      font-size: 0.85rem;
       text-decoration: none;
       transition: all 0.2s;
-      margin-left: 1rem;
     }
 
     .nav-cta:hover {
@@ -730,9 +717,13 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="index.html" class="nav-brand">MAGNE<span>.AI</span></a>
+    <div class="nav-brand">
+      <a href="https://magne.ai" class="nav-logo">
+        <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
+      </a>
+    </div>
     <ul class="nav-links">
-      <li><a href="learning/" class="active">LEARNING</a></li>
+      <li><a href="learning/">LEARNING</a></li>
       <li><a href="developers/">DEVELOPERS</a></li>
       <li><a href="solutions/">SOLUTIONS</a></li>
       <li><a href="networks/">NETWORKS</a></li>
