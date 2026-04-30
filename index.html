@@ -83,7 +83,7 @@
       height: 100%;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.4;
+      opacity: 0.6;
     }
 
     /* Navigation */
@@ -937,7 +937,7 @@
 
   <!-- Scripts -->
   <script>
-    // Animated Network Background
+    // Enhanced Animated Network Background
     const canvas = document.getElementById('network-bg');
     const ctx = canvas.getContext('2d');
 
@@ -950,31 +950,74 @@
     window.addEventListener('resize', resizeCanvas);
 
     const nodes = [];
-    const numNodes = 60;
+    const particles = [];
+    const numNodes = 80;
+    const numParticles = 150;
 
+    // Main nodes
     for (let i = 0; i < numNodes; i++) {
       nodes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        radius: Math.random() * 2 + 1
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 1.2,
+        radius: Math.random() * 3 + 2,
+        baseRadius: Math.random() * 3 + 2,
+        pulse: Math.random() * Math.PI * 2,
+        hue: Math.random() * 30 // 0-30 for cyan variation
       });
     }
 
+    // Floating particles
+    for (let i = 0; i < numParticles; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: Math.random() * 1.5 + 0.5,
+        alpha: Math.random() * 0.5 + 0.2
+      });
+    }
+
+    let time = 0;
+
     function animate() {
+      time += 0.02;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      // Draw particles
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 212, 212, ${p.alpha * 0.3})`;
+        ctx.fill();
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+      });
+
+      // Draw connections with gradient
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 150) {
+          if (distance < 180) {
+            const gradient = ctx.createLinearGradient(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
+            const alpha = (1 - distance / 180) * 0.4;
+            gradient.addColorStop(0, `rgba(0, 212, 212, ${alpha})`);
+            gradient.addColorStop(1, `rgba(0, 255, 255, ${alpha * 0.5})`);
+            
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 212, 212, ${0.15 - distance / 1000})`;
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 1.5;
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
             ctx.stroke();
@@ -982,20 +1025,61 @@
         }
       }
 
-      nodes.forEach(node => {
+      // Draw nodes with glow
+      nodes.forEach((node, i) => {
+        // Pulsing effect
+        node.pulse += 0.05;
+        const pulseFactor = Math.sin(node.pulse) * 0.3 + 1;
+        const currentRadius = node.baseRadius * pulseFactor;
+
+        // Outer glow
+        const glowGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, currentRadius * 4);
+        glowGradient.addColorStop(0, `rgba(0, 212, 212, 0.3)`);
+        glowGradient.addColorStop(0.5, `rgba(0, 212, 212, 0.1)`);
+        glowGradient.addColorStop(1, 'rgba(0, 212, 212, 0)');
+        
         ctx.beginPath();
-        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 212, 212, 0.7)';
+        ctx.arc(node.x, node.y, currentRadius * 4, 0, Math.PI * 2);
+        ctx.fillStyle = glowGradient;
         ctx.fill();
 
+        // Core node
+        const coreGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, currentRadius);
+        coreGradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+        coreGradient.addColorStop(0.3, 'rgba(0, 255, 255, 0.9)');
+        coreGradient.addColorStop(1, 'rgba(0, 212, 212, 0.8)');
+
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, currentRadius, 0, Math.PI * 2);
+        ctx.fillStyle = coreGradient;
+        ctx.fill();
+
+        // Update position
         node.x += node.vx;
         node.y += node.vy;
 
-        if (node.x < 0) node.x = canvas.width;
-        if (node.x > canvas.width) node.x = 0;
-        if (node.y < 0) node.y = canvas.height;
-        if (node.y > canvas.height) node.y = 0;
+        // Bounce off edges with margin
+        const margin = 50;
+        if (node.x < margin) { node.x = margin; node.vx *= -1; }
+        if (node.x > canvas.width - margin) { node.x = canvas.width - margin; node.vx *= -1; }
+        if (node.y < margin) { node.y = margin; node.vy *= -1; }
+        if (node.y > canvas.height - margin) { node.y = canvas.height - margin; node.vy *= -1; }
       });
+
+      // Draw constellation lines from some nodes to create clusters
+      for (let i = 0; i < nodes.length; i += 8) {
+        const node = nodes[i];
+        const nextNode = nodes[(i + 1) % nodes.length];
+        
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(0, 212, 212, ${0.15 + Math.sin(time * 2 + i) * 0.1})`;
+        ctx.lineWidth = 1;
+        ctx.setLineDash([5, 10]);
+        ctx.moveTo(node.x, node.y);
+        ctx.lineTo(nextNode.x, nextNode.y);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
 
       requestAnimationFrame(animate);
     }
