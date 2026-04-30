@@ -189,9 +189,12 @@
       .section-title { font-size: 1.8rem; }
     }
   </style>
+  <style>
+    body { background: linear-gradient(135deg, #0a0a0c 0%, #0f0f12 50%, #0a0a0c 100%); }
+  </style>
 </head>
 <body>
-  <canvas id="node-bg"></canvas>
+  
 
   <nav>
     <div class="nav-brand">
@@ -439,69 +442,7 @@
     <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
   </footer>
 
-  <script>
-    const canvas = document.getElementById('node-bg');
-    const ctx = canvas.getContext('2d');
-    let nodes = [];
-    let width, height;
-
-    function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    class Node {
-      constructor() { this.reset(); }
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = 1.5;
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.4)';
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < 40; i++) nodes.push(new Node());
-
-    function drawLines() {
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = 'rgba(255, 215, 0, 0.1)';
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      nodes.forEach(n => { n.update(); n.draw(); });
-      drawLines();
-      requestAnimationFrame(animate);
-    }
-    animate();
-  </script>
+ 
   <div style="position:fixed;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 50px,rgba(255,215,0,0.02) 50px,rgba(255,215,0,0.02) 51px),repeating-linear-gradient(90deg,transparent,transparent 50px,rgba(255,215,0,0.02) 50px,rgba(255,215,0,0.02) 51px);pointer-events:none;z-index:0;"></div>
   <div style="position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 20% 20%, rgba(255,215,0,0.15) 0%, transparent 50%),radial-gradient(ellipse at 80% 80%, rgba(255,180,0,0.1) 0%, transparent 50%),radial-gradient(ellipse at 50% 50%, rgba(255,215,0,0.05) 0%, transparent 70%);"></div>
 </body>
