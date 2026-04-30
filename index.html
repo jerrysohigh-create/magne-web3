@@ -57,8 +57,8 @@
       pointer-events: none;
       z-index: 0;
       background-image: 
-        linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
       background-size: 60px 60px;
     }
 
@@ -71,7 +71,7 @@
       pointer-events: none;
       z-index: 0;
       background: 
-        radial-gradient(ellipse at 20% 10%, rgba(0, 255, 136, 0.12) 0%, transparent 40%),
+        radial-gradient(ellipse at 20% 10%, rgba(255, 215, 0, 0.12) 0%, transparent 40%),
         radial-gradient(ellipse at 80% 90%, rgba(168, 85, 247, 0.08) 0%, transparent 40%);
     }
 
@@ -101,8 +101,8 @@
     }
 
     .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
-    .nav-brand a { color: var(--accent); text-decoration: none; }
-    .nav-logo { font-size: 1.3rem; font-weight: 700; color: var(--accent); }
+    .nav-brand a { color: #FFD700; text-decoration: none; }
+    .nav-logo { font-size: 1.3rem; font-weight: 700; color: #FFD700; }
     .nav-logo-img { height: 20px; width: auto; display: block; }
 
     .footer-brand-img {
@@ -120,7 +120,7 @@
     }
 
     .nav-links a {
-      color: var(--accent);
+      color: #FFD700;
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
@@ -128,7 +128,7 @@
     }
 
     .nav-links a:hover {
-      color: var(--accent);
+      color: #FFD700;
     }
 
     .nav-cta {
@@ -142,7 +142,7 @@
     }
 
     .nav-cta:hover {
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
     }
 
     /* Main */
@@ -167,12 +167,12 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(0, 255, 136, 0.1);
-      border: 1px solid rgba(0, 255, 136, 0.3);
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
       padding: 0.5rem 1rem;
       border-radius: 50px;
       
-      color: var(--accent);
+      color: #FFD700;
       margin-bottom: 2rem;
       animation: fadeInUp 0.8s ease-out;
     }
@@ -205,7 +205,7 @@
 
     .hero-subtitle {
       font-size: clamp(1rem, 2vw, 1.25rem);
-      color: var(--accent);
+      color: #FFD700;
       max-width: 700px;
       margin-bottom: 3rem;
       animation: fadeInUp 0.8s ease-out 0.2s both;
@@ -234,7 +234,7 @@
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
     }
 
     .btn-secondary {
@@ -252,8 +252,8 @@
     }
 
     .btn-secondary:hover {
-      border-color: var(--accent);
-      background: rgba(0, 255, 136, 0.05);
+      border-color: #FFD700;
+      background: rgba(255, 215, 0, 0.05);
     }
 
     @keyframes fadeInUp {
@@ -284,7 +284,7 @@
     }
 
     .section-header p {
-      color: var(--accent);
+      color: #FFD700;
       font-size: 1.1rem;
     }
 
@@ -312,7 +312,7 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+      background: linear-gradient(90deg, #FFD700, #FFA500);
       opacity: 0;
       transition: opacity 0.3s;
     }
@@ -336,7 +336,7 @@
       font-family: var(--font-mono);
       font-size: clamp(2rem, 4vw, 2.75rem);
       font-weight: 700;
-      color: var(--accent);
+      color: #FFD700;
       margin-bottom: 0.5rem;
       line-height: 1.2;
     }
@@ -345,7 +345,7 @@
     .stat-value.purple { color: rgba(255,255,255,0.5); }
 
     .stat-label {
-      color: var(--accent);
+      color: #FFD700;
       font-size: 0.95rem;
       font-weight: 500;
     }
@@ -384,7 +384,7 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      background: linear-gradient(90deg, transparent, #FFD700, transparent);
       opacity: 0;
       transition: opacity 0.3s;
     }
@@ -402,8 +402,8 @@
     .feature-icon {
       width: 56px;
       height: 56px;
-      background: rgba(0, 255, 136, 0.1);
-      border: 1px solid rgba(0, 255, 136, 0.2);
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.2);
       border-radius: 14px;
       display: flex;
       align-items: center;
@@ -419,7 +419,7 @@
     }
 
     .feature-card p {
-      color: var(--accent);
+      color: #FFD700;
       line-height: 1.7;
       font-size: 0.95rem;
     }
@@ -447,7 +447,7 @@
       right: 0;
       bottom: 0;
       background: 
-        radial-gradient(circle at 20% 30%, rgba(0, 255, 136, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.08) 0%, transparent 40%),
         radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.06) 0%, transparent 40%);
       pointer-events: none;
     }
@@ -468,15 +468,15 @@
       align-items: center;
       gap: 0.5rem;
       padding: 1.5rem 2rem;
-      background: rgba(0, 255, 136, 0.08);
-      border: 1px solid rgba(0, 255, 136, 0.2);
+      background: rgba(255, 215, 0, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.2);
       border-radius: 16px;
       transition: all 0.3s;
     }
 
     .network-node:hover {
-      background: rgba(0, 255, 136, 0.12);
-      border-color: rgba(0, 255, 136, 0.4);
+      background: rgba(255, 215, 0, 0.12);
+      border-color: rgba(255, 215, 0, 0.4);
       transform: translateY(-3px);
     }
 
@@ -486,13 +486,13 @@
 
     .network-node-label {
       
-      color: var(--accent);
+      color: #FFD700;
       font-weight: 500;
     }
 
     .network-arrow {
       font-size: 1.5rem;
-      color: var(--accent);
+      color: #FFD700;
       opacity: 0.5;
     }
 
@@ -512,7 +512,7 @@
       transform: translate(-50%, -50%);
       width: 150%;
       height: 150%;
-      background: radial-gradient(ellipse at center, rgba(0, 255, 136, 0.1) 0%, transparent 60%);
+      background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.1) 0%, transparent 60%);
       pointer-events: none;
     }
 
@@ -530,7 +530,7 @@
     }
 
     .cta-content p {
-      color: var(--accent);
+      color: #FFD700;
       font-size: 1.1rem;
       margin-bottom: 2rem;
     }
@@ -557,21 +557,21 @@
     }
 
     .footer-brand-logo p {
-      color: var(--accent);
+      color: #FFD700;
       font-size: 0.9rem;
       text-align: center;
     }
 
     .trademark-notice {
       font-size: 0.8rem;
-      color: var(--accent);
+      color: #FFD700;
       text-align: center;
       margin-top: 1rem;
       opacity: 0.7;
     }
 
     .trademark-notice a {
-      color: var(--accent);
+      color: #FFD700;
     }
 
     .trademark-notice + p {
@@ -595,14 +595,14 @@
       padding: 0;
       border: 1px solid var(--border);
       border-radius: 999px;
-      color: var(--accent);
+      color: #FFD700;
       transition: all 0.2s;
     }
 
     .footer-socials a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      background: rgba(0, 255, 136, 0.06);
+      color: #FFD700;
+      border-color: #FFD700;
+      background: rgba(255, 215, 0, 0.06);
     }
 
     .footer-socials a svg,
@@ -619,15 +619,15 @@
       height: 42px;
       border: 1px solid var(--border);
       border-radius: 999px;
-      color: var(--accent);
+      color: #FFD700;
       transition: all 0.2s;
       padding: 0;
     }
 
     .footer-icon:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      background: rgba(0, 255, 136, 0.1);
+      color: #FFD700;
+      border-color: #FFD700;
+      background: rgba(255, 215, 0, 0.1);
     }
 
     .footer-links {
@@ -638,14 +638,14 @@
     }
 
     .footer-links a {
-      color: var(--accent);
+      color: #FFD700;
       text-decoration: none;
       font-size: 0.85rem;
       transition: color 0.2s;
     }
 
     .footer-links a:hover {
-      color: var(--accent);
+      color: #FFD700;
     }
 
     .footer-copy {
@@ -1009,7 +1009,7 @@
       particles.forEach(p => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 255, 136, ${p.alpha * 0.3})`;
+        ctx.fillStyle = `rgba(255, 215, 0, ${p.alpha * 0.3})`;
         ctx.fill();
 
         p.x += p.vx;
@@ -1037,9 +1037,9 @@
 
         // Draw burst particle with glow
         const burstGlow = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.radius * 3);
-        burstGlow.addColorStop(0, `rgba(0, 255, 136, ${b.alpha})`);
-        burstGlow.addColorStop(0.5, `rgba(0, 255, 136, ${b.alpha * 0.5})`);
-        burstGlow.addColorStop(1, 'rgba(0, 255, 136, 0)');
+        burstGlow.addColorStop(0, `rgba(255, 215, 0, ${b.alpha})`);
+        burstGlow.addColorStop(0.5, `rgba(255, 215, 0, ${b.alpha * 0.5})`);
+        burstGlow.addColorStop(1, 'rgba(255, 215, 0, 0)');
         
         ctx.beginPath();
         ctx.arc(b.x, b.y, b.radius * 3, 0, Math.PI * 2);
@@ -1062,8 +1062,8 @@
           if (distance < 180) {
             const gradient = ctx.createLinearGradient(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
             const alpha = (1 - distance / 180) * 0.4;
-            gradient.addColorStop(0, `rgba(0, 255, 136, ${alpha})`);
-            gradient.addColorStop(1, `rgba(0, 255, 136, ${alpha * 0.5})`);
+            gradient.addColorStop(0, `rgba(255, 215, 0, ${alpha})`);
+            gradient.addColorStop(1, `rgba(255, 215, 0, ${alpha * 0.5})`);
             
             ctx.beginPath();
             ctx.strokeStyle = gradient;
@@ -1084,9 +1084,9 @@
 
         // Outer glow
         const glowGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, currentRadius * 4);
-        glowGradient.addColorStop(0, `rgba(0, 255, 136, 0.3)`);
-        glowGradient.addColorStop(0.5, `rgba(0, 255, 136, 0.1)`);
-        glowGradient.addColorStop(1, 'rgba(0, 255, 136, 0)');
+        glowGradient.addColorStop(0, `rgba(255, 215, 0, 0.3)`);
+        glowGradient.addColorStop(0.5, `rgba(255, 215, 0, 0.1)`);
+        glowGradient.addColorStop(1, 'rgba(255, 215, 0, 0)');
         
         ctx.beginPath();
         ctx.arc(node.x, node.y, currentRadius * 4, 0, Math.PI * 2);
@@ -1096,8 +1096,8 @@
         // Core node
         const coreGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, currentRadius);
         coreGradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
-        coreGradient.addColorStop(0.3, 'rgba(0, 255, 136, 0.9)');
-        coreGradient.addColorStop(1, 'rgba(0, 255, 136, 0.8)');
+        coreGradient.addColorStop(0.3, 'rgba(255, 215, 0, 0.9)');
+        coreGradient.addColorStop(1, 'rgba(255, 215, 0, 0.8)');
 
         ctx.beginPath();
         ctx.arc(node.x, node.y, currentRadius, 0, Math.PI * 2);
@@ -1122,7 +1122,7 @@
         const nextNode = nodes[(i + 1) % nodes.length];
         
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(0, 255, 136, ${0.15 + Math.sin(time * 2 + i) * 0.1})`;
+        ctx.strokeStyle = `rgba(255, 215, 0, ${0.15 + Math.sin(time * 2 + i) * 0.1})`;
         ctx.lineWidth = 1;
         ctx.setLineDash([5, 10]);
         ctx.moveTo(node.x, node.y);
