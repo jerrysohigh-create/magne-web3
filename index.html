@@ -980,6 +980,33 @@
       });
     }
 
+    // Burst particles
+    const bursts = [];
+    function createBurst(x, y) {
+      const numBurst = 20;
+      for (let i = 0; i < numBurst; i++) {
+        const angle = (Math.PI * 2 * i) / numBurst;
+        const speed = Math.random() * 3 + 2;
+        bursts.push({
+          x: x,
+          y: y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          radius: Math.random() * 2 + 1,
+          alpha: 1,
+          decay: Math.random() * 0.02 + 0.02
+        });
+      }
+    }
+
+    // Random burst every 2-4 seconds
+    setInterval(() => {
+      createBurst(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height
+      );
+    }, 2500);
+
     let time = 0;
 
     function animate() {
@@ -1001,6 +1028,37 @@
         if (p.y < 0) p.y = canvas.height;
         if (p.y > canvas.height) p.y = 0;
       });
+
+      // Update and draw bursts
+      for (let i = bursts.length - 1; i >= 0; i--) {
+        const b = bursts[i];
+        b.x += b.vx;
+        b.y += b.vy;
+        b.vx *= 0.98;
+        b.vy *= 0.98;
+        b.alpha -= b.decay;
+
+        if (b.alpha <= 0) {
+          bursts.splice(i, 1);
+          continue;
+        }
+
+        // Draw burst particle with glow
+        const burstGlow = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.radius * 3);
+        burstGlow.addColorStop(0, `rgba(0, 255, 255, ${b.alpha})`);
+        burstGlow.addColorStop(0.5, `rgba(0, 212, 212, ${b.alpha * 0.5})`);
+        burstGlow.addColorStop(1, 'rgba(0, 212, 212, 0)');
+        
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.radius * 3, 0, Math.PI * 2);
+        ctx.fillStyle = burstGlow;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${b.alpha})`;
+        ctx.fill();
+      }
 
       // Draw connections with gradient
       for (let i = 0; i < nodes.length; i++) {
