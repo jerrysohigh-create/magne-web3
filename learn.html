@@ -354,12 +354,12 @@
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.6)';
+        ctx.fillStyle = 'rgba(255, 215, 0, ' + (Math.random() * 0.4 + 0.6) + ')';
         ctx.fill();
       }
     }
 
-    for (let i = 0; i < 60; i++) nodes.push(new Node());
+    for (let i = 0; i < 120; i++) nodes.push(new Node());
 
     function drawLines() {
       for (let i = 0; i < nodes.length; i++) {
