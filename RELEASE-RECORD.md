@@ -2,6 +2,37 @@
 
 ---
 
+## v1.2.0 — Complete Traditional Chinese Translation
+
+**Status:** Released
+
+**Date:** 2026-05-01
+
+**Website:** https://web3.magne.ai
+
+---
+
+### Scope
+
+- Added Traditional Chinese Developer Hub (`/tc/developers.html`)
+- Added Traditional Chinese Connect Wallet guide (`/tc/developers-connect.html`)
+- Added Traditional Chinese Deploy Contract guide (`/tc/developers-contract.html`)
+- Added Traditional Chinese Build DApp guide (`/tc/developers-app.html`)
+- Added Traditional Chinese Tokenomics Detail (`/tc/tokenomics-detail.html`)
+- All English pages updated with correct language switch to TC pages
+- Updated sitemap.xml (28 URLs - 14 EN + 13 TC + coming-soon)
+- Full Traditional Chinese translation complete for all 13 pages
+
+---
+
+### Not Included in v1.2.0
+
+- Simplified Chinese version
+- Additional languages beyond English and Traditional Chinese
+- PDF download center / Data Room entry
+
+---
+
 ## v1.1.1 — Traditional Chinese Expansion
 
 **Status:** Released
@@ -102,7 +133,9 @@ Conservative wording for token, risk, and legal content. No marketing language.
     ├── learn.html
     ├── network.html
     ├── token.html
+    ├── tokenomics-detail.html
     ├── ecosystem.html
+    ├── tokenomics-detail.html
     ├── transparency.html
     ├── faq.html
     └── version-history.html
@@ -189,6 +222,7 @@ Conservative wording for token, risk, and legal content. No marketing language.
 | v1.0.1 | ✅ Released | English + multilingual architecture prepared |
 | v1.1.0 | ✅ Released | Traditional Chinese core pages |
 | v1.1.1 | ✅ Released | Traditional Chinese expansion (Learn, Network, Ecosystem) |
+| v1.2.0 | ✅ Released | Complete Traditional Chinese translation (all 13 pages) | (Learn, Network, Ecosystem) |
 | v1.2.0 | Under Evaluation | Simplified Chinese or additional languages |
 
 ---
