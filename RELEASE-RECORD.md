@@ -2,6 +2,26 @@
 
 ---
 
+## v1.1.1 — Traditional Chinese Expansion
+
+**Status:** Released
+
+**Date:** 2026-05-01
+
+**Website:** https://web3.magne.ai
+
+---
+
+### Scope
+
+- Added Traditional Chinese Learn page (`/tc/learn.html`)
+- Added Traditional Chinese Network page (`/tc/network.html`)
+- Added Traditional Chinese Ecosystem page (`/tc/ecosystem.html`)
+- Updated language switch for corresponding English pages
+- Updated sitemap.xml (23 URLs)
+
+---
+
 ## v1.1.0 — Traditional Chinese Core Pages
 
 **Status:** Released
@@ -67,19 +87,22 @@ Conservative wording for token, risk, and legal content. No marketing language.
 ```
 / (English - default)
 ├── index.html
-├── token.html
-├── transparency.html
-├── faq.html
-├── version-history.html
 ├── learn.html
 ├── developers.html
 ├── network.html
+├── token.html
 ├── ecosystem.html
+├── transparency.html
+├── faq.html
+├── version-history.html
 ├── tokenomics-detail.html
 ├── coming-soon.html (placeholder)
 └── /tc/ (Traditional Chinese)
     ├── index.html
+    ├── learn.html
+    ├── network.html
     ├── token.html
+    ├── ecosystem.html
     ├── transparency.html
     ├── faq.html
     └── version-history.html
@@ -165,6 +188,7 @@ Conservative wording for token, risk, and legal content. No marketing language.
 | v1.0.0 | ✅ Released | English public release |
 | v1.0.1 | ✅ Released | English + multilingual architecture prepared |
 | v1.1.0 | ✅ Released | Traditional Chinese core pages |
+| v1.1.1 | ✅ Released | Traditional Chinese expansion (Learn, Network, Ecosystem) |
 | v1.2.0 | Under Evaluation | Simplified Chinese or additional languages |
 
 ---
