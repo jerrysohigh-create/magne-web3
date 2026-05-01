@@ -5,26 +5,190 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ecosystem | MAGNE.AI</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="assets/mobile-responsive.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.06);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --accent: #FFD700;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo-img { height: 20px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .nav-cta { background: var(--accent); color: #000 !important; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; }
+
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-secondary); margin: 5px 0; transition: 0.3s; }
+
+    main { position: relative; z-index: 1; padding-top: 80px; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+
+    section { padding: 5rem 0; }
+    section:nth-child(even) { background: var(--bg-secondary); }
+
+    h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 1rem; }
+    h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; }
+    h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
+    p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.75; }
+
+    .hero { 
+      text-align: center; 
+      padding: 8rem 2rem 5rem;
+      background: radial-gradient(ellipse at center top, rgba(255,215,0,0.06) 0%, transparent 60%);
+    }
+    .hero h1 { margin-bottom: 1rem; }
+    .hero p { max-width: 700px; margin: 0 auto; }
+
+    .section-header { margin-bottom: 2.5rem; text-align: center; }
+    .section-header h2 { margin-bottom: 0.75rem; }
+    .section-header p { max-width: 650px; margin: 0 auto; }
+
+    .grid { display: grid; gap: 1.5rem; }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+    .card { 
+      background: var(--bg-card); 
+      border: 1px solid var(--border); 
+      border-radius: 16px; 
+      padding: 2rem; 
+      transition: all 0.3s;
+    }
+    .card:hover { border-color: rgba(255,215,0,0.2); transform: translateY(-4px); }
+    .card-icon { font-size: 2.5rem; margin-bottom: 1.25rem; }
+    .card h3 { margin-bottom: 0.75rem; }
+    .card p { font-size: 0.95rem; }
+    .card-badge { 
+      display: inline-block;
+      background: rgba(255,255,255,0.05); 
+      border: 1px solid rgba(255,255,255,0.1); 
+      color: var(--text-secondary); 
+      padding: 0.2rem 0.6rem; 
+      border-radius: 4px; 
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.75rem;
+    }
+    .card-badge.live { 
+      background: rgba(0,255,136,0.1); 
+      border-color: rgba(0,255,136,0.3); 
+      color: #00ff88; 
+    }
+    .card-badge.planned { 
+      background: rgba(255,215,0,0.1); 
+      border-color: rgba(255,215,0,0.3); 
+      color: var(--accent); 
+    }
+    .card-badge.in-dev { 
+      background: rgba(168,85,247,0.1); 
+      border-color: rgba(168,85,247,0.3); 
+      color: #a855f7; 
+    }
+
+    .btn { 
+      display: inline-block; 
+      padding: 0.75rem 1.5rem; 
+      border-radius: 8px; 
+      font-weight: 600; 
+      text-decoration: none; 
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(255,215,0,0.2); }
+    .btn-secondary { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .roadmap-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .roadmap-time { font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; }
+    .roadmap-item h4 { margin-bottom: 0.5rem; }
+    .roadmap-item p { font-size: 0.9rem; }
+
+    .cta-section { text-align: center; padding: 5rem 2rem; }
+    .cta-section h2 { margin-bottom: 1rem; }
+    .cta-section p { max-width: 550px; margin: 0 auto 2rem; }
+
+    footer {
+      text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border);
+      color: var(--text-secondary); font-size: 0.9rem;
+    }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-brand-logo { margin-bottom: 1.5rem; }
+    .footer-brand-img { height: 24px; margin-bottom: 0.5rem; }
+    .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; }
+    .footer-socials { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .footer-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); transition: all 0.2s; }
+    .footer-icon:hover { border-color: var(--accent); color: var(--accent); }
+    .footer-icon svg { width: 18px; height: 18px; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
+    .trademark-notice { font-size: 0.8rem; margin-top: 1rem; }
+    .trademark-notice a { color: var(--accent); }
+    .copyright { margin-top: 1.5rem; opacity: 0.5; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { 
+        display: none; 
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(10, 10, 12, 0.98);
+        flex-direction: column; padding: 1.5rem; gap: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-links.active { display: flex; }
+      .nav-toggle { display: block; }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.5rem; }
+      .hero { padding: 6rem 1.5rem 4rem; }
+      .card { padding: 1.5rem; }
+    }
   </style>
 </head>
 <body>
-  <div class="bg-grid"></div>
-  <div class="bg-glow"></div>
-
-  <!-- NAV -->
-<nav>
+  <nav>
     <div class="nav-brand">
-      <a href="https://magne.ai" class="nav-logo">
+      <a href="https://magne.ai">
         <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
       </a>
     </div>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </button>
     <ul class="nav-links">
-      <li><a href="index.html">HOME</a></li>
       <li><a href="index.html">HOME</a></li>
       <li><a href="learn.html">LEARN</a></li>
       <li><a href="developers.html">DEVELOPERS</a></li>
@@ -38,94 +202,191 @@
 
   <main>
     <!-- Hero -->
-    <section class="hero" style="min-height: 50vh; padding: 8rem 2rem 4rem;">
+    <section class="hero">
       <h1>Ecosystem</h1>
-      <p class="hero-subtitle">MAGNE.AI is designed to turn secure mobile devices into Web3 access points and future infrastructure participation endpoints.</p>
+      <p>The MAGNE.AI ecosystem spans secure hardware, native L1/L2 blockchain, DePIN infrastructure, and an AI-powered developer platform — all designed to work together.</p>
     </section>
 
-    <!-- Ecosystem Overview -->
-    <section style="padding: 4rem 2rem; max-width: 1100px; margin: 0 auto;">
-      <h2 style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--accent); text-align: center;">Ecosystem Components</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-        
-        <div class="stack-card">
-          <div class="stack-card-icon">📱</div>
-          <h3>MAGNE.AI Phone Gen1</h3>
-          <p>The first Web3-native AI smartphone with hardware-secured wallet, dual-space architecture, and future DePIN participation capabilities.</p>
-          <a href="https://magne.ai" class="btn-secondary" target="_blank" style="margin-top: 1rem; display: inline-block;">Learn More</a>
+    <!-- Core Products -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2>Core Products</h2>
+          <p>Hardware and software designed for native Web3 access</p>
         </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <span class="card-badge live">Live</span>
+            <div class="card-icon">📱</div>
+            <h3>MAGNE.AI Phone Gen1</h3>
+            <p>The first Web3-native AI smartphone with hardware-secured wallet, private dual-space architecture, and NFC encrypted backup. Built for digital asset ownership and private AI workflows.</p>
+            <div style="margin-top: 1.25rem;">
+              <a href="https://magne.ai" class="btn btn-secondary">Learn More</a>
+            </div>
+          </div>
 
-        <div class="stack-card">
-          <div class="stack-card-icon">🔐</div>
-          <h3>Secure Wallet Layer</h3>
-          <p>Hardware-rooted key protection, secure element architecture, and NFC-based encrypted asset backup for seamless Web3 access.</p>
+          <div class="card">
+            <span class="card-badge in-dev">In Development</span>
+            <div class="card-icon">🔐</div>
+            <h3>MAGNE Secure Wallet</h3>
+            <p>Hardware-backed key protection powered by TEE and secure element architecture. Private keys are protected through dedicated secure element — not software-based storage.</p>
+          </div>
+
+          <div class="card">
+            <span class="card-badge planned">Planned</span>
+            <div class="card-icon">🚀</div>
+            <h3>MAGNE Portal / DApp Hub</h3>
+            <p>Integrated Web3 DApp browser and ecosystem access point. Wallet, swap, stake, bridge — integrated directly through a secure Web3 space. In planning and development.</p>
+          </div>
+
+          <div class="card">
+            <span class="card-badge in-dev">In Development</span>
+            <div class="card-icon">🤖</div>
+            <h3>AI Agent Framework</h3>
+            <p>On-device AI capabilities with privacy-sensitive workflows. The NPU enables local AI processing without sending data to the cloud. Framework in development.</p>
+          </div>
         </div>
-
-        <div class="stack-card">
-          <div class="stack-card-icon">⛓️</div>
-          <h3>MAGNE L1 + M Hash L2</h3>
-          <p>Native L1 blockchain with mobile mining support, paired with high-performance L2 for scalable smart contracts and lower transaction costs.</p>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-card-icon">🤖</div>
-          <h3>AI Agent Framework</h3>
-          <p>AI-powered services and agent infrastructure built on the MAGNE protocol, enabling decentralized AI compute and model serving.</p>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-card-icon">🌐</div>
-          <h3>DePIN Network</h3>
-          <p>Device-based infrastructure participation where users can contribute compute, bandwidth, and storage to earn ecosystem rewards based on governance-approved rules.</p>
-        </div>
-
-        <div class="stack-card">
-          <div class="stack-card-icon">📊</div>
-          <h3>DApp Ecosystem</h3>
-          <p>Building toward a suite of decentralized applications including DApp Hub (Shin Getter Nexus), AI assistants, Web3 games, and NFT platforms.</p>
-        </div>
-
       </div>
     </section>
 
-    <!-- Device Partnership -->
-    <section style="padding: 4rem 2rem; background: var(--bg-secondary); text-align: center;">
-      <div style="max-width: 700px; margin: 0 auto;">
-        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent);">From Secure Device to Decentralized Infrastructure</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7;">
-          MAGNE.AI connects secure mobile hardware with blockchain infrastructure, enabling users to participate in Web3 while contributing to a decentralized AI compute network.
-        </p>
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-          <a href="https://magne.ai" class="btn-primary" target="_blank">Explore MAGNE Phone</a>
-          <a href="index.html" class="btn-secondary">View Network</a>
+    <!-- Blockchain Infrastructure -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2>Blockchain Infrastructure</h2>
+          <p>Native L1 and L2 networks designed for the MAGNE ecosystem</p>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <span class="card-badge live">Testnet Live</span>
+            <div class="card-icon">⛓️</div>
+            <h3>MAGNE L1</h3>
+            <p>EVM-compatible base network designed for native Web3 applications, asset ownership, and ecosystem coordination. Testnet is live for developers.</p>
+            <div style="margin-top: 1rem;">
+              <a href="network.html" class="btn btn-secondary">View Network</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <span class="card-badge live">Testnet Live</span>
+            <div class="card-icon">🚀</div>
+            <h3>M Hash L2</h3>
+            <p>OP Stack-based Layer 2 for scalable smart contracts, lower-cost transactions, and developer experimentation. Testnet is live for developers.</p>
+            <div style="margin-top: 1rem;">
+              <a href="network.html" class="btn btn-secondary">View Network</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DePIN & Compute -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2>DePIN Compute Network</h2>
+          <p>Device-based infrastructure participation and AI compute contribution</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-icon">📡</div>
+            <h3>Device Incentives</h3>
+            <p>Earn rewards by participating in network validation and providing compute resources. Subject to governance-approved program rules.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🤖</div>
+            <h3>AI Compute</h3>
+            <p>Contribute device resources to AI model training and inference for network rewards. In planning and development.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🛡️</div>
+            <h3>Compliance Architecture</h3>
+            <p>Built-in compliance features including KYC architecture considerations for regulated markets and enterprise adoption.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Developer Ecosystem -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2>Developer Ecosystem</h2>
+          <p>Tools and resources for building on MAGNE</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-icon">📂</div>
+            <h3>Developer Docs</h3>
+            <p>Network configuration, quickstart guides, and code examples for building on MAGNE L1 and L2.</p>
+            <div style="margin-top: 1rem;">
+              <a href="developers.html" class="btn btn-secondary">View Docs</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🔧</div>
+            <h3>Tooling</h3>
+            <p>Hardhat, Foundry, ethers.js, and other standard Web3 development tools. Explorer and faucet available.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">📱</div>
+            <h3>SDK / API</h3>
+            <p>Software development kits and APIs for integrating with MAGNE services. In planning.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ecosystem Roadmap -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2>Ecosystem Roadmap</h2>
+          <p>Planned milestones — subject to technical, regulatory, and market conditions</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="roadmap-item">
+            <div class="roadmap-time">2026 Q2</div>
+            <h4>Phone Launch</h4>
+            <p>MAGNE.AI Phone Gen1 mass production and initial device incentive pilot program.</p>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-time">2026 Q3</div>
+            <h4>DePIN Network</h4>
+            <p>DePIN compute network launch and device incentive distribution. Subject to governance approval.</p>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-time">2026 Q4+</div>
+            <h4>Mainnet & Ecosystem</h4>
+            <p>Mainnet launch, expanded DApp ecosystem, and partner integrations. Details subject to technical progress.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Partnership CTA -->
-    <section style="padding: 4rem 2rem;">
-      <div style="max-width: 600px; margin: 0 auto; text-align: center;">
-        <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent);">Ecosystem Partnership</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7;">
-          Interested in building on MAGNE.AI or integrating with our ecosystem? Contact us to explore partnership opportunities.
-        </p>
-        <a href="https://t.me/JerryKao" class="btn-primary" target="_blank">Contact Team</a>
+    <section class="cta-section">
+      <div class="container">
+        <h2>Partnership Inquiries</h2>
+        <p>Interested in building on MAGNE or exploring partnership opportunities? We welcome discussions with developers, projects, and enterprises.</p>
+        <a href="https://magne.ai/magne-contact.html" class="btn btn-primary">Contact Us</a>
       </div>
     </section>
   </main>
 
-    <footer>
+  <footer>
     <div class="footer-brand-logo">
       <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
       <p>The Web3-native AI Phone</p>
     </div>
-    <div class="footer-socials" aria-label="Official MAGNE.AI channels">
-      <a href="https://x.com/Magne_Ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-      <a href="https://t.me/MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
-      <a href="https://discord.gg/tX2xRAkd" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
-      <a href="https://github.com/magne-ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-      <a href="https://www.youtube.com/@MagneAI" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE.AI on YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-      <a href="https://web3.magne.ai" target="_blank" rel="noopener" class="footer-icon" aria-label="MAGNE Web3 Docs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></a>
+    <div class="footer-socials">
+      <a href="https://x.com/Magne_Ai" target="_blank" class="footer-icon" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://t.me/MagneAI" target="_blank" class="footer-icon" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <a href="https://discord.gg/tX2xRAkd" target="_blank" class="footer-icon" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
     </div>
     <div class="footer-links">
       <a href="https://magne.ai/privacy-policy.html">Privacy Policy</a>
@@ -133,11 +394,10 @@
       <a href="https://magne.ai/media-kit.html">Media Kit</a>
     </div>
     <p class="trademark-notice">
-    MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process 
-    (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank" rel="noopener">USPTO Serial: 99311528</a>).
+      MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process 
+      (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO Serial: 99311528</a>).
     </p>
-    <p style="margin-top: 1.5rem; opacity: 0.5;">© 2026 MAGNE.AI. All rights reserved.</p>
+    <p class="copyright">© 2026 MAGNE.AI. All rights reserved.</p>
   </footer>
-  <canvas id="node-bg" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
 </body>
 </html>
