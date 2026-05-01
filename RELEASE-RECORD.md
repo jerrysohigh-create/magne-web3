@@ -1,104 +1,221 @@
-# Release Baseline: web3.magne.ai v1.0.1
-
-**Status:** Released / Observation Period
-
-**Authoritative Version:** English public website
+# RELEASE-RECORD.md — MAGNE.AI Web3 Site Release History
 
 ---
 
-## Scope
+## v1.1.0 — Traditional Chinese Core Pages
 
-### Included in This Release
+**Status:** Released
 
-- **Web3 Infrastructure Portal** — Project overview, technology explanation
-- **Developer Documentation** — Network configuration, testnet guides, deployment tutorials
-- **Testnet Network Information** — MAGNE L1 and M Hash L2 testnet parameters
-- **Token Disclosure** — $MHA token information and allocation details
-- **Transparency Center** — Legal documents, audit reports, risk disclosures
-- **FAQ** — Common questions for exchanges, developers, and community
-- **Version History** — Website evolution and archived materials policy
-- **Multilingual Architecture** — Language switch prepared for future localization
+**Date:** 2026-05-01
 
-### Not Included
-
-- Traditional Chinese public release
-- Simplified Chinese public release
-- Additional language versions
-- New token terms beyond current disclosure
-- Any reward, listing, price, or return guarantee
+**Website:** https://web3.magne.ai
 
 ---
 
-## Version History
+### Scope
 
-| Version | Date | Description |
-|---------|------|-------------|
-| v1.0.0 | 2026-05-01 | Initial rebuilt public release |
-| v1.0.1 | 2026-05-01 | Language architecture preparation (current stable baseline) |
-
----
-
-## Compliance Notes
-
-This website contains **technical, ecosystem, and informational purposes only**.
-
-Nothing on this website constitutes:
-- Investment advice
-- Financial advice
-- Public offering
-- Solicitation
-- Guarantee of rewards, income, profit, liquidity, exchange listing, or token value
+- Added Traditional Chinese homepage (`/tc/index.html`)
+- Added Traditional Chinese token disclosure page (`/tc/token.html`)
+- Added Traditional Chinese Transparency Center (`/tc/transparency.html`)
+- Added Traditional Chinese FAQ (`/tc/faq.html`)
+- Added Traditional Chinese Version History (`/tc/version-history.html`)
+- Updated language switch for corresponding English pages
+- Updated hreflang metadata
+- Updated sitemap.xml (20 URLs)
 
 ---
 
-## Observation Period Priorities
+### Authoritative Version
 
-During the observation period, the team will monitor:
+**English remains the primary authoritative public version.**
 
-1. **Mobile Navigation** — Is the navigation intuitive on mobile devices?
-2. **Transparency Center** — Can legal documents and disclosures be easily found?
-3. **Developer Documentation** — Can developers successfully connect, deploy, and build?
-4. **Token Disclosure** — Is the token information clear but not overly promotional?
-5. **FAQ Coverage** — Does the FAQ address the most common questions from exchanges, lawyers, and community?
+Traditional Chinese pages are provided for exchange, legal, compliance, and community review.
 
 ---
 
-## Next Planned Version
+### Localization Principle
 
-**v1.1.0** — Traditional Chinese core pages (5 pages)
+**Compliance-equivalent translation, not promotional rewriting.**
 
-**Planned Pages:**
-- /tc/index.html — Home
-- /tc/token.html — Token
-- /tc/transparency.html — Transparency Center
-- /tc/faq.html — FAQ
-- /tc/version-history.html — Version History
-
-**v1.1.0 Launch Conditions** (any one):
-- Exchange Chinese team requests Chinese materials
-- Lawyer/compliance team wants to review Traditional Chinese disclosure language
-- Community promotion requires Chinese landing page
-- English site content is stable and no longer requires frequent structural changes
-
-**Note:** Traditional Chinese version will use compliance-equivalent translation, not literal word-for-word translation. Token, risk, and legal boundary content will err on the conservative side.
+Conservative wording for token, risk, and legal content. No marketing language.
 
 ---
 
-## Repository Information
+### Not Included in v1.1.0
 
-**GitHub:** https://github.com/jerrysohigh-create/magne-web3
+- Simplified Chinese version
+- Full developer documentation translation
+- Tokenomics Detail translation
+- Additional languages
 
-**Live Site:** https://jerrysohigh-create.github.io/magne-web3/ (GitHub Pages)
-**Production Domain:** https://web3.magne.ai/
+---
 
-**Current Tag:** v1.0.1
+### v1.1.0 Compliance Verification — ALL PASS
+
+| Check | Status |
+|-------|--------|
+| Prohibited terms | ✅ PASS |
+| Required legal terms present | ✅ PASS |
+| Language switch correct | ✅ PASS |
+| hreflang tags | ✅ PASS |
+| Tone conservative/formal | ✅ PASS |
+
+---
+
+### Language Structure
+
+```
+/ (English - default)
+├── index.html
+├── token.html
+├── transparency.html
+├── faq.html
+├── version-history.html
+├── learn.html
+├── developers.html
+├── network.html
+├── ecosystem.html
+├── tokenomics-detail.html
+├── coming-soon.html (placeholder)
+└── /tc/ (Traditional Chinese)
+    ├── index.html
+    ├── token.html
+    ├── transparency.html
+    ├── faq.html
+    └── version-history.html
+```
+
+---
+
+## v1.0.1 — English + Multilingual Architecture Prepared
+
+**Status:** Released
+
+**Date:** 2026-05-01
+
+**Website:** https://web3.magne.ai
+
+---
+
+### Scope
+
+- 14 English HTML pages
+- Navigation simplified from 12 to 8 items
+- Language switch infrastructure (EN / 繁中)
+- hreflang metadata prepared
+- SEO metadata on all pages
+- sitemap.xml (English pages)
+- robots.txt
+- 404.html
+
+---
+
+## v1.0.0 — English Public Release
+
+**Status:** Released
+
+**Date:** 2026-05-01
+
+---
+
+### Scope
+
+- Initial public Web3 infrastructure portal
+- MAGNE L1 and M Hash L2 testnet documentation
+- Developer Hub with network configuration
+- Token disclosure (MHA)
+- Transparency Center (legal documents, audits, disclosures)
+- FAQ and Version History
+
+---
+
+## Current Site Structure
+
+### English Main Site (Primary Authoritative Version)
+
+| Page | Description |
+|------|-------------|
+| Home | Project overview and key features |
+| Learn | Blockchain education and MAGNE.AI technology explanation |
+| Developers | Developer Hub with network configuration and guides |
+| Network | MAGNE L1 and M Hash L2 testnet infrastructure |
+| Token | $MHA token information and disclosure |
+| Ecosystem | Ecosystem overview and initiatives |
+| Transparency | Legal documents, audits, and disclosures |
+| FAQ | Frequently asked questions |
+| Version History | Website version history and archived materials |
+| Tokenomics Detail | Detailed token distribution and risk disclosure |
+
+### Traditional Chinese Core Pages
+
+| Page | Description |
+|------|-------------|
+| /tc/index.html | 首頁 |
+| /tc/token.html | 代幣 |
+| /tc/transparency.html | 透明中心 |
+| /tc/faq.html | 常見問題 |
+| /tc/version-history.html | 版本歷史 |
+
+---
+
+## Version Timeline
+
+| Version | Status | Description |
+|---------|--------|-------------|
+| v1.0.0 | ✅ Released | English public release |
+| v1.0.1 | ✅ Released | English + multilingual architecture prepared |
+| v1.1.0 | ✅ Released | Traditional Chinese core pages |
+| v1.2.0 | Under Evaluation | Simplified Chinese or additional languages |
+
+---
+
+## v1.2.0 Launch Conditions
+
+v1.2.0 will be considered when ANY of the following is met:
+
+1. Exchange team explicitly requests Simplified Chinese
+2. Mainland China / Southeast Asia Chinese community outreach begins
+3. Traditional Chinese version is stable and completes one legal review cycle
+4. English and Traditional Chinese content is no longer frequently adjusted
+
+---
+
+## Important Notice
+
+**This website is for technical, ecosystem, and informational purposes only.**
+
+Nothing on this website constitutes investment advice, financial advice, public offering, solicitation, or a guarantee of rewards, income, profit, liquidity, exchange listing, or token value.
+
+Token-related, governance-related, and device-based participation information may change based on technical development, governance-approved rules, regulatory requirements, and market conditions.
+
+---
+
+## Network Information
+
+| Network | Chain ID | Status |
+|---------|----------|--------|
+| MAGNE L1 Testnet | 20250810 | Testing |
+| M Hash L2 Testnet | 20250827 | Testing |
+
+**Token:** MHA (10,000,000,000 total supply)
+
+**Note:** Testnet tokens have no monetary value.
+
+---
+
+## Trademark
+
+MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process (USPTO Serial: 99311528).
 
 ---
 
 ## Contact
 
-For questions about this release, please contact the MAGNE.AI team through official channels.
+- Website: https://magne.ai
+- Telegram: https://t.me/MagneAI
+- X (Twitter): https://x.com/Magne_Ai
+- Discord: https://discord.gg/tX2xRAkd
 
 ---
 
-*This document is for internal reference and due diligence purposes.*
+© 2026 MAGNE.AI. All rights reserved.
