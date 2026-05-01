@@ -55,23 +55,20 @@ The MAGNE L1 and M Hash L2 networks are currently in testing phase.
 | Version | Status | Description |
 |---------|--------|-------------|
 | v1.0.0 | ✅ Released | English public release |
-| v1.0.1 | ✅ Current | Language switch and hreflang preparation |
-| v1.1.0 | Planned | Traditional Chinese core pages (5 pages) |
+| v1.0.1 | ✅ Released | Language switch and hreflang preparation |
+| v1.1.0 | ✅ Released | Traditional Chinese core pages (5 pages) |
 | v1.2.0 | Under Evaluation | Simplified Chinese or additional languages |
 
 ### Language Structure
 
 - `/` — English (default)
-- `/coming-soon.html` — Language coming soon placeholder
-- `/tc/` — Traditional Chinese (planned for v1.1.0)
-
-### Core Pages for v1.1.0 (Planned)
-
-- `/tc/index.html` — Home
-- `/tc/token.html` — Token
-- `/tc/transparency.html` — Transparency Center
-- `/tc/faq.html` — FAQ
-- `/tc/version-history.html` — Version History
+- `/tc/` — Traditional Chinese
+  - `/tc/index.html` — 首頁
+  - `/tc/token.html` — 代幣
+  - `/tc/transparency.html` — 透明中心
+  - `/tc/faq.html` — 常見問題
+  - `/tc/version-history.html` — 版本歷史
+- `/coming-soon.html` — Placeholder for additional languages
 
 ## Trademark
 
