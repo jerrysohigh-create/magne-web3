@@ -1,6 +1,6 @@
 # MAGNE.AI Web3 Infrastructure Portal
 
-**Version: v1.0.0**
+**Current Version: v1.0.1**
 
 This repository contains the public Web3 infrastructure portal for MAGNE.AI.
 
@@ -49,6 +49,29 @@ The MAGNE L1 and M Hash L2 networks are currently in testing phase.
 - Telegram: https://t.me/MagneAI
 - X (Twitter): https://x.com/Magne_Ai
 - Discord: https://discord.gg/tX2xRAkd
+
+## Multilingual Roadmap
+
+| Version | Status | Description |
+|---------|--------|-------------|
+| v1.0.0 | ✅ Released | English public release |
+| v1.0.1 | ✅ Current | Language switch and hreflang preparation |
+| v1.1.0 | Planned | Traditional Chinese core pages (5 pages) |
+| v1.2.0 | Under Evaluation | Simplified Chinese or additional languages |
+
+### Language Structure
+
+- `/` — English (default)
+- `/coming-soon.html` — Language coming soon placeholder
+- `/tc/` — Traditional Chinese (planned for v1.1.0)
+
+### Core Pages for v1.1.0 (Planned)
+
+- `/tc/index.html` — Home
+- `/tc/token.html` — Token
+- `/tc/transparency.html` — Transparency Center
+- `/tc/faq.html` — FAQ
+- `/tc/version-history.html` — Version History
 
 ## Trademark
 
