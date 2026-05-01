@@ -16,189 +16,65 @@
       --text-secondary: rgba(255, 255, 255, 0.5);
       --accent: #FFD700;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { max-width: 100%; overflow-x: hidden; }
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
-
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 10, 12, 0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
+    body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 10, 12, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
     .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
     .nav-brand a { color: var(--text-secondary); text-decoration: none; }
     .nav-logo-img { height: 20px; }
     .nav-links { display: flex; gap: 0 0.75rem; list-style: none; justify-content: center; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; padding: 0.4rem 0.5rem; text-align: center; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; font-kerning: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; min-width: 4.5rem; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; padding: 0.4rem 0.5rem; text-align: center; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; min-width: 4.5rem; }
     .nav-links a:hover, .nav-links a.active { color: var(--accent); }
     .nav-cta { background: var(--accent); color: #000 !important; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; }
-
     .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-secondary); margin: 5px 0; transition: 0.3s; }
-
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-secondary); margin: 5px 0; }
     main { position: relative; z-index: 1; padding-top: 80px; }
     .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
-
     section { padding: 5rem 0; }
     section:nth-child(even) { background: var(--bg-secondary); }
-
     h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 1rem; }
     h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; }
     h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
     p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.7; }
-
-    .hero { 
-      text-align: center; 
-      padding: 8rem 2rem 5rem;
-      background: radial-gradient(ellipse at center top, rgba(255,215,0,0.06) 0%, transparent 60%);
-    }
+    .hero { text-align: center; padding: 8rem 2rem 5rem; background: radial-gradient(ellipse at center top, rgba(255,215,0,0.06) 0%, transparent 60%); }
     .hero h1 { margin-bottom: 1rem; }
     .hero p { max-width: 650px; margin: 0 auto; }
-
     .section-header { margin-bottom: 2rem; }
     .section-header h2 { border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
-
-    .card { 
-      background: var(--bg-card); 
-      border: 1px solid var(--border); 
-      border-radius: 12px; 
-      padding: 1.75rem; 
-      margin-bottom: 1.5rem;
-      transition: all 0.3s;
-    }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.75rem; margin-bottom: 1.5rem; transition: all 0.3s; }
     .card:hover { border-color: rgba(255,215,0,0.2); }
     .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem; }
     .card h3 { margin-bottom: 0; }
-
-    .network-status { 
-      display: inline-block; 
-      background: rgba(0,255,136,0.1); 
-      border: 1px solid rgba(0,255,136,0.3); 
-      color: #00ff88; 
-      padding: 0.25rem 0.7rem; 
-      border-radius: 20px; 
-      font-size: 0.75rem; 
-      font-weight: 500;
-    }
-
+    .network-status { display: inline-block; background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.3); color: #00ff88; padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
     .config-table { width: 100%; border-collapse: collapse; }
-    pre, code { white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; }
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-    }
     .config-table tr { border-bottom: 1px solid var(--border); }
     .config-table td { padding: 0.75rem 0; }
-    .config-table td:first-child { 
-      color: var(--text-secondary); 
-      width: 100px; 
-      font-size: 0.9rem;
-    }
-    .config-table td:last-child { 
-      font-family: 'JetBrains Mono', monospace; 
-      font-size: 0.85rem;
-      word-break: break-all;
-    }
+    .config-table td:first-child { color: var(--text-secondary); width: 100px; font-size: 0.9rem; }
+    .config-table td:last-child { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; word-break: break-all; }
     .config-table .value { color: var(--accent); }
-
-    .btn { 
-      display: inline-block; 
-      padding: 0.65rem 1.25rem; 
-      border-radius: 6px; 
-      font-weight: 600; 
-      text-decoration: none; 
-      transition: all 0.3s;
-      font-size: 0.85rem;
-    }
+    .btn { display: inline-block; padding: 0.65rem 1.25rem; border-radius: 6px; font-weight: 600; text-decoration: none; transition: all 0.3s; font-size: 0.85rem; }
     .btn-primary { background: var(--accent); color: #000; }
     .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 5px 15px rgba(255,215,0,0.2); }
     .btn-secondary { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); }
     .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-
     .btn-group { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem; }
-
     .steps { counter-reset: step; }
-    .step {
-      position: relative;
-      padding-left: 3.5rem;
-      margin-bottom: 2rem;
-    }
-    .step::before {
-      counter-increment: step;
-      content: counter(step);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 2.5rem;
-      height: 2.5rem;
-      background: rgba(255,215,0,0.1);
-      border: 1px solid rgba(255,215,0,0.3);
-      color: var(--accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
+    .step { position: relative; padding-left: 3.5rem; margin-bottom: 2rem; }
+    .step::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 2.5rem; height: 2.5rem; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
     .step h3 { margin-bottom: 0.5rem; }
     .step p { font-size: 0.95rem; }
-    .step code {
-      display: inline-block;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--accent);
-      margin-top: 0.5rem;
-    }
-
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-    .tool-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
-      text-align: center;
-      transition: all 0.3s;
-    }
+    .step code { display: inline-block; background: var(--bg-card); border: 1px solid var(--border); padding: 0.2rem 0.5rem; border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent); margin-top: 0.5rem; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .tool-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; text-align: center; transition: all 0.3s; }
     .tool-card:hover { border-color: rgba(255,215,0,0.3); transform: translateY(-2px); }
     .tool-icon { font-size: 2rem; margin-bottom: 0.75rem; }
     .tool-card h4 { margin-bottom: 0.5rem; font-size: 0.95rem; }
     .tool-card p { font-size: 0.8rem; color: var(--text-secondary); }
-
-    .disclaimer {
-      background: rgba(255, 215, 0, 0.05);
-      border: 1px solid rgba(255, 215, 0, 0.15);
-      border-radius: 12px;
-      padding: 1.25rem;
-      margin-top: 2rem;
-    }
+    .disclaimer { background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.15); border-radius: 12px; padding: 1.25rem; margin-top: 2rem; }
     .disclaimer p { font-size: 0.9rem; }
-
-    footer {
-      text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border);
-      color: var(--text-secondary); font-size: 0.9rem;
-    }
+    pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-top: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+    footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem; }
     footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
     footer a:hover { color: var(--accent); }
     .footer-brand-logo { margin-bottom: 1.5rem; }
@@ -212,16 +88,9 @@
     .trademark-notice { font-size: 0.8rem; margin-top: 1rem; }
     .trademark-notice a { color: var(--accent); }
     .copyright { margin-top: 1.5rem; opacity: 0.5; }
-
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
-      .nav-links { 
-        display: none; 
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: rgba(10, 10, 12, 0.98);
-        flex-direction: column; padding: 1.5rem; gap: 1rem;
-        border-bottom: 1px solid var(--border);
-      }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10, 10, 12, 0.98); flex-direction: column; padding: 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border); }
       .nav-links.active { display: flex; }
       .nav-toggle { display: block; }
       h1 { font-size: 2rem; }
@@ -235,9 +104,7 @@
 <body>
   <nav>
     <div class="nav-brand">
-      <a href="https://magne.ai">
-        <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
-      </a>
+      <a href="https://magne.ai"><img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a>
     </div>
     <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
       <span></span><span></span><span></span>
@@ -245,7 +112,7 @@
     <ul class="nav-links">
       <li><a href="index.html">HOME</a></li>
       <li><a href="learn.html">LEARN</a></li>
-      <li><a href="developers.html">DEVELOPERS</a></li>
+      <li><a href="developers.html" class="active">DEVELOPERS</a></li>
       <li><a href="network.html">NETWORK</a></li>
       <li><a href="token.html">TOKEN</a></li>
       <li><a href="ecosystem.html">ECOSYSTEM</a></li>
@@ -256,13 +123,11 @@
   </nav>
 
   <main>
-    <!-- Hero -->
     <section class="hero">
       <h1>Developer Hub</h1>
-      <p>Build on MAGNE L1 and M Hash L2. Connect your wallet to testnets. Access network configuration, developer tools, and documentation.</p>
+      <p>Build on MAGNE L1 and M Hash L2. Access network configuration, developer tools, and documentation.</p>
     </section>
 
-    <!-- Network Configuration -->
     <section>
       <div class="container">
         <div class="section-header">
@@ -276,29 +141,16 @@
             <span class="network-status">Testnet Live</span>
           </div>
           <table class="config-table">
-            <tr>
-              <td>Chain ID</td>
-              <td class="value">20250810</td>
-            </tr>
-            <tr>
-              <td>Symbol</td>
-              <td class="value">MHA</td>
-            </tr>
-            <tr>
-              <td>RPC</td>
-              <td class="value">https://rpc.testnet.magicalhash.com</td>
-            </tr>
-            <tr>
-              <td>Explorer</td>
-              <td class="value">https://explorer.testnet.magicalhash.com</td>
-            </tr>
+            <tr><td>Chain ID</td><td class="value">20250810</td></tr>
+            <tr><td>Symbol</td><td class="value">MHA</td></tr>
+            <tr><td>RPC</td><td class="value">https://rpc.testnet.magicalhash.com</td></tr>
+            <tr><td>Explorer</td><td class="value">https://explorer.testnet.magicalhash.com</td></tr>
           </table>
           <div class="btn-group">
             <a href="developers-app.html" class="btn btn-primary">Build DApp</a>
             <a href="developers-contract.html" class="btn btn-secondary">Deploy Contract</a>
-            <a href="developers-connect.html" class="btn btn-secondary">Connect Wallet / Add Testnet</a>
-            <a href="https://rpc.testnet.magicalhash.com" target="_blank" class="btn btn-secondary">RPC Endpoint</a>
-            <a href="https://explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary">Block Explorer</a>
+            <a href="developers-connect.html" class="btn btn-secondary">Connect Wallet</a>
+            <a href="https://explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary">Explorer</a>
           </div>
         </div>
 
@@ -309,66 +161,46 @@
             <span class="network-status">Testnet Live</span>
           </div>
           <table class="config-table">
-            <tr>
-              <td>Chain ID</td>
-              <td class="value">20250827</td>
-            </tr>
-            <tr>
-              <td>Symbol</td>
-              <td class="value">MHA</td>
-            </tr>
-            <tr>
-              <td>RPC</td>
-              <td class="value">https://l2-rpc.testnet.magicalhash.com</td>
-            </tr>
-            <tr>
-              <td>Explorer</td>
-              <td class="value">https://l2-explorer.testnet.magicalhash.com</td>
-            </tr>
+            <tr><td>Chain ID</td><td class="value">20250827</td></tr>
+            <tr><td>Symbol</td><td class="value">MHA</td></tr>
+            <tr><td>RPC</td><td class="value">https://l2-rpc.testnet.magicalhash.com</td></tr>
+            <tr><td>Explorer</td><td class="value">https://l2-explorer.testnet.magicalhash.com</td></tr>
           </table>
           <div class="btn-group">
-            <a href="https://l2-rpc.testnet.magicalhash.com" target="_blank" class="btn btn-secondary">RPC Endpoint</a>
             <a href="developers-app.html" class="btn btn-primary">Build DApp</a>
             <a href="developers-contract.html" class="btn btn-secondary">Deploy Contract</a>
-            <a href="developers-connect.html" class="btn btn-secondary">Connect Wallet / Add Testnet</a>
-            <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary">Block Explorer</a>
+            <a href="developers-connect.html" class="btn btn-secondary">Connect Wallet</a>
+            <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary">Explorer</a>
           </div>
         </div>
 
         <div class="disclaimer">
-          <p><strong>Note:</strong> Testnet parameters are subject to change. Mainnet is currently in planning and development. Do not use testnet endpoints for production deployments.</p>
+          <p><strong>Note:</strong> Testnet parameters are subject to change. Do not use testnet endpoints for production deployments. Testnet tokens have no monetary value.</p>
         </div>
       </div>
     </section>
 
-    <!-- Quickstart -->
     <section>
       <div class="container">
         <div class="section-header">
           <h2>Quickstart</h2>
         </div>
-
         <div class="steps">
           <div class="step">
             <h3>Add Network to Wallet</h3>
             <p>Add MAGNE L1 or M Hash L2 testnet to MetaMask or your preferred Web3 wallet using the network configuration above.</p>
             <code>Chain ID: 20250810 (L1) / 20250827 (L2)</code>
           </div>
-
           <div class="step">
             <h3>Get Testnet MHA</h3>
             <p>Visit the faucet to receive testnet MHA tokens for development and testing purposes.</p>
-            <div class="btn-group">
-              <a href="#" class="btn btn-primary">Faucet (Coming Soon)</a>
-            </div>
+            <code>Faucet in development — contact @MagneAI for testnet tokens</code>
           </div>
-
           <div class="step">
             <h3>Deploy Contract</h3>
             <p>Use Hardhat, Foundry, or your preferred development framework to deploy smart contracts to the testnet.</p>
-            <code>npx hardhat compile && npx hardhat run scripts/deploy.js --network magne-testnet</code>
+            <code>npx hardhat run scripts/deploy.js --network magne-l1</code>
           </div>
-
           <div class="step">
             <h3>Build DApp</h3>
             <p>Connect your DApp to MAGNE networks using ethers.js, web3.js, or viem and start building.</p>
@@ -378,13 +210,11 @@
       </div>
     </section>
 
-    <!-- Developer Tools -->
     <section>
       <div class="container">
         <div class="section-header">
           <h2>Developer Tools</h2>
         </div>
-
         <div class="tools-grid">
           <div class="tool-card">
             <div class="tool-icon">🔍</div>
@@ -394,7 +224,6 @@
               <a href="https://explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary" style="padding: 0.5rem 1rem;">Open</a>
             </div>
           </div>
-
           <div class="tool-card">
             <div class="tool-icon">🔍</div>
             <h4>L2 Explorer</h4>
@@ -403,16 +232,14 @@
               <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary" style="padding: 0.5rem 1rem;">Open</a>
             </div>
           </div>
-
           <div class="tool-card">
             <div class="tool-icon">💧</div>
             <h4>Faucet</h4>
             <p>Get testnet MHA tokens</p>
             <div class="btn-group" style="margin-top: 1rem; justify-content: center;">
-              <a href="#" class="btn btn-secondary" style="padding: 0.5rem 1rem;">Coming Soon</a>
+              <a href="https://t.me/MagneAI" target="_blank" class="btn btn-secondary" style="padding: 0.5rem 1rem;">Request via Telegram</a>
             </div>
           </div>
-
           <div class="tool-card">
             <div class="tool-icon">📂</div>
             <h4>GitHub</h4>
@@ -425,16 +252,14 @@
       </div>
     </section>
 
-    <!-- Code Examples -->
     <section>
       <div class="container">
         <div class="section-header">
           <h2>Code Examples</h2>
         </div>
-
         <div class="card">
           <h3>ethers.js Connection</h3>
-          <pre style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-top: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.5;"><code>const { ethers } = require('ethers');
+          <pre><code>const { ethers } = require('ethers');
 
 const provider = new ethers.JsonRpcProvider(
   'https://rpc.testnet.magicalhash.com'
@@ -447,12 +272,13 @@ const wallet = new ethers.Wallet(
 
 const balance = await provider.getBalance(wallet.address);
 console.log('Balance:', ethers.formatEther(balance), 'MHA');
-// Security: Use a dedicated test wallet. Never expose private keys in frontend code or public repositories.</code></pre>
-        </div>
 
+// Security: Use a dedicated test wallet.
+// Never expose private keys in frontend code or public repositories.</code></pre>
+        </div>
         <div class="card">
           <h3>Hardhat Configuration</h3>
-          <pre style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-top: 1rem; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.5;"><code>// hardhat.config.js
+          <pre><code>// hardhat.config.js
 module.exports = {
   networks: {
     'magne-l1': {
@@ -485,10 +311,7 @@ module.exports = {
       <a href="https://magne.ai/magne-contact.html">Contact</a>
       <a href="https://magne.ai/media-kit.html">Media Kit</a>
     </div>
-    <p class="trademark-notice">
-      MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process 
-      (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO Serial: 99311528</a>).
-    </p>
+    <p class="trademark-notice">MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO Serial: 99311528</a>).</p>
     <p class="copyright">© 2026 MAGNE.AI. All rights reserved.</p>
   </footer>
 </body>
