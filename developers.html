@@ -326,6 +326,7 @@
           </table>
           <div class="btn-group">
             <a href="https://l2-rpc.testnet.magicalhash.com" target="_blank" class="btn btn-secondary">RPC Endpoint</a>
+            <a href="developers-connect.html" class="btn btn-primary">Connect Wallet / Add Testnet</a>
             <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary">Block Explorer</a>
           </div>
         </div>
@@ -436,12 +437,13 @@ const provider = new ethers.JsonRpcProvider(
 );
 
 const wallet = new ethers.Wallet(
-  'your-private-key',
+  process.env.TESTNET_PRIVATE_KEY,
   provider
 );
 
 const balance = await provider.getBalance(wallet.address);
-console.log('Balance:', ethers.formatEther(balance), 'MHA');</code></pre>
+console.log('Balance:', ethers.formatEther(balance), 'MHA');
+// Security: Use a dedicated test wallet. Never expose private keys in frontend code or public repositories.</code></pre>
         </div>
 
         <div class="card">
