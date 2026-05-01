@@ -67,7 +67,6 @@
     .trademark-notice a { color: var(--accent); }
     .copyright { margin-top: 1.5rem; opacity: 0.5; }
 
-    /* Timeline styles */
     .timeline { position: relative; margin: 2rem 0; padding-left: 2rem; border-left: 2px solid var(--border); }
     .timeline-item { position: relative; padding: 1.5rem 0 1.5rem 1.5rem; }
     .timeline-item::before { content: ''; position: absolute; left: -2.55rem; top: 2rem; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; border: 2px solid var(--bg-primary); }
@@ -81,7 +80,6 @@
     .timeline-desc { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.75rem; }
     .timeline-notes { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.85rem; color: var(--text-secondary); }
 
-    /* Document table */
     .doc-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
     .doc-table th, .doc-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); }
     .doc-table th { color: var(--text-secondary); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -91,6 +89,17 @@
     .status-active { background: rgba(0,255,136,0.1); color: #00ff88; }
     .status-archived { background: rgba(255,255,255,0.05); color: var(--text-secondary); }
     .status-review { background: rgba(255,215,0,0.1); color: var(--accent); }
+    .status-upload { background: rgba(100,150,255,0.1); color: #6496ff; }
+
+    .changelog { margin: 1.5rem 0; }
+    .changelog-item { display: flex; align-items: flex-start; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+    .changelog-item:last-child { border-bottom: none; }
+    .changelog-icon { color: var(--accent); font-size: 1rem; flex-shrink: 0; }
+    .changelog-text { color: var(--text-secondary); font-size: 0.95rem; }
+
+    .contact-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
+    .contact-box p { font-size: 0.95rem; }
+    .contact-box a { color: var(--accent); }
 
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
@@ -123,6 +132,7 @@
       <li><a href="ecosystem.html">ECOSYSTEM</a></li>
       <li><a href="transparency.html">TRANSPARENCY</a></li>
       <li><a href="faq.html">FAQ</a></li>
+      <li><a href="version-history.html" class="active">VERSION HISTORY</a></li>
     </ul>
     <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank">Preorder</a>
   </nav>
@@ -229,32 +239,95 @@
               <td>Historical reference only. May not reflect current structure.</td>
             </tr>
             <tr>
-              <td>GS LEGAL LLC Legal Opinion</td>
-              <td><span class="doc-status status-review">Review Scope</span></td>
-              <td>Based on materials at time of issuance. Subject to scope limitations.</td>
+              <td>Legal Opinion — GS LEGAL LLC</td>
+              <td><span class="doc-status status-upload">To be uploaded or available upon request</span></td>
+              <td>Based on reviewed materials at time of issuance.</td>
             </tr>
             <tr>
-              <td>Smart Contract Audit Report</td>
-              <td><span class="doc-status status-active">Active</span></td>
-              <td>Available in Transparency section. For historical record.</td>
+              <td>Smart Contract Audit Report 1</td>
+              <td><span class="doc-status status-upload">To be uploaded or available upon request</span></td>
+              <td>Scope-specific review material.</td>
+            </tr>
+            <tr>
+              <td>Smart Contract Audit Report 2</td>
+              <td><span class="doc-status status-upload">To be uploaded or available upon request</span></td>
+              <td>Supplemental review material.</td>
             </tr>
             <tr>
               <td>Token Disclosure</td>
-              <td><span class="doc-status status-active">Active</span></td>
-              <td>Current token information and distribution details.</td>
+              <td><span class="doc-status status-active">Current</span></td>
+              <td>For technical and ecosystem communication only.</td>
             </tr>
             <tr>
-              <td>Current Website Content</td>
-              <td><span class="doc-status status-active">Active</span></td>
-              <td>Latest public-facing documentation. Subject to updates.</td>
+              <td>Website Version History</td>
+              <td><span class="doc-status status-active">Current</span></td>
+              <td>Explains archived and current content relationship.</td>
             </tr>
             <tr>
-              <td>Developer Documentation</td>
-              <td><span class="doc-status status-review">In Progress</span></td>
-              <td>Testnet guides. Parameters may change.</td>
+              <td>Risk Disclosure</td>
+              <td><span class="doc-status status-active">Current</span></td>
+              <td>General risk and forward-looking information notice.</td>
             </tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Change Log</h2>
+        <div class="changelog">
+          <div class="changelog-item">
+            <span class="changelog-icon">✓</span>
+            <span class="changelog-text">Reorganized old whitepaper content into current website structure</span>
+          </div>
+          <div class="changelog-item">
+            <span class="changelog-icon">✓</span>
+            <span class="changelog-text">Added Transparency Center with document status disclosure</span>
+          </div>
+          <div class="changelog-item">
+            <span class="changelog-icon">✓</span>
+            <span class="changelog-text">Added Token Disclosure page</span>
+          </div>
+          <div class="changelog-item">
+            <span class="changelog-icon">✓</span>
+            <span class="changelog-text">Added Developer Hub with practical testnet guides</span>
+          </div>
+          <div class="changelog-item">
+            <span class="changelog-icon">✓</span>
+            <span class="changelog-text">Added Connect Wallet guide (developers-connect.html)</span>
+          </div>
+          <div class="changelog-item">
+            <span class="changelog-icon">✓</span>
+            <span class="changelog-text">Added Deploy Contract guide (developers-contract.html)</span>
+          </div>
+          <div class="changelog-item">
+            <span class="changelog-icon">✓</span>
+            <span class="changelog-text">Added Build DApp guide (developers-app.html)</span>
+          </div>
+          <div class="changelog-item">
+            <span class="changelog-icon">✓</span>
+            <span class="changelog-text">Added FAQ page with compliance-safe language</span>
+          </div>
+          <div class="changelog-item">
+            <span class="changelog-icon">✓</span>
+            <span class="changelog-text">Strengthened legal and risk disclaimers throughout</span>
+          </div>
+          <div class="changelog-item">
+            <span class="changelog-icon">✓</span>
+            <span class="changelog-text">Removed or revised absolute, reward-oriented, or unverifiable claims</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Contact for Due Diligence</h2>
+        <div class="contact-box">
+          <p>For legal, exchange, audit, or institutional due diligence requests, please contact the MAGNE.AI team through the official contact channel listed in the <a href="transparency.html">Transparency Center</a>.</p>
+          <p style="margin-top: 0.75rem;">The team can assist with inquiries regarding legal opinion scope, audit materials, token disclosure, governance documentation, and other transparency-related requests.</p>
+        </div>
       </div>
     </section>
 
