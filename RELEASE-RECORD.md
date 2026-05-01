@@ -33,6 +33,23 @@
 
 ---
 
+### Maintenance Policy
+
+**Status: Observation Period — No further language expansion**
+
+Only the following changes will be considered during the observation period:
+
+| Feedback Type | Target Version |
+|---------------|----------------|
+| 錯字、連結、格式、手機顯示 | v1.2.1 |
+| 繁中合規措辭微調 | v1.2.1 |
+| 律師 / 交易所要求補充披露 | v1.3.0 |
+| PDF 下載中心 / Data Room 入口 | v1.3.0 |
+| 簡體中文或其他語言 | 暫不啟動，等明確需求 |
+| Tokenomics 重大變更 | 重新審查，不直接 patch |
+
+---
+
 ## v1.1.1 — Traditional Chinese Expansion
 
 **Status:** Released
@@ -222,8 +239,10 @@ Conservative wording for token, risk, and legal content. No marketing language.
 | v1.0.1 | ✅ Released | English + multilingual architecture prepared |
 | v1.1.0 | ✅ Released | Traditional Chinese core pages |
 | v1.1.1 | ✅ Released | Traditional Chinese expansion (Learn, Network, Ecosystem) |
-| v1.2.0 | ✅ Released | Complete Traditional Chinese translation (all 13 pages) | (Learn, Network, Ecosystem) |
-| v1.2.0 | Under Evaluation | Simplified Chinese or additional languages |
+| v1.2.0 | ✅ Released | Complete Traditional Chinese translation (all 13 pages) |
+| v1.2.1 | Pending | Observation period — typo, link, legal wording fixes |
+| v1.3.0 | Under Evaluation | Simplified Chinese, exchange-requested disclosures |
+| v1.3.0+ | Under Evaluation | PDF download center, Data Room, structural updates |
 
 ---
 
