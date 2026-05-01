@@ -45,11 +45,13 @@
     .nav-links a:hover, .nav-links a.active { color: var(--accent); }
     .nav-cta { background: var(--accent); color: #000 !important; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; }
 
-    main { position: relative; z-index: 1; padding-top: 80px; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-secondary); margin: 5px 0; transition: 0.3s; }
 
+    main { position: relative; z-index: 1; padding-top: 80px; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
-    section { padding: 5rem 0; }
+    section { padding: 6rem 0; }
     section:nth-child(even) { background: var(--bg-secondary); }
 
     h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; }
@@ -57,10 +59,22 @@
     h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; }
     p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; }
 
-    .hero { text-align: center; padding: 8rem 2rem 6rem; }
-    .hero h1 { background: linear-gradient(135deg, #fff, rgba(255,255,255,0.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 3.5rem; }
+    .hero { 
+      text-align: center; 
+      padding: 10rem 2rem 8rem;
+      background: radial-gradient(ellipse at center top, rgba(255,215,0,0.08) 0%, transparent 60%);
+    }
+    .hero-eyebrow { 
+      font-size: 0.85rem; color: var(--accent); letter-spacing: 3px; 
+      text-transform: uppercase; margin-bottom: 1.5rem; 
+    }
+    .hero h1 { 
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%); 
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      font-size: clamp(2.5rem, 5vw, 4rem); max-width: 900px; margin: 0 auto 1.5rem;
+    }
     .hero p { max-width: 700px; margin: 0 auto 2rem; font-size: 1.2rem; }
-    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-bottom: 2rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-bottom: 2.5rem; }
     .hero-tag { background: var(--bg-card); border: 1px solid var(--border); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; color: var(--text-secondary); }
     .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .btn { display: inline-block; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s; }
@@ -71,43 +85,56 @@
 
     .grid { display: grid; gap: 1.5rem; }
     .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 
-    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: all 0.3s; }
-    .card:hover { border-color: var(--accent); transform: translateY(-4px); }
-    .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: all 0.3s; }
+    .card:hover { border-color: rgba(255,215,0,0.3); transform: translateY(-4px); }
+    .card-icon { font-size: 2.5rem; margin-bottom: 1.25rem; }
+    .card h3 { color: var(--text-primary); }
+    .card p { font-size: 1rem; }
 
-    .network-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-header h2 { margin-bottom: 1rem; }
+    .section-header p { max-width: 650px; margin: 0 auto; }
+
+    .network-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
     .network-status { display: inline-block; background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.3); color: #00ff88; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; margin-bottom: 1rem; }
-    .network-card h3 { color: var(--accent); }
+    .network-card h3 { color: var(--accent); margin-bottom: 1rem; }
     .info-table { width: 100%; margin: 1rem 0; }
     .info-table tr { border-bottom: 1px solid var(--border); }
-    .info-table td { padding: 0.75rem 0; }
-    .info-table td:first-child { color: var(--text-secondary); width: 120px; }
-    .info-table td:last-child { font-family: 'JetBrains Mono', monospace; color: var(--text-primary); }
+    .info-table td { padding: 0.6rem 0; }
+    .info-table td:first-child { color: var(--text-secondary); width: 110px; font-size: 0.9rem; }
+    .info-table td:last-child { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--text-primary); }
 
     .token-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; }
-    .token-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center; }
-    .token-item h4 { color: var(--accent); margin-bottom: 0.5rem; }
-    .token-item p { color: var(--text-secondary); font-size: 0.85rem; }
+    .token-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem 1rem; text-align: center; }
+    .token-item h4 { color: var(--accent); margin-bottom: 0.5rem; font-size: 1rem; }
+    .token-item p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.4; }
 
     .roadmap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-    .roadmap-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+    .roadmap-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; }
     .roadmap-item.completed { border-color: rgba(0,255,136,0.3); }
     .roadmap-item.in-progress { border-color: rgba(255,215,0,0.3); }
-    .roadmap-status { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; margin-bottom: 0.75rem; }
+    .roadmap-status { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.75rem; margin-bottom: 0.75rem; font-weight: 500; }
     .roadmap-item.completed .roadmap-status { background: rgba(0,255,136,0.1); color: #00ff88; }
     .roadmap-item.in-progress .roadmap-status { background: rgba(255,215,0,0.1); color: var(--accent); }
     .roadmap-item.planned .roadmap-status { background: rgba(255,255,255,0.05); color: var(--text-secondary); }
     .roadmap-time { font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; }
-    .roadmap-item h4 { margin-bottom: 0.5rem; }
-    .roadmap-item p { color: var(--text-secondary); font-size: 0.9rem; }
+    .roadmap-item h4 { margin-bottom: 0.5rem; font-size: 1.05rem; }
+    .roadmap-item p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
 
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    .section-header p { max-width: 600px; margin: 0 auto; }
+    .cta-section { text-align: center; padding: 6rem 2rem; }
+    .cta-section h2 { margin-bottom: 1rem; }
+    .cta-section p { max-width: 550px; margin: 0 auto 2rem; }
 
-    .notice { background: rgba(255,215,0,0.05); border: 1px solid rgba(255,215,0,0.15); border-radius: 8px; padding: 1rem; font-size: 0.9rem; color: var(--text-secondary); margin-top: 2rem; text-align: center; }
+    .notice { 
+      background: rgba(255,215,0,0.05); 
+      border: 1px solid rgba(255,215,0,0.15); 
+      border-radius: 8px; padding: 1rem 1.5rem; 
+      font-size: 0.9rem; color: var(--text-secondary); 
+      margin-top: 2rem; text-align: center; line-height: 1.6;
+    }
 
     footer {
       text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border);
@@ -130,25 +157,40 @@
 
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
+      .nav-links { 
+        display: none; 
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(10, 10, 12, 0.98);
+        flex-direction: column; padding: 1.5rem; gap: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-links.active { display: flex; }
+      .nav-toggle { display: block; }
+      .hero { padding: 8rem 1.5rem 6rem; }
       h1 { font-size: 2.2rem; }
       h2 { font-size: 1.8rem; }
-      .hero h1 { font-size: 2.5rem; }
       .token-grid { grid-template-columns: repeat(3, 1fr); }
       .roadmap-grid { grid-template-columns: 1fr; }
+      section { padding: 4rem 0; }
     }
     @media (max-width: 600px) {
       .token-grid { grid-template-columns: repeat(2, 1fr); }
+      .grid-4 { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
+  <canvas id="node-bg"></canvas>
+
   <nav>
     <div class="nav-brand">
       <a href="https://magne.ai">
         <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
       </a>
     </div>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </button>
     <ul class="nav-links">
       <li><a href="index.html" class="active">HOME</a></li>
       <li><a href="learn.html">LEARN</a></li>
@@ -164,19 +206,19 @@
   <main>
     <!-- Hero -->
     <section class="hero">
-      <h1>The Web3-native AI Infrastructure</h1>
-      <p>MAGNE.AI connects secure mobile hardware, MAGNE L1, M Hash L2, and DePIN compute incentives into one Web3-native AI ecosystem.</p>
       <div class="hero-eyebrow">Web3-Native AI Infrastructure</div>
-      
+      <h1>The Web3-native AI Infrastructure</h1>
+      <p>MAGNE.AI connects secure mobile hardware, MAGNE L1, M Hash L2, and DePIN compute incentives into one unified Web3-native AI ecosystem.</p>
+      <div class="hero-tags">
         <span class="hero-tag">MAGNE L1 Testnet Live</span>
         <span class="hero-tag">M Hash L2 Testnet Live</span>
         <span class="hero-tag">$MHA Native Token</span>
         <span class="hero-tag">Hardware-Secured Web3</span>
       </div>
       <div class="btn-group">
-        <a href="developers.html" class="btn btn-primary">Start Building</a>
-        <a href="network.html" class="btn btn-secondary">Explore Network</a>
-        <a href="token.html" class="btn btn-secondary">Read Tokenomics</a>
+        <a href="learn.html" class="btn btn-primary">Read Whitepaper</a>
+        <a href="developers.html" class="btn btn-secondary">Developer Docs</a>
+        <a href="transparency.html" class="btn btn-secondary">Transparency Center</a>
       </div>
     </section>
 
@@ -191,7 +233,7 @@
           <div class="card">
             <div class="card-icon">📱</div>
             <h3>Secure Device Layer</h3>
-            <p>MAGNE.AI Phone Gen1 provides hardware-secured Web3 access, private dual-space architecture, and NFC-based encrypted asset backup.</p>
+            <p>MAGNE.AI Phone Gen1 provides hardware-secured Web3 access with private dual-space architecture and NFC-based encrypted asset backup.</p>
           </div>
           <div class="card">
             <div class="card-icon">⛓️</div>
@@ -201,7 +243,7 @@
           <div class="card">
             <div class="card-icon">🚀</div>
             <h3>M Hash L2</h3>
-            <p>OP Stack-based Layer 2 testnet for scalable smart contracts, lower-cost transactions, and developer experimentation.</p>
+            <p>OP Stack-based Layer 2 for scalable smart contracts, lower-cost transactions, and developer experimentation.</p>
           </div>
           <div class="card">
             <div class="card-icon">🌐</div>
@@ -217,25 +259,38 @@
       <div class="container">
         <div class="section-header">
           <h2>Why MAGNE.AI</h2>
+          <p>Built for ownership, not just apps</p>
         </div>
         <div class="grid grid-3">
-          <div class="card" style="text-align:center;">
+          <div class="card">
+            <div class="card-icon">🔐</div>
             <h3>Hardware-Secured Wallet</h3>
+            <p>Hardware-backed key protection powered by TEE and secure element architecture. Private keys are protected through dedicated secure element — not software-based storage.</p>
           </div>
-          <div class="card" style="text-align:center;">
+          <div class="card">
+            <div class="card-icon">📲</div>
             <h3>Mobile-Native Web3 Access</h3>
+            <p>Purpose-built device for Web3 with integrated wallet, DApp browser, and blockchain interactions — no separate devices required.</p>
           </div>
-          <div class="card" style="text-align:center;">
+          <div class="card">
+            <div class="card-icon">🔗</div>
             <h3>Native L1 + L2 Architecture</h3>
+            <p>Designed from the ground up with MAGNE L1 as the foundation and M Hash L2 for scalability. Both networks are testnet live.</p>
           </div>
-          <div class="card" style="text-align:center;">
+          <div class="card">
+            <div class="card-icon">🤖</div>
             <h3>AI Compute Participation</h3>
+            <p>Contribute device resources to AI model training and inference. The NPU enables privacy-sensitive AI workflows without sending data to the cloud.</p>
           </div>
-          <div class="card" style="text-align:center;">
+          <div class="card">
+            <div class="card-icon">💎</div>
             <h3>Device Incentive Design</h3>
+            <p>Earn rewards by participating in network validation and providing compute resources, subject to governance-approved rules.</p>
           </div>
-          <div class="card" style="text-align:center;">
+          <div class="card">
+            <div class="card-icon">🛡️</div>
             <h3>Compliance-Ready Stack</h3>
+            <p>Built-in compliance features including KYC architecture and regulatory design considerations for enterprise adoption.</p>
           </div>
         </div>
       </div>
@@ -245,7 +300,7 @@
     <section>
       <div class="container">
         <div class="section-header">
-          <h2>Testnet Network</h2>
+          <h2>Live Testnet Networks</h2>
           <p>Connect to MAGNE testnets and start building</p>
         </div>
         <div class="grid grid-2">
@@ -258,7 +313,7 @@
               <tr><td>RPC</td><td>rpc.testnet.magicalhash.com</td></tr>
               <tr><td>Explorer</td><td>explorer.testnet.magicalhash.com</td></tr>
             </table>
-            <a href="developers.html" class="btn btn-primary" style="width:100%; text-align:center; display:block; margin-top:1rem;">View Config</a>
+            <a href="developers.html" class="btn btn-primary" style="display:block; text-align:center; margin-top:1rem;">View Configuration</a>
           </div>
           <div class="network-card">
             <span class="network-status">Testnet Live</span>
@@ -269,9 +324,12 @@
               <tr><td>RPC</td><td>l2-rpc.testnet.magicalhash.com</td></tr>
               <tr><td>Explorer</td><td>l2-explorer.testnet.magicalhash.com</td></tr>
             </table>
-            <a href="network.html" class="btn btn-primary" style="width:100%; text-align:center; display:block; margin-top:1rem;">View Details</a>
+            <a href="network.html" class="btn btn-primary" style="display:block; text-align:center; margin-top:1rem;">View Details</a>
           </div>
         </div>
+        <p class="notice">
+          Testnet parameters are subject to change. Mainnet is currently in planning and development.
+        </p>
       </div>
     </section>
 
@@ -308,9 +366,9 @@
             <p>Premium features</p>
           </div>
         </div>
-        <div class="notice">
-          Token-related information is for technical and ecosystem communication only and does not constitute investment advice or guarantee of rewards.
-        </div>
+        <p class="notice">
+          Token-related information is provided for technical and ecosystem communication only. It does not constitute investment advice, financial advice, public offering, solicitation, or guarantee of rewards, income, profit, liquidity, or token value.
+        </p>
       </div>
     </section>
 
@@ -319,43 +377,43 @@
       <div class="container">
         <div class="section-header">
           <h2>Execution Roadmap</h2>
-          <p>Planned milestones and progress</p>
+          <p>Planned milestones and progress — subject to technical, regulatory, and market conditions</p>
         </div>
         <div class="roadmap-grid">
           <div class="roadmap-item completed">
             <span class="roadmap-status">Completed</span>
             <div class="roadmap-time">2025 Q3-Q4</div>
             <h4>Testnet Launch</h4>
-            <p>MAGNE L1 testnet, M Hash L2 testnet, explorer, faucet, developer documentation.</p>
+            <p>MAGNE L1 testnet, M Hash L2 testnet, explorer, faucet, and developer documentation.</p>
           </div>
           <div class="roadmap-item in-progress">
             <span class="roadmap-status">In Progress</span>
             <div class="roadmap-time">2026 Q1</div>
             <h4>Token Readiness</h4>
-            <p>Exchange due diligence, audit reports, legal opinion, ecosystem campaign preparation.</p>
+            <p>Exchange due diligence preparation, audit reports, legal opinion updates, ecosystem campaign planning.</p>
           </div>
           <div class="roadmap-item planned">
             <span class="roadmap-status">Planned</span>
             <div class="roadmap-time">2026 Q2</div>
             <h4>Phone Launch</h4>
-            <p>MAGNE.AI Phone Gen1 mass production, Web3 wallet integration, device incentive pilot.</p>
+            <p>MAGNE.AI Phone Gen1 mass production, Web3 wallet integration, device incentive pilot program.</p>
           </div>
           <div class="roadmap-item planned">
             <span class="roadmap-status">Planned</span>
             <div class="roadmap-time">2026 Q3+</div>
             <h4>Mainnet Expansion</h4>
-            <p>Mainnet launch, DePIN compute network, AI agent ecosystem, partner DApps.</p>
+            <p>Mainnet launch, DePIN compute network, AI agent ecosystem, partner DApps. Details subject to governance approval.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Transparency CTA -->
-    <section>
-      <div class="container" style="text-align:center;">
+    <section class="cta-section">
+      <div class="container">
         <h2>Legal & Transparency</h2>
-        <p>Access archived materials and legal documentation</p>
-        <div class="btn-group" style="margin-top:2rem;">
+        <p>Access archived materials, legal documentation, and risk disclosures</p>
+        <div class="btn-group">
           <a href="transparency.html" class="btn btn-primary">View Document Center</a>
           <a href="transparency.html" class="btn btn-secondary">Download Legal Opinion</a>
         </div>
@@ -385,8 +443,6 @@
     <p class="copyright">© 2026 MAGNE.AI. All rights reserved.</p>
   </footer>
 
-
-  <canvas id="node-bg" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
   <script>
     const canvas = document.getElementById('node-bg');
     const ctx = canvas.getContext('2d');
@@ -406,14 +462,12 @@
       reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 2;
-        this.vy = (Math.random() - 0.5) * 2;
-        this.radius = Math.random() * 3 + 3;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 2 + 2;
         this.baseRadius = this.radius;
-        this.pulseSpeed = Math.random() * 0.05 + 0.02;
-        this.pulseOffset = Math.random() * Math.PI * 2;
       }
-      update(time) {
+      update() {
         this.x += this.vx;
         this.y += this.vy;
         if (this.x < 0 || this.x > width) this.vx *= -1;
@@ -423,11 +477,8 @@
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.9)';
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = 'rgba(255, 215, 0, 0.6)';
+        ctx.fillStyle = 'rgba(255, 215, 0, 0.15)';
         ctx.fill();
-        ctx.shadowBlur = 0;
       }
     }
 
@@ -436,10 +487,10 @@
       reset() {
         this.x = Math.random() * width;
         this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 1.5;
-        this.vy = (Math.random() - 0.5) * 1.5;
-        this.radius = Math.random() * 1.5 + 0.5;
-        this.alpha = Math.random() * 0.5 + 0.3;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.radius = Math.random() * 1 + 0.5;
+        this.alpha = Math.random() * 0.3 + 0.1;
       }
       update() {
         this.x += this.vx;
@@ -455,26 +506,21 @@
       }
     }
 
-    for (let i = 0; i < 80; i++) nodes.push(new Node());
-    for (let i = 0; i < 150; i++) particles.push(new Particle());
+    for (let i = 0; i < 40; i++) nodes.push(new Node());
+    for (let i = 0; i < 60; i++) particles.push(new Particle());
 
-    function drawLines(time) {
+    function drawLines() {
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 200) {
-            const alpha = (1 - dist / 200) * 0.5;
-            const gradient = ctx.createLinearGradient(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y);
-            gradient.addColorStop(0, `rgba(255, 215, 0, ${alpha})`);
-            gradient.addColorStop(0.5, `rgba(255, 180, 0, ${alpha * 0.6})`);
-            gradient.addColorStop(1, `rgba(255, 215, 0, ${alpha})`);
+          if (dist < 180) {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = `rgba(255, 215, 0, ${(1 - dist / 180) * 0.08})`;
+            ctx.lineWidth = 0.5;
             ctx.stroke();
           }
         }
@@ -484,27 +530,25 @@
           const dx = p.x - n.x;
           const dy = p.y - n.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
+          if (dist < 80) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(n.x, n.y);
-            ctx.strokeStyle = `rgba(255, 215, 0, ${(1 - dist / 100) * 0.15})`;
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = `rgba(255, 215, 0, ${(1 - dist / 80) * 0.05})`;
+            ctx.lineWidth = 0.3;
             ctx.stroke();
           }
         }
       }
     }
 
-    let startTime = Date.now();
     function animate() {
-      const time = Date.now() - startTime;
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = 'rgba(10, 10, 12, 0.6)';
+      ctx.fillStyle = 'rgba(10, 10, 12, 0.3)';
       ctx.fillRect(0, 0, width, height);
-      nodes.forEach(n => { n.update(time); n.draw(); });
+      nodes.forEach(n => { n.update(); n.draw(); });
       particles.forEach(p => { p.update(); p.draw(); });
-      drawLines(time);
+      drawLines();
       requestAnimationFrame(animate);
     }
     animate();
