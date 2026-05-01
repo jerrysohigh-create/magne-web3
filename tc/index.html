@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE.AI Web3 | 首頁</title>
+  <meta name="description" content="MAGNE.AI 正在建設 Web3 原生的 AI 智能手機生態系統。了解我們的區塊鏈基礎設施、測試網絡訪問和去中心化 AI 計算平台。">
+  <!-- Open Graph -->
+  <meta property="og:title" content="MAGNE.AI Web3 | 首頁">
+  <meta property="og:description" content="MAGNE.AI 正在建設 Web3 原生的 AI 智能手機生態系統。了解我們的區塊鏈基礎設施、測試網絡訪問和去中心化 AI 計算平台。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://web3.magne.ai/tc/">
+  <meta property="og:site_name" content="MAGNE.AI Web3">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MAGNE.AI Web3 | 首頁">
+  <meta name="twitter:description" content="MAGNE.AI 正在建設 Web3 原生的 AI 智能手機生態系統。">
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="en" href="https://web3.magne.ai/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://web3.magne.ai/tc/">
+  <link rel="alternate" hreflang="x-default" href="https://web3.magne.ai/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg-primary: #0a0a0c; --bg-secondary: #0f0f12; --bg-card: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.06); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.5); --accent: #FFD700; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 10, 12, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo-img { height: 20px; }
+    .nav-links { display: flex; gap: 0 0.75rem; list-style: none; justify-content: center; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; padding: 0.4rem 0.5rem; text-align: center; font-weight: 600; letter-spacing: 0.03em; min-width: 4.5rem; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .lang-switch { display: flex; align-items: center; gap: 0.5rem; margin-left: 1rem; }
+    .lang-btn { padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+    .lang-btn.active { background: var(--accent); color: #000; }
+    .lang-btn.inactive { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
+    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-cta { background: var(--accent); color: #000 !important; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-secondary); margin: 5px 0; }
+    main { position: relative; z-index: 1; padding-top: 80px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 6rem 0; }
+    section:nth-child(even) { background: var(--bg-secondary); }
+    h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; }
+    h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+    h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; }
+    p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; }
+    .hero { text-align: center; padding: 8rem 2rem 5rem; background: radial-gradient(ellipse at center top, rgba(255,215,0,0.06) 0%, transparent 60%); }
+    .hero h1 { margin-bottom: 1.5rem; }
+    .hero p { max-width: 700px; margin: 0 auto 2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: all 0.3s; }
+    .card:hover { border-color: rgba(255,215,0,0.2); transform: translateY(-4px); }
+    .card h3 { color: var(--accent); margin-bottom: 0.75rem; }
+    .card p { font-size: 1rem; }
+    .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .btn { display: inline-block; padding: 0.85rem 1.75rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s; font-size: 0.95rem; }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,215,0,0.2); }
+    .btn-secondary { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .notice { background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.15); border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 800px; }
+    .notice p { font-size: 0.95rem; }
+    footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem; }
+    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent); }
+    .footer-brand-logo { margin-bottom: 1.5rem; }
+    .footer-brand-img { height: 24px; margin-bottom: 0.5rem; }
+    .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; }
+    .footer-socials { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .footer-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); transition: all 0.2s; }
+    .footer-icon:hover { border-color: var(--accent); color: var(--accent); }
+    .footer-icon svg { width: 18px; height: 18px; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
+    .footer-lang { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .lang-link { padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
+    .lang-link.active { background: var(--accent); color: #000; }
+    .lang-link.inactive { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
+    .trademark-notice { font-size: 0.8rem; margin-top: 1rem; }
+    .trademark-notice a { color: var(--accent); }
+    .copyright { margin-top: 1.5rem; opacity: 0.5; }
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10, 10, 12, 0.98); flex-direction: column; padding: 1.5rem; gap: 0.5rem; border-bottom: 1px solid var(--border); }
+      .nav-links.active { display: flex; }
+      .nav-toggle { display: block; }
+      .lang-switch { margin-left: 0; margin-top: 1rem; }
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.8rem; }
+      .hero { padding: 6rem 1.5rem 4rem; }
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand">
+      <a href="https://magne.ai"><img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img"></a>
+    </div>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">首頁</a></li>
+      <li><a href="../learn.html">了解 MAGNE.AI</a></li>
+      <li><a href="../developers.html">開發者</a></li>
+      <li><a href="../network.html">網絡</a></li>
+      <li><a href="../token.html">代幣</a></li>
+      <li><a href="../ecosystem.html">生態</a></li>
+      <li><a href="../transparency.html">透明中心</a></li>
+      <li><a href="../faq.html">常見問題</a></li>
+    </ul>
+    <div class="lang-switch">
+      <a href="../index.html" class="lang-btn active">EN</a>
+      <a href="index.html" class="lang-btn inactive">繁中</a>
+    </div>
+    <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank">預購</a>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <h1>Web3 原生的 AI 智能手機</h1>
+      <p>MAGNE.AI 正在建設首個 Web3 原生 AI 智能手機生態系統，重新定義數據主權、去中心化計算和區塊鏈一體化。</p>
+      <div style="margin-top: 2rem;">
+        <a href="../learn.html" class="btn btn-primary" style="margin-right: 1rem;">了解更多</a>
+        <a href="../developers.html" class="btn btn-secondary">開發者文檔</a>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 3rem;">核心特色</h2>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-icon">🔐</div>
+            <h3>硬件支援的金鑰保護</h3>
+            <p>採用 TEE 和安全元件架構的硬體支援金鑰保護，確保您的數位資產安全。</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🌐</div>
+            <h3>Web3 原生整合</h3>
+            <p>從底層設計整合區塊鏈技術，實現真正的去中心化身份和資產管理。</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🤖</div>
+            <h3>AI 計算能力</h3>
+            <p>設備上的 AI 處理結合去中心化計算資源，保護隱私的同時提供強大功能。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 3rem;">測試網絡</h2>
+        <div class="grid-3">
+          <div class="card">
+            <h3>MAGNE L1 測試網絡</h3>
+            <p>Layer 1 區塊鏈基礎設施，用於網絡安全和去中心化驗證。</p>
+            <a href="../developers-connect.html" class="btn btn-secondary" style="margin-top: 1rem;">連接錢包</a>
+          </div>
+          <div class="card">
+            <h3>M Hash L2 測試網絡</h3>
+            <p>Layer 2 擴展解決方案，用於高效能和低成本的交易處理。</p>
+            <a href="../developers-connect.html" class="btn btn-secondary" style="margin-top: 1rem;">連接錢包</a>
+          </div>
+          <div class="card">
+            <h3>$MHA 代幣</h3>
+            <p>MAGNE 生態系統的原生代幣，用於網絡效用和治理參與。</p>
+            <a href="../token.html" class="btn btn-secondary" style="margin-top: 1rem;">了解更多</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 style="text-align: center; margin-bottom: 3rem;">開發者資源</h2>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-icon">📡</div>
+            <h3>連接測試網絡</h3>
+            <p>將您的錢包連接到 MAGNE L1 或 M Hash L2 測試網絡。</p>
+            <a href="../developers-connect.html" class="btn btn-primary" style="margin-top: 1rem;">開始使用</a>
+          </div>
+          <div class="card">
+            <div class="card-icon">📜</div>
+            <h3>部署智能合約</h3>
+            <p>使用 Hardhat 或 Foundry 在測試網絡上部署智能合約。</p>
+            <a href="../developers-contract.html" class="btn btn-primary" style="margin-top: 1rem;">部署指南</a>
+          </div>
+          <div class="card">
+            <div class="card-icon">🚀</div>
+            <h3>構建 DApp</h3>
+            <p>使用 Ethers.js 在 MAGNE 測試網絡上構建去中心化應用。</p>
+            <a href="../developers-app.html" class="btn btn-primary" style="margin-top: 1rem;">開發教程</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="notice" style="text-align: center;">
+          <p><strong>重要聲明</strong></p>
+          <p style="margin-top: 0.75rem;">本網站僅供技術、生態與資訊披露用途。本網站內容不構成投資建議、財務建議、公開發售、招攬或邀約，亦不對任何獎勵、收入、利潤、流動性、交易所上架或代幣價值作出保證。</p>
+          <p style="margin-top: 0.75rem;">任何未來代幣、治理、質押、交易所或設備參與計劃，均以治理批准的規則、技術可用性、資格要求、適用條款、監管因素及市場條件為準。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand-logo">
+      <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+      <p>Web3 原生 AI 智能手機</p>
+    </div>
+    <div class="footer-socials">
+      <a href="https://x.com/Magne_Ai" target="_blank" class="footer-icon" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://t.me/MagneAI" target="_blank" class="footer-icon" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+      <a href="https://discord.gg/tX2xRAkd" target="_blank" class="footer-icon" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
+    </div>
+    <div class="footer-lang">
+      <a href="../index.html" class="lang-link active">English</a>
+      <a href="index.html" class="lang-link">繁體中文</a>
+    </div>
+    <div class="footer-links">
+      <a href="https://magne.ai/privacy-policy.html">隱私政策</a>
+      <a href="https://magne.ai/magne-contact.html">聯繫我們</a>
+      <a href="https://magne.ai/media-kit.html">媒體資料</a>
+    </div>
+    <p class="trademark-notice">MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商標，正在註冊中（USPTO 序號：99311528）。</p>
+    <p class="copyright">© 2026 MAGNE.AI. 版權所有。</p>
+  </footer>
+</body>
+</html>
