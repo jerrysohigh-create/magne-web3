@@ -248,6 +248,7 @@
       <li><a href="token.html">TOKEN</a></li>
       <li><a href="ecosystem.html">ECOSYSTEM</a></li>
       <li><a href="transparency.html">TRANSPARENCY</a></li>
+      <li><a href="agent-pay.html">AGENT PAY</a></li>
       <li><a href="faq.html">FAQ</a></li>
     </ul>
     <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank">Preorder</a>
@@ -456,6 +457,35 @@
           <h2>Mining & Device Incentive Pool</h2>
         </div>
         <p>The Mining Nodes (30%) and Equipment-Sale Agents (1%) allocations are designated for network security, validation rewards, and device-based participation incentives. Distribution is subject to technical implementation, governance approval, and applicable program terms.</p>
+      </div>
+    </section>
+
+    <!-- Agent Pay: MHA as Settlement Asset -->
+    <section style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <h2>MHA as Agent Payment Settlement Asset</h2>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>x402-Compatible Payment Flow</h3>
+            <p>MAGNE Agent Pay uses MHA-supported assets (mMHA test token on testnet) as settlement. AI agents call a service → receive HTTP 402 with payment metadata → authorize wallet → MHA asset transfers on M Hash L2 → facilitator verifies → AI Task Receipt created on-chain.</p>
+            <p style="margin-top: 0.75rem;">This is a developer demo. MHA mainnet listing and production settlement are subject to governance and compliance requirements.</p>
+          </div>
+          <div class="card">
+            <h3>Why on M Hash L2?</h3>
+            <p>M Hash L2 settles Agent Pay transactions at &lt;$0.0025 per tx with 400ms block time. Receipts are immutable and programmable — any smart contract or agent can verify payment state without a trusted oracle.</p>
+            <div style="margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-secondary);">
+              <div>Chain: <span style="color: #39d0d6;">M Hash L2 (chainId: 20250827)</span></div>
+              <div>Asset: <span style="color: #39d0d6;">mMHA (ERC20, testnet)</span></div>
+              <div>Status: <span style="color: #d29922;">testnet-stage developer demo</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="agent-pay.html" class="btn btn-primary" style="background: #39d0d6; color: #000;">View Agent Pay Demo</a>
+          <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank" style="margin-left: 1rem;">View GitHub</a>
+        </div>
       </div>
     </section>
 
