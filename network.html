@@ -232,6 +232,7 @@
       <li><a href="token.html">TOKEN</a></li>
       <li><a href="ecosystem.html">ECOSYSTEM</a></li>
       <li><a href="transparency.html">TRANSPARENCY</a></li>
+      <li><a href="agent-pay.html">AGENT PAY</a></li>
       <li><a href="faq.html">FAQ</a></li>
     </ul>
     <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank">Preorder</a>
@@ -398,6 +399,35 @@
               <a href="developers.html" class="btn btn-secondary" style="padding: 0.5rem 1rem;">View Docs</a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Agent Pay on M Hash L2 -->
+    <section style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <h2>M Hash L2: Settlement Layer for Agent Pay</h2>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Why M Hash L2?</h3>
+            <p>M Hash L2 is the settlement layer for MAGNE Agent Pay. Every payment — mMHA ERC20 transfer, facilitator verification, and AI Task Receipt creation — settles on M Hash L2.</p>
+            <div style="margin-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-secondary);">
+              <div>Block time: <span style="color: #39d0d6;">400ms</span></div>
+              <div>Tx cost: <span style="color: #39d0d6;">&lt;$0.0025</span></div>
+              <div>Chain ID: <span style="color: #39d0d6;">20250827</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>AI Task Receipt</h3>
+            <p>Every Agent Pay transaction produces an immutable on-chain receipt. The <code style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #39d0d6;">AITaskReceiptCreated</code> event records: receiptId, taskId, user, provider, amount, token, paymentTxHash, timestamp.</p>
+            <p style="margin-top: 0.75rem; font-size: 0.9rem;">Programmable by any smart contract or agent — no trusted intermediary required.</p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="agent-pay.html" class="btn btn-primary" style="background: #39d0d6; color: #000;">View Agent Pay Demo</a>
+          <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank" style="margin-left: 1rem;">View GitHub</a>
         </div>
       </div>
     </section>
