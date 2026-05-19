@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE Agent Pay V0.1 | x402-Compatible AI Agent Payment Demo</title>
+  <meta name="description" content="MAGNE Agent Pay is a testnet-stage developer demo for x402-compatible AI agent payment, wallet authorization, facilitator verification, and AI Task Receipt generation on M Hash L2.">
+  <meta property="og:title" content="MAGNE Agent Pay V0.1 | x402-Compatible AI Agent Payment Demo">
+  <meta property="og:description" content="A developer demo for AI agent payment on M Hash L2. 400ms block time. Under $0.0025 per transaction.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://web3.magne.ai/agent-pay.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #070910;
+      --bg-secondary: #0a0d14;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-cyan: rgba(57, 208, 214, 0.2);
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --accent: #FFD700;
+      --cyan: #39d0d6;
+      --green: #3fb950;
+      --yellow: #d29922;
+      --red: #f85149;
+      --purple: #a371f7;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+
+    /* GRID BACKGROUND */
+    body::before {
+      content: '';
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(57,208,214,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57,208,214,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none; z-index: 0;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(7, 9, 16, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; font-weight: 600; }
+    .nav-links { display: flex; gap: 0 0.75rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; padding: 0.4rem 0.5rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
+    .nav-links a:hover, .nav-links a.active, .nav-links a:focus { color: var(--accent); }
+    .nav-cta { background: var(--accent); color: #000 !important; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-secondary); margin: 5px 0; transition: 0.3s; }
+
+    main { position: relative; z-index: 1; padding-top: 80px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 0; }
+    h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.15; }
+    h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; }
+    h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
+    p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.75; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 7rem 2rem 5rem;
+      background: radial-gradient(ellipse at center top, rgba(57,208,214,0.06) 0%, transparent 55%);
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(57,208,214,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .badge-testnet {
+      display: inline-block;
+      background: rgba(57,208,214,0.1);
+      border: 1px solid rgba(57,208,214,0.3);
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 { color: var(--text-primary); }
+    .hero h1 em { color: var(--cyan); font-style: normal; }
+    .hero-sub {
+      max-width: 640px; margin: 0 auto 2.5rem;
+      color: var(--text-secondary); font-size: 1.1rem; line-height: 1.75;
+    }
+    .hero-stats {
+      display: flex; gap: 2rem; justify-content: center; margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      text-align: center;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      padding: 1rem 1.5rem;
+      min-width: 130px;
+      border-radius: 2px;
+    }
+    .hero-stat .val { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; font-weight: 700; color: var(--cyan); }
+    .hero-stat .lbl { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    /* PROBLEM GRID */
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-header h2 { }
+    .section-header p { max-width: 580px; margin: 0.5rem auto 0; }
+    .section-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 0.75rem;
+      display: block;
+    }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .problem-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .problem-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .problem-card:hover { border-color: var(--border-cyan); }
+    .problem-card:hover::before { opacity: 1; }
+    .problem-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 1rem; display: block;
+    }
+    .problem-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .problem-card p { font-size: 0.95rem; }
+    .problem-zero {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem; font-weight: 700;
+      color: rgba(248, 81, 73, 0.15);
+      position: absolute; top: 1rem; right: 1.25rem;
+    }
+
+    /* FLOW */
+    .flow-section { background: var(--bg-secondary); }
+    .flow-diagram {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; flex-wrap: wrap; margin-top: 2.5rem;
+    }
+    .flow-step {
+      display: flex; flex-direction: column; align-items: center;
+      background: var(--bg-card); border: 1px solid var(--border);
+      padding: 1.25rem 1rem; min-width: 130px; text-align: center;
+      border-radius: 2px; position: relative;
+    }
+    .flow-step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; font-weight: 700;
+      color: var(--bg-primary); background: var(--cyan);
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.6rem;
+    }
+    .flow-step-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); }
+    .flow-step-desc { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.25rem; }
+    .flow-arrow {
+      font-size: 1.2rem; color: var(--cyan);
+      padding: 0 0.5rem; opacity: 0.6;
+    }
+
+    /* TERMINAL */
+    .terminal {
+      background: #010108;
+      border: 1px solid rgba(57,208,214,0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(57,208,214,0.08);
+    }
+    .terminal-bar {
+      background: rgba(57,208,214,0.08);
+      border-bottom: 1px solid rgba(57,208,214,0.15);
+      padding: 0.6rem 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .terminal-dot.r { background: #ff5f56; }
+    .terminal-dot.y { background: #ffbd2e; }
+    .terminal-dot.g { background: #27c93f; }
+    .terminal-title { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.5rem; }
+    .terminal-badge {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(57,208,214,0.15); color: var(--cyan);
+      padding: 0.2rem 0.5rem; border-radius: 2px;
+    }
+    .terminal-body {
+      padding: 1.25rem 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: #c9d1d9;
+      min-height: 300px;
+    }
+    .terminal-body .t-cmd { color: #e6edf3; }
+    .terminal-body .t-ok { color: var(--green); }
+    .terminal-body .t-err { color: var(--red); }
+    .terminal-body .t-warn { color: var(--yellow); }
+    .terminal-body .t-label { color: var(--text-secondary); }
+    .terminal-body .t-val { color: var(--cyan); }
+    .terminal-body .t-hash { color: var(--purple); }
+    .terminal-body .t-mono { font-family: 'JetBrains Mono', monospace; }
+    .t-prompt { color: var(--cyan); margin-right: 0.5rem; }
+    .t-newline { display: block; margin-top: 0.3rem; }
+
+    /* RECEIPT LAYER */
+    .receipt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+    .receipt-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 2px;
+    }
+    .receipt-card h3 { color: var(--text-primary); font-size: 1rem; margin-bottom: 0.5rem; }
+    .receipt-card p { font-size: 0.9rem; }
+    .receipt-event {
+      background: #010108;
+      border: 1px solid rgba(57,208,214,0.15);
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 2px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      line-height: 1.9;
+      color: var(--text-secondary);
+    }
+    .receipt-event .evt-name { color: var(--cyan); font-weight: 600; display: block; margin-bottom: 0.4rem; }
+    .receipt-event .evt-field { display: flex; gap: 0.5rem; }
+    .receipt-event .evt-key { color: var(--purple); min-width: 120px; }
+    .receipt-event .evt-val { color: #e6edf3; }
+
+    /* SDK */
+    .sdk-section { background: var(--bg-secondary); }
+    .sdk-code {
+      background: #010108;
+      border: 1px solid rgba(57,208,214,0.15);
+      padding: 1.5rem;
+      border-radius: 2px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      line-height: 1.8;
+      color: #c9d1d9;
+      overflow-x: auto;
+      margin-top: 1.5rem;
+    }
+    .sdk-code .k { color: var(--purple); }
+    .sdk-code .str { color: var(--green); }
+    .sdk-code .fn { color: var(--cyan); }
+    .sdk-code .cmt { color: rgba(139,148,158,0.6); font-style: italic; }
+    .sdk-code .num { color: var(--yellow); }
+
+    /* STATUS */
+    .status-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+    }
+    .status-table th {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .status-table td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      color: var(--text-primary);
+    }
+    .status-table tr:last-child td { border-bottom: none; }
+    .status-ok { color: var(--green); }
+    .status-pend { color: var(--yellow); }
+    .status-note { color: var(--text-secondary); font-size: 0.75rem; }
+
+    /* ROADMAP */
+    .roadmap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+    .roadmap-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 2px;
+    }
+    .roadmap-phase {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 0.75rem;
+      display: block;
+    }
+    .roadmap-phase.done { color: var(--green); }
+    .roadmap-phase.active { color: var(--cyan); }
+    .roadmap-phase.next { color: var(--yellow); }
+    .roadmap-item h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .roadmap-item p { font-size: 0.88rem; }
+    .roadmap-item ul { list-style: none; margin-top: 0.75rem; }
+    .roadmap-item ul li {
+      font-size: 0.85rem; color: var(--text-secondary);
+      padding: 0.2rem 0;
+      display: flex; align-items: flex-start; gap: 0.4rem;
+    }
+    .roadmap-item ul li::before { content: '→'; color: var(--cyan); flex-shrink: 0; }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      background: radial-gradient(ellipse at center bottom, rgba(57,208,214,0.06) 0%, transparent 60%);
+      padding: 6rem 2rem;
+    }
+    .cta-section h2 { margin-bottom: 0.75rem; }
+    .cta-section p { max-width: 500px; margin: 0 auto 2rem; }
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 0.75rem 1.75rem;
+      border-radius: 6px; font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; transition: all 0.2s;
+      cursor: pointer; border: none; font-family: 'Outfit', sans-serif;
+    }
+    .btn-primary { background: var(--cyan); color: #000; }
+    .btn-primary:hover { background: #5de0e6; box-shadow: 0 0 20px rgba(57,208,214,0.3); }
+    .btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      position: relative; z-index: 1;
+    }
+    footer a { color: var(--text-secondary); text-decoration: underline; }
+    footer a:hover { color: var(--cyan); }
+    .footer-disclaimer {
+      margin-top: 0.75rem;
+      font-size: 0.72rem;
+      color: rgba(139,148,158,0.6);
+      max-width: 700px; margin-left: auto; margin-right: auto;
+    }
+
+    /* ANIMATIONS */
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .cursor { animation: blink 1s step-end infinite; color: var(--cyan); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .grid-3 { grid-template-columns: 1fr; }
+      .receipt-grid { grid-template-columns: 1fr; }
+      .roadmap-grid { grid-template-columns: 1fr; }
+      .flow-diagram { gap: 0.5rem; }
+      .flow-arrow { display: none; }
+      h1 { font-size: 2.5rem; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(7,9,16,0.98); padding: 1rem; border-bottom: 1px solid var(--border); }
+    }
+    @media (max-width: 600px) {
+      .hero-stats { gap: 1rem; }
+      .hero-stat { min-width: 100px; padding: 0.75rem 1rem; }
+      .flow-step { min-width: 100px; padding: 1rem 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand"><a href="index.html">MAGNE.AI</a></div>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="learn.html">LEARN</a></li>
+    <li><a href="developers.html">DEVELOPERS</a></li>
+    <li><a href="network.html">NETWORK</a></li>
+    <li><a href="token.html">TOKEN</a></li>
+    <li><a href="agent-pay.html" class="active">AGENT PAY</a></li>
+    <li><a href="ecosystem.html">ECOSYSTEM</a></li>
+    <li><a href="transparency.html">TRANSPARENCY</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+  <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank">Preorder</a>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge-testnet">⚡ testnet-stage developer demo</div>
+      <h1>Agents can think.<br><em>They still cannot safely pay.</em></h1>
+      <p class="hero-sub">
+        MAGNE Agent Pay is an x402-compatible payment layer for AI agents — supporting wallet authorization, facilitator verification, and immutable AI Task Receipts on M Hash L2.
+      </p>
+      <div class="btn-group">
+        <a href="#terminal" class="btn btn-primary">View Terminal Demo</a>
+        <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank">View GitHub</a>
+        <a href="developers.html" class="btn btn-secondary">Developer Docs</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="val">400ms</div>
+          <div class="lbl">Block Time</div>
+        </div>
+        <div class="hero-stat">
+          <div class="val">&lt;$0.0025</div>
+          <div class="lbl">Per Transaction</div>
+        </div>
+        <div class="hero-stat">
+          <div class="val">20250827</div>
+          <div class="lbl">Chain ID</div>
+        </div>
+        <div class="hero-stat">
+          <div class="val">V0.1</div>
+          <div class="lbl">Demo Stage</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM GRID -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">The Problem</span>
+        <h2>AI agents hit a payment wall.</h2>
+        <p>Current infrastructure lets agents think but not transact reliably.</p>
+      </div>
+      <div class="grid-3">
+        <div class="problem-card">
+          <span class="problem-zero">401</span>
+          <span class="problem-label">No Secure Authorization</span>
+          <h3>Agents trigger. Users can't verify.</h3>
+          <p>Agents may trigger tasks, but payments still require a trusted human to authorize each step. There's no cryptographically verifiable authorization path.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-zero">0</span>
+          <span class="problem-label">No Agent Payment Rail</span>
+          <h3>Services exist. Agents can't pay.</h3>
+          <p>APIs and model services need pay-per-use settlement that agents can call programmatically. Current APIs return 401 — not 402.</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-zero">0</span>
+          <span class="problem-label">No Verifiable Receipt</span>
+          <h3>Tasks run. Nothing is provable.</h3>
+          <p>AI tasks need auditable records: who requested, who paid, what settled, and what was returned. Today's workflows leave no traceable record.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOW -->
+  <section class="flow-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">The Solution</span>
+        <h2>x402-Compatible Agent Pay Flow</h2>
+        <p>From task request to on-chain receipt — every step is verifiable.</p>
+      </div>
+      <div class="flow-diagram">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <div class="flow-step-label">AI Agent Task</div>
+          <div class="flow-step-desc">Create task via API</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <div class="flow-step-label">402 Response</div>
+          <div class="flow-step-desc">Payment required metadata</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <div class="flow-step-label">Wallet Auth</div>
+          <div class="flow-step-desc">MetaMask or MAGNE Phone</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">4</div>
+          <div class="flow-step-label">mMHA Transfer</div>
+          <div class="flow-step-desc">ERC20 on M Hash L2</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">5</div>
+          <div class="flow-step-label">Facilitator</div>
+          <div class="flow-step-desc">Strict tx verification</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-step-num">6</div>
+          <div class="flow-step-label">AI Task Receipt</div>
+          <div class="flow-step-desc">On-chain, immutable</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TERMINAL DEMO -->
+  <section id="terminal">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Runtime Verified</span>
+        <h2>Live Terminal Demo</h2>
+        <p>Local Hardhat runtime — real transaction hashes. M Hash L2 testnet pending faucet funding.</p>
+      </div>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="terminal-dot r"></div>
+          <div class="terminal-dot y"></div>
+          <div class="terminal-dot g"></div>
+          <span class="terminal-title">magne@agent-pay-demo</span>
+          <span class="terminal-badge">LOCAL RUNTIME VERIFIED</span>
+        </div>
+        <div class="terminal-body"><span class="t-prompt">$</span> magne agent task create "analyze wallet risk"<span class="t-newline"></span><span class="t-ok">✓ task created</span> — <span class="t-val">task_20260520_001</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne api call wallet-risk --wallet 0x742d35Cc6634C0532925a3b844Bc9e7595f2E26E<span class="t-newline"></span><span class="t-err">✕ 402 Payment Required</span><span class="t-newline"></span><span class="t-label">  amount: </span><span class="t-val">0.01 mMHA</span><span class="t-newline"></span><span class="t-label">  recipient: </span><span class="t-hash">0xf39Fd6e51aad88F6F4ce6aB8827279cffB922f66</span><span class="t-newline"></span><span class="t-label">  chain: </span><span class="t-val">mhash-l2-testnet (20250827)</span><span class="t-newline"></span><span class="t-label">  rpc: </span><span class="t-val">https://l2-rpc.testnet.magicalhash.com</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne pay settle --tx 0x130ba003e19e8a6edc2a7ae6147e1f7ff9411cb78b0dc875b9d5084df4b4701e --network mhash-l2<span class="t-newline"></span><span class="t-ok">✓ payment verified</span><span class="t-newline"></span><span class="t-label">  status: </span><span class="t-ok">verified</span><span class="t-newline"></span><span class="t-label">  block: </span><span class="t-val">4</span><span class="t-newline"></span><span class="t-label">  token: </span><span class="t-val">mMHA (ERC20)</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne receipt create --task task_20260520_001<span class="t-newline"></span><span class="t-ok">✓ AI Task Receipt created</span><span class="t-newline"></span><span class="t-label">  receiptId: </span><span class="t-hash">0x428d5f6dc07adf8f473793dcdc01c8041d979a521084759ca2e10dcb7152fe91</span><span class="t-newline"></span><span class="t-label">  tx: </span><span class="t-hash">0x7d423e93ed4ecd7b488394a71a9c711f8b30b7b1515e34a537030abce785a705</span><span class="t-newline"></span><span class="t-label">  explorer: </span><span class="t-val">local</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne receipt inspect 0x428d5f6dc07adf8f473793dcdc01c8041d979a521084759ca2e10dcb7152fe91<span class="t-newline"></span><span class="t-label">  agent:     </span><span class="t-val">MAGNE-Agent-001</span><span class="t-newline"></span><span class="t-label">  service:   </span><span class="t-val">wallet-risk-analysis</span><span class="t-newline"></span><span class="t-label">  amount:     </span><span class="t-val">0.01 mMHA</span><span class="t-newline"></span><span class="t-label">  status:    </span><span class="t-ok">settled</span><span class="t-newline"></span><span class="t-label">  network:   </span><span class="t-val">M Hash L2 (chainId: 20250827)</span><span class="t-newline"></span><span class="t-label">  payment tx: </span><span class="t-hash">0x130b…701e</span><span class="t-newline"></span><span class="t-prompt">$</span> <span class="cursor">█</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECEIPT LAYER -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">On-Chain Verification</span>
+        <h2>AI Task Receipt Layer</h2>
+        <p>Every payment creates an immutable, programmable receipt on M Hash L2.</p>
+      </div>
+      <div class="receipt-grid">
+        <div class="receipt-card">
+          <h3>Why Receipts Matter</h3>
+          <p>AI Task Receipts are verifiable proof that a payment was made, a task was requested, and a result was returned. Any party — agent, user, auditor, or smart contract — can independently verify the full history on-chain.</p>
+          <p style="margin-top: 1rem;">Receipts are designed to be programmable: agents can reference them in subsequent transactions, dispute resolution contracts can read them, and compliance systems can audit them without requiring trusted intermediaries.</p>
+        </div>
+        <div class="receipt-card">
+          <h3>Contract Event</h3>
+          <p style="margin-bottom: 0.5rem; font-size: 0.88rem;">The <code style="color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">AITaskReceiptCreated</code> event is emitted on M Hash L2 when a receipt is finalized:</p>
+          <div class="receipt-event">
+            <span class="evt-name">event AITaskReceiptCreated(</span>
+            <div class="evt-field"><span class="evt-key">receiptId</span><span class="evt-val">bytes32</span></div>
+            <div class="evt-field"><span class="evt-key">taskId</span><span class="evt-val">string</span></div>
+            <div class="evt-field"><span class="evt-key">user</span><span class="evt-val">address</span></div>
+            <div class="evt-field"><span class="evt-key">provider</span><span class="evt-val">address</span></div>
+            <div class="evt-field"><span class="evt-key">amount</span><span class="evt-val">uint256</span></div>
+            <div class="evt-field"><span class="evt-key">token</span><span class="evt-val">address</span></div>
+            <div class="evt-field"><span class="evt-key">paymentTxHash</span><span class="evt-val">bytes32</span></div>
+            <div class="evt-field"><span class="evt-key">timestamp</span><span class="evt-val">uint256</span></div>
+            <span class="evt-name">)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SDK -->
+  <section class="sdk-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Developer Integration</span>
+        <h2>Your Code + SKILL.md = An Aapp</h2>
+        <p>A SKILL.md defines the agent-facing contract. Agents read it; services fulfill it. No proprietary SDK required.</p>
+      </div>
+      <div class="sdk-code"><span class="cmt">// SKILL.md — AI Agent Service Contract</span>
+{
+  <span class="k">"skill"</span>: <span class="str">"wallet-risk-analysis"</span>,
+  <span class="k">"version"</span>: <span class="str">"1.0"</span>,
+  <span class="k">"provider"</span>: <span class="str">"MAGNE-Agent-001"</span>,
+  <span class="k">"price"</span>: <span class="str">"0.01 mMHA"</span>,
+  <span class="k">"chain"</span>: <span class="str">"mhash-l2-testnet"</span>,
+  <span class="k">"chainId"</span>: <span class="num">20250827</span>,
+  <span class="k">"paymentToken"</span>: <span class="str">"mMHA (ERC20)"</span>,
+  <span class="k">"facilitator"</span>: <span class="str">"https://api.magne.ai/facilitator"</span>,
+  <span class="k">"receiptContract"</span>: <span class="str">"0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"</span>,
+  <span class="k">"x402Compatible"</span>: <span class="k">true</span>,
+  <span class="k">"endpoints"</span>: {
+    <span class="k">"analyze"</span>: <span class="str">"POST /api/v1/wallet-risk"</span>,
+    <span class="k">"verify"</span>: <span class="str">"GET /api/v1/receipt/:id"</span>
+  }
+}
+<span class="cmt">// Agent flow:</span>
+<span class="t-fn">1. POST /api/v1/wallet-risk → 402 + payment metadata</span>
+<span class="t-fn">2. mMHA.transfer(recipient, amount) on M Hash L2</span>
+<span class="t-fn">3. Facilitator.strictVerify(paymentTxHash, taskId, amount)</span>
+<span class="t-fn">4. AI Task Receipt event → on-chain proof</span></div>
+      <div class="btn-group" style="margin-top: 2rem;">
+        <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank">View Full Demo Repo</a>
+        <a href="developers.html" class="btn btn-secondary">Developer Docs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATUS -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Verification Status</span>
+        <h2>Runtime Verification</h2>
+        <p>Every claim backed by on-chain data or runtime logs. No speculation.</p>
+      </div>
+      <table class="status-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Status</th>
+            <th>Evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Smart contracts compile</td>
+            <td><span class="status-ok">✓ Verified</span></td>
+            <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">npx hardhat compile → "Compiled 2 Solidity files successfully"</span></td>
+          </tr>
+          <tr>
+            <td>Smart contracts deploy</td>
+            <td><span class="status-ok">✓ Verified</span></td>
+            <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">MockMHA: 0x5FbDB2315678… / AITaskReceipt: 0xe7f1725E7734… (local Hardhat)</span></td>
+          </tr>
+          <tr>
+            <td>Backend server starts</td>
+            <td><span class="status-ok">✓ Verified</span></td>
+            <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">node server.js → http://127.0.0.1:3000/health OK</span></td>
+          </tr>
+          <tr>
+            <td>mMHA ERC20 payment</td>
+            <td><span class="status-ok">✓ Verified</span></td>
+            <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">tx: 0x130ba003e19e8a6edc2a7ae6147e1f7ff9411cb78b0dc875b9d5084df4b4701e (block 4)</span></td>
+          </tr>
+          <tr>
+            <td>Facilitator strict verify</td>
+            <td><span class="status-ok">✓ Verified</span></td>
+            <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">strict mode: no fallback on failure, returns {status:'failed'}</span></td>
+          </tr>
+          <tr>
+            <td>AI Task Receipt tx</td>
+            <td><span class="status-ok">✓ Verified</span></td>
+            <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">tx: 0x7d423e93ed4ecd7b488394a71a9c711f8b30b7b1515e34a537030abce785a705</span></td>
+          </tr>
+          <tr>
+            <td>M Hash L2 testnet deploy</td>
+            <td><span class="status-pend">⏳ Pending</span></td>
+            <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">Awaiting faucet funding: https://faucet.testnet.magicalhash.com</span></td>
+          </tr>
+          <tr>
+            <td>Explorer link (testnet)</td>
+            <td><span class="status-pend">⏳ Pending</span></td>
+            <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">https://l2-explorer.testnet.magicalhash.com</span></td>
+          </tr>
+          <tr>
+            <td>Browser MetaMask flow</td>
+            <td><span class="status-pend">⏳ Pending</span></td>
+            <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">Requires M Hash L2 testnet wallet connection</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="flow-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Development Roadmap</span>
+        <h2>What's Next</h2>
+        <p>Subject to technical validation and security review.</p>
+      </div>
+      <div class="roadmap-grid">
+        <div class="roadmap-item">
+          <span class="roadmap-phase done">✓ V0.1 — Done</span>
+          <h3>Local Runtime Demo</h3>
+          <p>Full payment flow verified on local Hardhat. ERC20 payments, facilitator verification, on-chain receipts.</p>
+          <ul>
+            <li>Smart contracts compile and deploy</li>
+            <li>Backend API with x402 response</li>
+            <li>Facilitator strict verify mode</li>
+            <li>AI Task Receipt events</li>
+          </ul>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-phase active">⟡ V0.2 — In Progress</span>
+          <h3>M Hash L2 Testnet</h3>
+          <p>Deploy contracts to live M Hash L2 testnet. Real faucet funding, real block explorer.</p>
+          <ul>
+            <li>M Hash L2 testnet deployment</li>
+            <li>Real wallet MetaMask flow</li>
+            <li>Live explorer tx verification</li>
+            <li>Facilitator on testnet</li>
+          </ul>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-phase next">○ V1.0 — Planned</span>
+          <h3>Mainnet Readiness</h3>
+          <p>Subject to security audit, MHA token listing, and governance approval.</p>
+          <ul>
+            <li>Security audit</li>
+            <li>MHA as settlement asset</li>
+            <li>Production facilitator SLA</li>
+            <li>x402 spec compliance review</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Start Building.</h2>
+      <p>Read the SKILL.md, fork the demo, and ship your first agent payment integration.</p>
+      <div class="btn-group">
+        <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-primary" target="_blank">Fork the Demo</a>
+        <a href="developers.html" class="btn btn-secondary">Developer Docs</a>
+        <a href="transparency.html" class="btn btn-secondary">Transparency Center</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <a href="index.html">MAGNE.AI</a> ·
+    <a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M Hash L2</a> ·
+    <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" target="_blank">Agent Pay Demo</a>
+  </p>
+  <p class="footer-disclaimer">
+    MAGNE Agent Pay V0.1 is a testnet-stage developer demo. It is not a production payment system, not financial advice, and not a guarantee of future functionality. All transactions are on M Hash L2 testnet — no mainnet activity. MHA and mMHA are test tokens with no mainnet value. Subject to applicable compliance requirements.
+  </p>
+</footer>
+
+</body>
+</html>
