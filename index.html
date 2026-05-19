@@ -28,6 +28,7 @@
       --text-primary: #ffffff;
       --text-secondary: rgba(255, 255, 255, 0.5);
       --accent: #FFD700;
+      --cyan: #39d0d6;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -218,6 +219,7 @@
       <li><a href="token.html">TOKEN</a></li>
       <li><a href="ecosystem.html">ECOSYSTEM</a></li>
       <li><a href="transparency.html">TRANSPARENCY</a></li>
+      <li><a href="agent-pay.html">AGENT PAY</a></li>
       <li><a href="faq.html">FAQ</a></li>
     </ul>
     <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank">Preorder</a>
@@ -239,6 +241,7 @@
         <span class="hero-tag">M Hash L2 Testnet Live</span>
         <span class="hero-tag">$MHA Native Token</span>
         <span class="hero-tag">Hardware-Secured Web3</span>
+        <span class="hero-tag" style="color: var(--cyan); border-color: rgba(57,208,214,0.3);">Agent Pay V0.1</span>
       </div>
       <div class="btn-group">
         <a href="learn.html" class="btn btn-primary">Read Whitepaper</a>
@@ -317,6 +320,37 @@
             <h3>Compliance-Ready Stack</h3>
             <p>Built-in compliance features including KYC architecture and regulatory design considerations for enterprise adoption.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Agent Pay Section -->
+    <section style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <h2>Agent Pay: The Missing Payment Layer</h2>
+          <p>AI agents can think. They still cannot safely pay. MAGNE Agent Pay is an x402-compatible payment demo for AI agent services — wallet authorization, facilitator verification, and immutable AI Task Receipts on M Hash L2.</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-icon">💸</div>
+            <h3>x402-Compatible Payment</h3>
+            <p>Services return HTTP 402 with payment metadata. Agents read it, wallets authorize it, M Hash L2 settles it. Designed for programmatic pay-per-use.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🤖</div>
+            <h3>AI Task Receipts</h3>
+            <p>Every payment generates an immutable on-chain receipt on M Hash L2. Programmable: dispute contracts, compliance audits, and agent reference chains can all read receipts independently.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔐</div>
+            <h3>Strict Facilitator Verify</h3>
+            <p>The facilitator does not accept any successful transaction as proof. It strictly verifies amount, recipient, token, and chain — no exceptions.</p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 2.5rem;">
+          <a href="agent-pay.html" class="btn btn-primary" style="background: var(--cyan); color: #000;">View Agent Pay Demo</a>
+          <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank" style="margin-left: 1rem;">View GitHub</a>
         </div>
       </div>
     </section>
