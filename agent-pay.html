@@ -397,7 +397,156 @@
       .hero-stat { min-width: 100px; padding: 0.75rem 1rem; }
       .flow-step { min-width: 100px; padding: 1rem 0.75rem; }
     }
-  </style>
+  
+
+/* 10 — Compatibility Roadmap */
+#compatibility {
+  border-top: 1px solid var(--border);
+}
+
+.compat-intro {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  max-width: 800px;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.compat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.compat-tier {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.tier-p0 {
+  background: rgba(248, 81, 73, 0.08);
+  border-bottom: 1px solid rgba(248, 81, 73, 0.2);
+  padding: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-red);
+  margin: 0;
+}
+
+.tier-p1 {
+  background: rgba(210, 153, 34, 0.08);
+  border-bottom: 1px solid rgba(210, 153, 34, 0.2);
+  padding: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-yellow);
+  margin: 0;
+}
+
+.tier-p2 {
+  background: rgba(139, 148, 158, 0.08);
+  border-bottom: 1px solid rgba(139, 148, 158, 0.2);
+  padding: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.compat-items {
+  padding: 1rem;
+}
+
+.compat-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.compat-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.compat-item:first-child {
+  padding-top: 0;
+}
+
+.compat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.compat-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.compat-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.compat-badge.p0 {
+  background: rgba(248, 81, 73, 0.15);
+  color: var(--accent-red);
+  border: 1px solid rgba(248, 81, 73, 0.3);
+}
+
+.compat-badge.p1 {
+  background: rgba(210, 153, 34, 0.15);
+  color: var(--accent-yellow);
+  border: 1px solid rgba(210, 153, 34, 0.3);
+}
+
+.compat-badge.p2 {
+  background: rgba(139, 148, 158, 0.1);
+  color: var(--text-secondary);
+  border: 1px solid rgba(139, 148, 158, 0.2);
+}
+
+.compat-item p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.compat-summary {
+  background: var(--surface);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 2px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.compat-summary h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  margin-bottom: 1rem;
+}
+
+.compat-summary p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+</style>
 
     <style>
     .compat-table { margin: 2rem 0; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
@@ -751,6 +900,138 @@
         <a href="https://developers.cloudflare.com/agents/agentic-payments/x402/" target="_blank">Cloudflare x402</a>
       </div>
       <p class="compliance-note">References to Coinbase, OKX, Binance, x402 Foundation, and BNB Chain are for ecosystem comparison only and do not imply partnership, endorsement, integration, or affiliation.</p>
+    </div>
+  </section>
+
+<section id="compatibility">
+    <h2 class="section-label">Compatibility Roadmap</h2>
+    <p class="compat-intro">MAGNE Agent Pay is aligned with the emerging open x402 standard and AP2-style authorization awareness. Not a Coinbase partnership — a developer demo for the broader ecosystem.</p>
+    
+    <div class="compat-grid">
+      <div class="compat-tier">
+        <h3 class="tier-p0">P0 — Must Align</h3>
+        <div class="compat-items">
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">x402 Foundation / Linux Foundation</span>
+              <span class="compat-badge p0">P0</span>
+            </div>
+            <p>Aligned with emerging open x402 standard (not Coinbase-specific). x402 Foundation announced April 2026 under Linux Foundation with Coinbase, Cloudflare, Stripe, Google, Visa, Mastercard, Circle, AWS, Microsoft, Shopify, Solana Foundation, Polygon Labs, thirdweb.</p>
+          </div>
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">Google AP2 / Authorization</span>
+              <span class="compat-badge p0">P0</span>
+            </div>
+            <p>AP2-style authorization / trust layer. MAGNE Phone as secure authorization terminal with TEE/SE-backed signing and agent spending controls.</p>
+          </div>
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">MAGNE Facilitator</span>
+              <span class="compat-badge p0">P0</span>
+            </div>
+            <p>M Hash L2-oriented facilitator module. Not a replacement for global x402 facilitators — focuses on secure mobile authorization and AI Task Receipt creation.</p>
+          </div>
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">USDC / Stablecoin Support</span>
+              <span class="compat-badge p0">P0</span>
+            </div>
+            <p>V0.1: mMHA local demo. V0.2: mMHA on M Hash L2. V0.3: stablecoin-style settlement asset. V1.0: USDC-compatible flow if bridge / liquidity ready.</p>
+          </div>
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">Cloudflare / MCP / Agent Infra</span>
+              <span class="compat-badge p0">P0</span>
+            </div>
+            <p>MCP-style tool calls + HTTP 402 paid API. Cloudflare Agents SDK / MCP server integration. Paid inference API, wallet risk API, chain data API.</p>
+          </div>
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">Wallet / Agent Wallet</span>
+              <span class="compat-badge p0">P0</span>
+            </div>
+            <p>EVM wallet compatible. TEE / Secure Element-backed signing. Agent spending policy controls. Future: WalletConnect, embedded wallet style.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="compat-tier">
+        <h3 class="tier-p1">P1 — Reference Align</h3>
+        <div class="compat-items">
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">Base / CDP Pattern</span>
+              <span class="compat-badge p1">P1</span>
+            </div>
+            <p>Reference align with Coinbase CDP Facilitator pattern: verify / settle / KYT flow. Base mainnet, Base Sepolia, Polygon, Arbitrum compatibility.</p>
+          </div>
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">BNB Chain / Binance</span>
+              <span class="compat-badge p1">P1</span>
+            </div>
+            <p>Preserve Binance ecosystem compatibility narrative. BNB chain as reference for future multi-chain alignment.</p>
+          </div>
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">Solana</span>
+              <span class="compat-badge p1">P1</span>
+            </div>
+            <p>Solana Web3 phone as competitor reference. x402.org test facilitator supports Solana Devnet. Solana as reference for multi-chain facilitator patterns.</p>
+          </div>
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">OpenZeppelin Relayer</span>
+              <span class="compat-badge p1">P1</span>
+            </div>
+            <p>Enterprise relayer / audited infrastructure reference for future facilitator development.</p>
+          </div>
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">OpenFacilitator / OpenX402.ai</span>
+              <span class="compat-badge p1">P1</span>
+            </div>
+            <p>Open source, self-deployed, permissionless facilitator as reference architecture.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="compat-tier">
+        <h3 class="tier-p2">P2 — Observe / Future</h3>
+        <div class="compat-items">
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">Stripe Tempo / MPP</span>
+              <span class="compat-badge p2">P2</span>
+            </div>
+            <p>Enterprise-grade machine payments / session pre-authorization. Future roadmap may explore session-based authorization.</p>
+          </div>
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">OpenAI ACP</span>
+              <span class="compat-badge p2">P2</span>
+            </div>
+            <p>Agent-to-merchant checkout. Future roadmap may explore merchant checkout interoperability.</p>
+          </div>
+          <div class="compat-item">
+            <div class="compat-header">
+              <span class="compat-name">Stellar / Algorand / HyperEVM</span>
+              <span class="compat-badge p2">P2</span>
+            </div>
+            <p>Observe multi-chain facilitator patterns. No immediate integration planned.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="compat-summary">
+      <h3>MAGNE Positioning</h3>
+      <p>x402-compatible payment execution<br>
+      + AP2-style authorization awareness<br>
+      + M Hash L2 receipt<br>
+      + MAGNE Phone secure signing<br>
+      + Future stablecoin settlement support</p>
     </div>
   </section>
 
