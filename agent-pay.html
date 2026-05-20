@@ -6,7 +6,7 @@
   <title>MAGNE Agent Pay V0.1 | x402-Compatible AI Agent Payment Demo</title>
   <meta name="description" content="MAGNE Agent Pay is a testnet-stage developer demo for x402-compatible AI agent payment, wallet authorization, facilitator verification, and AI Task Receipt generation on M Hash L2.">
   <meta property="og:title" content="MAGNE Agent Pay V0.1 | x402-Compatible AI Agent Payment Demo">
-  <meta property="og:description" content="A developer demo for AI agent payment on M Hash L2. 400ms block time. Under $0.0025 per transaction.">
+  <meta property="og:description" content="A developer demo for AI agent payment on M Hash L2. Designed for low-cost, scalable settlement. Public performance metrics will be published as testnet validation progresses.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://web3.magne.ai/agent-pay.html">
   <meta name="twitter:card" content="summary_large_image">
@@ -398,6 +398,23 @@
       .flow-step { min-width: 100px; padding: 1rem 0.75rem; }
     }
   </style>
+
+    <style>
+    .compat-table { margin: 2rem 0; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+    .compat-row { display: grid; grid-template-columns: 1.5fr 2fr 1.5fr; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); background: var(--bg-card); }
+    .compat-row:last-child { border-bottom: none; }
+    .compat-row.header { background: rgba(57, 208, 214, 0.05); border-bottom: 1px solid var(--border-cyan); }
+    .compat-row.header .compat-cell { font-weight: 600; color: var(--cyan); }
+    .compat-row.highlight { background: rgba(57, 208, 214, 0.08); }
+    .compat-row.highlight .compat-cell:first-child { color: var(--cyan); font-weight: 600; }
+    .compat-cell { font-size: 0.9rem; color: var(--text-secondary); }
+    .compat-cell.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+    .ecosystem-links { margin: 1.5rem 0; font-size: 0.85rem; color: var(--text-secondary); }
+    .ecosystem-links .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-bottom: 0.5rem; color: var(--cyan); display: block; }
+    .ecosystem-links a { color: var(--text-secondary); text-decoration: none; }
+    .ecosystem-links a:hover { color: var(--cyan); }
+    .compliance-note { font-size: 0.75rem; color: var(--text-secondary); font-style: italic; margin-top: 1rem; padding: 0.75rem; background: rgba(139, 148, 158, 0.05); border: 1px solid var(--border); border-radius: 2px; }
+    </style>
 </head>
 <body>
 
@@ -438,20 +455,16 @@
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="val">400ms</div>
-          <div class="lbl">Block Time</div>
-        </div>
-        <div class="hero-stat">
-          <div class="val">&lt;$0.0025</div>
-          <div class="lbl">Per Transaction</div>
-        </div>
-        <div class="hero-stat">
           <div class="val">20250827</div>
           <div class="lbl">Chain ID</div>
         </div>
         <div class="hero-stat">
           <div class="val">V0.1</div>
-          <div class="lbl">Demo Stage</div>
+          <div class="lbl">Local Runtime</div>
+        </div>
+        <div class="hero-stat">
+          <div class="val">x402</div>
+          <div class="lbl">Compatible</div>
         </div>
       </div>
     </div>
@@ -695,7 +708,53 @@
     </div>
   </section>
 
-  <!-- ROADMAP -->
+  
+  <!-- WHERE MAGNE FITS -->
+  <section id="where-magne-fits">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Ecosystem Position</span>
+        <h2>Where MAGNE Fits in Agent Payments</h2>
+        <p>MAGNE is not competing with Coinbase, OKX, or Binance. It focuses on a specific layer: secure mobile authorization and verifiable AI Task Receipts on M Hash L2.</p>
+      </div>
+      <div class="compat-table">
+        <div class="compat-row header">
+          <div class="compat-cell">Protocol</div>
+          <div class="compat-cell">Core Focus</div>
+          <div class="compat-cell">MAGNE Alignment</div>
+        </div>
+        <div class="compat-row">
+          <div class="compat-cell mono">Coinbase x402</div>
+          <div class="compat-cell">HTTP-native payment protocol for pay-per-use APIs and web resources</div>
+          <div class="compat-cell">x402-compatible flow — same payment handshake pattern</div>
+        </div>
+        <div class="compat-row">
+          <div class="compat-cell mono">OKX APP</div>
+          <div class="compat-cell">Agent commercial workflow: intents, brokers, escrow, metering, disputes</div>
+          <div class="compat-cell">Reference only — different scope</div>
+        </div>
+        <div class="compat-row">
+          <div class="compat-cell mono">Binance x402</div>
+          <div class="compat-cell">BNB Chain implementation for programmable payments</div>
+          <div class="compat-cell">Reference only — different chain ecosystem</div>
+        </div>
+        <div class="compat-row highlight">
+          <div class="compat-cell mono">MAGNE Agent Pay</div>
+          <div class="compat-cell">Secure mobile authorization + facilitator verification + AI Task Receipt on M Hash L2</div>
+          <div class="compat-cell">Core focus — our differentiation</div>
+        </div>
+      </div>
+      <div class="ecosystem-links">
+        <p class="mono">x402 Foundation:</p>
+        <a href="https://x402.org" target="_blank">x402.org</a> ·
+        <a href="https://www.linuxfoundation.org/" target="_blank">Linux Foundation</a> ·
+        <a href="https://developers.cloudflare.com/agents/agentic-payments/x402/" target="_blank">Cloudflare x402</a>
+      </div>
+      <p class="compliance-note">References to Coinbase, OKX, Binance, x402 Foundation, and BNB Chain are for ecosystem comparison only and do not imply partnership, endorsement, integration, or affiliation.</p>
+    </div>
+  </section>
+
+<!-- ROADMAP -->
   <section class="flow-section">
     <div class="container">
       <div class="section-header">
