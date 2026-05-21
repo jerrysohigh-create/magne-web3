@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session2 — MAGNE.AI 手機抽獎與 MS2 質押活動</title>
+  <link rel="icon" type="image/png" href="../logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0c;
+      --bg-secondary: #0f0f12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-card-hover: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 255, 255, 0.12);
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.5);
+      --text-tertiary: rgba(255, 255, 255, 0.3);
+      --accent: #00d4d4;
+      --accent-secondary: #00ff88;
+      --accent-purple: #a855f7;
+      --accent-gold: #ffd700;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans TC', 'Outfit', -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 10, 12, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
+    .nav-logo { font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
+
+    .nav-actions { display: flex; gap: 1rem; align-items: center; }
+    .nav-lang { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-lang a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; }
+    .nav-lang a:hover { color: var(--accent); }
+    .nav-lang .current { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: #000;
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      nav { padding: 1rem; }
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      background: radial-gradient(ellipse at center, rgba(0,212,212,0.08) 0%, transparent 60%);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,212,212,0.1);
+      border: 1px solid rgba(0,212,212,0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(0,212,212,0.8) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,212,0.3); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: 500;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 1px solid var(--border-hover);
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* STATS */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-secondary);
+    }
+
+    .stat-item { text-align: center; }
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .stat-label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem; }
+
+    /* SECTIONS */
+    section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-header h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-header p { color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+    /* HOW IT WORKS */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      transition: all 0.3s;
+    }
+    .step-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    .step-number {
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      background: var(--accent);
+      color: #000;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .step-card h3 { font-size: 1.1rem; margin-bottom: 0.75rem; }
+    .step-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+    .step-card .step-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+    /* CAMPAIGN STATS */
+    .campaign-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .campaign-card {
+      background: linear-gradient(135deg, rgba(0,212,212,0.08) 0%, rgba(0,0,0,0) 100%);
+      border: 1px solid rgba(0,212,212,0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .campaign-card:hover { border-color: var(--accent); box-shadow: 0 8px 40px rgba(0,212,212,0.15); }
+
+    .campaign-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .campaign-card .value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .campaign-card .label { font-size: 0.9rem; color: var(--text-secondary); }
+    .campaign-card .sub { font-size: 0.75rem; color: var(--text-tertiary); margin-top: 0.5rem; }
+
+    /* LOTTERY */
+    .lottery-section {
+      background: var(--bg-secondary);
+      border-radius: 24px;
+      padding: 3rem;
+      border: 1px solid var(--border);
+    }
+
+    .round-progress {
+      margin-bottom: 2rem;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .progress-bar {
+      height: 16px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+
+    .winners-list {
+      margin-top: 2rem;
+    }
+
+    .winners-list h4 { margin-bottom: 1rem; font-size: 1rem; color: var(--text-secondary); }
+
+    .winner-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem;
+      background: var(--bg-card);
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .winner-item .addr { font-family: 'JetBrains Mono', monospace; color: var(--accent); }
+    .winner-item .round { color: var(--text-tertiary); }
+
+    /* MS2 */
+    .ms2-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .ms2-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .ms2-card h3 { font-size: 1.1rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .ms2-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+    .ms2-card .badge {
+      display: inline-block;
+      background: rgba(0,212,212,0.1);
+      color: var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* STAKING */
+    .staking-info {
+      background: linear-gradient(135deg, rgba(168,85,247,0.08) 0%, rgba(0,0,0,0) 100%);
+      border: 1px solid rgba(168,85,247,0.2);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    .weight-formula {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .tier-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .tier-item .tier-name { font-weight: 600; margin-bottom: 0.5rem; }
+    .tier-item .tier-req { font-size: 0.8rem; color: var(--text-tertiary); margin-bottom: 0.5rem; }
+    .tier-item .tier-bonus { color: var(--accent); font-weight: 600; font-size: 1.1rem; }
+
+    /* LEADERBOARD */
+    .leaderboard-table {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .lb-header, .lb-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 150px 150px;
+      padding: 1rem 1.5rem;
+      align-items: center;
+    }
+
+    .lb-header {
+      background: var(--bg-secondary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .lb-row {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .lb-row:last-child { border-bottom: none; }
+    .lb-row:hover { background: var(--bg-card-hover); }
+
+    .lb-rank { font-weight: 700; font-size: 1.1rem; }
+    .lb-rank.gold { color: #ffd700; }
+    .lb-rank.silver { color: #c0c0c0; }
+    .lb-rank.bronze { color: #cd7f32; }
+
+    .lb-addr { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+    .lb-volume { font-family: 'JetBrains Mono', monospace; color: var(--accent); }
+    .lb-reward { color: var(--accent-secondary); font-weight: 500; }
+
+    .lb-qualify {
+      background: rgba(0,255,136,0.1);
+      color: var(--accent-secondary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .lb-header, .lb-row { grid-template-columns: 50px 1fr 100px; }
+      .lb-header div:nth-child(4), .lb-row div:nth-child(4) { display: none; }
+    }
+
+    /* ALLOCATION */
+    .allocation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .alloc-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .alloc-bar {
+      flex: 1;
+      height: 8px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .alloc-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 4px;
+    }
+
+    .alloc-label { font-size: 0.85rem; color: var(--text-secondary); min-width: 140px; }
+    .alloc-pct { font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--accent); }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 60px;
+      padding-bottom: 3rem;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: 12px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 3px solid var(--bg-primary);
+    }
+
+    .timeline-item.past .timeline-dot { background: var(--accent-secondary); }
+    .timeline-item.current .timeline-dot { 
+      background: var(--accent); 
+      box-shadow: 0 0 20px var(--accent);
+      animation: pulse 2s infinite;
+    }
+
+    .timeline-date { font-size: 0.8rem; color: var(--text-tertiary); margin-bottom: 0.25rem; }
+    .timeline-title { font-weight: 600; margin-bottom: 0.5rem; }
+    .timeline-desc { font-size: 0.9rem; color: var(--text-secondary); }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      background: rgba(255,215,0,0.05);
+      border: 1px solid rgba(255,215,0,0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-top: 4rem;
+    }
+
+    .disclaimer h4 { color: var(--accent-gold); margin-bottom: 1rem; font-size: 1rem; }
+    .disclaimer ul { list-style: none; }
+    .disclaimer li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .disclaimer li::before { content: '⚠️'; position: absolute; left: 0; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      section { padding: 4rem 1rem; }
+      .hero { padding: 6rem 1rem 3rem; }
+      .stats-bar { gap: 1.5rem; padding: 1.5rem 1rem; }
+      .stat-value { font-size: 1.4rem; }
+      .lottery-section { padding: 1.5rem; }
+      .staking-info { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <a href="/" class="nav-logo">MAGNE.AI</a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="/">首頁</a></li>
+    <li><a href="/developers.html">開發者</a></li>
+    <li><a href="/ecosystem.html">生態</a></li>
+    <li><a href="/learn.html">學習</a></li>
+    <li><a href="/network.html">網絡</a></li>
+    <li><a href="/token.html">代幣</a></li>
+    <li><a href="/faq.html">常見問題</a></li>
+    <li><a href="/session2.html" class="active">Session2</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="nav-lang">
+      <a href="../session2.html">EN</a> | <a href="#" class="current">繁中</a>
+    </div>
+    <a href="#" class="nav-cta">參加活動</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">社群增長活動</div>
+  <h1>MAGNE.AI Session2</h1>
+  <p class="hero-sub">
+    參與 MAGNE.AI Phone Gen1 抽獎，獲得 MS2 活動代幣，質押以提升未來 MHA 分配權重，
+    並邀請社群成員共同成長。
+  </p>
+  <div class="hero-ctas">
+    <a href="#join" class="btn-primary">參加活動</a>
+    <a href="#how-it-works" class="btn-secondary">查看規則</a>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-value">73,842</div>
+    <div class="stat-label">總參與次數</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">738</div>
+    <div class="stat-label">已發放手機</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">5000萬</div>
+    <div class="stat-label">MHA 分配池</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">$0.098</div>
+    <div class="stat-label">MS2 價格</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="section-header">
+    <h2>如何參與</h2>
+    <p>簡單步驟，參與 MAGNE.AI Session2 活動</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <div class="step-icon">🔗</div>
+      <h3>連接錢包</h3>
+      <p>連接你的 Web3 錢包即可參與活動，無需 KYC。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <div class="step-icon">🎁</div>
+      <h3>輸入邀請碼</h3>
+      <p>輸入邀請人的邀請碼（選填）。若無，可使用官方預設碼。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <div class="step-icon">💰</div>
+      <h3>支付 10 USDT</h3>
+      <p>每次支付 10 USDT 參與。每個錢包最多參與 100 次（上限 1,000 USDT）。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">4</div>
+      <div class="step-icon">📱</div>
+      <h3>抽獎領手機</h3>
+      <p>每 100 次參與觸發一次手機抽獎。從該輪參與者中隨機抽取中獎者。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">5</div>
+      <div class="step-icon">🪙</div>
+      <h3>獲得 100 MS2</h3>
+      <p>每次參與立即獲得 100 枚 MS2 活動代幣。可交易或質押。</p>
+    </div>
+    <div class="step-card">
+      <div class="step-number">6</div>
+      <div class="step-icon">📈</div>
+      <h3>質押提升權重</h3>
+      <p>質押 MS2 可提升未來 MHA 分配資格。質押越久，權重越高。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CAMPAIGN STATS -->
+<section id="campaign-stats">
+  <div class="section-header">
+    <h2>活動參數</h2>
+    <p>最終以 TGE 規則及活動條款為準</p>
+  </div>
+  <div class="campaign-stats">
+    <div class="campaign-card">
+      <div class="icon">🎫</div>
+      <div class="value">10 USDT</div>
+      <div class="label">每次參與</div>
+      <div class="sub">每錢包最多 100 次</div>
+    </div>
+    <div class="campaign-card">
+      <div class="icon">🪙</div>
+      <div class="value">100 MS2</div>
+      <div class="label">每次獲得</div>
+      <div class="sub">活動參與代幣</div>
+    </div>
+    <div class="campaign-card">
+      <div class="icon">📱</div>
+      <div class="value">1,000 台</div>
+      <div class="label">Phone Gen1 獎品</div>
+      <div class="sub">每 100 次抽 1 台</div>
+    </div>
+    <div class="campaign-card">
+      <div class="icon">🏆</div>
+      <div class="value">5000萬 MHA</div>
+      <div class="label">分配池</div>
+      <div class="sub">TGE 時按質押權重分配</div>
+    </div>
+    <div class="campaign-card">
+      <div class="icon">💧</div>
+      <div class="value">10 萬</div>
+      <div class="label">初始流動性</div>
+      <div class="sub">PancakeSwap MS2/USDT</div>
+    </div>
+    <div class="campaign-card">
+      <div class="icon">⏱️</div>
+      <div class="value">TGE 後 7 天</div>
+      <div class="label">解鎖窗口</div>
+      <div class="sub">TGE 後 7 天可申請解除質押</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOTTERY -->
+<section id="lottery">
+  <div class="section-header">
+    <h2>即時抽獎</h2>
+    <p>當前進度與最近中獎者</p>
+  </div>
+  <div class="lottery-section">
+    <div class="round-progress">
+      <div class="progress-header">
+        <span>當前輪次：<strong>#739</strong></span>
+        <span><strong>73</strong> / 100 次參與</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 73%"></div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">
+        再有 <strong style="color: var(--accent);">27 次參與</strong> 即開獎
+      </p>
+    </div>
+    <div class="winners-list">
+      <h4>最近中獎者</h4>
+      <div class="winner-item">
+        <span class="addr">0x742d...8c34</span>
+        <span class="round">第 738 輪 — 2 小時前</span>
+      </div>
+      <div class="winner-item">
+        <span class="addr">0x1a2b...9f0e</span>
+        <span class="round">第 737 輪 — 5 小時前</span>
+      </div>
+      <div class="winner-item">
+        <span class="addr">0x3c4d...2a1b</span>
+        <span class="round">第 736 輪 — 8 小時前</span>
+      </div>
+      <div class="winner-item">
+        <span class="addr">0x5e6f...7b8c</span>
+        <span class="round">第 735 輪 — 12 小時前</span>
+      </div>
+    </div>
+    <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-tertiary); text-align: center;">
+      中獎者由活動規則及鏈上記錄驗證選取。
+    </p>
+  </div>
+</section>
+
+<!-- MS2 -->
+<section id="ms2">
+  <div class="section-header">
+    <h2>MS2 活動代幣</h2>
+    <p>MS2 是活動參與代幣，不構成固定收益產品</p>
+  </div>
+  <div class="ms2-grid">
+    <div class="ms2-card">
+      <h3><span class="badge">代幣</span> 什麼是 MS2？</h3>
+      <p>MS2 是分配給 Session2 參與者的活動代幣。可在 PancakeSwap 交易、質押以提升活動權重，或持有待未來用途。</p>
+    </div>
+    <div class="ms2-card">
+      <h3><span class="badge">交易</span> 市場可用性</h3>
+      <p>MS2 可在 PancakeSwap V2 交易。初始流動性 10 萬 USDT 提供合理的市場深度。活動資金的一部分可能用於 MS2 回購與銷毀。</p>
+    </div>
+    <div class="ms2-card">
+      <h3><span class="badge">質押</span> 質押用途</h3>
+      <p>質押 MS2 可提升未來 MHA 分配資格。質押決定活動權重，非保證收益。所有質押以 TGE 規則為準。</p>
+    </div>
+    <div class="ms2-card">
+      <h3><span class="badge">⚠️</span> 無固定價值</h3>
+      <p>MS2 是活動代幣，無保證價值。市場價格可能波動較大。MS2 質押不構成儲蓄或固定收益產品。</p>
+    </div>
+  </div>
+</section>
+
+<!-- STAKING -->
+<section id="staking">
+  <div class="section-header">
+    <h2>質押權重</h2>
+    <p>質押 MS2 提升未來 MHA 分配資格</p>
+  </div>
+  <div class="staking-info">
+    <p>你的有效質押權重決定你在 TGE 時可獲得的 5000 萬 MHA 分配份額。權重根據多項因素計算：</p>
+    
+    <div class="weight-formula">
+      有效權重 = MS2 數量 × 質押時長係數 × 社群等級係數
+    </div>
+
+    <h4 style="margin-bottom: 1rem;">質押時長係數</h4>
+    <div class="tier-grid">
+      <div class="tier-item">
+        <div class="tier-name">短期</div>
+        <div class="tier-req">&lt; 7 天</div>
+        <div class="tier-bonus">0.5x</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-name">標準</div>
+        <div class="tier-req">7–14 天</div>
+        <div class="tier-bonus">1.0x</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-name">中期</div>
+        <div class="tier-req">15–30 天</div>
+        <div class="tier-bonus">1.2x</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-name">長期</div>
+        <div class="tier-req">&gt; 30 天</div>
+        <div class="tier-bonus">1.5x</div>
+      </div>
+    </div>
+
+    <h4 style="margin: 1.5rem 0 1rem;">社群等級加成（邀請貢獻）</h4>
+    <div class="tier-grid">
+      <div class="tier-item">
+        <div class="tier-name">青銅</div>
+        <div class="tier-req">≥ 1,000 USDT</div>
+        <div class="tier-bonus">+2%</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-name">白銀</div>
+        <div class="tier-req">≥ 5,000 USDT</div>
+        <div class="tier-bonus">+5%</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-name">黃金</div>
+        <div class="tier-req">≥ 20,000 USDT</div>
+        <div class="tier-bonus">+10%</div>
+      </div>
+      <div class="tier-item">
+        <div class="tier-name">鑽石</div>
+        <div class="tier-req">≥ 100,000 USDT</div>
+        <div class="tier-bonus">+10% + 分池</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+      <strong style="color: var(--accent);">注意：</strong> MS2 質押僅用於活動權重計算，不構成固定收益產品或收益承諾。
+      所有 MHA 分配以最終 TGE 規則、資格審核及適用限制為準。
+    </p>
+  </div>
+</section>
+
+<!-- LEADERBOARD -->
+<section id="leaderboard">
+  <div class="section-header">
+    <h2>社群建設者排行榜</h2>
+    <p>貢獻額前 10 名 — 需達 10 萬 USDT 門檻</p>
+  </div>
+  <div class="leaderboard-table">
+    <div class="lb-header">
+      <div>排名</div>
+      <div>地址</div>
+      <div>貢獻額</div>
+      <div>預估獎勵</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-rank gold">1</div>
+      <div class="lb-addr">0x742d35Cc6634C0532...8c34</div>
+      <div class="lb-volume">847,230 USDT</div>
+      <div class="lb-reward">60,000 USDT</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-rank silver">2</div>
+      <div class="lb-addr">0x1a2b3c4d5e6f7g8h...9f0e</div>
+      <div class="lb-volume">523,180 USDT</div>
+      <div class="lb-reward">22,500 USDT</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-rank bronze">3</div>
+      <div class="lb-addr">0x3c4d5e6f7a8b9c0d...2a1b</div>
+      <div class="lb-volume">412,900 USDT</div>
+      <div class="lb-reward">15,000 USDT</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-rank">4</div>
+      <div class="lb-addr">0x5e6f7a8b9c0d1e2f...7b8c</div>
+      <div class="lb-volume">298,450 USDT</div>
+      <div class="lb-reward">12,000 USDT</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-rank">5</div>
+      <div class="lb-addr">0x7a8b9c0d1e2f3a4b...3c4d</div>
+      <div class="lb-volume">187,320 USDT</div>
+      <div class="lb-reward">10,500 USDT</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-rank">6</div>
+      <div class="lb-addr">0x9c0d1e2f3a4b5c6d...5e6f</div>
+      <div class="lb-volume">156,780 USDT</div>
+      <div class="lb-reward">9,000 USDT</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-rank">7</div>
+      <div class="lb-addr">0x2f3a4b5c6d7e8f9a...8b9c</div>
+      <div class="lb-volume">134,560 USDT</div>
+      <div class="lb-reward">7,500 USDT</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-rank">8</div>
+      <div class="lb-addr">0x4b5c6d7e8f9a0b1c...0d1e</div>
+      <div class="lb-volume">98,420 USDT</div>
+      <div class="lb-reward">6,000 USDT</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-rank">9</div>
+      <div class="lb-addr">0x6d7e8f9a0b1c2d3e...2f3a</div>
+      <div class="lb-volume">76,890 USDT</div>
+      <div class="lb-reward">4,500 USDT</div>
+    </div>
+    <div class="lb-row">
+      <div class="lb-rank">10</div>
+      <div class="lb-addr">0x8f9a0b1c2d3e4f5a...4b5c</div>
+      <div class="lb-volume">52,340 USDT</div>
+      <div class="lb-reward">3,000 USDT</div>
+    </div>
+  </div>
+  <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+    只有貢獻額 ≥ 10 萬 USDT 的地址才有資格參與社群建設者獎池。
+    未分配獎勵可能用於 MS2 回購或未來活動。
+  </p>
+</section>
+
+<!-- FUND ALLOCATION -->
+<section id="allocation">
+  <div class="section-header">
+    <h2>資金分配</h2>
+    <p>活動收益透明分配</p>
+  </div>
+  <div class="allocation-grid">
+    <div class="alloc-item">
+      <span class="alloc-label">手機獎勵池</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 50%"></div></div>
+      <span class="alloc-pct">50%</span>
+    </div>
+    <div class="alloc-item">
+      <span class="alloc-label">MS2 回購/銷毀</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 20%"></div></div>
+      <span class="alloc-pct">20%</span>
+    </div>
+    <div class="alloc-item">
+      <span class="alloc-label">社群建設者獎池</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 15%"></div></div>
+      <span class="alloc-pct">15%</span>
+    </div>
+    <div class="alloc-item">
+      <span class="alloc-label">直接邀請獎勵</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 5%"></div></div>
+      <span class="alloc-pct">5%</span>
+    </div>
+    <div class="alloc-item">
+      <span class="alloc-label">運營/流動性</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 10%"></div></div>
+      <span class="alloc-pct">10%</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="section-header">
+    <h2>活動時間線</h2>
+    <p>可能因合規、安全或運營原因進行調整</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item past">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">活動上線</div>
+      <div class="timeline-title">活動啟動</div>
+      <div class="timeline-desc">Session2 開放參與，抽獎輪次開始。</div>
+    </div>
+    <div class="timeline-item past">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">1000 次參與後</div>
+      <div class="timeline-title">MS2 流動性開放</div>
+      <div class="timeline-desc">PancakeSwap MS2/USDT 流動性池上線。</div>
+    </div>
+    <div class="timeline-item current">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">進行中</div>
+      <div class="timeline-title">抽獎輪次</div>
+      <div class="timeline-desc">每 100 次參與抽出 Phone Gen1 中獎者。社群建設者排行榜即時更新。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">10 萬次參與或指定日期</div>
+      <div class="timeline-title">活動結束</div>
+      <div class="timeline-desc">最後一輪抽獎完成。MS2 質押快照窗口開放。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">活動結束後 +30 天</div>
+      <div class="timeline-title">TGE（代幣生成事件）</div>
+      <div class="timeline-desc">MHA 代幣生成事件。從質押合約快照計算 MHA 分配。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">TGE 後 +7 天</div>
+      <div class="timeline-title">MS2 解鎖窗口</div>
+      <div class="timeline-desc">質押者可開始申請解除質押，取回 MS2。</div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCLAIMER -->
+<section id="disclaimer">
+  <div class="disclaimer">
+    <h4>⚠️ 風險與規則聲明</h4>
+    <ul>
+      <li>MS2 是活動參與代幣，不是證券、投資產品或固定收益工具。其價值可能波動較大。</li>
+      <li>MHA 分配以最終 TGE 規則、資格審核、適用地區的 KYC/AML 要求及其他限制為準。</li>
+      <li>質押 MS2 不保證獲得 MHA 分配或任何形式的回報。有效權重決定資格，非權利。</li>
+      <li>活動規則可能因合規、安全、反濫用或運營原因進行調整，並提前通知。</li>
+      <li>機器人、刷單、自邀請濫用、女巫攻擊等操縱行為可能導致取消資格及沒收獎勵。</li>
+      <li>本活動僅用於教育及社群增長目的。過去活動表現不代表未來結果。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <a href="/">MAGNE.AI</a> | 
+    <a href="/developers.html">開發者</a> | 
+    <a href="/ecosystem.html">生態</a> | 
+    <a href="/learn.html">學習</a> | 
+    <a href="https://web3.magne.ai" target="_blank">Web3 入口 ↗️</a>
+  </p>
+  <p style="margin-top: 1rem;">
+    © 2026 MAGNE.AI. 版權所有。Session2 是社群增長活動，非投資機會。
+  </p>
+</footer>
+
+</body>
+</html>
