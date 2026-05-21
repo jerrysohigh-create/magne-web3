@@ -565,6 +565,363 @@
       .lottery-section { padding: 1.5rem; }
       .staking-info { padding: 1.5rem; }
     }
+
+    /* TRADING SECTION */
+    .trading-section {
+      background: var(--bg-secondary);
+      border-radius: 24px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+    .trading-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .trading-pair {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .trading-pair .pair-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #00d4d4 0%, #00ff88 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .trading-pair .pair-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .trading-pair .pair-price {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .trading-pair .pair-change {
+      font-size: 0.85rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+    .trading-pair .pair-change.up {
+      background: rgba(0,255,136,0.15);
+      color: var(--accent-secondary);
+    }
+    .trading-pair .pair-change.down {
+      background: rgba(248,81,73,0.15);
+      color: #f85149;
+    }
+
+    .trading-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 280px;
+      gap: 1.5rem;
+    }
+    @media (max-width: 1024px) {
+      .trading-grid { grid-template-columns: 1fr 1fr; }
+      .trading-orderbook { grid-column: span 2; }
+    }
+    @media (max-width: 768px) {
+      .trading-grid { grid-template-columns: 1fr; }
+      .trading-orderbook { grid-column: span 1; }
+    }
+
+    .trading-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem;
+    }
+    .trading-card h4 {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .price-chart {
+      height: 180px;
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      padding: 0.5rem 0;
+    }
+    .chart-bar {
+      flex: 1;
+      background: var(--accent);
+      border-radius: 2px 2px 0 0;
+      min-height: 4px;
+      transition: height 0.3s ease;
+    }
+    .chart-bar.red { background: #f85149; }
+
+    .order-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .order-tab {
+      flex: 1;
+      padding: 0.75rem;
+      text-align: center;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .order-tab.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .order-tab.buy.active {
+      background: rgba(0,255,136,0.15);
+      border-color: var(--accent-secondary);
+      color: var(--accent-secondary);
+    }
+    .order-tab.sell.active {
+      background: rgba(248,81,73,0.15);
+      border-color: #f85149;
+      color: #f85149;
+    }
+
+    .order-input-group {
+      margin-bottom: 1rem;
+    }
+    .order-input-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    .order-input-wrapper {
+      display: flex;
+      align-items: center;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .order-input-wrapper input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      outline: none;
+    }
+    .order-input-wrapper .input-suffix {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .order-input-wrapper input::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    .order-presets {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .preset-btn {
+      flex: 1;
+      padding: 0.4rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .preset-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .order-slider {
+      margin-bottom: 1rem;
+    }
+    .order-slider input[type="range"] {
+      width: 100%;
+      height: 6px;
+      -webkit-appearance: none;
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
+      outline: none;
+    }
+    .order-slider input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      background: var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .order-summary {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+    }
+    .order-summary .value {
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .order-btn {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .order-btn.buy {
+      background: var(--accent-secondary);
+      color: #000;
+    }
+    .order-btn.buy:hover {
+      box-shadow: 0 4px 20px rgba(0,255,136,0.3);
+    }
+    .order-btn.sell {
+      background: #f85149;
+      color: #fff;
+    }
+    .order-btn.sell:hover {
+      box-shadow: 0 4px 20px rgba(248,81,73,0.3);
+    }
+
+    .orderbook-list {
+      max-height: 280px;
+      overflow-y: auto;
+    }
+    .orderbook-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0.5rem;
+    }
+    .orderbook-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      font-size: 0.85rem;
+      padding: 0.35rem 0;
+      position: relative;
+    }
+    .orderbook-row::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background: rgba(0,255,136,0.1);
+      z-index: -1;
+    }
+    .orderbook-row.ask::before {
+      background: rgba(248,81,73,0.1);
+    }
+    .orderbook-row span { font-family: 'JetBrains Mono', monospace; }
+    .orderbook-row .price { color: var(--accent-secondary); }
+    .orderbook-row.ask .price { color: #f85149; }
+
+    .recent-trades-list {
+      max-height: 280px;
+      overflow-y: auto;
+    }
+    .trade-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .trade-row span { font-family: 'JetBrains Mono', monospace; }
+    .trade-row .trade-price { color: var(--accent-secondary); }
+    .trade-row.ask .trade-price { color: #f85149; }
+    .trade-row .trade-amount { color: var(--text-secondary); }
+    .trade-row .trade-time { color: var(--text-tertiary); font-size: 0.75rem; }
+
+    .wallet-balance {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: rgba(0,0,0,0.2);
+      border-radius: 12px;
+    }
+    .balance-item {
+      flex: 1;
+    }
+    .balance-item .label {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-bottom: 0.25rem;
+    }
+    .balance-item .value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .balance-item .value.green { color: var(--accent-secondary); }
+    .balance-item .value.teal { color: var(--accent); }
+
+    .mock-notice {
+      background: rgba(255,215,0,0.08);
+      border: 1px solid rgba(255,215,0,0.2);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      color: var(--accent-gold);
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 1000;
+      transform: translateX(400px);
+      transition: transform 0.3s ease;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .toast.show { transform: translateX(0); }
+    .toast-icon { font-size: 1.5rem; }
+    .toast-content .toast-title { font-weight: 600; margin-bottom: 0.25rem; }
+    .toast-content .toast-msg { font-size: 0.85rem; color: var(--text-secondary); }
   </style>
 </head>
 <body>
@@ -1017,6 +1374,136 @@
   </div>
 </section>
 
+<!-- TRADING SIMULATOR -->
+<section id="trading">
+  <div class="section-header">
+    <h2>MS2 交易</h2>
+    <p>模擬 PancakeSwap V2 介面 — 僅供演示用途</p>
+  </div>
+  <div class="trading-section">
+    <div class="trading-header">
+      <div class="trading-pair">
+        <div class="pair-icon">MS2</div>
+        <div>
+          <div class="pair-name">MS2 / USDT</div>
+          <div style="font-size: 0.8rem; color: var(--text-tertiary);">PancakeSwap V2</div>
+        </div>
+        <div style="margin-left: 1rem;">
+          <div class="pair-price" id="ms2-price">$0.0984</div>
+          <div>
+            <span class="pair-change up">+2.34%</span>
+          </div>
+        </div>
+      </div>
+      <div class="trading-pair" style="gap: 1.5rem;">
+        <div style="text-align: center;">
+          <div style="font-size: 0.75rem; color: var(--text-tertiary);">24小時最高</div>
+          <div style="font-family: 'JetBrains Mono', monospace; color: var(--accent-secondary);">$0.1021</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 0.75rem; color: var(--text-tertiary);">24小時最低</div>
+          <div style="font-family: 'JetBrains Mono', monospace; color: #f85149;">$0.0892</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 0.75rem; color: var(--text-tertiary);">24小時成交量</div>
+          <div style="font-family: 'JetBrains Mono', monospace;">240萬 MS2</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trading-grid">
+      <!-- Price Chart -->
+      <div class="trading-card">
+        <h4>價格圖表</h4>
+        <div class="price-chart" id="price-chart">
+          <!-- Bars will be generated by JS -->
+        </div>
+      </div>
+
+      <!-- Order Form -->
+      <div class="trading-card">
+        <h4>下單</h4>
+        
+        <div class="wallet-balance">
+          <div class="balance-item">
+            <div class="label">USDT 餘額</div>
+            <div class="value green" id="usdt-balance">1,000.00</div>
+          </div>
+          <div class="balance-item">
+            <div class="label">MS2 餘額</div>
+            <div class="value teal" id="ms2-balance">500.00</div>
+          </div>
+        </div>
+
+        <div class="order-tabs">
+          <button class="order-tab buy active" onclick="setOrderType('buy')">買入</button>
+          <button class="order-tab sell" onclick="setOrderType('sell')">賣出</button>
+        </div>
+
+        <div class="order-input-group">
+          <label>價格 (USDT)</label>
+          <div class="order-input-wrapper">
+            <input type="number" id="order-price" value="0.0984" step="0.0001" placeholder="0.00">
+            <span class="input-suffix">USDT</span>
+          </div>
+        </div>
+
+        <div class="order-input-group">
+          <label>數量 (MS2)</label>
+          <div class="order-input-wrapper">
+            <input type="number" id="order-amount" value="100" step="1" placeholder="0">
+            <span class="input-suffix">MS2</span>
+          </div>
+        </div>
+
+        <div class="order-presets">
+          <button class="preset-btn" onclick="setAmount(25)">25%</button>
+          <button class="preset-btn" onclick="setAmount(50)">50%</button>
+          <button class="preset-btn" onclick="setAmount(75)">75%</button>
+          <button class="preset-btn" onclick="setAmount(100)">最大</button>
+        </div>
+
+        <div class="order-slider">
+          <input type="range" id="order-slider" min="0" max="100" value="10" oninput="updateSlider(this.value)">
+        </div>
+
+        <div class="order-summary">
+          <span>總計</span>
+          <span class="value" id="order-total">9.84 USDT</span>
+        </div>
+
+        <button class="order-btn buy" id="order-btn" onclick="placeOrder()">買入 MS2</button>
+
+        <div class="mock-notice">
+          ⚠️ 這是模擬交易介面，僅供演示用途。不執行任何真實訂單。
+        </div>
+      </div>
+
+      <!-- Order Book -->
+      <div class="trading-card trading-orderbook">
+        <h4>訂單簿</h4>
+        <div class="orderbook-list">
+          <div class="orderbook-header">
+            <span>價格</span>
+            <span style="text-align: center;">數量</span>
+            <span style="text-align: right;">總計</span>
+          </div>
+          <div id="orderbook-asks">
+            <!-- Asks will be generated by JS -->
+          </div>
+          <div style="display: flex; justify-content: center; padding: 0.75rem 0; background: rgba(0,212,212,0.1); border-radius: 4px; margin: 0.5rem 0;">
+            <span style="font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600;" id="spread-price">$0.0984</span>
+            <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">價差: $0.0002</span>
+          </div>
+          <div id="orderbook-bids">
+            <!-- Bids will be generated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- DISCLAIMER -->
 <section id="disclaimer">
   <div class="disclaimer">
@@ -1045,6 +1532,184 @@
     © 2026 MAGNE.AI. 版權所有。Session2 是社群增長活動，非投資機會。
   </p>
 </footer>
+
+<script>
+// Trading Simulator State
+let orderType = 'buy';
+let usdtBalance = 1000.00;
+let ms2Balance = 500.00;
+let currentPrice = 0.0984;
+
+function initChart() {
+  const chart = document.getElementById('price-chart');
+  if (!chart) return;
+  let html = '';
+  for (let i = 0; i < 50; i++) {
+    const height = Math.random() * 70 + 20;
+    const isRed = Math.random() > 0.5;
+    html += `<div class="chart-bar ${isRed ? 'red' : ''}" style="height: ${height}%"></div>`;
+  }
+  chart.innerHTML = html;
+}
+
+function initOrderBook() {
+  const asksContainer = document.getElementById('orderbook-asks');
+  const bidsContainer = document.getElementById('orderbook-bids');
+  if (!asksContainer || !bidsContainer) return;
+
+  let asksHtml = '';
+  for (let i = 0; i < 8; i++) {
+    const price = (currentPrice + 0.0001 * (i + 1)).toFixed(4);
+    const amount = (Math.random() * 500 + 100).toFixed(2);
+    const total = (price * amount).toFixed(2);
+    const width = 20 + Math.random() * 80;
+    asksHtml += `<div class="orderbook-row ask" style="grid-template-columns: 1fr 1fr 1fr;">
+      <span class="price">${price}</span>
+      <span style="text-align: center;">${amount}</span>
+      <span style="text-align: right;">${total}</span>
+      <div style="position: absolute; left: 0; top: 0; bottom: 0; width: ${width}%; background: rgba(248,81,73,0.08); z-index: -1;"></div>
+    </div>`;
+  }
+  asksContainer.innerHTML = asksHtml;
+
+  let bidsHtml = '';
+  for (let i = 0; i < 8; i++) {
+    const price = (currentPrice - 0.0001 * (i + 1)).toFixed(4);
+    const amount = (Math.random() * 500 + 100).toFixed(2);
+    const total = (price * amount).toFixed(2);
+    const width = 20 + Math.random() * 80;
+    bidsHtml += `<div class="orderbook-row" style="grid-template-columns: 1fr 1fr 1fr;">
+      <span class="price">${price}</span>
+      <span style="text-align: center;">${amount}</span>
+      <span style="text-align: right;">${total}</span>
+      <div style="position: absolute; left: 0; top: 0; bottom: 0; width: ${width}%; background: rgba(0,255,136,0.08); z-index: -1;"></div>
+    </div>`;
+  }
+  bidsContainer.innerHTML = bidsHtml;
+}
+
+function setOrderType(type) {
+  orderType = type;
+  const buyTab = document.querySelector('.order-tab.buy');
+  const sellTab = document.querySelector('.order-tab.sell');
+  const orderBtn = document.getElementById('order-btn');
+  
+  if (type === 'buy') {
+    buyTab.classList.add('active');
+    sellTab.classList.remove('active');
+    orderBtn.className = 'order-btn buy';
+    orderBtn.textContent = '買入 MS2';
+  } else {
+    sellTab.classList.add('active');
+    buyTab.classList.remove('active');
+    orderBtn.className = 'order-btn sell';
+    orderBtn.textContent = '賣出 MS2';
+  }
+  updateTotal();
+}
+
+function setAmount(percent) {
+  if (orderType === 'buy') {
+    const maxBuy = usdtBalance / currentPrice;
+    document.getElementById('order-amount').value = Math.floor(maxBuy * percent / 100);
+  } else {
+    document.getElementById('order-amount').value = Math.floor(ms2Balance * percent / 100);
+  }
+  document.getElementById('order-slider').value = percent;
+  updateTotal();
+}
+
+function updateSlider(value) {
+  setAmount(value);
+}
+
+function updateTotal() {
+  const price = parseFloat(document.getElementById('order-price').value) || 0;
+  const amount = parseFloat(document.getElementById('order-amount').value) || 0;
+  const total = price * amount;
+  document.getElementById('order-total').textContent = total.toFixed(2) + ' USDT';
+}
+
+function placeOrder() {
+  const price = parseFloat(document.getElementById('order-price').value) || 0;
+  const amount = parseFloat(document.getElementById('order-amount').value) || 0;
+  const total = price * amount;
+
+  if (amount <= 0) {
+    showToast('❌', '無效數量', '請輸入有效數量');
+    return;
+  }
+
+  if (orderType === 'buy' && total > usdtBalance) {
+    showToast('❌', '餘額不足', 'USDT 餘額不足');
+    return;
+  }
+
+  if (orderType === 'sell' && amount > ms2Balance) {
+    showToast('❌', '餘額不足', 'MS2 餘額不足');
+    return;
+  }
+
+  if (orderType === 'buy') {
+    usdtBalance -= total;
+    ms2Balance += amount;
+    showToast('✅', '買入訂單已下', `以 $${price.toFixed(4)} 買入 ${amount.toFixed(2)} MS2`);
+  } else {
+    ms2Balance -= amount;
+    usdtBalance += total;
+    showToast('✅', '賣出訂單已下', `以 $${price.toFixed(4)} 賣出 ${amount.toFixed(2)} MS2`);
+  }
+
+  document.getElementById('usdt-balance').textContent = usdtBalance.toFixed(2);
+  document.getElementById('ms2-balance').textContent = ms2Balance.toFixed(2);
+  document.getElementById('order-amount').value = '';
+  document.getElementById('order-slider').value = 0;
+  updateTotal();
+}
+
+function showToast(icon, title, msg) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `
+    <div class="toast-icon">${icon}</div>
+    <div class="toast-content">
+      <div class="toast-title">${title}</div>
+      <div class="toast-msg">${msg}</div>
+    </div>
+  `;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.classList.add('show'), 10);
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initChart();
+  initOrderBook();
+  updateTotal();
+
+  const priceInput = document.getElementById('order-price');
+  const amountInput = document.getElementById('order-amount');
+  
+  if (priceInput) priceInput.addEventListener('input', updateTotal);
+  if (amountInput) amountInput.addEventListener('input', updateTotal);
+
+  setInterval(() => {
+    const change = (Math.random() - 0.5) * 0.001;
+    currentPrice = Math.max(0.08, Math.min(0.12, currentPrice + change));
+    const priceEl = document.getElementById('ms2-price');
+    const spreadEl = document.getElementById('spread-price');
+    if (priceEl) priceEl.textContent = '$' + currentPrice.toFixed(4);
+    if (spreadEl) spreadEl.textContent = '$' + currentPrice.toFixed(4);
+    if (priceInput) priceInput.value = currentPrice.toFixed(4);
+    updateTotal();
+  }, 5000);
+});
+</script>
 
 </body>
 </html>
