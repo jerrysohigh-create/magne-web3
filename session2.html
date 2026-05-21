@@ -925,6 +925,247 @@
     .toast-icon { font-size: 1.5rem; }
     .toast-content .toast-title { font-weight: 600; margin-bottom: 0.25rem; }
     .toast-content .toast-msg { font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* SIMULATOR SECTIONS */
+    .simulator-section {
+      background: var(--bg-secondary);
+      border-radius: 24px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .simulator-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .simulator-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,215,0,0.1);
+      border: 1px solid rgba(255,215,0,0.3);
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      color: var(--accent-gold);
+    }
+    .simulator-badge::before {
+      content: '🔒';
+    }
+    .simulator-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .simulator-sub {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+    }
+    .simulator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .sim-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .sim-card h4 {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .sim-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.9rem;
+    }
+    .sim-row:last-child { border-bottom: none; }
+    .sim-row .label { color: var(--text-secondary); }
+    .sim-row .value { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 500; }
+    .sim-row .value.highlight { color: var(--accent-secondary); }
+
+    /* Swap Simulator */
+    .swap-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .swap-grid { grid-template-columns: 1fr; }
+    }
+    .swap-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .swap-panel h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .swap-panel h4.buy { color: var(--accent-secondary); }
+    .swap-panel h4.sell { color: #f85149; }
+    .swap-input-group {
+      margin-bottom: 1rem;
+    }
+    .swap-input-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      margin-bottom: 0.5rem;
+    }
+    .swap-input-wrapper {
+      display: flex;
+      align-items: center;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .swap-input-wrapper input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      outline: none;
+    }
+    .swap-input-wrapper .suffix {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .swap-result {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      padding: 0.5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      margin-top: 0.5rem;
+    }
+    .swap-result .value { color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+    .swap-btn {
+      width: 100%;
+      padding: 0.85rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      margin-top: 1rem;
+      transition: all 0.2s;
+    }
+    .swap-btn.buy {
+      background: var(--accent-secondary);
+      color: #000;
+    }
+    .swap-btn.buy:hover {
+      box-shadow: 0 4px 15px rgba(0,255,136,0.2);
+    }
+    .swap-btn.sell {
+      background: #f85149;
+      color: #fff;
+    }
+    .swap-btn.sell:hover {
+      box-shadow: 0 4px 15px rgba(248,81,73,0.2);
+    }
+
+    /* Staking Calculator */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .calc-grid { grid-template-columns: 1fr; }
+    }
+    .calc-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .calc-panel h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .calc-input-group {
+      margin-bottom: 1rem;
+    }
+    .calc-input-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      margin-bottom: 0.4rem;
+    }
+    .calc-select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .calc-select option {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+    .calc-result-box {
+      background: rgba(0,212,212,0.08);
+      border: 1px solid rgba(0,212,212,0.2);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+    }
+    .calc-result-box .result-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+    }
+    .calc-result-box .result-row .label { color: var(--text-secondary); }
+    .calc-result-box .result-row .value { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+    .calc-result-box .result-row.highlight {
+      border-top: 1px solid rgba(0,212,212,0.2);
+      margin-top: 0.5rem;
+      padding-top: 0.75rem;
+    }
+    .calc-result-box .result-row.highlight .value {
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+    .calc-formula {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      line-height: 1.8;
+    }
   </style>
 </head>
 <body>
@@ -1363,6 +1604,195 @@
   </div>
 </section>
 
+<!-- DEX LIQUIDITY SIMULATOR -->
+<section id="dex-simulator">
+  <div class="section-header">
+    <h2>MS2/USDT DEX Liquidity Simulator</h2>
+    <p>A demo interface for understanding how MS2 liquidity, simulated buy/sell pressure, price impact, and buyback pool dynamics may interact during Session2.</p>
+  </div>
+  <div class="simulator-section">
+    <div class="simulator-badge">Simulation only — No real transaction is executed</div>
+    <div class="simulator-grid" style="margin-top: 1.5rem;">
+      <div class="sim-card">
+        <h4>Initial Liquidity</h4>
+        <div class="sim-row">
+          <span class="label">Initial USDT Liquidity</span>
+          <span class="value">100,000 USDT</span>
+        </div>
+        <div class="sim-row">
+          <span class="label">Initial MS2 Liquidity</span>
+          <span class="value">1,000,000 MS2</span>
+        </div>
+        <div class="sim-row">
+          <span class="label">Initial MS2 Reference Price</span>
+          <span class="value">0.10 USDT</span>
+        </div>
+      </div>
+      <div class="sim-card">
+        <h4>Current Status</h4>
+        <div class="sim-row">
+          <span class="label">Current Simulated Price</span>
+          <span class="value">0.098 USDT</span>
+        </div>
+        <div class="sim-row">
+          <span class="label">Buyback & Burn Pool</span>
+          <span class="value highlight">65,746 USDT</span>
+        </div>
+        <div class="sim-row">
+          <span class="label">Est. Pool Depth</span>
+          <span class="value">Demo Data</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="swap-grid" style="margin-top: 1.5rem;">
+      <div class="swap-panel">
+        <h4 class="buy">Simulate Buy</h4>
+        <div class="swap-input-group">
+          <label>You Pay</label>
+          <div class="swap-input-wrapper">
+            <input type="number" value="1000" placeholder="0">
+            <span class="suffix">USDT</span>
+          </div>
+        </div>
+        <div class="swap-result">
+          <span>You Receive (est.)</span>
+          <span class="value">~10,102 MS2</span>
+        </div>
+        <div class="swap-result">
+          <span>Est. Price Impact</span>
+          <span class="value">+1.8%</span>
+        </div>
+        <div class="swap-result">
+          <span>Liquidity Provider Fee</span>
+          <span class="value">Demo only</span>
+        </div>
+        <button class="swap-btn buy" onclick="showDemoModal('buy')">Simulate Buy</button>
+      </div>
+      <div class="swap-panel">
+        <h4 class="sell">Simulate Sell</h4>
+        <div class="swap-input-group">
+          <label>You Sell</label>
+          <div class="swap-input-wrapper">
+            <input type="number" value="10000" placeholder="0">
+            <span class="suffix">MS2</span>
+          </div>
+        </div>
+        <div class="swap-result">
+          <span>You Receive (est.)</span>
+          <span class="value">~978 USDT</span>
+        </div>
+        <div class="swap-result">
+          <span>Est. Price Impact</span>
+          <span class="value">-1.6%</span>
+        </div>
+        <div class="swap-result">
+          <span>Liquidity Provider Fee</span>
+          <span class="value">Demo only</span>
+        </div>
+        <button class="swap-btn sell" onclick="showDemoModal('sell')">Simulate Sell</button>
+      </div>
+    </div>
+
+    <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+      This simulator is designed for internal model understanding and community interface preview. It does not represent live PancakeSwap liquidity, real-time MS2 price, or executable trading functionality.<br>
+      Any future MS2 liquidity pool, trading availability, price movement, or buyback activity will be subject to final launch conditions, market conditions, and official announcements.
+    </p>
+  </div>
+</section>
+
+<!-- STAKING WEIGHT SIMULATOR -->
+<section id="staking-simulator">
+  <div class="section-header">
+    <h2>MS2 Staking Weight & MHA Allocation Simulator</h2>
+    <p>A demo calculator for understanding how MS2 staked amount, staking duration, and community contribution factors may affect potential MHA allocation eligibility.</p>
+  </div>
+  <div class="simulator-section">
+    <div class="simulator-badge">Simulation only — No fixed return. No guaranteed MHA allocation.</div>
+    <div class="calc-grid" style="margin-top: 1.5rem;">
+      <div class="calc-panel">
+        <h4>Your Inputs</h4>
+        <div class="calc-input-group">
+          <label>Your MS2 Staked</label>
+          <div class="swap-input-wrapper">
+            <input type="number" id="calc-ms2" value="10000" placeholder="0">
+            <span class="suffix">MS2</span>
+          </div>
+        </div>
+        <div class="calc-input-group">
+          <label>Staking Duration</label>
+          <select class="calc-select" id="calc-duration" onchange="updateCalc()">
+            <option value="0.5">Less than 7 days (0.5x)</option>
+            <option value="1" selected>7-14 days (1.0x)</option>
+            <option value="1.2">15-30 days (1.2x)</option>
+            <option value="1.5">30+ days (1.5x)</option>
+          </select>
+        </div>
+        <div class="calc-input-group">
+          <label>Community Tier</label>
+          <select class="calc-select" id="calc-tier" onchange="updateCalc()">
+            <option value="0">None (0%)</option>
+            <option value="0.02">Bronze ≥1,000 USDT (+2%)</option>
+            <option value="0.05">Silver ≥5,000 USDT (+5%)</option>
+            <option value="0.1" selected>Gold ≥20,000 USDT (+10%)</option>
+            <option value="0.1">Diamond ≥100,000 USDT (+10% + Pool)</option>
+          </select>
+        </div>
+        <div class="calc-input-group">
+          <label>Total Network Effective Weight (Demo)</label>
+          <div class="swap-input-wrapper">
+            <input type="number" id="calc-network" value="100000000" placeholder="0">
+            <span class="suffix">Weight</span>
+          </div>
+        </div>
+      </div>
+      <div class="calc-panel">
+        <h4>Calculated Results</h4>
+        <div class="calc-result-box">
+          <div class="result-row">
+            <span class="label">Your Base Weight</span>
+            <span class="value" id="res-base">10,000</span>
+          </div>
+          <div class="result-row">
+            <span class="label">Duration Factor</span>
+            <span class="value" id="res-duration">1.0x</span>
+          </div>
+          <div class="result-row">
+            <span class="label">Duration Adjusted Weight</span>
+            <span class="value" id="res-adjusted">10,000</span>
+          </div>
+          <div class="result-row">
+            <span class="label">Community Bonus</span>
+            <span class="value" id="res-bonus">+1,000</span>
+          </div>
+          <div class="result-row highlight">
+            <span class="label">Your Effective Weight</span>
+            <span class="value" id="res-effective">11,000</span>
+          </div>
+        </div>
+        <div class="calc-result-box">
+          <div class="result-row">
+            <span class="label">MHA Campaign Pool</span>
+            <span class="value">50,000,000 MHA</span>
+          </div>
+          <div class="result-row highlight">
+            <span class="label">Potential MHA Allocation</span>
+            <span class="value" id="res-mha">5.5 MHA</span>
+          </div>
+        </div>
+        <div class="calc-formula">
+          Effective Weight = MS2 × Duration Factor × (1 + Community Bonus)<br>
+          Potential MHA = Your Weight ÷ Total Weight × 50,000,000 MHA
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+      This simulator is for model understanding only. It does not represent a fixed-income product, guaranteed return, fixed redemption right, or final MHA allocation.<br>
+      Final MHA allocation, if any, will be subject to final TGE rules, eligibility checks, snapshot records, and official announcements.
+    </p>
+  </div>
+</section>
+
 <!-- MS2 LIFECYCLE -->
 <section id="lifecycle">
   <div class="section-header">
@@ -1713,6 +2143,38 @@ function updateTotal() {
 function placeOrder() {
   showToast('⚠️', 'Demo Only', 'No real transaction is executed.');
 }
+
+// Show Demo Modal for Swap
+function showDemoModal(type) {
+  const msg = type === 'buy'
+    ? 'This interface does not execute real trades, connect to PancakeSwap, or interact with any smart contract.'
+    : 'This interface does not execute real trades, connect to PancakeSwap, or interact with any smart contract.';
+  showToast('⚠️', 'Demo Only', msg);
+}
+
+// Update Staking Calculator
+function updateCalc() {
+  const ms2 = parseFloat(document.getElementById('calc-ms2').value) || 0;
+  const durationFactor = parseFloat(document.getElementById('calc-duration').value) || 1;
+  const communityBonus = parseFloat(document.getElementById('calc-tier').value) || 0;
+  const networkWeight = parseFloat(document.getElementById('calc-network').value) || 100000000;
+
+  const baseWeight = ms2;
+  const adjustedWeight = baseWeight * durationFactor;
+  const bonusWeight = adjustedWeight * communityBonus;
+  const effectiveWeight = adjustedWeight + bonusWeight;
+  const potentialMHA = (effectiveWeight / networkWeight) * 50000000;
+
+  document.getElementById('res-base').textContent = baseWeight.toLocaleString();
+  document.getElementById('res-duration').textContent = durationFactor + 'x';
+  document.getElementById('res-adjusted').textContent = Math.round(adjustedWeight).toLocaleString();
+  document.getElementById('res-bonus').textContent = '+' + Math.round(bonusWeight).toLocaleString();
+  document.getElementById('res-effective').textContent = Math.round(effectiveWeight).toLocaleString();
+  document.getElementById('res-mha').textContent = potentialMHA.toFixed(2) + ' MHA';
+}
+
+// Initialize calculator on load
+document.addEventListener('DOMContentLoaded', updateCalc);
 
 // Show Toast Notification
 function showToast(icon, title, msg) {

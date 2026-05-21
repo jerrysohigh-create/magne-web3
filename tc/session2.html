@@ -922,6 +922,247 @@
     .toast-icon { font-size: 1.5rem; }
     .toast-content .toast-title { font-weight: 600; margin-bottom: 0.25rem; }
     .toast-content .toast-msg { font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* SIMULATOR SECTIONS */
+    .simulator-section {
+      background: var(--bg-secondary);
+      border-radius: 24px;
+      padding: 2rem;
+      border: 1px solid var(--border);
+      margin-top: 2rem;
+    }
+    .simulator-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .simulator-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,215,0,0.1);
+      border: 1px solid rgba(255,215,0,0.3);
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      color: var(--accent-gold);
+    }
+    .simulator-badge::before {
+      content: '🔒';
+    }
+    .simulator-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .simulator-sub {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+    }
+    .simulator-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .sim-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .sim-card h4 {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .sim-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.9rem;
+    }
+    .sim-row:last-child { border-bottom: none; }
+    .sim-row .label { color: var(--text-secondary); }
+    .sim-row .value { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 500; }
+    .sim-row .value.highlight { color: var(--accent-secondary); }
+
+    /* Swap Simulator */
+    .swap-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .swap-grid { grid-template-columns: 1fr; }
+    }
+    .swap-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .swap-panel h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .swap-panel h4.buy { color: var(--accent-secondary); }
+    .swap-panel h4.sell { color: #f85149; }
+    .swap-input-group {
+      margin-bottom: 1rem;
+    }
+    .swap-input-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      margin-bottom: 0.5rem;
+    }
+    .swap-input-wrapper {
+      display: flex;
+      align-items: center;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .swap-input-wrapper input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      outline: none;
+    }
+    .swap-input-wrapper .suffix {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .swap-result {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      padding: 0.5rem 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      margin-top: 0.5rem;
+    }
+    .swap-result .value { color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+    .swap-btn {
+      width: 100%;
+      padding: 0.85rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      margin-top: 1rem;
+      transition: all 0.2s;
+    }
+    .swap-btn.buy {
+      background: var(--accent-secondary);
+      color: #000;
+    }
+    .swap-btn.buy:hover {
+      box-shadow: 0 4px 15px rgba(0,255,136,0.2);
+    }
+    .swap-btn.sell {
+      background: #f85149;
+      color: #fff;
+    }
+    .swap-btn.sell:hover {
+      box-shadow: 0 4px 15px rgba(248,81,73,0.2);
+    }
+
+    /* Staking Calculator */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .calc-grid { grid-template-columns: 1fr; }
+    }
+    .calc-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .calc-panel h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .calc-input-group {
+      margin-bottom: 1rem;
+    }
+    .calc-input-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      margin-bottom: 0.4rem;
+    }
+    .calc-select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .calc-select option {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+    .calc-result-box {
+      background: rgba(0,212,212,0.08);
+      border: 1px solid rgba(0,212,212,0.2);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+    }
+    .calc-result-box .result-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+    }
+    .calc-result-box .result-row .label { color: var(--text-secondary); }
+    .calc-result-box .result-row .value { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+    .calc-result-box .result-row.highlight {
+      border-top: 1px solid rgba(0,212,212,0.2);
+      margin-top: 0.5rem;
+      padding-top: 0.75rem;
+    }
+    .calc-result-box .result-row.highlight .value {
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+    .calc-formula {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      line-height: 1.8;
+    }
   </style>
 </head>
 <body>
@@ -1362,6 +1603,195 @@
   </div>
 </section>
 
+<!-- DEX LIQUIDITY SIMULATOR -->
+<section id="dex-simulator">
+  <div class="section-header">
+    <h2>MS2/USDT DEX 流動性模擬器</h2>
+    <p>用於理解 Session2 中 MS2 流動性、模擬買賣壓力、價格影響及回購池動態的演示介面。</p>
+  </div>
+  <div class="simulator-section">
+    <div class="simulator-badge">僅為模擬演示，不執行任何真實交易</div>
+    <div class="simulator-grid" style="margin-top: 1.5rem;">
+      <div class="sim-card">
+        <h4>初始流動性</h4>
+        <div class="sim-row">
+          <span class="label">初始 USDT 流動性</span>
+          <span class="value">100,000 USDT</span>
+        </div>
+        <div class="sim-row">
+          <span class="label">初始 MS2 流動性</span>
+          <span class="value">1,000,000 MS2</span>
+        </div>
+        <div class="sim-row">
+          <span class="label">MS2 初始參考價格</span>
+          <span class="value">0.10 USDT</span>
+        </div>
+      </div>
+      <div class="sim-card">
+        <h4>當前狀態</h4>
+        <div class="sim-row">
+          <span class="label">當前模擬價格</span>
+          <span class="value">0.098 USDT</span>
+        </div>
+        <div class="sim-row">
+          <span class="label">回購與銷毀池</span>
+          <span class="value highlight">65,746 USDT</span>
+        </div>
+        <div class="sim-row">
+          <span class="label">模擬池深度</span>
+          <span class="value">Demo Data</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="swap-grid" style="margin-top: 1.5rem;">
+      <div class="swap-panel">
+        <h4 class="buy">模擬買入</h4>
+        <div class="swap-input-group">
+          <label>你支付</label>
+          <div class="swap-input-wrapper">
+            <input type="number" value="1000" placeholder="0">
+            <span class="suffix">USDT</span>
+          </div>
+        </div>
+        <div class="swap-result">
+          <span>你預估獲得</span>
+          <span class="value">~10,102 MS2</span>
+        </div>
+        <div class="swap-result">
+          <span>預估價格影響</span>
+          <span class="value">+1.8%</span>
+        </div>
+        <div class="swap-result">
+          <span>流動性費用</span>
+          <span class="value">僅為 Demo</span>
+        </div>
+        <button class="swap-btn buy" onclick="showDemoModal('buy')">模擬買入</button>
+      </div>
+      <div class="swap-panel">
+        <h4 class="sell">模擬賣出</h4>
+        <div class="swap-input-group">
+          <label>你賣出</label>
+          <div class="swap-input-wrapper">
+            <input type="number" value="10000" placeholder="0">
+            <span class="suffix">MS2</span>
+          </div>
+        </div>
+        <div class="swap-result">
+          <span>你預估獲得</span>
+          <span class="value">~978 USDT</span>
+        </div>
+        <div class="swap-result">
+          <span>預估價格影響</span>
+          <span class="value">-1.6%</span>
+        </div>
+        <div class="swap-result">
+          <span>流動性費用</span>
+          <span class="value">僅為 Demo</span>
+        </div>
+        <button class="swap-btn sell" onclick="showDemoModal('sell')">模擬賣出</button>
+      </div>
+    </div>
+
+    <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+      本模擬器僅用於內部模型理解及社群介面預覽，不代表 PancakeSwap 即時流動性、MS2 真實價格或可執行交易功能。<br>
+      未來任何 MS2 流動性池、交易開放、價格變動或回購行為，均以最終啟動條件、市場情況、流動性狀態、活動進度、合規因素及官方公告為準。
+    </p>
+  </div>
+</section>
+
+<!-- STAKING WEIGHT SIMULATOR -->
+<section id="staking-simulator">
+  <div class="section-header">
+    <h2>MS2 質押權重與 MHA 分配模擬器</h2>
+    <p>用於理解 MS2 質押數量、質押時長及社群貢獻係數如何影響潛在 MHA 分配資格的演示計算器。</p>
+  </div>
+  <div class="simulator-section">
+    <div class="simulator-badge">僅為模擬演示。不構成固定收益，不保證 MHA 分配。</div>
+    <div class="calc-grid" style="margin-top: 1.5rem;">
+      <div class="calc-panel">
+        <h4>你的輸入</h4>
+        <div class="calc-input-group">
+          <label>你的 MS2 質押數量</label>
+          <div class="swap-input-wrapper">
+            <input type="number" id="calc-ms2" value="10000" placeholder="0">
+            <span class="suffix">MS2</span>
+          </div>
+        </div>
+        <div class="calc-input-group">
+          <label>質押時長</label>
+          <select class="calc-select" id="calc-duration" onchange="updateCalc()">
+            <option value="0.5">少於 7 天 (0.5x)</option>
+            <option value="1" selected>7-14 天 (1.0x)</option>
+            <option value="1.2">15-30 天 (1.2x)</option>
+            <option value="1.5">30 天以上 (1.5x)</option>
+          </select>
+        </div>
+        <div class="calc-input-group">
+          <label>社群等級</label>
+          <select class="calc-select" id="calc-tier" onchange="updateCalc()">
+            <option value="0">無 (0%)</option>
+            <option value="0.02">青銅 ≥1,000 USDT (+2%)</option>
+            <option value="0.05">白銀 ≥5,000 USDT (+5%)</option>
+            <option value="0.1" selected>黃金 ≥20,000 USDT (+10%)</option>
+            <option value="0.1">鑽石 ≥100,000 USDT (+10% + 獎池)</option>
+          </select>
+        </div>
+        <div class="calc-input-group">
+          <label>全網有效權重 (Demo)</label>
+          <div class="swap-input-wrapper">
+            <input type="number" id="calc-network" value="100000000" placeholder="0">
+            <span class="suffix">權重</span>
+          </div>
+        </div>
+      </div>
+      <div class="calc-panel">
+        <h4>計算結果</h4>
+        <div class="calc-result-box">
+          <div class="result-row">
+            <span class="label">你的基礎權重</span>
+            <span class="value" id="res-base">10,000</span>
+          </div>
+          <div class="result-row">
+            <span class="label">時長係數</span>
+            <span class="value" id="res-duration">1.0x</span>
+          </div>
+          <div class="result-row">
+            <span class="label">時長調整後權重</span>
+            <span class="value" id="res-adjusted">10,000</span>
+          </div>
+          <div class="result-row">
+            <span class="label">社群加成權重</span>
+            <span class="value" id="res-bonus">+1,000</span>
+          </div>
+          <div class="result-row highlight">
+            <span class="label">你的有效權重</span>
+            <span class="value" id="res-effective">11,000</span>
+          </div>
+        </div>
+        <div class="calc-result-box">
+          <div class="result-row">
+            <span class="label">MHA 活動池</span>
+            <span class="value">50,000,000 MHA</span>
+          </div>
+          <div class="result-row highlight">
+            <span class="label">潛在 MHA 分配預覽</span>
+            <span class="value" id="res-mha">5.5 MHA</span>
+          </div>
+        </div>
+        <div class="calc-formula">
+          有效權重 = MS2 × 時長係數 × (1 + 社群加成)<br>
+          潛在 MHA 分配 = 你的權重 ÷ 全網權重 × 50,000,000 MHA
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+      本模擬器僅用於模型理解，不代表固定收益產品、保證回報、固定兌換權或最終 MHA 分配結果。<br>
+      最終 MHA 分配如有，將以最終 TGE 規則、資格審核、快照記錄、適用限制及官方公告為準。
+    </p>
+  </div>
+</section>
+
 <!-- MS2 LIFECYCLE -->
 <section id="lifecycle">
   <div class="section-header">
@@ -1702,6 +2132,35 @@ function updateTotal() {
 function placeOrder() {
   showToast('⚠️', '僅為 Demo', '不執行真實交易。');
 }
+
+// Show Demo Modal for Swap
+function showDemoModal(type) {
+  showToast('⚠️', '僅為 Demo', '此介面不執行真實交易，不連接 PancakeSwap，也不與任何智能合約交互。');
+}
+
+// Update Staking Calculator
+function updateCalc() {
+  const ms2 = parseFloat(document.getElementById('calc-ms2').value) || 0;
+  const durationFactor = parseFloat(document.getElementById('calc-duration').value) || 1;
+  const communityBonus = parseFloat(document.getElementById('calc-tier').value) || 0;
+  const networkWeight = parseFloat(document.getElementById('calc-network').value) || 100000000;
+
+  const baseWeight = ms2;
+  const adjustedWeight = baseWeight * durationFactor;
+  const bonusWeight = adjustedWeight * communityBonus;
+  const effectiveWeight = adjustedWeight + bonusWeight;
+  const potentialMHA = (effectiveWeight / networkWeight) * 50000000;
+
+  document.getElementById('res-base').textContent = baseWeight.toLocaleString();
+  document.getElementById('res-duration').textContent = durationFactor + 'x';
+  document.getElementById('res-adjusted').textContent = Math.round(adjustedWeight).toLocaleString();
+  document.getElementById('res-bonus').textContent = '+' + Math.round(bonusWeight).toLocaleString();
+  document.getElementById('res-effective').textContent = Math.round(effectiveWeight).toLocaleString();
+  document.getElementById('res-mha').textContent = potentialMHA.toFixed(2) + ' MHA';
+}
+
+// Initialize calculator on load
+document.addEventListener('DOMContentLoaded', updateCalc);
 
 function showToast(icon, title, msg) {
   const existing = document.querySelector('.toast');
