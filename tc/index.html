@@ -3,199 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MAGNE.AI — AI 代理支付結算層</title>
-  <meta name="description" content="MAGNE Agent Pay 是一個 x402 相容的 AI 代理支付開發者演示，結合錢包授權、促進者驗證與 M Hash L2 上的不可篡改 AI 任務收據。">
+  <title>MAGNE.AI — Web3 入口</title>
+  <meta name="description" content="MAGNE.AI 結合安全行動端授權、M Hash L2 結算與 AI 任務收據，服務於正在形成的代理支付工作流程。">
   <link rel="icon" type="image/png" href="../assets/logo-icon-circle.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #070910;
-      --surface: #0d1520;
-      --surface-2: #111d2e;
-      --border: #1a2a3a;
-      --border-bright: #2a3f5a;
-      --text-primary: #e6edf3;
-      --text-secondary: #8b949e;
-      --text-muted: #484f58;
-      --accent-cyan: #39d0d6;
-      --accent-purple: #a371f7;
-      --accent-green: #3fb950;
-      --accent-yellow: #d29922;
-      --accent-red: #f85149;
-      --glow: rgba(57,208,214,0.15);
-      --glow-purple: rgba(163,113,247,0.15);
+      --bg: #070910; --surface: #0d1520; --surface-2: #111d2e;
+      --border: #1a2a3a; --border-bright: #2a3f5a;
+      --text-primary: #e6edf3; --text-secondary: #8b949e; --text-muted: #484f58;
+      --accent-cyan: #39d0d6; --accent-purple: #a371f7;
+      --accent-green: #3fb950; --accent-yellow: #d29922; --accent-red: #f85149;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      background: var(--bg);
-      color: var(--text-primary);
+      background: var(--bg); color: var(--text-primary);
       font-family: 'Noto Sans TC', 'Inter', system-ui, sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
+      line-height: 1.6; overflow-x: hidden;
     }
-    .grid-bg {
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(57,208,214,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(57,208,214,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none; z-index: 0;
-    }
-    .radial-glow {
-      position: fixed;
-      top: -20%; left: 50%;
-      transform: translateX(-50%);
-      width: 120vw; height: 80vh;
-      background: radial-gradient(ellipse at center, rgba(57,208,214,0.04) 0%, transparent 70%);
-      pointer-events: none; z-index: 0;
-    }
+    .grid-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: linear-gradient(rgba(57,208,214,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(57,208,214,0.025) 1px, transparent 1px);
+      background-size: 60px 60px; }
+    .radial-glow { position: fixed; top: -10%; left: 50%; transform: translateX(-50%); width: 100vw; height: 70vh; background: radial-gradient(ellipse at center, rgba(57,208,214,0.05) 0%, transparent 65%); pointer-events: none; z-index: 0; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-    section { padding: 8rem 0; }
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(7,9,16,0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    nav .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.25rem; font-weight: 700;
-      color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em;
-    }
+    section { padding: 6rem 0; }
+    .divider { height: 1px; background: var(--border); }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(7,9,16,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 1rem; }
+    .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; flex-shrink: 0; }
     .nav-logo span { color: var(--accent-cyan); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; letter-spacing: 0.02em; }
-    .nav-links a:hover { color: var(--accent-cyan); }
+    .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; font-weight: 500; padding: 0.35rem 0.65rem; border-radius: 4px; transition: color 0.2s, background 0.2s; letter-spacing: 0.02em; white-space: nowrap; }
+    .nav-links a:hover { color: var(--text-primary); background: var(--surface); }
     .nav-links a.active { color: var(--accent-cyan); }
-    .nav-cta { background: var(--accent-cyan); color: #000 !important; padding: 0.5rem 1.25rem; border-radius: 6px; font-weight: 600 !important; }
-    .nav-cta:hover { opacity: 0.9; }
-    .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .mobile-menu-btn { display: block; }
-      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem; gap: 1rem; }
-    }
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--accent-cyan); margin-bottom: 1rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .section-label::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--accent-cyan); }
-    #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; }
-    .hero-content { max-width: 900px; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(57,208,214,0.08);
-      border: 1px solid rgba(57,208,214,0.25);
-      padding: 0.4rem 0.8rem; border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem; color: var(--accent-cyan);
-      margin-bottom: 2rem;
-    }
-    .hero-badge .dot { width: 6px; height: 6px; background: var(--accent-cyan); border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-    .hero-title {
-      font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 700; line-height: 1.1;
-      letter-spacing: -0.03em; color: var(--text-primary);
-      margin-bottom: 1.5rem;
-    }
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+    .lang-toggle { display: flex; gap: 0.25rem; }
+    .lang-toggle a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.5rem; border-radius: 3px; transition: all 0.2s; }
+    .lang-toggle a:hover { color: var(--text-secondary); }
+    .lang-toggle a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.08); }
+    .github-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; font-size: 1rem; }
+    .github-icon:hover { border-color: var(--border-bright); color: var(--text-primary); }
+    .nav-cta { background: var(--accent-cyan); color: #000; padding: 0.4rem 1rem; border-radius: 5px; font-size: 0.8rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s; white-space: nowrap; }
+    .nav-cta:hover { opacity: 0.85; }
+    .mobile-menu-btn { display: none; background: none; border: 1px solid var(--border); color: var(--text-primary); font-size: 1.2rem; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; }
+    @media (max-width: 1024px) { .nav-links { display: none; } .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem; gap: 0.25rem; } .mobile-menu-btn { display: block; } }
+
+    .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+    .section-label::before { content: ''; display: inline-block; width: 16px; height: 1px; background: var(--accent-cyan); }
+
+    #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; padding-bottom: 4rem; }
+    .hero-content { max-width: 820px; }
+    .hero-title { font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 1.75rem; }
     .hero-title .accent { color: var(--accent-cyan); }
     .hero-title .dim { color: var(--text-secondary); }
-    .hero-sub { font-size: 1.15rem; color: var(--text-secondary); max-width: 640px; line-height: 1.8; margin-bottom: 2.5rem; }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--accent-cyan); color: #000;
-      padding: 0.75rem 1.75rem; border-radius: 6px;
-      font-weight: 600; font-size: 0.95rem; text-decoration: none;
-      transition: all 0.2s; border: none; cursor: pointer;
-    }
-    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: transparent; color: var(--text-primary);
-      padding: 0.75rem 1.75rem; border-radius: 6px;
-      font-weight: 600; font-size: 0.95rem; text-decoration: none;
-      border: 1px solid var(--border-bright); transition: all 0.2s;
-    }
+    .hero-sub { font-size: 1.1rem; color: var(--text-secondary); max-width: 660px; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent-cyan); color: #000; padding: 0.7rem 1.5rem; border-radius: 5px; font-weight: 700; font-size: 0.875rem; text-decoration: none; transition: all 0.2s; }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; color: var(--text-primary); padding: 0.7rem 1.5rem; border-radius: 5px; font-weight: 600; font-size: 0.875rem; text-decoration: none; border: 1px solid var(--border-bright); transition: all 0.2s; }
     .btn-secondary:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
-    .problem-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    @media(max-width:768px){.problem-grid{grid-template-columns:1fr}}
-    .problem-card { background: var(--surface); padding: 2.5rem 2rem; }
-    .problem-icon { font-size: 1.5rem; margin-bottom: 1rem; }
-    .problem-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-red); margin-bottom: 0.75rem; }
-    .problem-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem; }
-    .problem-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
-    .flow-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    @media(max-width:900px){.flow-grid{grid-template-columns:1fr}}
-    .flow-step { background: var(--surface); padding: 2rem 1.5rem; text-align: center; }
-    .flow-num { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 0.75rem; letter-spacing: 0.1em; }
-    .flow-arrow { display: none; }
-    @media(min-width:901px){.flow-arrow{display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--accent-cyan);font-size:1.2rem}}
-    .flow-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
-    .flow-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+
+    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } }
+    .product-card { background: var(--surface); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .product-icon { font-size: 1.75rem; }
+    .product-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-cyan); font-weight: 700; }
+    .product-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
+    .product-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; }
+    .product-link { margin-top: auto; font-size: 0.8rem; font-weight: 600; color: var(--accent-cyan); text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; transition: gap 0.2s; }
+    .product-link:hover { gap: 0.6rem; }
+
     .terminal { background: #010108; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-family: 'JetBrains Mono', monospace; }
-    .terminal-header { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .terminal-header { display: flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); }
     .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
     .terminal-dot.red{background:#ff5f56}.terminal-dot.yellow{background:#ffbd2e}.terminal-dot.green{background:#27c93f}
-    .terminal-title { font-size: 0.75rem; color: var(--text-muted); margin-left: 0.5rem; }
-    .terminal-body { padding: 1.5rem; font-size: 0.85rem; line-height: 1.8; color: var(--accent-green); overflow-x: auto; }
-    .terminal-body .cmd{color:var(--text-primary)}.terminal-body .output{color:var(--accent-green)}.terminal-body .error{color:var(--accent-red)}.terminal-body .warn{color:var(--accent-yellow)}.terminal-body .info{color:var(--text-secondary)}.terminal-body .accent{color:var(--accent-cyan)}.terminal-body .purple{color:var(--accent-purple)}
-    .terminal-body .line{display:block;margin-bottom:0.25rem}.terminal-body .line:empty{margin-bottom:0.75rem}
-    .receipt-event { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; overflow-x: auto; }
-    .receipt-event .event-name { color: var(--accent-purple); font-weight: 700; margin-bottom: 1rem; font-size: 0.9rem; }
-    .receipt-event .event-field { display: flex; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
-    .receipt-event .field-name{color:var(--text-secondary);min-width:140px}
-    .receipt-event .field-type{color:var(--accent-cyan)}
-    .receipt-event .field-desc{color:var(--text-muted)}
-    .section-headline { font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 1rem; max-width: 700px; }
-    .section-sub { font-size: 1.05rem; color: var(--text-secondary); max-width: 600px; line-height: 1.7; margin-bottom: 3rem; }
-    .feature-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    @media(max-width:768px){.feature-grid{grid-template-columns:1fr}}
-    .feature-card { background: var(--surface); padding: 2rem; }
-    .feature-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .terminal-title { font-size: 0.72rem; color: var(--text-muted); margin-left: 0.5rem; }
+    .terminal-body { padding: 1.25rem 1.5rem; font-size: 0.82rem; line-height: 1.85; color: var(--accent-green); overflow-x: auto; }
+    .terminal-body .cmd{color:var(--text-primary)}.terminal-body .output{color:var(--accent-green)}.terminal-body .info{color:var(--text-secondary)}.terminal-body .accent{color:var(--accent-cyan)}.terminal-body .error{color:var(--accent-red)}
+    .terminal-body .line{display:block;margin-bottom:0.2rem}.terminal-body .line:empty{margin-bottom:0.6rem}
+
+    .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    @media (max-width: 768px) { .feature-grid { grid-template-columns: 1fr; } }
+    .feature-card { background: var(--surface); padding: 2rem 1.75rem; }
+    .feature-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
     .feature-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
-    .feature-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
-    .roadmap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    @media(max-width:768px){.roadmap-grid{grid-template-columns:1fr}}
-    .roadmap-col { background: var(--surface); padding: 2rem; }
-    .roadmap-col-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
-    .roadmap-col-label.done{color:var(--accent-green)}.roadmap-col-label.current{color:var(--accent-cyan)}.roadmap-col-label.next{color:var(--accent-yellow)}
-    .roadmap-item { display: flex; gap: 0.75rem; margin-bottom: 1rem; font-size: 0.875rem; }
-    .roadmap-item .icon{flex-shrink:0;margin-top:0.15rem}
-    .roadmap-item .icon.done{color:var(--accent-green)}.roadmap-item .icon.current{color:var(--accent-cyan)}.roadmap-item .icon.next{color:var(--text-muted)}
-    .roadmap-item .text{color:var(--text-secondary);line-height:1.5}
-    .roadmap-item.done .text{color:var(--text-primary)}
-    #cta{text-align:center;padding:10rem 0 4rem}
-    .cta-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--text-primary);margin-bottom:1rem}
-    .cta-sub{color:var(--text-secondary);font-size:1.1rem;margin-bottom:2.5rem}
-    .cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-    footer{border-top:1px solid var(--border);padding:3rem 0;position:relative;z-index:1}
-    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}
-    @media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
-    .footer-brand p{color:var(--text-secondary);font-size:0.85rem;line-height:1.7;margin-top:1rem}
-    .footer-col h4{font-size:0.75rem;font-weight:600;color:var(--text-primary);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:1rem}
-    .footer-col ul{list-style:none}
-    .footer-col li{margin-bottom:0.5rem}
-    .footer-col a{color:var(--text-secondary);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
-    .footer-col a:hover{color:var(--accent-cyan)}
-    .footer-bottom{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-    .footer-bottom p{color:var(--text-muted);font-size:0.8rem}
-    .footer-disclaimer{color:var(--text-muted);font-size:0.75rem;line-height:1.6;max-width:600px;text-align:center;margin-top:1rem}
-    .divider{height:1px;background:var(--border);margin:0}
-    .mt-1{margin-top:1rem}.mt-2{margin-top:2rem}.mt-3{margin-top:3rem}.mt-4{margin-top:4rem}
-    .spec-row{display:flex;justify-content:space-between;align-items:center;padding:0.875rem 0;border-bottom:1px solid var(--border);font-size:0.875rem}
-    .spec-row:last-child{border-bottom:none}
-    .spec-row .label{color:var(--text-secondary)}
-    .spec-row .value{font-family:'JetBrains Mono',monospace;color:var(--accent-cyan)}
-    .spec-row .value.green{color:var(--accent-green)}
-    .spec-row .value.yellow{color:var(--accent-yellow)}
+    .feature-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; }
+
+    .status-table { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+    .status-row { display: grid; grid-template-columns: 1fr auto auto; border-bottom: 1px solid var(--border); }
+    .status-row:last-child { border-bottom: none; }
+    .status-row > div { padding: 0.75rem 1.25rem; }
+    .status-label { color: var(--text-secondary); }
+    .status-value { text-align: right; font-size: 0.78rem; }
+    .verified { color: var(--accent-green); }
+    .pending { color: var(--accent-yellow); }
+
+    .link-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    @media (max-width: 768px) { .link-grid { grid-template-columns: 1fr 2fr; } }
+    .link-card { background: var(--surface); padding: 1.5rem; text-decoration: none; display: block; transition: background 0.2s; }
+    .link-card:hover { background: var(--surface-2); }
+    .link-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.4rem; }
+    .link-sub { font-size: 0.8rem; color: var(--text-secondary); }
+    .link-badge { display: inline-block; margin-top: 0.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.5rem; border-radius: 3px; }
+    .badge-cyan { background: rgba(57,208,214,0.1); color: var(--accent-cyan); border: 1px solid rgba(57,208,214,0.2); }
+    .badge-purple { background: rgba(163,113,247,0.1); color: var(--accent-purple); border: 1px solid rgba(163,113,247,0.2); }
+    .badge-green { background: rgba(63,185,80,0.1); color: var(--accent-green); border: 1px solid rgba(63,185,80,0.2); }
+
+    .section-headline { font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif; font-size: clamp(1.6rem, 2.8vw, 2.3rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 0.75rem; max-width: 680px; }
+    .section-sub { font-size: 1rem; color: var(--text-secondary); max-width: 600px; line-height: 1.7; margin-bottom: 2.5rem; }
+
+    footer { border-top: 1px solid var(--border); padding: 3rem 0 2rem; position: relative; z-index: 1; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 2rem; }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+    .footer-brand p { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.7; margin-top: 0.75rem; }
+    .footer-col h4 { font-size: 0.7rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.85rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.4rem; }
+    .footer-col a { color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--accent-cyan); }
+    .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
+    .footer-bottom p { color: var(--text-muted); font-size: 0.78rem; }
+    .footer-disclaimer { color: var(--text-muted); font-size: 0.72rem; line-height: 1.6; max-width: 700px; }
+    .mt-1 { margin-top: 1rem; } .mt-2 { margin-top: 2rem; } .mt-3 { margin-top: 3rem; }
   </style>
 </head>
 <body>
@@ -208,35 +139,42 @@
   <div class="container">
     <a href="./index.html" class="nav-logo">MAGNE<span>.AI</span></a>
     <ul class="nav-links">
+      <li><a href="./index.html" class="active">首頁</a></li>
+      <li><a href="./agent-pay.html">AGENT PAY</a></li>
+      <li><a href="./network.html">網絡</a></li>
+      <li><a href="./developers.html">開發者</a></li>
       <li><a href="./token.html">代幣</a></li>
       <li><a href="./ecosystem.html">生態</a></li>
-      <li><a href="./learn.html">學習</a></li>
-      <li><a href="./network.html">網絡</a></li>
-      <li><a href="./session2.html">Session2</a></li>
-      <li><a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank" class="nav-cta">GitHub</a></li>
+      <li><a href="./transparency.html">透明中心</a></li>
+      <li><a href="./faq.html">常見問題</a></li>
     </ul>
-    <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <a href="../index.html">EN</a>
+        <a href="./index.html" class="active">繁中</a>
+      </div>
+      <a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank" class="github-icon" title="GitHub">⌘</a>
+      <a href="https://forms.example.com/preorder" target="_blank" class="nav-cta">預購</a>
+      <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    </div>
   </div>
 </nav>
 
-<!-- 01 HERO -->
+<!-- HERO -->
 <section id="hero">
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        測試網階段開發者演示
-      </div>
       <h1 class="hero-title">
-        <span class="accent">AI 代理能思考。</span><br>
-        <span class="dim">仍然無法安全地支付。</span>
+        <span class="dim">AI 代理能思考。</span><br>
+        <span class="accent">但仍需要安全授權與可驗證的支付軌道。</span>
       </h1>
       <p class="hero-sub">
-        MAGNE Agent Pay 是一個 x402 相容的 AI 代理支付開發者演示 — 結合錢包授權、促進者驗證與 M Hash L2 上的不可篡改 AI 任務收據。
+        MAGNE.AI 結合安全行動端授權、M Hash L2 結算與 AI 任務收據，服務於正在形成的代理支付工作流程。
       </p>
       <div class="hero-actions">
         <a href="./agent-pay.html" class="btn-primary">→ 查看 Agent Pay 演示</a>
-        <a href="./developers.html" class="btn-secondary">閱讀開發文檔</a>
+        <a href="./network.html" class="btn-secondary">探索網絡</a>
+        <a href="./transparency.html" class="btn-secondary">透明中心</a>
       </div>
     </div>
   </div>
@@ -244,196 +182,75 @@
 
 <div class="divider"></div>
 
-<!-- 02 PROBLEMS -->
-<section id="problems">
+<!-- FLAGSHIP: AGENT PAY -->
+<section id="agent-pay">
   <div class="container">
-    <div class="section-label">核心問題</div>
-    <h2 class="section-headline">每個代理經濟體都需要支付軌道。目前尚不存在。</h2>
-    <p class="section-sub">AI 代理可以執行任務，卻無法獲得可靠的支付。傳統 API 返回 401。傳統支付缺乏可審計性。</p>
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="problem-icon">🔐</div>
-        <div class="problem-label">01 — 授權</div>
-        <h3 class="problem-title">無安全授權機制</h3>
-        <p class="problem-desc">代理可以觸發任務，但支付仍需要可信的中間人。目前沒有密碼學可驗證的方式讓代理請求並接收授權。</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">💸</div>
-        <div class="problem-label">02 — 支付軌道</div>
-        <h3 class="problem-title">無代理支付流程</h3>
-        <p class="problem-desc">API 和模型服務需要可編程呼叫的按用量付費結算。現有支付 API 專為人類和瀏覽器設計。</p>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon">📋</div>
-        <div class="problem-label">03 — 可審計性</div>
-        <h3 class="problem-title">無可驗證收據</h3>
-        <p class="problem-desc">AI 任務需要可審計的記錄：誰發起、誰支付、結算了什麼、返回了什麼。沒有收據就沒有信任。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- 03 FLOW -->
-<section id="flow">
-  <div class="container">
-    <div class="section-label">工作原理</div>
-    <h2 class="section-headline">從任務請求到鏈上收據 — 毫秒級完成。</h2>
-    <p class="section-sub">專為機器對機器結算設計的完整支付流程，支持通過 MAGNE Phone 或外部錢包進行人工覆寫。</p>
-    <div class="flow-grid">
-      <div class="flow-step">
-        <div class="flow-num">步驟 01</div>
-        <h3 class="flow-title">任務請求</h3>
-        <p class="flow-desc">代理調用 API 並附上任務參數。API 返回 HTTP 402 Payment Required，含支付元數據。</p>
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">
-        <div class="flow-num">步驟 02</div>
-        <h3 class="flow-title">402 響應</h3>
-        <p class="flow-desc">支付金額、收款人地址、鏈 ID 和截止時間嵌入 402 響應頭部。</p>
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">
-        <div class="flow-num">步驟 03</div>
-        <h3 class="flow-title">授權</h3>
-        <p class="flow-desc">用戶通過 MAGNE Phone Secure Element 或外部錢包授權。授權在鏈下但被記錄。</p>
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">
-        <div class="flow-num">步驟 04</div>
-        <h3 class="flow-title">結算</h3>
-        <p class="flow-desc">促進者在 M Hash L2 上驗證支付。mMHA 或支持的資產原子化轉移。</p>
-      </div>
-      <div class="flow-arrow">→</div>
-      <div class="flow-step">
-        <div class="flow-num">步驟 05</div>
-        <h3 class="flow-title">AI 任務收據</h3>
-        <p class="flow-desc">不可篡改的收據在 M Hash L2 上鑄造。包含 receiptId、taskId、雙方、金額、代幣、paymentTxHash、時間戳。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- 04 DEMO TERMINAL -->
-<section id="demo">
-  <div class="container">
-    <div class="section-label">實際演示</div>
-    <h2 class="section-headline">觀看實際運行。</h2>
-    <p class="section-sub">使用 M Hash L2 測試網上真實智能合約的端到端演示。無模擬。無花招。</p>
+    <div class="section-label">旗艦產品</div>
+    <h2 class="section-headline">Agent Pay — 為 AI 代理設計的可編程支付軌道。</h2>
+    <p class="section-sub">
+      MAGNE Agent Pay 演示端到端 AI 任務支付流程：HTTP 402 授權、促進者驗證、以及 M Hash L2 上的不可篡改 AI 任務收據。
+    </p>
     <div class="terminal mt-3">
       <div class="terminal-header">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
+        <span class="terminal-dot red"></span><span class="terminal-dot yellow"></span><span class="terminal-dot green"></span>
         <span class="terminal-title">magne — agent-pay-demo</span>
       </div>
       <div class="terminal-body">
-        <span class="line cmd">$ magne agent task create "分析錢包風險" --network mhash-l2-testnet</span>
+        <span class="line cmd">$ magne agent task create "錢包風險分析" --network mhash-l2-testnet</span>
         <span class="line output">✓ 任務已創建 — task_20260522_001</span>
         <span class="line info">  鏈：M Hash L2 測試網 (20250827)</span>
         <span class="line info">  代理：MAGNE-Agent-001</span>
         <span class="line"></span>
         <span class="line cmd">$ magne api call wallet-risk --wallet 0x742d35Cc6634C0532...8c34 --network mhash-l2</span>
         <span class="line error">✕ 402 需要支付</span>
-        <span class="line info">  金額：0.01 mMHA</span>
-        <span class="line info">  收款人：0xf39...2266 (促進者)</span>
-        <span class="line info">  鏈：mhash-l2-testnet (20250827)</span>
-        <span class="line info">  截止：1699999999</span>
+        <span class="line info">  金額：0.01 mMHA  |  收款人：0xf39...2266</span>
         <span class="line"></span>
-        <span class="line cmd">$ magne pay settle --tx 0x130ba003e19e8a6edc2a7ae6147e1f7ff9411cb78b0dc875b9d5084df4b4701e --network mhash-l2</span>
-        <span class="line output">✓ 支付已驗證</span>
-        <span class="line info">  狀態：已驗證</span>
-        <span class="line info">  區塊：4</span>
-        <span class="line info">  交易：0x130b...701e</span>
+        <span class="line cmd">$ magne pay settle --tx 0x130ba003e19e8... --network mhash-l2</span>
+        <span class="line output">✓ 支付已驗證 — 交易：0x130b...701e</span>
         <span class="line"></span>
         <span class="line cmd">$ magne receipt create --task task_20260522_001 --network mhash-l2</span>
-        <span class="line output">✓ AI 任務收據已創建</span>
-        <span class="line info">  收據ID：0x428d5f6dc07adf8f473793dcdc01c8041d979a521084759ca2e10dcb7152fe91</span>
-        <span class="line info">  瀏覽器：</span>
+        <span class="line output">✓ AI 任務收據已鑄造</span>
         <span class="line accent">  → https://l2-explorer.testnet.magicalhash.com/tx/0x428d...</span>
-        <span class="line"></span>
-        <span class="line cmd">$ magne receipt inspect 0x428d5f6dc07adf8f473793dcdc01c8041d979a521084759ca2e10dcb7152fe91</span>
-        <span class="line info">  收據ID：    0x428d...fe91</span>
-        <span class="line info">  任務ID：    task_20260522_001</span>
-        <span class="line info">  金額：      0.01 mMHA</span>
-        <span class="line info">  代幣：      MockMHA (0x5Fb...80aa3)</span>
-        <span class="line info">  支付交易：  0x130b...701e</span>
-        <span class="line info">  促進者：    0xf39...2266</span>
-        <span class="line info">  鏈：        mhash-l2-testnet</span>
-        <span class="line info">  時間戳：    2026-05-22T12:00:00Z</span>
-        <span class="line purple">  狀態：       已結算</span>
-        <span class="line"></span>
-        <span class="line">[本地運行時已驗證]</span>
       </div>
+    </div>
+    <div class="product-grid mt-3">
+      <div class="product-card">
+        <div class="product-icon">🔐</div>
+        <div class="product-label">授權</div>
+        <h3 class="product-title">安全手機授權</h3>
+        <p class="product-desc">TEE + Secure Element 將手機變成硬件級授權端點。私鑰永不離開安全晶片。</p>
+        <a href="./agent-pay.html#phone" class="product-link">了解更多 →</a>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">⚡</div>
+        <div class="product-label">結算</div>
+        <h3 class="product-title">M Hash L2 結算</h3>
+        <p class="product-desc">在 M Hash L2 上進行原子化支付結算。促進者驗證授權並執行鏈上代幣轉移。</p>
+        <a href="./network.html" class="product-link">探索網絡 →</a>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">📋</div>
+        <div class="product-label">收據層</div>
+        <h3 class="product-title">AI 任務收據</h3>
+        <p class="product-desc">每筆已結算任務生成不可篡改的 EVM 事件日誌收據 — 任何一方（包括代理本身）都可驗證。</p>
+        <a href="./agent-pay.html#receipts" class="product-link">查看事件規格 →</a>
+      </div>
+    </div>
+    <div class="mt-3" style="display:flex;gap:0.75rem;flex-wrap:wrap">
+      <a href="./agent-pay.html" class="btn-primary">→ 完整 Agent Pay 演示</a>
+      <a href="./developers.html" class="btn-secondary">開發者文檔 →</a>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- 05 RECEIPT -->
-<section id="receipts">
-  <div class="container">
-    <div class="section-label">收據層</div>
-    <h2 class="section-headline">每筆支付都會留下痕跡。讓它不可篡改。</h2>
-    <p class="section-sub">AI 任務收據是存儲在 M Hash L2 上的 EVM 事件日誌。它們不可篡改、可編程、任何一方（包括代理本身）都可驗證。</p>
-    <div class="receipt-event mt-3">
-      <div class="event-name">event AITaskReceiptCreated</div>
-      <div class="event-field">
-        <span class="field-name">receiptId</span>
-        <span class="field-type">bytes32</span>
-        <span class="field-desc">// 唯一收據標識符，也是交易哈希</span>
-      </div>
-      <div class="event-field">
-        <span class="field-name">taskId</span>
-        <span class="field-type">string</span>
-        <span class="field-desc">// 代理生成的任務標識符</span>
-      </div>
-      <div class="event-field">
-        <span class="field-name">user</span>
-        <span class="field-type">address</span>
-        <span class="field-desc">// 發起任務的 EOA 或合約</span>
-      </div>
-      <div class="event-field">
-        <span class="field-name">provider</span>
-        <span class="field-type">address</span>
-        <span class="field-desc">// 驗證支付的促進者地址</span>
-      </div>
-      <div class="event-field">
-        <span class="field-name">amount</span>
-        <span class="field-type">uint256</span>
-        <span class="field-desc">// 最小單位金額（如 wei）</span>
-      </div>
-      <div class="event-field">
-        <span class="field-name">token</span>
-        <span class="field-type">address</span>
-        <span class="field-desc">// mMHA 或其他支持的結算代幣</span>
-      </div>
-      <div class="event-field">
-        <span class="field-name">paymentTxHash</span>
-        <span class="field-type">bytes32</span>
-        <span class="field-desc">// 鏈上支付交易哈希</span>
-      </div>
-      <div class="event-field">
-        <span class="field-name">timestamp</span>
-        <span class="field-type">uint256</span>
-        <span class="field-desc">// 結算時的區塊時間戳</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- 06 PHONE AUTH -->
+<!-- SECURE PHONE -->
 <section id="phone">
   <div class="container">
-    <div class="section-label">授權層</div>
-    <h2 class="section-headline">人類攜帶的最安全設備就是手機。用這一點。</h2>
-    <p class="section-sub">MAGNE.AI Phone 整合了 Secure Element（eSE + TEE），可在不暴露私鑰的情況下簽署授權請求。代理獲得支付。用戶保持控制。</p>
+    <div class="section-label">硬件授權</div>
+    <h2 class="section-headline">將安全行動硬體轉變為代理支付的授權端點。</h2>
+    <p class="section-sub">MAGNE.AI Phone 整合了 Secure Element (eSE) 和 TEE 運行時。授權請求由密碼學簽署 — 無需暴露私鑰。</p>
     <div class="feature-grid mt-3">
       <div class="feature-card">
         <div class="feature-icon">🔐</div>
@@ -443,12 +260,17 @@
       <div class="feature-card">
         <div class="feature-icon">📱</div>
         <h3 class="feature-title">TEE 運行時</h3>
-        <p class="feature-desc">可信執行環境隔離運行。授權邏輯在隔離環境中執行，主系統和任何應用都無法訪問。</p>
+        <p class="feature-desc">可信執行環境。授權邏輯在隔離環境中執行，主系統和任何應用都無法訪問。</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🔑</div>
         <h3 class="feature-title">x402 相容</h3>
-        <p class="feature-desc">MAGNE Phone 使用標準 HTTP 402 協議。任何 x402 相容 API 可直接與其交互，無需自定義 SDK。</p>
+        <p class="feature-desc">為與 x402 相容 API 的未來互操作性而設計，需通過實施和兼容性測試。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👤</div>
+        <h3 class="feature-title">人工覆寫</h3>
+        <p class="feature-desc">每筆授權均可由帳戶持有人審查和批准。代理無法在未經用戶同意的情況下自行授權。</p>
       </div>
     </div>
   </div>
@@ -456,96 +278,89 @@
 
 <div class="divider"></div>
 
-<!-- 07 SDK -->
-<section id="sdk">
+<!-- NETWORK -->
+<section id="network">
+  <div class="container">
+    <div class="section-label">基礎設施</div>
+    <h2 class="section-headline">M Hash L2 — 支撐代理支付的結算層。</h2>
+    <p class="section-sub">M Hash L2 是 Magical Capital M Hash 區塊鏈的 L2 網絡，負責代理支付、代幣轉移和收據錨定的結算。</p>
+    <div class="link-grid mt-3">
+      <a href="./network.html" class="link-card">
+        <div class="link-title">M Hash L2 網絡</div>
+        <div class="link-sub">鏈 ID 20250827 · 測試網已啟動 · EVM 相容</div>
+        <span class="link-badge badge-cyan">探索者 →</span>
+      </a>
+      <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="link-card">
+        <div class="link-title">區塊瀏覽器</div>
+        <div class="link-sub">在 M Hash L2 測試網上查看交易、收據和合約部署</div>
+        <span class="link-badge badge-cyan">打開 ↗</span>
+      </a>
+      <a href="https://github.com/magne-ai/M-Hash-L2" target="_blank" class="link-card">
+        <div class="link-title">M-Hash-L2 GitHub</div>
+        <div class="link-sub">開源 L2 協議規格和參考實現</div>
+        <span class="link-badge badge-purple">源碼 ↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DEVELOPERS -->
+<section id="developers">
   <div class="container">
     <div class="section-label">開發者</div>
-    <h2 class="section-headline">你的 API + 一份 SKILL.md = 一個代理服務。</h2>
-    <p class="section-sub">為任何 API 端點附上一份 SKILL.md。代理發現它、調用它、為它付費 — 編程化地，無需人工干預。</p>
-    <div class="terminal mt-3">
-      <div class="terminal-header">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">skill.md — 錢包風險分析示例</span>
-      </div>
-      <div class="terminal-body" style="font-size:0.8rem;line-height:1.9">
-        <span class="line accent"># SKILL.md — 錢包風險分析器</span>
-        <span class="line"></span>
-        <span class="line info">name: wallet-risk-v1</span>
-        <span class="line info">price: 0.01 mMHA</span>
-        <span class="line info">chain: mhash-l2-testnet</span>
-        <span class="line info">payment_address: 0xf39...2266</span>
-        <span class="line"></span>
-        <span class="line info">interface:</span>
-        <span class="line info">  - name: analyze</span>
-        <span class="line info">    params: [wallet_address: string]</span>
-        <span class="line info">    returns: risk_report: json</span>
-        <span class="line"></span>
-        <span class="line info">auth:</span>
-        <span class="line info">  method: x402</span>
-        <span class="line info">  header: Authorization</span>
-        <span class="line"></span>
-        <span class="line accent"># 發布到 SkillHub。代理會找到你。</span>
-      </div>
-    </div>
-    <div class="mt-3" style="display:flex;gap:1rem;flex-wrap:wrap">
-      <a href="./developers.html" class="btn-secondary">查看開發文檔 →</a>
-      <a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank" class="btn-secondary">瀏覽 GitHub →</a>
+    <h2 class="section-headline">在 MAGNE.AI 上構建。</h2>
+    <p class="section-sub">SKILL.md 定義代理可呼叫的服務。智能合約處理結算。開發文檔涵蓋集成模式、API 參考和部署指南。</p>
+    <div class="link-grid mt-3">
+      <a href="./developers.html" class="link-card">
+        <div class="link-title">開發者中心</div>
+        <div class="link-sub">完整文檔、集成指南和 API 參考</div>
+        <span class="link-badge badge-cyan">文檔 →</span>
+      </a>
+      <a href="./developers-contract.html" class="link-card">
+        <div class="link-title">智能合約</div>
+        <div class="link-sub">在 M Hash L2 上部署和交互 MAGNE 合約</div>
+        <span class="link-badge badge-green">合約 →</span>
+      </a>
+      <a href="./developers-connect.html" class="link-card">
+        <div class="link-title">連接測試網</div>
+        <div class="link-sub">配置錢包和 RPC 端點以連接 M Hash L2 測試網</div>
+        <span class="link-badge badge-green">連接 →</span>
+      </a>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- 08 STATUS -->
-<section id="status">
+<!-- TOKEN -->
+<section id="token">
   <div class="container">
-    <div class="section-label">運行時驗證</div>
-    <h2 class="section-headline">哪些工作正常。哪些有問題。不做任何營銷。</h2>
-    <p class="section-sub">這是運行時已驗證內容與仍在進行中內容的真實狀態報告。</p>
-    <div class="terminal mt-3">
-      <div class="terminal-header">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">verification-status.txt</span>
+    <div class="section-label">代幣</div>
+    <h2 class="section-headline">MHA 與 mMHA — MAGNE 經濟的結算代幣。</h2>
+    <p class="section-sub">MHA 是 M Hash L2 的原生代幣。mMHA 是用於代理支付結算、任務收據和促進者費用的 ERC-20 等價代幣。</p>
+    <div class="product-grid mt-3">
+      <div class="product-card">
+        <div class="product-icon">🪙</div>
+        <div class="product-label">原生代幣</div>
+        <h3 class="product-title">MHA</h3>
+        <p class="product-desc">M Hash L2 的原生代幣，用於燃料費、質押和網絡級治理。</p>
+        <a href="./token.html" class="product-link">代幣詳情 →</a>
       </div>
-      <div class="terminal-body">
-        <div style="display:grid;grid-template-columns:1fr auto;gap:0;font-size:0.85rem;font-family:'JetBrains Mono',monospace">
-          <div style="padding:0.875rem 1.25rem;color:var(--text-secondary);border-bottom:1px solid var(--border)">智能合約編譯</div>
-          <div style="padding:0.875rem 1.25rem;text-align:right;color:var(--accent-green);border-bottom:1px solid var(--border)">[✓ 已驗證]</div>
-          <div style="padding:0.875rem 1.25rem;color:var(--text-secondary);border-bottom:1px solid var(--border)">智能合約部署（本地 Hardhat）</div>
-          <div style="padding:0.875rem 1.25rem;text-align:right;color:var(--accent-green);border-bottom:1px solid var(--border)">[✓ 已驗證]</div>
-          <div style="padding:0.875rem 1.25rem;color:var(--text-secondary);border-bottom:1px solid var(--border)">後端服務器運行時</div>
-          <div style="padding:0.875rem 1.25rem;text-align:right;color:var(--accent-green);border-bottom:1px solid var(--border)">[✓ 已驗證]</div>
-          <div style="padding:0.875rem 1.25rem;color:var(--text-secondary);border-bottom:1px solid var(--border)">mMHA ERC20 支付</div>
-          <div style="padding:0.875rem 1.25rem;text-align:right;color:var(--accent-green);border-bottom:1px solid var(--border)">[✓ 已驗證]</div>
-          <div style="padding:0.875rem 1.25rem;color:var(--text-secondary);border-bottom:1px solid var(--border)">促進者驗證 — 嚴格模式</div>
-          <div style="padding:0.875rem 1.25rem;text-align:right;color:var(--accent-green);border-bottom:1px solid var(--border)">[✓ 已驗證]</div>
-          <div style="padding:0.875rem 1.25rem;color:var(--text-secondary);border-bottom:1px solid var(--border)">AI 任務收據 — 交易已確認</div>
-          <div style="padding:0.875rem 1.25rem;text-align:right;color:var(--accent-green);border-bottom:1px solid var(--border)">[✓ 已驗證]</div>
-          <div style="padding:0.875rem 1.25rem;color:var(--text-secondary);border-bottom:1px solid var(--border)">M Hash L2 測試網部署</div>
-          <div style="padding:0.875rem 1.25rem;text-align:right;color:var(--accent-yellow);border-bottom:1px solid var(--border)">[⏳ 進行中]</div>
-          <div style="padding:0.875rem 1.25rem;color:var(--text-secondary);border-bottom:1px solid var(--border)">瀏覽器 MetaMask 流程</div>
-          <div style="padding:0.875rem 1.25rem;text-align:right;color:var(--accent-yellow);border-bottom:1px solid var(--border)">[⏳ 進行中]</div>
-          <div style="padding:0.875rem 1.25rem;color:var(--text-secondary)">M Hash L2 瀏覽器鏈接</div>
-          <div style="padding:0.875rem 1.25rem;text-align:right;color:var(--accent-yellow)">[⏳ 進行中]</div>
-        </div>
+      <div class="product-card">
+        <div class="product-icon">🪙</div>
+        <div class="product-label">結算代幣</div>
+        <h3 class="product-title">mMHA (ERC-20)</h3>
+        <p class="product-desc">M Hash L2 上的 ERC-20 代幣，用於代理支付、促進者費用和任務收據面額。</p>
+        <a href="./token.html" class="product-link">代幣詳情 →</a>
       </div>
-    </div>
-    <div class="spec-row mt-3" style="max-width:600px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.5rem">
-      <div>
-        <div style="color:var(--text-muted);font-size:0.75rem;margin-bottom:0.25rem">網絡</div>
-        <div style="font-family:'JetBrains Mono',monospace;color:var(--accent-cyan)">M Hash L2 測試網</div>
-      </div>
-      <div>
-        <div style="color:var(--text-muted);font-size:0.75rem;margin-bottom:0.25rem">鏈 ID</div>
-        <div style="font-family:'JetBrains Mono',monospace;color:var(--accent-cyan)">20250827</div>
-      </div>
-      <div>
-        <div style="color:var(--text-muted);font-size:0.75rem;margin-bottom:0.25rem">瀏覽器</div>
-        <div style="font-family:'JetBrains Mono',monospace;color:var(--accent-green);font-size:0.75rem">testnet.magicalhash.com</div>
+      <div class="product-card">
+        <div class="product-icon">📜</div>
+        <div class="product-label">披露</div>
+        <h3 class="product-title">代幣經濟學與披露</h3>
+        <p class="product-desc">完整代幣分配、歸屬時間表和風險披露已在透明中心發布。</p>
+        <a href="./transparency.html" class="product-link">透明中心 →</a>
       </div>
     </div>
   </div>
@@ -553,43 +368,25 @@
 
 <div class="divider"></div>
 
-<!-- 09 ROADMAP + CTA -->
-<section id="roadmap">
+<!-- TRANSPARENCY -->
+<section id="transparency">
   <div class="container">
-    <div class="section-label">路線圖</div>
-    <h2 class="section-headline">下一步是什麼。什麼被阻擋了。</h2>
-    <div class="roadmap-grid mt-3">
-      <div class="roadmap-col">
-        <div class="roadmap-col-label done">✓ 已完成</div>
-        <div class="roadmap-item done"><span class="icon done">✓</span><span class="text">x402 相容支付流程設計</span></div>
-        <div class="roadmap-item done"><span class="icon done">✓</span><span class="text">智能合約開發（本地）</span></div>
-        <div class="roadmap-item done"><span class="icon done">✓</span><span class="text">促進者服務原型</span></div>
-        <div class="roadmap-item done"><span class="icon done">✓</span><span class="text">AI 任務收據事件設計</span></div>
-        <div class="roadmap-item done"><span class="icon done">✓</span><span class="text">mMHA ERC20 代幣部署</span></div>
-      </div>
-      <div class="roadmap-col">
-        <div class="roadmap-col-label current">→ 進行中</div>
-        <div class="roadmap-item"><span class="icon current">●</span><span class="text">M Hash L2 測試網部署</span></div>
-        <div class="roadmap-item"><span class="icon current">●</span><span class="text">瀏覽器錢包整合</span></div>
-        <div class="roadmap-item"><span class="icon current">●</span><span class="text">MAGNE Phone SDK（內部）</span></div>
-        <div class="roadmap-item"><span class="icon current">●</span><span class="text">SkillHub 註冊表設計</span></div>
-      </div>
-      <div class="roadmap-col">
-        <div class="roadmap-col-label next">○ 下一步</div>
-        <div class="roadmap-item"><span class="icon next">○</span><span class="text">主網部署評估</span></div>
-        <div class="roadmap-item"><span class="icon next">○</span><span class="text">MAGNE Phone 硬件整合</span></div>
-        <div class="roadmap-item"><span class="icon next">○</span><span class="text">第三方 SKILL.md 生態</span></div>
-        <div class="roadmap-item"><span class="icon next">○</span><span class="text">正式安全審計</span></div>
-      </div>
+    <div class="section-label">問責</div>
+    <h2 class="section-headline">透明中心 — 我們知道的、我們不知道的、以及我們正在努力的。</h2>
+    <p class="section-sub">MAGNE.AI 發布真實的狀態報告、代碼驗證證據和決策日誌。本網站任何內容均不構成財務建議。</p>
+    <div class="status-table mt-3">
+      <div class="status-row"><div class="status-label">智能合約 — 編譯</div><div class="status-value verified">[✓ 已驗證]</div></div>
+      <div class="status-row"><div class="status-label">智能合約 — 本地部署</div><div class="status-value verified">[✓ 已驗證]</div></div>
+      <div class="status-row"><div class="status-label">mMHA ERC-20 部署</div><div class="status-value verified">[✓ 已驗證]</div></div>
+      <div class="status-row"><div class="status-label">本地運行時驗證</div><div class="status-value verified">[✓ 已驗證]</div></div>
+      <div class="status-row"><div class="status-label">M Hash L2 測試網部署</div><div class="status-value pending">[⏳ 進行中]</div></div>
+      <div class="status-row"><div class="status-label">瀏覽器錢包流程</div><div class="status-value pending">[⏳ 進行中]</div></div>
+      <div class="status-row"><div class="status-label">公開瀏覽器證據</div><div class="status-value pending">[⏳ 進行中]</div></div>
+      <div class="status-row"><div class="status-label">正式安全審計</div><div class="status-value pending">[⏳ 進行中]</div></div>
     </div>
-
-    <div id="cta" style="padding:6rem 0 4rem;text-align:center">
-      <div class="cta-title">準備好開始構建了嗎？</div>
-      <p class="cta-sub">Fork 演示。閱讀 SKILL.md。部署到測試網。</p>
-      <div class="cta-actions">
-        <a href="./agent-pay.html" class="btn-primary">→ 查看 Agent Pay 演示</a>
-        <a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank" class="btn-secondary">瀏覽 GitHub</a>
-      </div>
+    <div class="mt-3" style="display:flex;gap:0.75rem;flex-wrap:wrap">
+      <a href="./transparency.html" class="btn-primary">→ 透明中心</a>
+      <a href="./version-history.html" class="btn-secondary">版本歷史 →</a>
     </div>
   </div>
 </section>
@@ -602,16 +399,15 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="./index.html" class="nav-logo">MAGNE<span>.AI</span></a>
-        <p>M Hash L2 上的 x402 相容 AI 代理支付軌道。專為機器對機器結算設計，支持人工覆寫。</p>
+        <p>安全行動端授權、M Hash L2 結算與 AI 任務收據，服務於正在形成的代理支付工作流程。</p>
       </div>
       <div class="footer-col">
         <h4>產品</h4>
         <ul>
-          <li><a href="./token.html">代幣</a></li>
+          <li><a href="./agent-pay.html">Agent Pay</a></li>
+          <li><a href="./network.html">網絡</a></li>
           <li><a href="./ecosystem.html">生態</a></li>
           <li><a href="./learn.html">學習</a></li>
-          <li><a href="./network.html">網絡</a></li>
-          <li><a href="./session2.html">Session2</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -620,15 +416,23 @@
           <li><a href="./developers.html">文檔</a></li>
           <li><a href="./developers-contract.html">合約</a></li>
           <li><a href="./developers-connect.html">連接</a></li>
-          <li><a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank">GitHub</a></li>
+          <li><a href="./developers-app.html">構建 DApp</a></li>
+          <li><a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank">GitHub ↗</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>資源</h4>
         <ul>
+          <li><a href="./token.html">代幣</a></li>
+          <li><a href="./transparency.html">透明中心</a></li>
           <li><a href="./faq.html">常見問題</a></li>
-          <li><a href="./transparency.html">透明度</a></li>
-          <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank">M Hash L2 瀏覽器 ↗</a></li>
+          <li><a href="./version-history.html">版本歷史</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>網絡</h4>
+        <ul>
+          <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank">L2 瀏覽器 ↗</a></li>
           <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M-Hash-L2 ↗</a></li>
         </ul>
       </div>
@@ -636,7 +440,7 @@
     <div class="footer-bottom">
       <p>© 2026 MAGNE.AI. 版權所有。</p>
       <p class="footer-disclaimer">
-        本網站為測試網階段開發者演示。本網站任何內容均不構成財務建議、出售要約或購買要約。關於未來計劃、功能或能力的任何聲明均為前瞻性表述，可能會發生變化。過去表現不代表未來結果。
+        本網站為測試網階段開發者演示。本網站任何內容均不構成財務建議、出售要約或購買要約。關於未來計劃、功能或能力的任何聲明均為前瞻性表述，可能會發生變化。過去表現不代表未來結果。代理、開發者和用戶在參與任何社區活動前，應查閱完整的活動條款及條件。
       </p>
     </div>
   </div>

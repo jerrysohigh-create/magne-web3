@@ -2,258 +2,109 @@
 
 ---
 
-## v1.2.0 — Complete Traditional Chinese Translation
+## Current Status — 2026-05-22
 
-**Status:** Released
+### Architecture Update
 
-**Date:** 2026-05-01
-
-**Website:** https://web3.magne.ai
-
----
-
-### Scope
-
-- Added Traditional Chinese Developer Hub (`/tc/developers.html`)
-- Added Traditional Chinese Connect Wallet guide (`/tc/developers-connect.html`)
-- Added Traditional Chinese Deploy Contract guide (`/tc/developers-contract.html`)
-- Added Traditional Chinese Build DApp guide (`/tc/developers-app.html`)
-- Added Traditional Chinese Tokenomics Detail (`/tc/tokenomics-detail.html`)
-- All English pages updated with correct language switch to TC pages
-- Updated sitemap.xml (28 URLs - 14 EN + 13 TC + coming-soon)
-- Full Traditional Chinese translation complete for all 13 pages
+- **Homepage rebuilt** in nara.build terminal aesthetic style
+- **Agent Pay** positioned as flagship developer demo (not full homepage)
+- **Session2** demoted from main nav — campaign page only
+- **TRANSPARENCY** and **DEVELOPERS** restored as primary nav items
+- Nav restructured: HOME / AGENT PAY / NETWORK / DEVELOPERS / TOKEN / ECOSYSTEM / TRANSPARENCY / FAQ
+- Session2 accessible only via Ecosystem page
+- GitHub Pages: https://jerrysohigh-create.github.io/magne-web3/
 
 ---
 
-### Not Included in v1.2.0
+## Version Reference
 
-- Simplified Chinese version
-- Additional languages beyond English and Traditional Chinese
-- PDF download center / Data Room entry
+### Current Site Structure
 
----
-
-### Maintenance Policy
-
-**Status: Observation Period — No further language expansion**
-
-Only the following changes will be considered during the observation period:
-
-| Feedback Type | Target Version |
-|---------------|----------------|
-| 錯字、連結、格式、手機顯示 | v1.2.1 |
-| 繁中合規措辭微調 | v1.2.1 |
-| 律師 / 交易所要求補充披露 | v1.3.0 |
-| PDF 下載中心 / Data Room 入口 | v1.3.0 |
-| 簡體中文或其他語言 | 暫不啟動，等明確需求 |
-| Tokenomics 重大變更 | 重新審查，不直接 patch |
-
----
-
-## v1.1.1 — Traditional Chinese Expansion
-
-**Status:** Released
-
-**Date:** 2026-05-01
-
-**Website:** https://web3.magne.ai
-
----
-
-### Scope
-
-- Added Traditional Chinese Learn page (`/tc/learn.html`)
-- Added Traditional Chinese Network page (`/tc/network.html`)
-- Added Traditional Chinese Ecosystem page (`/tc/ecosystem.html`)
-- Updated language switch for corresponding English pages
-- Updated sitemap.xml (23 URLs)
-
----
-
-## v1.1.0 — Traditional Chinese Core Pages
-
-**Status:** Released
-
-**Date:** 2026-05-01
-
-**Website:** https://web3.magne.ai
-
----
-
-### Scope
-
-- Added Traditional Chinese homepage (`/tc/index.html`)
-- Added Traditional Chinese token disclosure page (`/tc/token.html`)
-- Added Traditional Chinese Transparency Center (`/tc/transparency.html`)
-- Added Traditional Chinese FAQ (`/tc/faq.html`)
-- Added Traditional Chinese Version History (`/tc/version-history.html`)
-- Updated language switch for corresponding English pages
-- Updated hreflang metadata
-- Updated sitemap.xml (20 URLs)
-
----
-
-### Authoritative Version
-
-**English remains the primary authoritative public version.**
-
-Traditional Chinese pages are provided for exchange, legal, compliance, and community review.
-
----
-
-### Localization Principle
-
-**Compliance-equivalent translation, not promotional rewriting.**
-
-Conservative wording for token, risk, and legal content. No marketing language.
-
----
-
-### Not Included in v1.1.0
-
-- Simplified Chinese version
-- Full developer documentation translation
-- Tokenomics Detail translation
-- Additional languages
-
----
-
-### v1.1.0 Compliance Verification — ALL PASS
-
-| Check | Status |
-|-------|--------|
-| Prohibited terms | ✅ PASS |
-| Required legal terms present | ✅ PASS |
-| Language switch correct | ✅ PASS |
-| hreflang tags | ✅ PASS |
-| Tone conservative/formal | ✅ PASS |
-
----
-
-### Language Structure
-
-```
-/ (English - default)
-├── index.html
-├── learn.html
-├── developers.html
-├── network.html
-├── token.html
-├── ecosystem.html
-├── transparency.html
-├── faq.html
-├── version-history.html
-├── tokenomics-detail.html
-├── coming-soon.html (placeholder)
-└── /tc/ (Traditional Chinese)
-    ├── index.html
-    ├── learn.html
-    ├── network.html
-    ├── token.html
-    ├── tokenomics-detail.html
-    ├── ecosystem.html
-    ├── tokenomics-detail.html
-    ├── transparency.html
-    ├── faq.html
-    └── version-history.html
-```
-
----
-
-## v1.0.1 — English + Multilingual Architecture Prepared
-
-**Status:** Released
-
-**Date:** 2026-05-01
-
-**Website:** https://web3.magne.ai
-
----
-
-### Scope
-
-- 14 English HTML pages
-- Navigation simplified from 12 to 8 items
-- Language switch infrastructure (EN / 繁中)
-- hreflang metadata prepared
-- SEO metadata on all pages
-- sitemap.xml (English pages)
-- robots.txt
-- 404.html
-
----
-
-## v1.0.0 — English Public Release
-
-**Status:** Released
-
-**Date:** 2026-05-01
-
----
-
-### Scope
-
-- Initial public Web3 infrastructure portal
-- MAGNE L1 and M Hash L2 testnet documentation
-- Developer Hub with network configuration
-- Token disclosure (MHA)
-- Transparency Center (legal documents, audits, disclosures)
-- FAQ and Version History
-
----
-
-## Current Site Structure
-
-### English Main Site (Primary Authoritative Version)
-
+**English (`/`)**
 | Page | Description |
 |------|-------------|
-| Home | Project overview and key features |
-| Learn | Blockchain education and MAGNE.AI technology explanation |
-| Developers | Developer Hub with network configuration and guides |
-| Network | MAGNE L1 and M Hash L2 testnet infrastructure |
-| Token | $MHA token information and disclosure |
-| Ecosystem | Ecosystem overview and initiatives |
-| Transparency | Legal documents, audits, and disclosures |
-| FAQ | Frequently asked questions |
-| Version History | Website version history and archived materials |
-| Tokenomics Detail | Detailed token distribution and risk disclosure |
+| index.html | Web3 Portal + Agent Pay hero narrative |
+| agent-pay.html | **Flagship** — x402 AI agent payment demo |
+| network.html | M Hash L2 network |
+| developers.html | Developer Hub |
+| developers-contract.html | Deploy Smart Contracts |
+| developers-connect.html | Connect to Testnets |
+| developers-app.html | Build a DApp |
+| token.html | Token disclosure |
+| ecosystem.html | Ecosystem + Session2 campaign card |
+| transparency.html | Transparency Center |
+| version-history.html | Version History |
+| faq.html | FAQ |
+| session2.html | **Campaign** — separate terms, not in main nav |
 
-### Traditional Chinese Core Pages
-
+**Traditional Chinese (`/tc/`)**
 | Page | Description |
 |------|-------------|
-| /tc/index.html | 首頁 |
-| /tc/token.html | 代幣 |
-| /tc/transparency.html | 透明中心 |
-| /tc/faq.html | 常見問題 |
-| /tc/version-history.html | 版本歷史 |
+| tc/index.html | Web3 入口 + Agent Pay 主叙事 |
+| tc/session2.html | Session2 繁體中文活動頁面 |
 
 ---
 
-## Version Timeline
+## Agent Pay Messaging — Revision Log
 
-| Version | Status | Description |
-|---------|--------|-------------|
-| v1.0.0 | ✅ Released | English public release |
-| v1.0.1 | ✅ Released | English + multilingual architecture prepared |
-| v1.1.0 | ✅ Released | Traditional Chinese core pages |
-| v1.1.1 | ✅ Released | Traditional Chinese expansion (Learn, Network, Ecosystem) |
-| v1.2.0 | ✅ Released | Complete Traditional Chinese translation (all 13 pages) |
-| v1.2.1 | Pending | Observation period — typo, link, legal wording fixes |
-| v1.3.0 | Under Evaluation | Simplified Chinese, exchange-requested disclosures |
-| v1.3.0+ | Under Evaluation | PDF download center, Data Room, structural updates |
+Corrected 7 messaging items on agent-pay.html:
+
+1. Problem card: "No Agent Payment Rail" → "Agent payment rails are emerging..."
+2. Flow: "on-chain receipt — in milliseconds" → "verifiable receipt — a programmable workflow"
+3. Hero sub: Added testnet disclaimer — "local runtime demonstration... M Hash L2 testnet deployment in progress"
+4. Terminal demo header: Removed "real transaction hashes" claim
+5. Runtime status: Split into clear categories (local verified vs. testnet pending vs. browser pending vs. explorer pending)
+6. TEE Runtime: English-only (removed mixed EN/TC text)
+7. x402 compatibility: Added "subject to implementation and compatibility testing"
 
 ---
 
-## v1.2.0 Launch Conditions
+## Session2 Campaign Page — Isolation
 
-v1.2.0 will be considered when ANY of the following is met:
+- Removed from main navigation (all pages)
+- Added to ecosystem.html Community Campaigns section with card + disclaimer
+- Added campaign-specific disclaimer: "Separate campaign terms apply... This page does not form part of the technical network disclosure."
+- Nav updated to "← Back to Portal" CTA
 
-1. Exchange team explicitly requests Simplified Chinese
-2. Mainland China / Southeast Asia Chinese community outreach begins
-3. Traditional Chinese version is stable and completes one legal review cycle
-4. English and Traditional Chinese content is no longer frequently adjusted
+---
+
+## GitHub Pages Deployment
+
+- **URL:** https://jerrysohigh-create.github.io/magne-web3/
+- **Main domain:** https://web3.magne.ai (CNAME target)
+- **Last rebuild:** 2026-05-22
+
+---
+
+## Technical Verification Status
+
+| Component | Status |
+|-----------|--------|
+| Smart contracts compile | ✓ Verified |
+| Smart contracts deploy (local) | ✓ Verified |
+| Backend server runtime | ✓ Verified |
+| mMHA ERC-20 payment | ✓ Verified |
+| Facilitator strict verify | ✓ Verified |
+| AI Task Receipt tx | ✓ Verified |
+| Local runtime verified | ✓ Verified |
+| M Hash L2 testnet deployment | ⏳ In Progress |
+| Browser wallet flow | ⏳ Pending |
+| Public explorer evidence | ⏳ Pending |
+| Formal security audit | ⏳ Pending |
+
+---
+
+## Previous Release History
+
+| Version | Date | Description |
+|---------|------|-------------|
+| v1.2.0 | 2026-05-01 | Complete Traditional Chinese translation (all pages) |
+| v1.1.1 | 2026-05-01 | TC expansion: Learn, Network, Ecosystem |
+| v1.1.0 | 2026-05-01 | TC core pages: index, token, transparency, faq, version-history |
+| v1.0.1 | 2026-05-01 | English + multilingual architecture prepared |
+| v1.0.0 | 2026-05-01 | Initial English public release |
+
+> Versions prior to 2026-05-22 are archived. Current active development is unversioned (rolling releases).
 
 ---
 
@@ -263,7 +114,7 @@ v1.2.0 will be considered when ANY of the following is met:
 
 Nothing on this website constitutes investment advice, financial advice, public offering, solicitation, or a guarantee of rewards, income, profit, liquidity, exchange listing, or token value.
 
-Token-related, governance-related, and device-based participation information may change based on technical development, governance-approved rules, regulatory requirements, and market conditions.
+Campaign participation (Session2) is governed by separate campaign terms and does not form part of the technical network disclosure.
 
 ---
 
@@ -272,11 +123,9 @@ Token-related, governance-related, and device-based participation information ma
 | Network | Chain ID | Status |
 |---------|----------|--------|
 | MAGNE L1 Testnet | 20250810 | Testing |
-| M Hash L2 Testnet | 20250827 | Testing |
+| M Hash L2 Testnet | 20250827 | Testing — deployment in progress |
 
-**Token:** MHA (10,000,000,000 total supply)
-
-**Note:** Testnet tokens have no monetary value.
+**Token:** MHA / mMHA (test tokens, no mainnet value)
 
 ---
 
