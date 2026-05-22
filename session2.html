@@ -1595,6 +1595,43 @@
     .demo-modal-close:hover {
       opacity: 0.9;
     }
+
+    /* Status Flow */
+    .status-flow {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .status-step {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem;
+      text-align: center;
+      width: 120px;
+    }
+    .status-step.pending { border-color: rgba(255,200,0,0.4); }
+    .status-step.confirmed { border-color: rgba(0,200,100,0.4); }
+    .status-step.claimable { border-color: rgba(0,255,200,0.4); }
+    .status-step.review { border-color: rgba(255,100,0,0.4); }
+    .status-step.disqualified { border-color: rgba(255,50,50,0.4); }
+    .status-icon { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .status-label { font-size: 0.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+    .status-desc { font-size: 0.7rem; color: var(--text-tertiary); line-height: 1.4; }
+    .status-arrow { font-size: 1.2rem; color: var(--text-tertiary); align-self: center; padding-top: 0.5rem; }
+
+    /* Risk Card */
+    .risk-card {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: rgba(255,100,50,0.05);
+      border: 1px solid rgba(255,100,50,0.2);
+      border-radius: 12px;
+    }
+    .risk-card ol { margin: 0; padding-left: 1.2rem; }
+    .risk-card li { margin-bottom: 0.25rem; }
   </style>
 </head>
 <body>
@@ -2096,6 +2133,60 @@
       <button class="action-btn" onclick="showDemoModal('simulate')">🎁 Simulate Referral Reward</button>
       <button class="action-btn" onclick="showDemoModal('milestone')">🏆 View Next Milestone</button>
     </div>
+
+    <!-- REWARD STATUS FLOW -->
+    <div style="margin-top: 2rem;">
+      <h4 style="font-size: 1rem; color: var(--accent-gold); margin-bottom: 1rem;">Referral Reward Status Flow</h4>
+      <div class="status-flow">
+        <div class="status-step pending">
+          <div class="status-icon">⏳</div>
+          <div class="status-label">Pending</div>
+          <div class="status-desc">Friend has completed participation and reward enters pending status</div>
+        </div>
+        <div class="status-arrow">→</div>
+        <div class="status-step confirmed">
+          <div class="status-icon">✓</div>
+          <div class="status-label">Confirmed</div>
+          <div class="status-desc">Basic eligibility verification has been completed</div>
+        </div>
+        <div class="status-arrow">→</div>
+        <div class="status-step claimable">
+          <div class="status-icon">🎁</div>
+          <div class="status-label">Claimable</div>
+          <div class="status-desc">Reward meets claim conditions and may be requested</div>
+        </div>
+        <div class="status-arrow">→</div>
+        <div class="status-step review">
+          <div class="status-icon">🔍</div>
+          <div class="status-label">Under Review</div>
+          <div class="status-desc">Suspicious activity review has been triggered</div>
+        </div>
+        <div class="status-arrow">→</div>
+        <div class="status-step disqualified">
+          <div class="status-icon">✗</div>
+          <div class="status-label">Disqualified</div>
+          <div class="status-desc">Rule violation is confirmed and related rewards or eligibility are cancelled</div>
+        </div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-tertiary); text-align: center;">
+        Demo rule preview: After a friend completes participation, Dashboard immediately shows Pending Reward; only converts to Claimable after passing basic risk-control verification.
+      </p>
+    </div>
+
+    <!-- RISK CONTROL CARD -->
+    <div class="risk-card">
+      <h4 style="font-size: 1rem; color: var(--accent-gold); margin-bottom: 1rem;">Referral and Anti-Abuse Rules</h4>
+      <ol style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2; padding-left: 1.2rem;">
+        <li>Referral rewards apply only to one-level direct referrals. No second-level, third-level, or multi-level referral reward exists.</li>
+        <li>Referral relationships cannot be changed after the invited participant completes the first eligible entry.</li>
+        <li>Official default entry links do not generate referral rewards and do not count toward leaderboard ranking.</li>
+        <li>Market-purchased MS2, secondary market trading volume, or externally transferred MS2 do not generate direct referral rewards.</li>
+        <li>MS2 purchased from the market by invited participants cannot unlimitedly increase the inviter's Community Contribution Value.</li>
+        <li>MS2 staking amount counted toward an inviter's Community Contribution Value is capped at the amount of MS2 released to that invited participant through eligible campaign entries.</li>
+        <li>Self-referral, bot activity, wash participation, circular funding, Sybil behavior, or other suspicious conduct may lead to reward cancellation and loss of eligibility.</li>
+        <li>Large rewards, leaderboard eligibility, and pool allocation may be subject to additional eligibility review, KYC/AML requirements where applicable, and regional restrictions.</li>
+      </ol>
+    </div>
   </div>
 </section>
 
@@ -2308,6 +2399,15 @@
   </div>
 </section>
 
+<!-- LEADERBOARD SEPARATION NOTICE -->
+<div class="milestone-progress" style="margin-bottom: 2rem;">
+  <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8;">
+    <strong style="color: var(--accent-gold);">Referral Milestones and the Community Builder Leaderboard are separate campaign layers.</strong><br><br>
+    Regular participants may invite 1, 3, 5, or 10 eligible friends to unlock direct referral reward previews and product-related eligibility previews.<br><br>
+    The Community Builder Pool is designed for advanced community contributors who generate substantial qualified participation and retention. Only addresses reaching at least <strong style="color: var(--accent);">100,000</strong> qualified Community Contribution Value may be eligible for pool review.
+  </div>
+</div>
+
 <!-- LEADERBOARD -->
 <section id="leaderboard">
   <div class="section-header">
@@ -2404,39 +2504,42 @@
 <section id="allocation">
   <div class="section-header">
     <h2>Fund Allocation</h2>
-    <p>Campaign fund allocation preview</p>
+    <p>Allocation breakdown per 10 USDT campaign participation</p>
   </div>
   <div class="allocation-grid">
     <div class="alloc-item">
       <span class="alloc-label">Phone Reward Pool</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 50%"></div></div>
-      <span class="alloc-pct">50%</span>
+      <span class="alloc-pct">50% — 5.00 USDT</span>
     </div>
     <div class="alloc-item">
-      <span class="alloc-label">MS2 Buyback/Burn</span>
+      <span class="alloc-label">MS2 Buyback & Burn Pool</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 20%"></div></div>
-      <span class="alloc-pct">20%</span>
+      <span class="alloc-pct">20% — 2.00 USDT</span>
     </div>
     <div class="alloc-item">
       <span class="alloc-label">Community Builder Pool</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 15%"></div></div>
-      <span class="alloc-pct">15%</span>
+      <span class="alloc-pct">15% — 1.50 USDT</span>
     </div>
     <div class="alloc-item">
       <span class="alloc-label">Base Direct Referral Rewards</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 5%"></div></div>
-      <span class="alloc-pct">5%</span>
+      <span class="alloc-pct">5% — 0.50 USDT</span>
     </div>
     <div class="alloc-item">
       <span class="alloc-label">Launch Referral Booster Pool</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 1%"></div></div>
-      <span class="alloc-pct">1%</span>
+      <span class="alloc-pct">1% — 0.10 USDT</span>
     </div>
     <div class="alloc-item">
-      <span class="alloc-label">Operations/Liquidity/Risk Reserve</span>
+      <span class="alloc-label">Operations / Liquidity / Risk Reserve</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 9%"></div></div>
-      <span class="alloc-pct">9%</span>
+      <span class="alloc-pct">9% — 0.90 USDT</span>
     </div>
+  </div>
+  <div style="margin-top: 1rem; text-align: center; font-size: 0.85rem; color: var(--text-tertiary);">
+    Full cap of 100,000 entries corresponds to 1,000,000 USDT. Allocation subject to final campaign rules.
   </div>
 </section>
 

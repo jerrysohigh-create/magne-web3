@@ -1592,6 +1592,43 @@
     .demo-modal-close:hover {
       opacity: 0.9;
     }
+
+    /* Status Flow */
+    .status-flow {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .status-step {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem;
+      text-align: center;
+      width: 120px;
+    }
+    .status-step.pending { border-color: rgba(255,200,0,0.4); }
+    .status-step.confirmed { border-color: rgba(0,200,100,0.4); }
+    .status-step.claimable { border-color: rgba(0,255,200,0.4); }
+    .status-step.review { border-color: rgba(255,100,0,0.4); }
+    .status-step.disqualified { border-color: rgba(255,50,50,0.4); }
+    .status-icon { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .status-label { font-size: 0.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+    .status-desc { font-size: 0.7rem; color: var(--text-tertiary); line-height: 1.4; }
+    .status-arrow { font-size: 1.2rem; color: var(--text-tertiary); align-self: center; padding-top: 0.5rem; }
+
+    /* Risk Card */
+    .risk-card {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: rgba(255,100,50,0.05);
+      border: 1px solid rgba(255,100,50,0.2);
+      border-radius: 12px;
+    }
+    .risk-card ol { margin: 0; padding-left: 1.2rem; }
+    .risk-card li { margin-bottom: 0.25rem; }
   </style>
 </head>
 <body>
@@ -2094,6 +2131,60 @@
       <button class="action-btn" onclick="showDemoModal('simulate')">🎁 模擬邀請獎勵</button>
       <button class="action-btn" onclick="showDemoModal('milestone')">🏆 查看下一里程碑</button>
     </div>
+
+    <!-- REWARD STATUS FLOW -->
+    <div style="margin-top: 2rem;">
+      <h4 style="font-size: 1rem; color: var(--accent-gold); margin-bottom: 1rem;">邀請獎勵狀態流程</h4>
+      <div class="status-flow">
+        <div class="status-step pending">
+          <div class="status-icon">⏳</div>
+          <div class="status-label">Pending</div>
+          <div class="status-desc">好友已完成參與，獎勵進入待確認狀態</div>
+        </div>
+        <div class="status-arrow">→</div>
+        <div class="status-step confirmed">
+          <div class="status-icon">✓</div>
+          <div class="status-label">Confirmed</div>
+          <div class="status-desc">基本有效性驗證已完成</div>
+        </div>
+        <div class="status-arrow">→</div>
+        <div class="status-step claimable">
+          <div class="status-icon">🎁</div>
+          <div class="status-label">Claimable</div>
+          <div class="status-desc">符合領取條件，可申請領取</div>
+        </div>
+        <div class="status-arrow">→</div>
+        <div class="status-step review">
+          <div class="status-icon">🔍</div>
+          <div class="status-label">Under Review</div>
+          <div class="status-desc">觸發異常行為審核，暫停處理</div>
+        </div>
+        <div class="status-arrow">→</div>
+        <div class="status-step disqualified">
+          <div class="status-icon">✗</div>
+          <div class="status-label">Disqualified</div>
+          <div class="status-desc">確認違規，相關獎勵及資格取消</div>
+        </div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-tertiary); text-align: center;">
+        Demo 規則預覽：好友完成參與後，Dashboard 可立即顯示 Pending Reward；通過基礎風控驗證後，方可轉為 Claimable。
+      </p>
+    </div>
+
+    <!-- RISK CONTROL CARD -->
+    <div class="risk-card">
+      <h4 style="font-size: 1rem; color: var(--accent-gold); margin-bottom: 1rem;">邀請與反作弊規則</h4>
+      <ol style="font-size: 0.85rem; color: var(--text-secondary); line-height: 2; padding-left: 1.2rem;">
+        <li>邀請獎勵僅適用於一級直接邀請，不存在二級、三級或多級返獎。</li>
+        <li>被邀請人完成首次有效參與後，邀請關係不可更改。</li>
+        <li>官方默認入口不產生邀請獎勵，也不計入排行榜。</li>
+        <li>市場買入 MS2、二級市場交易量或外部轉入 MS2，不產生直接邀請獎勵。</li>
+        <li>被邀請人市場買入的 MS2，不可無限制增加邀請人的社群貢獻值。</li>
+        <li>可計入邀請人社群貢獻值的被邀請人 MS2 質押量，最高不超過該被邀請人透過有效活動參與獲得的 MS2 數量。</li>
+        <li>自邀請、機器人、刷量、循環資金、同控制人批量地址、女巫行為或其他異常行為，可能導致獎勵取消及資格失效。</li>
+        <li>大額獎勵、排行榜資格及獎池分配，可能需通過額外資格審核、KYC/AML 要求及適用地區限制。</li>
+      </ol>
+    </div>
   </div>
 </section>
 
@@ -2306,6 +2397,15 @@
   </div>
 </section>
 
+<!-- LEADERBOARD SEPARATION NOTICE -->
+<div class="milestone-progress" style="margin-bottom: 2rem;">
+  <div style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8;">
+    <strong style="color: var(--accent-gold);">普通邀請里程碑與 Community Builder 排行榜屬於不同層級的活動機制。</strong><br><br>
+    普通用戶可透過邀請 1、3、5 或 10 名有效好友，解鎖直接邀請獎勵及產品型權益資格預覽。<br><br>
+    Community Builder Pool 則面向能夠帶來大量真實參與與有效留存的高階社群建設者。只有有效社群貢獻值達到 <strong style="color: var(--accent);">100,000</strong> 的地址，才可能符合獎池資格評估條件。
+  </div>
+</div>
+
 <!-- LEADERBOARD -->
 <section id="leaderboard">
   <div class="section-header">
@@ -2402,39 +2502,42 @@
 <section id="allocation">
   <div class="section-header">
     <h2>資金分配</h2>
-    <p>活動資金用途說明</p>
+    <p>每筆 10 USDT 活動參與金額的配置方式</p>
   </div>
   <div class="allocation-grid">
     <div class="alloc-item">
-      <span class="alloc-label">手機獎勵池</span>
+      <span class="alloc-label">手機獎品池</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 50%"></div></div>
-      <span class="alloc-pct">50%</span>
+      <span class="alloc-pct">50% — 5.00 USDT</span>
     </div>
     <div class="alloc-item">
-      <span class="alloc-label">MS2 回購/銷毀</span>
+      <span class="alloc-label">MS2 回購與銷毀池</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 20%"></div></div>
-      <span class="alloc-pct">20%</span>
+      <span class="alloc-pct">20% — 2.00 USDT</span>
     </div>
     <div class="alloc-item">
       <span class="alloc-label">社群建設者獎池</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 15%"></div></div>
-      <span class="alloc-pct">15%</span>
+      <span class="alloc-pct">15% — 1.50 USDT</span>
     </div>
     <div class="alloc-item">
       <span class="alloc-label">基礎直接邀請獎勵</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 5%"></div></div>
-      <span class="alloc-pct">5%</span>
+      <span class="alloc-pct">5% — 0.50 USDT</span>
     </div>
     <div class="alloc-item">
       <span class="alloc-label">首邀加速獎勵池</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 1%"></div></div>
-      <span class="alloc-pct">1%</span>
+      <span class="alloc-pct">1% — 0.10 USDT</span>
     </div>
     <div class="alloc-item">
-      <span class="alloc-label">運營/流動性/風控儲備</span>
+      <span class="alloc-label">運營、流動性與風控儲備</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 9%"></div></div>
-      <span class="alloc-pct">9%</span>
+      <span class="alloc-pct">9% — 0.90 USDT</span>
     </div>
+  </div>
+  <div style="margin-top: 1rem; text-align: center; font-size: 0.85rem; color: var(--text-tertiary);">
+    滿額 100,000 次參與對應 1,000,000 USDT。配置以最終活動規則為準。
   </div>
 </section>
 
