@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAGNE Agent Pay V0.1 | x402 相容 AI 代理支付演示</title>
-  <meta name="description" content="MAGNE Agent Pay 是一個測試網階段的開發者演示 for x402-compatible AI agent payment, wallet authorization, facilitator verification, and AI Task Receipt generation on M Hash L2.">
+  <meta name="description" content="MAGNE Agent Pay 是一個測試網階段的開發者演示，展示了 x402 相容 AI 代理支付領域的錢包授權、促進者驗證和 AI 任務收據生成。">
   <meta property="og:title" content="MAGNE Agent Pay V0.1 | x402 相容 AI 代理支付演示">
   <meta property="og:description" content="A developer demo for AI agent payment on M Hash L2. Designed for low-cost, scalable settlement. Public performance metrics will be published as testnet validation progresses.">
   <meta property="og:type" content="website">
@@ -609,7 +609,7 @@
         </div>
         <div class="hero-stat">
           <div class="val">V0.1</div>
-          <div class="lbl">Local Runtime</div>
+          <div class="lbl">本地運行時</div>
         </div>
         <div class="hero-stat">
           <div class="val">x402</div>
@@ -675,7 +675,7 @@
         <div class="flow-step">
           <div class="flow-step-num">3</div>
           <div class="flow-step-label">Wallet Auth</div>
-          <div class="flow-step-desc">MetaMask or MAGNE Phone</div>
+          <div class="flow-step-desc">MetaMask 或 MAGNE Phone</div>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step">
@@ -726,16 +726,16 @@
       <div class="section-header">
         <span class="section-eyebrow">On-Chain Verification</span>
         <h2>AI Task 收據層</h2>
-        <p>Every payment creates an immutable, programmable receipt on M Hash L2.</p>
+        <p>每筆支付都在 M Hash L2 上創建不可篡改、可編程的收據。</p>
       </div>
       <div class="receipt-grid">
         <div class="receipt-card">
-          <h3>Why Receipts Matter</h3>
-          <p>AI Task Receipts are verifiable proof that a payment was made, a task was requested, and a result was returned. Any party — agent, user, auditor, or smart contract — can independently verify the full history on-chain.</p>
-          <p style="margin-top: 1rem;">Receipts are designed to be programmable: agents can reference them in subsequent transactions, dispute resolution contracts can read them, and compliance systems can audit them without requiring trusted intermediaries.</p>
+          <h3>為什麼收據重要</h3>
+          <p>AI 任務收據是可驗證的證明，證明支付已發生、任務已請求、結果已返回。任何一方 — 代理、用戶、審計員或智能合約 — 都可以獨立在鏈上驗證完整歷史。</p>
+          <p style="margin-top: 1rem;">收據被設計為可編程的：代理可以在後續交易中引用它們、爭議解決合約可以讀取它們、合規系統可以在不需要可信中介的情況下審計它們。</p>
         </div>
         <div class="receipt-card">
-          <h3>Contract Event</h3>
+          <h3>合約事件</h3>
           <p style="margin-bottom: 0.5rem; font-size: 0.88rem;">The <code style="color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">AITaskReceiptCreated</code> event is emitted on M Hash L2 when a receipt is finalized:</p>
           <div class="receipt-event">
             <span class="evt-name">事件 AITaskReceiptCreated(</span>
@@ -759,8 +759,8 @@
     <div class="container">
       <div class="section-header">
         <span class="section-eyebrow">Developer Integration</span>
-        <h2>Your Code + SKILL.md = An Aapp</h2>
-        <p>A SKILL.md defines the agent-facing contract. Agents read it; services fulfill it. No proprietary SDK required.</p>
+        <h2>你的代碼 + SKILL.md = 一個 Aapp</h2>
+        <p>SKILL.md 定義了面向代理的合約。代理讀取它；服務履行它。不需要專有 SDK。</p>
       </div>
       <div class="sdk-code"><span class="cmt">// SKILL.md — AI Agent Service Contract</span>
 {
@@ -796,8 +796,8 @@
     <div class="container">
       <div class="section-header">
         <span class="section-eyebrow">Verification 狀態</span>
-        <h2>Runtime Verification</h2>
-        <p>Every claim backed by on-chain data or runtime logs. No speculation.</p>
+        <h2>運行時驗證</h2>
+        <p>每個聲明都由鏈上數據或運行時日誌支持。沒有猜測。</p>
       </div>
       <table class="status-table">
         <thead>
@@ -809,9 +809,9 @@
         </thead>
         <tbody>
           <tr>
-            <td>Smart contracts compile</td>
+            <td>智能合約 — 編譯</td>
             <td><span class="status-ok">✓ 已驗證</span></td>
-            <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">npx hardhat compile → "Compiled 2 Solidity files successfully"</span></td>
+            <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">npx hardhat compile → "已成功編譯 2 個 Solidity 文件"</span></td>
           </tr>
           <tr>
             <td>Smart contracts deploy</td>
@@ -824,17 +824,17 @@
             <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">node server.js → http://127.0.0.1:3000/health OK</span></td>
           </tr>
           <tr>
-            <td>mMHA ERC20 payment</td>
+            <td>mMHA ERC-20 支付</td>
             <td><span class="status-ok">✓ 已驗證</span></td>
             <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">交易：0xe97d2a12b86bde14f7092415a1d238110d8440b4785378d5b6ce555fb18b3a0c (block 4)</span></td>
           </tr>
           <tr>
-            <td>Facilitator strict verify</td>
+            <td>促進者嚴格驗證</td>
             <td><span class="status-ok">✓ 已驗證</span></td>
             <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">strict mode: no fallback on failure, returns {status:'failed'}</span></td>
           </tr>
           <tr>
-            <td>AI Task Receipt tx</td>
+            <td>AI 任務收據交易</td>
             <td><span class="status-ok">✓ 已驗證</span></td>
             <td><span class="mono" style="font-size:0.75rem; color:var(--text-secondary)">交易：0x26942b7d2c47d2b2f52f8863938ab1aad420ccc1371d842aa76d0f48955f7212</span></td>
           </tr>
@@ -864,8 +864,8 @@
     <div class="container">
       <div class="section-header">
         <span class="section-eyebrow">Ecosystem Position</span>
-        <h2>Where MAGNE Fits in Agent Payments</h2>
-        <p>MAGNE is not competing with Coinbase, OKX, or Binance. It focuses on a specific layer: secure mobile authorization and verifiable AI Task Receipts on M Hash L2.</p>
+        <h2>MAGNE 在代理支付中的定位</h2>
+        <p>MAGNE 不是在與 Coinbase、OKX 或幣安競爭。它專注於一個特定層：安全行動端授權和 M Hash L2 上的可驗證 AI 任務收據。</p>
       </div>
       <div class="compat-table">
         <div class="compat-row header">
@@ -907,7 +907,7 @@
 <section id="compatibility">
     <div class="container">
     <h2 class="section-label">Compatibility 路線圖</h2>
-    <p class="compat-intro">MAGNE Agent Pay is aligned with the emerging open x402 standard and AP2-style authorization awareness. Not a Coinbase partnership — a developer demo for the broader ecosystem.</p>
+    <p class="compat-intro">MAGNE Agent Pay 與新興的開放 x402 標準和 AP2 風格授權意識保持一致。不是 Coinbase 的合作夥伴 — 而是面向更廣泛生態的開發者演示。</p>
     
     <div class="compat-grid">
       <div class="compat-tier">
@@ -918,42 +918,42 @@
               <span class="compat-name">x402 Foundation / Linux Foundation</span>
               <span class="compat-badge p0">P0</span>
             </div>
-            <p>Aligned with emerging open x402 standard (not Coinbase-specific). x402 Foundation announced April 2026 under Linux Foundation with Coinbase, Cloudflare, Stripe, Google, Visa, Mastercard, Circle, AWS, Microsoft, Shopify, Solana Foundation, Polygon Labs, thirdweb.</p>
+            <p>與新興的開放 x402 標準保持一致（非 Coinbase 特定）。x402 Foundation 於 2026 年 4 月在 Linux Foundation 下成立，成員包括 Coinbase、Cloudflare、Stripe、Google、Visa、Mastercard、Circle、AWS、Microsoft、Shopify、Solana Foundation、Polygon Labs、thirdweb。</p>
           </div>
           <div class="compat-item">
             <div class="compat-header">
               <span class="compat-name">Google AP2 / Authorization</span>
               <span class="compat-badge p0">P0</span>
             </div>
-            <p>AP2-style authorization / trust layer. MAGNE Phone as secure authorization terminal with TEE/SE-backed signing and agent spending controls.</p>
+            <p>AP2 風格授權 / 信任層。MAGNE Phone 作安全授權終端，採用 TEE/SE 支援的簽名和代理消費控制。</p>
           </div>
           <div class="compat-item">
             <div class="compat-header">
               <span class="compat-name">MAGNE Facilitator</span>
               <span class="compat-badge p0">P0</span>
             </div>
-            <p>M Hash L2-oriented facilitator module. Not a replacement for global x402 facilitators — focuses on secure mobile authorization and AI Task Receipt creation.</p>
+            <p>面向 M Hash L2 的促進者模組。不是全球 x402 促進者的替代品 — 專注於安全行動端授權和 AI 任務收據創建。</p>
           </div>
           <div class="compat-item">
             <div class="compat-header">
               <span class="compat-name">USDC / Stablecoin Support</span>
               <span class="compat-badge p0">P0</span>
             </div>
-            <p>V0.1: mMHA local demo. V0.2: mMHA on M Hash L2. V0.3: stablecoin-style settlement asset. V1.0: USDC-compatible flow if bridge / liquidity ready.</p>
+            <p>V0.1：mMHA 本地演示。V0.2：M Hash L2 上的 mMHA。V0.3：穩定幣風格結算資產。V1.0：若橋樑 / 流動性就緒，則支援 USDC 相容流程。</p>
           </div>
           <div class="compat-item">
             <div class="compat-header">
               <span class="compat-name">Cloudflare / MCP / Agent Infra</span>
               <span class="compat-badge p0">P0</span>
             </div>
-            <p>MCP-style tool calls + HTTP 402 paid API. Cloudflare Agents SDK / MCP server integration. Paid inference API, wallet risk API, chain data API.</p>
+            <p>MCP 風格工具調用 + HTTP 402 付費 API。Cloudflare Agents SDK / MCP 伺服器整合。付費推理 API、錢包風險 API、鏈數據 API。</p>
           </div>
           <div class="compat-item">
             <div class="compat-header">
               <span class="compat-name">Wallet / Agent Wallet</span>
               <span class="compat-badge p0">P0</span>
             </div>
-            <p>EVM wallet compatible. TEE / Secure Element-backed signing. Agent spending policy controls. Future: WalletConnect, embedded wallet style.</p>
+            <p>EVM 錢包相容。TEE / Secure Element 支援的簽名。代理消費策略控制。未來：WalletConnect、嵌入式錢包風格。</p>
           </div>
         </div>
       </div>
@@ -966,35 +966,35 @@
               <span class="compat-name">Base / CDP Pattern</span>
               <span class="compat-badge p1">P1</span>
             </div>
-            <p>Reference align with Coinbase CDP Facilitator pattern: verify / settle / KYT flow. Base mainnet, Base Sepolia, Polygon, Arbitrum compatibility.</p>
+            <p>參考對齊 Coinbase CDP 促進者模式：verify / settle / KYT 流程。Base 主網、Base Sepolia、Polygon、Arbitrum 相容性。</p>
           </div>
           <div class="compat-item">
             <div class="compat-header">
               <span class="compat-name">BNB Chain / Binance</span>
               <span class="compat-badge p1">P1</span>
             </div>
-            <p>Preserve Binance ecosystem compatibility narrative. BNB chain as reference for future multi-chain alignment.</p>
+            <p>保留幣安生態系統相容性敘事。BNB 鏈作為參考，用於未來多鏈對齊。</p>
           </div>
           <div class="compat-item">
             <div class="compat-header">
               <span class="compat-name">Solana</span>
               <span class="compat-badge p1">P1</span>
             </div>
-            <p>Solana Web3 phone as competitor reference. x402.org test facilitator supports Solana Devnet. Solana as reference for multi-chain facilitator patterns.</p>
+            <p>Solana Web3 手機作為競爭對手參考。x402.org 測試促進者支援 Solana Devnet。Solana 作為多鏈促進者模式的參考。</p>
           </div>
           <div class="compat-item">
             <div class="compat-header">
               <span class="compat-name">OpenZeppelin Relayer</span>
               <span class="compat-badge p1">P1</span>
             </div>
-            <p>Enterprise relayer / audited infrastructure reference for future facilitator development.</p>
+            <p>企業中繼器 / 審計基礎設施作為未來促進者development.</p>
           </div>
           <div class="compat-item">
             <div class="compat-header">
               <span class="compat-name">OpenFacilitator / OpenX402.ai</span>
               <span class="compat-badge p1">P1</span>
             </div>
-            <p>Open source, self-deployed, permissionless facilitator as reference architecture.</p>
+            <p>開源、自部署、無需許可的促進者作為參考架ure.</p>
           </div>
         </div>
       </div>
@@ -1007,21 +1007,21 @@
               <span class="compat-name">Stripe Tempo / MPP</span>
               <span class="compat-badge p2">P2</span>
             </div>
-            <p>Enterprise-grade machine payments / session pre-authorization. Future roadmap may explore session-based authorization.</p>
+            <p>企業級機器支付 / 會話預授權。未來路線 may explore session-based authorization.</p>
           </div>
           <div class="compat-item">
             <div class="compat-header">
               <span class="compat-name">OpenAI ACP</span>
               <span class="compat-badge p2">P2</span>
             </div>
-            <p>Agent-to-merchant checkout. Future roadmap may explore merchant checkout interoperability.</p>
+            <p>代理對商戶結帳。未來路線可能探索商戶結帳roperability.</p>
           </div>
           <div class="compat-item">
             <div class="compat-header">
               <span class="compat-name">Stellar / Algorand / HyperEVM</span>
               <span class="compat-badge p2">P2</span>
             </div>
-            <p>Observe multi-chain facilitator patterns. No immediate integration planned.</p>
+            <p>觀察多鏈促進者模式。暂无即时整合计划。p>
           </div>
         </div>
       </div>
@@ -1029,11 +1029,11 @@
 
     <div class="compat-summary">
       <h3>MAGNE Positioning</h3>
-      <p>x402-compatible payment execution<br>
-      + AP2-style authorization awareness<br>
+      <p>x402 相容支付執行<br>
+      + AP2 風格授權意識<br>
       + M Hash L2 receipt<br>
-      + MAGNE Phone secure signing<br>
-      + Future stablecoin settlement support</p>
+      + MAGNE Phone 安全簽名<br>
+      + 未來穩定幣結算支援</p>
     </div>
   </section>
 
@@ -1043,18 +1043,18 @@
       <div class="section-header">
         <span class="section-eyebrow">Development 路線圖</span>
         <h2>What's Next</h2>
-        <p>Subject to technical validation and security review.</p>
+        <p>取決於技術驗證和安全審查。</p>
       </div>
       <div class="roadmap-grid">
         <div class="roadmap-item">
           <span class="roadmap-phase done">✓ V0.1 — Done</span>
-          <h3>Local Runtime Demo</h3>
-          <p>Full payment flow verified on local Hardhat. ERC20 payments, facilitator verification, on-chain receipts.</p>
+          <h3>本地運行時演示</h3>
+          <p>完整支付流程在本地 Hardhat 上驗證。ERC20 支付、促進者驗證、鏈上收據。</p>
           <ul>
             <li>Smart contracts compile and deploy</li>
             <li>Backend API with x402 response</li>
-            <li>Facilitator strict verify mode</li>
-            <li>AI Task Receipt events</li>
+            <li>促進者嚴格驗證模式</li>
+            <li>AI 任務收據事件</li>
           </ul>
         </div>
         <div class="roadmap-item">
@@ -1087,7 +1087,7 @@
   <section class="cta-section">
     <div class="container">
       <h2>Start Building.</h2>
-      <p>Read the SKILL.md, fork the demo, and ship your first agent payment integration.</p>
+      <p>閱讀 SKILL.md，Fork 演示，然後發布你的第一個代理支付整合。</p>
       <div class="btn-group">
         <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-primary" target="_blank">Fork the Demo</a>
         <a href="developers.html" class="btn btn-secondary">開發者文檔</a>
@@ -1106,7 +1106,7 @@
     <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" target="_blank">Agent Pay Demo</a>
   </p>
   <p class="footer-disclaimer">
-    MAGNE Agent Pay V0.1 is a testnet-stage developer demo. It is not a production payment system, not financial advice, and not a guarantee of future functionality. All transactions are on M Hash L2 testnet — no mainnet activity. MHA and mMHA are test tokens with no mainnet value. Subject to applicable compliance requirements.
+    MAGNE Agent Pay V0.1 是一個測試網階段的開發者演示。它不是生產支付系統、不是財務建議、也不是未來功能的保證。所有交易都在 M Hash L2 測試網上 — 沒有主網活動。MHA 和 mMHA 是沒有主網價值的測試代幣。取決於適用的合規要求。
   </p>
 </footer>
 
