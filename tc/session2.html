@@ -2349,10 +2349,7 @@
         </div>
         <div class="referral-input-group">
           <label>每筆有效參與金額</label>
-          <div class="swap-input-wrapper">
-            <input type="number" id="ref-entry-amount" value="10" min="0" oninput="updateRefCalc()">
-            <span class="suffix">USDT</span>
-          </div>
+          <div style="padding: 0.6rem 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: var(--accent); font-family: 'JetBrains Mono', monospace;">10 USDT（固定）</div>
         </div>
         <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 0.8rem; color: var(--text-tertiary);">
           <div><strong style="color: var(--text-secondary);">基礎直接邀請獎勵：</strong>每筆 10 USDT 參與 0.5 USDT</div>
@@ -3032,7 +3029,7 @@ function updateCVCalc() {
 function updateRefCalc() {
   const invitees = parseInt(document.getElementById('ref-invitees').value) || 0;
   const avgEntries = Math.min(100, parseInt(document.getElementById('ref-avg-entries').value) || 0);
-  const entryAmount = parseFloat(document.getElementById('ref-entry-amount').value) || 10;
+  const entryAmount = 10; // Fixed per campaign rules
   const totalEntries = invitees * avgEntries;
   const totalVolume = totalEntries * entryAmount;
   const baseReward = totalEntries * 0.5; // 0.5 USDT per entry
