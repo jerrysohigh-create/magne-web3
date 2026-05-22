@@ -1737,7 +1737,7 @@
       <div class="step-number">5</div>
       <div class="step-icon">🪙</div>
       <h3>Receive 100 MS2</h3>
-      <p>Each entry grants 100 MS2 campaign tokens immediately. MS2 can be traded or staked.</p>
+      <p>Each eligible entry grants 100 MS2 campaign tokens. MS2 may be used for staking weight calculation per final campaign arrangements, with market trading functionality planned after liquidity launch.</p>
     </div>
     <div class="step-card">
       <div class="step-number">6</div>
@@ -1777,7 +1777,7 @@
       <div class="icon">🏆</div>
       <div class="value">50M MHA</div>
       <div class="label">Allocation Pool</div>
-      <div class="sub">At TGE, based on staking weight</div>
+      <div class="sub">Planned allocation based on effective staking weight</div>
     </div>
     <div class="campaign-card">
       <div class="icon">💧</div>
@@ -1881,7 +1881,7 @@
     <p>Stake MS2 to increase future MHA allocation eligibility</p>
   </div>
   <div class="staking-info">
-    <p>Your effective staking weight may be used to calculate potential MHA allocation eligibility from the 50,000,000 MHA campaign pool, subject to final TGE rules, eligibility checks, and applicable restrictions. Weight is calculated based on multiple factors:</p>
+    <p>Your effective staking weight may be used to calculate potential MHA allocation eligibility from the 50,000,000 MHA total network allocation pool, subject to final TGE rules, eligibility checks, and applicable restrictions. Weight is calculated based on multiple factors:</p>
     
     <div class="weight-formula">
       Effective Weight = MS2 Amount × Duration Factor × Community Tier Factor
@@ -1958,7 +1958,7 @@
     <div class="invite-cards-grid">
       <div class="invite-card">
         <div class="ic-value">1.0 USDT</div>
-        <div class="ic-label">First Eligible Invite Reward</div>
+        <div class="ic-label">New Friend First Entry Reward</div>
         <div class="ic-desc">Includes 0.5 USDT base reward + 0.5 USDT first-referral booster</div>
       </div>
       <div class="invite-card">
@@ -2273,10 +2273,10 @@
           </select>
         </div>
         <div class="calc-input-group">
-          <label>Risk-Control Deduction (USDT)</label>
+          <label>Risk-Control Deduction (Contribution Points)</label>
           <div class="swap-input-wrapper">
             <input type="number" id="cv-risk" value="5000" oninput="updateCVCalc()">
-            <span class="suffix">USDT</span>
+            <span class="suffix">pts</span>
           </div>
         </div>
         <div style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.5rem;">
@@ -2744,7 +2744,7 @@
         </div>
         <div class="calc-result-box">
           <div class="result-row">
-            <span class="label">MHA Campaign Pool</span>
+            <span class="label">Total Network MHA Allocation Pool</span>
             <span class="value">50,000,000 MHA</span>
           </div>
           <div class="result-row highlight">
@@ -2754,7 +2754,7 @@
         </div>
         <div class="calc-formula">
           Effective Weight = MS2 × Duration Factor × (1 + Community Bonus)<br>
-          Potential MHA = Your Weight ÷ Total Weight × 50,000,000 MHA
+          Potential MHA = Your Effective Weight ÷ Total Network Weight × 50,000,000 MHA
         </div>
       </div>
     </div>

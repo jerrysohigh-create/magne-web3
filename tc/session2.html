@@ -1737,7 +1737,7 @@
       <div class="step-number">5</div>
       <div class="step-icon">🪙</div>
       <h3>獲得 100 MS2</h3>
-      <p>每次參與立即獲得 100 枚 MS2 活動代幣。可交易或質押。</p>
+      <p>每次符合資格的參與可獲得 100 枚 MS2 活動代幣。MS2 可依最終活動安排用於質押權重計算，並在流動性功能開放後提供市場交易功能。</p>
     </div>
     <div class="step-card">
       <div class="step-number">6</div>
@@ -1777,7 +1777,7 @@
       <div class="icon">🏆</div>
       <div class="value">5000萬 MHA</div>
       <div class="label">分配池</div>
-      <div class="sub">TGE 時按質押權重分配</div>
+      <div class="sub">計劃按有效質押權重計算潛在分配資格</div>
     </div>
     <div class="campaign-card">
       <div class="icon">💧</div>
@@ -1881,7 +1881,7 @@
     <p>質押 MS2 提升未來 MHA 分配資格</p>
   </div>
   <div class="staking-info">
-    <p>你的有效質押權重可用於計算來自 5000 萬 MHA 活動池的潛在分配資格，最終以 TGE 規則、資格審核及適用限制為準。權重根據多項因素計算：</p>
+    <p>你的有效質押權重可用於計算來自 5,000 萬 MHA 分配池（總量）的潛在分配資格，最終以 TGE 規則、資格審核及適用限制為準。權重根據多項因素計算：</p>
     
     <div class="weight-formula">
       有效權重 = MS2 數量 × 質押時長係數 × 社群等級係數
@@ -1957,7 +1957,7 @@
     <div class="invite-cards-grid">
       <div class="invite-card">
         <div class="ic-value">1.0 USDT</div>
-        <div class="ic-label">首位有效邀請獎勵</div>
+        <div class="ic-label">新好友首次有效參與獎勵</div>
         <div class="ic-desc">包含 0.5 USDT 基礎獎勵 + 0.5 USDT 首邀加速獎勵</div>
       </div>
       <div class="invite-card">
@@ -2271,10 +2271,10 @@
           </select>
         </div>
         <div class="calc-input-group">
-          <label>風控扣減 (USDT)</label>
+          <label>風控扣減（貢獻值點數）</label>
           <div class="swap-input-wrapper">
             <input type="number" id="cv-risk" value="5000" oninput="updateCVCalc()">
-            <span class="suffix">USDT</span>
+            <span class="suffix">點</span>
           </div>
         </div>
         <div style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.5rem;">
@@ -2742,7 +2742,7 @@
         </div>
         <div class="calc-result-box">
           <div class="result-row">
-            <span class="label">MHA 活動池</span>
+            <span class="label">全網 MHA 分配池（總量）</span>
             <span class="value">50,000,000 MHA</span>
           </div>
           <div class="result-row highlight">
@@ -2752,7 +2752,7 @@
         </div>
         <div class="calc-formula">
           有效權重 = MS2 × 時長係數 × (1 + 社群加成)<br>
-          潛在 MHA 分配 = 你的權重 ÷ 全網權重 × 50,000,000 MHA
+          潛在 MHA 分配 = 你的有效權重 ÷ 全網有效權重 × 50,000,000 MHA
         </div>
       </div>
     </div>
