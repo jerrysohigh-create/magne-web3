@@ -394,14 +394,14 @@
 
     .lb-header, .lb-row {
       display: grid;
-      grid-template-columns: 80px 1fr 150px 150px;
+      grid-template-columns: 60px 1fr 140px 150px 120px;
       padding: 1rem 1.5rem;
       align-items: center;
     }
 
     .lb-header {
       background: var(--bg-secondary);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--text-secondary);
       text-transform: uppercase;
@@ -420,7 +420,7 @@
     .lb-rank.silver { color: #c0c0c0; }
     .lb-rank.bronze { color: #cd7f32; }
 
-    .lb-addr { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+    .lb-addr { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
     .lb-volume { font-family: 'JetBrains Mono', monospace; color: var(--accent); }
     .lb-reward { color: var(--accent-secondary); font-weight: 500; }
 
@@ -434,8 +434,9 @@
     }
 
     @media (max-width: 768px) {
-      .lb-header, .lb-row { grid-template-columns: 50px 1fr 100px; }
-      .lb-header div:nth-child(4), .lb-row div:nth-child(4) { display: none; }
+      .lb-header, .lb-row { grid-template-columns: 50px 1fr 90px 80px; }
+      .lb-header div:nth-child(4), .lb-row div:nth-child(4),
+      .lb-header div:nth-child(5), .lb-row div:nth-child(5) { display: none; }
     }
 
     /* ALLOCATION */
@@ -1166,6 +1167,115 @@
       color: var(--accent);
       line-height: 1.8;
     }
+
+    /* CONTRIBUTION VALUE SECTION */
+    .contrib-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .contrib-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .contrib-card h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+    .contrib-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .contrib-table-wrapper {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+    .contrib-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .contrib-table th, .contrib-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .contrib-table th {
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .contrib-table td {
+      color: var(--text-primary);
+    }
+    .contrib-table td:last-child {
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .contrib-sim-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .contrib-sim-grid { grid-template-columns: 1fr; }
+    }
+    .contrib-sim-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .contrib-sim-panel h4 {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .contrib-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.9rem;
+    }
+    .contrib-row:last-child { border-bottom: none; }
+    .contrib-row .label { color: var(--text-secondary); }
+    .contrib-row .value { font-family: 'JetBrains Mono', monospace; color: var(--text-primary); }
+    .contrib-row.highlight .value { color: var(--accent); font-weight: 600; }
+    .contrib-formula-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      line-height: 2;
+    }
+
+    /* LEADERBOARD STATUS */
+    .lb-status {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .lb-status.eligible { background: rgba(0,255,136,0.1); color: var(--accent-secondary); }
+    .lb-status.pending { background: rgba(255,215,0,0.1); color: var(--accent-gold); }
+    .lb-status.below { background: rgba(255,255,255,0.05); color: var(--text-tertiary); }
+    .lb-status.review { background: rgba(255,165,0,0.1); color: #ffa500; }
   </style>
 </head>
 <body>
@@ -1456,82 +1566,207 @@
   </div>
 </section>
 
+<!-- CONTRIBUTION VALUE -->
+<section id="contribution-value">
+  <div class="section-header">
+    <h2>How Contribution Value Is Calculated</h2>
+    <p>Community Contribution Value is used to calculate Community Builder ranking and potential pool share preview. It reflects qualified referral participation, qualified MS2 staking activity, retention factors, and risk-control adjustments.</p>
+  </div>
+  <div class="simulator-section">
+    <div class="simulator-badge">Simulation only. For ranking logic preview.</div>
+    <div class="contrib-grid">
+      <div class="contrib-card">
+        <h4>Qualified Referral Volume</h4>
+        <p>The total eligible participation volume generated by invited wallets. Each qualified 10 USDT entry by an invited participant may add 10 contribution points.</p>
+      </div>
+      <div class="contrib-card">
+        <h4>Qualified MS2 Staking Contribution</h4>
+        <p>Qualified MS2 staked by invited participants may add additional contribution value. In this demo model, each qualified MS2 staked adds 0.05 contribution points.</p>
+      </div>
+      <div class="contrib-card">
+        <h4>Retention Bonus</h4>
+        <p>Longer MS2 staking duration by invited participants may increase contribution value through retention factors.</p>
+      </div>
+      <div class="contrib-card">
+        <h4>Risk-Control Deduction</h4>
+        <p>Suspicious activity, self-referral abuse, Sybil behavior, bot activity, wash participation, or invalid entries may reduce or remove contribution value.</p>
+      </div>
+    </div>
+
+    <div class="contrib-table-wrapper">
+      <table class="contrib-table">
+        <thead>
+          <tr>
+            <th>Invited Participant Staking Duration</th>
+            <th>Retention Factor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Less than 7 days</td>
+            <td>No bonus</td>
+          </tr>
+          <tr>
+            <td>7–14 days</td>
+            <td>+5%</td>
+          </tr>
+          <tr>
+            <td>15–30 days</td>
+            <td>+10%</td>
+          </tr>
+          <tr>
+            <td>30+ days</td>
+            <td>+15%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="contrib-sim-grid">
+      <div class="contrib-sim-panel">
+        <h4>Input Parameters (Demo)</h4>
+        <div class="contrib-row">
+          <span class="label">Qualified Referral Volume</span>
+          <span class="value">80,000</span>
+        </div>
+        <div class="contrib-row">
+          <span class="label">Qualified MS2 Staked by Invited</span>
+          <span class="value">600,000 MS2</span>
+        </div>
+        <div class="contrib-row">
+          <span class="label">MS2 Staking Contribution Factor</span>
+          <span class="value">0.05</span>
+        </div>
+        <div class="contrib-row">
+          <span class="label">Retention Bonus</span>
+          <span class="value">+10%</span>
+        </div>
+        <div class="contrib-row">
+          <span class="label">Risk-Control Deduction</span>
+          <span class="value">5,000</span>
+        </div>
+      </div>
+      <div class="contrib-sim-panel">
+        <h4>Calculated Results (Demo)</h4>
+        <div class="contrib-row">
+          <span class="label">MS2 Staking Contribution</span>
+          <span class="value">30,000</span>
+        </div>
+        <div class="contrib-row">
+          <span class="label">Base Contribution Value</span>
+          <span class="value">110,000</span>
+        </div>
+        <div class="contrib-row">
+          <span class="label">Retention Adjusted Value</span>
+          <span class="value">121,000</span>
+        </div>
+        <div class="contrib-row highlight">
+          <span class="label">Final Contribution Value</span>
+          <span class="value">116,000</span>
+        </div>
+        <div class="contrib-formula-box">
+          600,000 MS2 × 0.05 = 30,000<br>
+          80,000 + 30,000 = 110,000<br>
+          110,000 × 1.10 = 121,000<br>
+          121,000 - 5,000 = 116,000
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+      This simulator is for model understanding only. Final Community Contribution Value, ranking eligibility, and pool share preview are subject to campaign rules, eligibility checks, risk-control review, and official announcements.
+    </p>
+  </div>
+</section>
+
 <!-- LEADERBOARD -->
 <section id="leaderboard">
   <div class="section-header">
     <h2>Community Builder Leaderboard</h2>
-    <p>Top 10 contributors — subject to 100,000 USDT qualification threshold</p>
+    <p>Top contributors by qualified Community Contribution Value — subject to 100,000 threshold</p>
   </div>
+  <div class="simulator-badge" style="margin-bottom: 1rem;">Demo data for interface preview only.</div>
   <div class="leaderboard-table">
     <div class="lb-header">
       <div>Rank</div>
       <div>Address</div>
-      <div>Volume</div>
+      <div>Contribution Value</div>
       <div>Pool Share Preview</div>
+      <div>Status</div>
     </div>
     <div class="lb-row">
       <div class="lb-rank gold">1</div>
       <div class="lb-addr">0x742d35Cc6634C0532...8c34</div>
-      <div class="lb-volume">847,230 USDT</div>
+      <div class="lb-volume">847,230</div>
       <div class="lb-reward">60,000 USDT</div>
+      <div><span class="lb-status eligible">Eligible</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank silver">2</div>
       <div class="lb-addr">0x1a2b3c4d5e6f7g8h...9f0e</div>
-      <div class="lb-volume">523,180 USDT</div>
+      <div class="lb-volume">523,180</div>
       <div class="lb-reward">22,500 USDT</div>
+      <div><span class="lb-status eligible">Eligible</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank bronze">3</div>
       <div class="lb-addr">0x3c4d5e6f7a8b9c0d...2a1b</div>
-      <div class="lb-volume">412,900 USDT</div>
+      <div class="lb-volume">412,900</div>
       <div class="lb-reward">15,000 USDT</div>
+      <div><span class="lb-status eligible">Eligible</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">4</div>
       <div class="lb-addr">0x5e6f7a8b9c0d1e2f...7b8c</div>
-      <div class="lb-volume">298,450 USDT</div>
+      <div class="lb-volume">298,450</div>
       <div class="lb-reward">12,000 USDT</div>
+      <div><span class="lb-status eligible">Eligible</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">5</div>
       <div class="lb-addr">0x7a8b9c0d1e2f3a4b...3c4d</div>
-      <div class="lb-volume">187,320 USDT</div>
+      <div class="lb-volume">187,320</div>
       <div class="lb-reward">10,500 USDT</div>
+      <div><span class="lb-status eligible">Eligible</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">6</div>
       <div class="lb-addr">0x9c0d1e2f3a4b5c6d...5e6f</div>
-      <div class="lb-volume">156,780 USDT</div>
+      <div class="lb-volume">156,780</div>
       <div class="lb-reward">9,000 USDT</div>
+      <div><span class="lb-status eligible">Eligible</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">7</div>
       <div class="lb-addr">0x2f3a4b5c6d7e8f9a...8b9c</div>
-      <div class="lb-volume">134,560 USDT</div>
+      <div class="lb-volume">134,560</div>
       <div class="lb-reward">7,500 USDT</div>
+      <div><span class="lb-status eligible">Eligible</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">8</div>
       <div class="lb-addr">0x4b5c6d7e8f9a0b1c...0d1e</div>
-      <div class="lb-volume">98,420 USDT</div>
-      <div class="lb-reward" style="color: var(--text-tertiary);">Below Threshold</div>
+      <div class="lb-volume">98,420</div>
+      <div class="lb-reward" style="color: var(--text-tertiary);">—</div>
+      <div><span class="lb-status below">Below Threshold</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">9</div>
       <div class="lb-addr">0x6d7e8f9a0b1c2d3e...2f3a</div>
-      <div class="lb-volume">76,890 USDT</div>
-      <div class="lb-reward" style="color: var(--text-tertiary);">Below Threshold</div>
+      <div class="lb-volume">76,890</div>
+      <div class="lb-reward" style="color: var(--text-tertiary);">—</div>
+      <div><span class="lb-status below">Below Threshold</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">10</div>
       <div class="lb-addr">0x8f9a0b1c2d3e4f5a...4b5c</div>
-      <div class="lb-volume">52,340 USDT</div>
-      <div class="lb-reward" style="color: var(--text-tertiary);">Below Threshold</div>
+      <div class="lb-volume">52,340</div>
+      <div class="lb-reward" style="color: var(--text-tertiary);">—</div>
+      <div><span class="lb-status below">Below Threshold</span></div>
     </div>
   </div>
   <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
-    Only addresses with ≥ 100,000 USDT contribution volume qualify for the Community Builder Pool.
+    Only addresses with at least 100,000 qualified Contribution Value may be eligible for the Community Builder Pool.
     <br><span style="color: var(--accent-gold);">Demo preview only. Actual eligibility and pool allocation are subject to final campaign rules, eligibility checks, and risk-control review.</span>
   </p>
 </section>

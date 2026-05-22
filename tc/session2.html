@@ -398,14 +398,14 @@
 
     .lb-header, .lb-row {
       display: grid;
-      grid-template-columns: 80px 1fr 150px 150px;
+      grid-template-columns: 60px 1fr 140px 150px 120px;
       padding: 1rem 1.5rem;
       align-items: center;
     }
 
     .lb-header {
       background: var(--bg-secondary);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--text-secondary);
       text-transform: uppercase;
@@ -424,7 +424,7 @@
     .lb-rank.silver { color: #c0c0c0; }
     .lb-rank.bronze { color: #cd7f32; }
 
-    .lb-addr { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+    .lb-addr { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
     .lb-volume { font-family: 'JetBrains Mono', monospace; color: var(--accent); }
     .lb-reward { color: var(--accent-secondary); font-weight: 500; }
 
@@ -438,8 +438,9 @@
     }
 
     @media (max-width: 768px) {
-      .lb-header, .lb-row { grid-template-columns: 50px 1fr 100px; }
-      .lb-header div:nth-child(4), .lb-row div:nth-child(4) { display: none; }
+      .lb-header, .lb-row { grid-template-columns: 50px 1fr 90px 80px; }
+      .lb-header div:nth-child(4), .lb-row div:nth-child(4),
+      .lb-header div:nth-child(5), .lb-row div:nth-child(5) { display: none; }
     }
 
     /* ALLOCATION */
@@ -1163,6 +1164,115 @@
       color: var(--accent);
       line-height: 1.8;
     }
+
+    /* CONTRIBUTION VALUE SECTION */
+    .contrib-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .contrib-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .contrib-card h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+    }
+    .contrib-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .contrib-table-wrapper {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+    .contrib-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .contrib-table th, .contrib-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .contrib-table th {
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .contrib-table td {
+      color: var(--text-primary);
+    }
+    .contrib-table td:last-child {
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .contrib-sim-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .contrib-sim-grid { grid-template-columns: 1fr; }
+    }
+    .contrib-sim-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .contrib-sim-panel h4 {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .contrib-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.9rem;
+    }
+    .contrib-row:last-child { border-bottom: none; }
+    .contrib-row .label { color: var(--text-secondary); }
+    .contrib-row .value { font-family: 'JetBrains Mono', monospace; color: var(--text-primary); }
+    .contrib-row.highlight .value { color: var(--accent); font-weight: 600; }
+    .contrib-formula-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      line-height: 2;
+    }
+
+    /* LEADERBOARD STATUS */
+    .lb-status {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .lb-status.eligible { background: rgba(0,255,136,0.1); color: var(--accent-secondary); }
+    .lb-status.pending { background: rgba(255,215,0,0.1); color: var(--accent-gold); }
+    .lb-status.below { background: rgba(255,255,255,0.05); color: var(--text-tertiary); }
+    .lb-status.review { background: rgba(255,165,0,0.1); color: #ffa500; }
   </style>
 </head>
 <body>
@@ -1455,82 +1565,207 @@
   </div>
 </section>
 
+<!-- CONTRIBUTION VALUE -->
+<section id="contribution-value">
+  <div class="section-header">
+    <h2>社群貢獻值如何計算</h2>
+    <p>社群貢獻值用於計算 Community Builder 排行榜及潛在獎池份額預覽。它綜合反映有效邀請參與、有效 MS2 質押行為、留存因素及風控調整。</p>
+  </div>
+  <div class="simulator-section">
+    <div class="simulator-badge">僅為模擬演示，用於預覽排名邏輯。</div>
+    <div class="contrib-grid">
+      <div class="contrib-card">
+        <h4>有效邀請參與額</h4>
+        <p>由被邀請錢包產生的符合資格活動參與額。被邀請人每完成一次有效 10 USDT 參與，可增加 10 點貢獻值。</p>
+      </div>
+      <div class="contrib-card">
+        <h4>有效 MS2 質押貢獻</h4>
+        <p>被邀請人符合資格的 MS2 質押行為可增加額外貢獻值。在本 Demo 模型中，每 1 枚有效質押 MS2 可增加 0.05 點貢獻值。</p>
+      </div>
+      <div class="contrib-card">
+        <h4>留存加成</h4>
+        <p>被邀請人 MS2 質押時間越長，可根據留存係數提升貢獻值。</p>
+      </div>
+      <div class="contrib-card">
+        <h4>風控扣減</h4>
+        <p>可疑行為、自邀請濫用、女巫攻擊、機器人行為、刷量、無效參與等情況，可能導致貢獻值被扣減或取消。</p>
+      </div>
+    </div>
+
+    <div class="contrib-table-wrapper">
+      <table class="contrib-table">
+        <thead>
+          <tr>
+            <th>被邀請人 MS2 質押時間</th>
+            <th>留存係數</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>少於 7 天</td>
+            <td>無加成</td>
+          </tr>
+          <tr>
+            <td>7–14 天</td>
+            <td>+5%</td>
+          </tr>
+          <tr>
+            <td>15–30 天</td>
+            <td>+10%</td>
+          </tr>
+          <tr>
+            <td>30 天以上</td>
+            <td>+15%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="contrib-sim-grid">
+      <div class="contrib-sim-panel">
+        <h4>輸入參數 (Demo)</h4>
+        <div class="contrib-row">
+          <span class="label">有效邀請參與額</span>
+          <span class="value">80,000</span>
+        </div>
+        <div class="contrib-row">
+          <span class="label">被邀請人有效質押 MS2</span>
+          <span class="value">600,000 MS2</span>
+        </div>
+        <div class="contrib-row">
+          <span class="label">MS2 質押貢獻係數</span>
+          <span class="value">0.05</span>
+        </div>
+        <div class="contrib-row">
+          <span class="label">留存加成</span>
+          <span class="value">+10%</span>
+        </div>
+        <div class="contrib-row">
+          <span class="label">風控扣減</span>
+          <span class="value">5,000</span>
+        </div>
+      </div>
+      <div class="contrib-sim-panel">
+        <h4>計算結果 (Demo)</h4>
+        <div class="contrib-row">
+          <span class="label">MS2 質押貢獻</span>
+          <span class="value">30,000</span>
+        </div>
+        <div class="contrib-row">
+          <span class="label">基礎貢獻值</span>
+          <span class="value">110,000</span>
+        </div>
+        <div class="contrib-row">
+          <span class="label">留存調整後貢獻值</span>
+          <span class="value">121,000</span>
+        </div>
+        <div class="contrib-row highlight">
+          <span class="label">最終社群貢獻值</span>
+          <span class="value">116,000</span>
+        </div>
+        <div class="contrib-formula-box">
+          600,000 MS2 × 0.05 = 30,000<br>
+          80,000 + 30,000 = 110,000<br>
+          110,000 × 1.10 = 121,000<br>
+          121,000 - 5,000 = 116,000
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+      本模擬器僅用於模型理解。最終社群貢獻值、排行榜資格及獎池份額預覽，均以活動規則、資格審核、風控審查及官方公告為準。
+    </p>
+  </div>
+</section>
+
 <!-- LEADERBOARD -->
 <section id="leaderboard">
   <div class="section-header">
     <h2>社群建設者排行榜</h2>
-    <p>貢獻額前 10 名 — 需達 10 萬 USDT 門檻</p>
+    <p>按有效社群貢獻值排名 — 需達 100,000 門檻</p>
   </div>
+  <div class="simulator-badge" style="margin-bottom: 1rem;">演示數據，僅供介面預覽。</div>
   <div class="leaderboard-table">
     <div class="lb-header">
       <div>排名</div>
       <div>地址</div>
-      <div>貢獻額</div>
+      <div>社群貢獻值</div>
       <div>獎池份額預覽</div>
+      <div>狀態</div>
     </div>
     <div class="lb-row">
       <div class="lb-rank gold">1</div>
       <div class="lb-addr">0x742d35Cc6634C0532...8c34</div>
-      <div class="lb-volume">847,230 USDT</div>
+      <div class="lb-volume">847,230</div>
       <div class="lb-reward">60,000 USDT</div>
+      <div><span class="lb-status eligible">符合資格</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank silver">2</div>
       <div class="lb-addr">0x1a2b3c4d5e6f7g8h...9f0e</div>
-      <div class="lb-volume">523,180 USDT</div>
+      <div class="lb-volume">523,180</div>
       <div class="lb-reward">22,500 USDT</div>
+      <div><span class="lb-status eligible">符合資格</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank bronze">3</div>
       <div class="lb-addr">0x3c4d5e6f7a8b9c0d...2a1b</div>
-      <div class="lb-volume">412,900 USDT</div>
+      <div class="lb-volume">412,900</div>
       <div class="lb-reward">15,000 USDT</div>
+      <div><span class="lb-status eligible">符合資格</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">4</div>
       <div class="lb-addr">0x5e6f7a8b9c0d1e2f...7b8c</div>
-      <div class="lb-volume">298,450 USDT</div>
+      <div class="lb-volume">298,450</div>
       <div class="lb-reward">12,000 USDT</div>
+      <div><span class="lb-status eligible">符合資格</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">5</div>
       <div class="lb-addr">0x7a8b9c0d1e2f3a4b...3c4d</div>
-      <div class="lb-volume">187,320 USDT</div>
+      <div class="lb-volume">187,320</div>
       <div class="lb-reward">10,500 USDT</div>
+      <div><span class="lb-status eligible">符合資格</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">6</div>
       <div class="lb-addr">0x9c0d1e2f3a4b5c6d...5e6f</div>
-      <div class="lb-volume">156,780 USDT</div>
+      <div class="lb-volume">156,780</div>
       <div class="lb-reward">9,000 USDT</div>
+      <div><span class="lb-status eligible">符合資格</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">7</div>
       <div class="lb-addr">0x2f3a4b5c6d7e8f9a...8b9c</div>
-      <div class="lb-volume">134,560 USDT</div>
+      <div class="lb-volume">134,560</div>
       <div class="lb-reward">7,500 USDT</div>
+      <div><span class="lb-status eligible">符合資格</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">8</div>
       <div class="lb-addr">0x4b5c6d7e8f9a0b1c...0d1e</div>
-      <div class="lb-volume">98,420 USDT</div>
-      <div class="lb-reward" style="color: var(--text-tertiary);">未達門檻</div>
+      <div class="lb-volume">98,420</div>
+      <div class="lb-reward" style="color: var(--text-tertiary);">—</div>
+      <div><span class="lb-status below">未達門檻</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">9</div>
       <div class="lb-addr">0x6d7e8f9a0b1c2d3e...2f3a</div>
-      <div class="lb-volume">76,890 USDT</div>
-      <div class="lb-reward" style="color: var(--text-tertiary);">未達門檻</div>
+      <div class="lb-volume">76,890</div>
+      <div class="lb-reward" style="color: var(--text-tertiary);">—</div>
+      <div><span class="lb-status below">未達門檻</span></div>
     </div>
     <div class="lb-row">
       <div class="lb-rank">10</div>
       <div class="lb-addr">0x8f9a0b1c2d3e4f5a...4b5c</div>
-      <div class="lb-volume">52,340 USDT</div>
-      <div class="lb-reward" style="color: var(--text-tertiary);">未達門檻</div>
+      <div class="lb-volume">52,340</div>
+      <div class="lb-reward" style="color: var(--text-tertiary);">—</div>
+      <div><span class="lb-status below">未達門檻</span></div>
     </div>
   </div>
   <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
-    只有貢獻額 ≥ 10 萬 USDT 的地址才有資格參與社群建設者獎池。
+    只有有效社群貢獻值達到 100,000 的地址，才可能符合 Community Builder Pool 參與資格。
     <br><span style="color: var(--accent-gold);">僅為 Demo 預覽。實際資格及獎池分配以最終活動規則、資格審核及風控審查為準。</span>
   </p>
 </section>
