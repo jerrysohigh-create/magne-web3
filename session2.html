@@ -3012,7 +3012,7 @@ function updateCalc() {
   document.getElementById('res-adjusted').textContent = Math.round(adjustedWeight).toLocaleString();
   document.getElementById('res-bonus').textContent = '+' + Math.round(bonusWeight).toLocaleString();
   document.getElementById('res-effective').textContent = Math.round(effectiveWeight).toLocaleString();
-  document.getElementById('res-mha').textContent = potentialMHA.toFixed(2) + ' MHA';
+  document.getElementById('res-mha').textContent = potentialMHA.toLocaleString() + ' MHA';
 }
 
 // Update Contribution Value Calculator

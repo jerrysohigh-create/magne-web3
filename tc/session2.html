@@ -1957,7 +1957,7 @@
     <div class="invite-cards-grid">
       <div class="invite-card">
         <div class="ic-value">1.0 USDT</div>
-        <div class="ic-label">新好友首次有效參與獎勵</div>
+        <div class="ic-label">每位新好友首筆獎勵</div>
         <div class="ic-desc">包含 0.5 USDT 基礎獎勵 + 0.5 USDT 首邀加速獎勵</div>
       </div>
       <div class="invite-card">
@@ -2997,7 +2997,7 @@ function updateCalc() {
   document.getElementById('res-adjusted').textContent = Math.round(adjustedWeight).toLocaleString();
   document.getElementById('res-bonus').textContent = '+' + Math.round(bonusWeight).toLocaleString();
   document.getElementById('res-effective').textContent = Math.round(effectiveWeight).toLocaleString();
-  document.getElementById('res-mha').textContent = potentialMHA.toFixed(2) + ' MHA';
+  document.getElementById('res-mha').textContent = potentialMHA.toLocaleString() + ' MHA';
 }
 
 // Update Contribution Value Calculator
