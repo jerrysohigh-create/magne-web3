@@ -3079,7 +3079,8 @@ function showDemoModal(type) {
   const info = messages[type] || { title: 'Demo', msg: 'Demo interface preview only.' };
   const modal = document.createElement('div');
   modal.className = 'demo-modal-overlay';
-  modal.innerHTML = '<div class="demo-modal-box"><div class="demo-modal-title">' + info.title + '</div><div class="demo-modal-msg">' + info.msg + '</div><button class="demo-modal-close" onclick="this.closest(\\'.demo-modal-overlay\\').remove()">Close</button></div>';
+  modal.innerHTML = '<div class="demo-modal-box"><div class="demo-modal-title">' + info.title + '</div><div class="demo-modal-msg">' + info.msg + '</div><button class="demo-modal-close">Close</button></div>';
+  modal.querySelector('.demo-modal-close').addEventListener('click', () => modal.remove());
   modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
   document.body.appendChild(modal);
 }
