@@ -1365,6 +1365,170 @@
     .lb-status.pending { background: rgba(255,215,0,0.1); color: var(--accent-gold); }
     .lb-status.below { background: rgba(255,255,255,0.05); color: var(--text-tertiary); }
     .lb-status.review { background: rgba(255,165,0,0.1); color: #ffa500; }
+
+    /* INVITE MODULE */
+    .invite-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .invite-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .invite-card .ic-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .invite-card .ic-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    .invite-card .ic-desc {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+
+    /* MILESTONE */
+    .milestone-progress {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .milestone-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .milestone-header h4 {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    .milestone-badge {
+      background: rgba(0,255,136,0.1);
+      border: 1px solid rgba(0,255,136,0.3);
+      color: var(--accent-secondary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .milestone-bar-wrapper {
+      margin: 1rem 0;
+    }
+    .milestone-bar {
+      height: 8px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .milestone-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-secondary), var(--accent));
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+    .milestone-next {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.75rem;
+    }
+    .milestone-next strong {
+      color: var(--accent);
+    }
+
+    .milestone-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+    }
+    .milestone-table th, .milestone-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .milestone-table th {
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .milestone-table td:first-child {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .milestone-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+    .milestone-status.unlocked {
+      background: rgba(0,255,136,0.1);
+      color: var(--accent-secondary);
+    }
+    .milestone-status.progress {
+      background: rgba(255,215,0,0.1);
+      color: var(--accent-gold);
+    }
+    .milestone-status.locked {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-tertiary);
+    }
+
+    /* REWARD TABLE */
+    .reward-table-wrapper {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+    .reward-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .reward-table th, .reward-table td {
+      padding: 0.75rem 1rem;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .reward-table th {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .reward-table td {
+      color: var(--text-primary);
+    }
+    .reward-table td:first-child {
+      text-align: left;
+      color: var(--text-secondary);
+    }
+    .reward-table td:not(:first-child) {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+    }
   </style>
 </head>
 <body>
@@ -1679,6 +1843,140 @@
   </div>
 </section>
 
+<!-- INVITE MODULE -->
+<section id="invite">
+  <div class="section-header">
+    <h2>Invite Friends, Unlock Milestones</h2>
+    <p>Invite real new participants to join Session2 and unlock direct referral reward previews, milestone identities, and product-related eligibility previews.</p>
+  </div>
+  <div class="simulator-section">
+    <div class="simulator-badge">Demo data for referral mechanism and interface preview only.</div>
+
+    <div class="invite-cards-grid">
+      <div class="invite-card">
+        <div class="ic-value">1.0 USDT</div>
+        <div class="ic-label">First Eligible Invite Reward</div>
+        <div class="ic-desc">Includes 0.5 USDT base reward + 0.5 USDT first-referral booster</div>
+      </div>
+      <div class="invite-card">
+        <div class="ic-value">0.5 USDT</div>
+        <div class="ic-label">Subsequent Eligible Entry Reward</div>
+        <div class="ic-desc">Per each eligible 10 USDT entry</div>
+      </div>
+      <div class="invite-card">
+        <div class="ic-value">10,000 USDT</div>
+        <div class="ic-label">Launch Referral Booster Pool</div>
+        <div class="ic-desc">Supports up to 20,000 new eligible invitees</div>
+      </div>
+      <div class="invite-card">
+        <div class="ic-value">AI Agent</div>
+        <div class="ic-label">New Friend Benefit</div>
+        <div class="ic-desc">Trial Pass eligibility preview, subject to final rules</div>
+      </div>
+    </div>
+
+    <div class="reward-table-wrapper">
+      <table class="reward-table">
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>Base Direct Referral Reward</th>
+            <th>First-Referral Booster</th>
+            <th>Total Reward Preview</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Friend completes first eligible 10 USDT entry</td>
+            <td>0.5 USDT</td>
+            <td>+0.5 USDT</td>
+            <td>1.0 USDT</td>
+          </tr>
+          <tr>
+            <td>Same friend completes each subsequent eligible entry</td>
+            <td>0.5 USDT</td>
+            <td>—</td>
+            <td>0.5 USDT / entry</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size: 0.8rem; color: var(--text-tertiary); text-align: center; margin-bottom: 1.5rem;">
+      After Launch Referral Booster Pool is fully utilized: Only base 0.5 USDT direct referral reward preview remains, subject to final campaign rules.
+    </p>
+
+    <div class="milestone-progress">
+      <div class="milestone-header">
+        <h4>Your Invite Progress</h4>
+        <span class="milestone-badge">Referral Starter</span>
+      </div>
+      <div class="milestone-bar-wrapper">
+        <div class="milestone-bar">
+          <div class="milestone-bar-fill" style="width: 67%"></div>
+        </div>
+      </div>
+      <div class="milestone-next">
+        <strong>2 / 3</strong> qualified friends reached — Invite <strong>1 more</strong> to unlock Community Explorer
+      </div>
+    </div>
+
+    <div class="reward-table-wrapper">
+      <table class="milestone-table">
+        <thead>
+          <tr>
+            <th>Qualified Invitees</th>
+            <th>Milestone Identity</th>
+            <th>Benefit Preview</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 person</td>
+            <td>Referral Starter</td>
+            <td>First-referral booster reward preview + identity badge</td>
+            <td><span class="milestone-status unlocked">✓ Unlocked</span></td>
+          </tr>
+          <tr>
+            <td>3 persons</td>
+            <td>Community Explorer</td>
+            <td>AI Agent Trial extended eligibility preview</td>
+            <td><span class="milestone-status progress">● In Progress</span></td>
+          </tr>
+          <tr>
+            <td>5 persons</td>
+            <td>Session2 Connector</td>
+            <td>Future campaign priority eligibility review</td>
+            <td><span class="milestone-status locked">🔒 Locked</span></td>
+          </tr>
+          <tr>
+            <td>10 persons</td>
+            <td>MAGNE Pioneer</td>
+            <td>Phone Gen1 Priority Access eligibility review</td>
+            <td><span class="milestone-status locked">🔒 Locked</span></td>
+          </tr>
+          <tr>
+            <td>25 persons</td>
+            <td>Community Advocate</td>
+            <td>Exclusive community identity & event showcase eligibility</td>
+            <td><span class="milestone-status locked">🔒 Locked</span></td>
+          </tr>
+          <tr>
+            <td>≥ 100,000 CV</td>
+            <td>Community Builder</td>
+            <td>Community Builder Pool eligibility review</td>
+            <td><span class="milestone-status locked">🔒 Locked</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+      This module is for interface preview only. No real referral tracking, reward distribution, or milestone unlocking is executed. All rewards and eligibility are subject to final campaign rules and eligibility checks.
+    </p>
+  </div>
+</section>
+
 <!-- CONTRIBUTION VALUE -->
 <section id="contribution-value">
   <div class="section-header">
@@ -1816,7 +2114,7 @@
 <section id="referral-rewards">
   <div class="section-header">
     <h2>Direct Referral Rewards Preview</h2>
-    <p>As a qualified referrer, preview your potential direct referral rewards based on your invited participants' activity. 5% of the campaign fund is allocated to direct referral rewards.</p>
+    <p>As a qualified referrer, preview your potential direct referral rewards including first-referral booster based on your invited participants' activity.</p>
   </div>
   <div class="simulator-section">
     <div class="simulator-badge">Simulation only — No guaranteed returns. Subject to TGE rules and eligibility.</div>
@@ -1847,20 +2145,21 @@
           </div>
         </div>
         <div class="referral-input-group">
+          <label>New Invitees (First Entry Only)</label>
+          <div class="swap-input-wrapper">
+            <input type="number" id="ref-new-invitees" value="3" min="0" oninput="updateRefCalc()">
+            <span class="suffix">wallets</span>
+          </div>
+        </div>
+        <div class="referral-input-group">
           <label>Avg. Participation per Invitee (USDT)</label>
           <div class="swap-input-wrapper">
             <input type="number" id="ref-avg-participation" value="1000" min="0" max="1000" oninput="updateRefCalc()">
             <span class="suffix">USDT</span>
           </div>
         </div>
-        <div class="referral-input-group">
-          <label>Direct Referral Reward Rate (Fixed)</label>
-          <select class="calc-select" id="ref-rate" disabled>
-            <option value="0.05" selected>5% (0.5 USDT per 10 USDT entry)</option>
-          </select>
-        </div>
         <div style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.5rem;">
-          Each invitee max: 100 entries × 10 USDT = 1,000 USDT cap per wallet.
+          Base reward: 0.5 USDT per 10 USDT entry. First-referral booster: +0.5 USDT for each new invitee's first eligible entry (from 10,000 USDT Launch Booster Pool, max 20,000 new invitees).
         </div>
       </div>
       <div class="referral-result-panel">
@@ -1870,22 +2169,21 @@
           <span class="value" id="ref-res-volume">12,000 USDT</span>
         </div>
         <div class="referral-result-row">
-          <span class="label">Reward Rate</span>
-          <span class="value" id="ref-res-rate">5%</span>
+          <span class="label">First-Referral Booster (New Invitees)</span>
+          <span class="value" id="ref-res-booster">1.5 USDT</span>
         </div>
         <div class="referral-result-row">
-          <span class="label">Potential Direct Reward</span>
-          <span class="value" id="ref-res-reward">600 USDT</span>
+          <span class="label">Base Direct Rewards</span>
+          <span class="value" id="ref-res-base">600 USDT</span>
         </div>
         <div class="referral-result-row highlight">
-          <span class="label">Reward Preview (Pre-TGE)</span>
-          <span class="value" id="ref-res-final">600 USDT</span>
+          <span class="label">Total Reward Preview</span>
+          <span class="value" id="ref-res-final">601.5 USDT</span>
         </div>
         <div class="referral-formula-box">
-          <div>Total Invited Volume = 12 × 1,000 USDT (cap)</div>
-          <div>= 12,000 USDT</div>
-          <div style="margin-top: 0.5rem;">Potential Reward = 12,000 × 5%</div>
-          <div>= <strong style="color: var(--accent-secondary)">600 USDT</strong></div>
+          <div>First-Referral Booster = 3 new × 0.5 USDT = 1.5 USDT</div>
+          <div>Base Direct Rewards = 12,000 × 5% = 600 USDT</div>
+          <div style="margin-top: 0.5rem;">Total = 1.5 + 600 = <strong style="color: var(--accent-secondary)">601.5 USDT</strong></div>
         </div>
       </div>
     </div>
@@ -2524,20 +2822,23 @@ function updateCVCalc() {
 // Update Direct Referral Rewards Calculator
 function updateRefCalc() {
   const invitees = parseInt(document.getElementById('ref-invitees').value) || 0;
+  const newInvitees = parseInt(document.getElementById('ref-new-invitees').value) || 0;
   const avgParticipation = Math.min(1000, parseFloat(document.getElementById('ref-avg-participation').value) || 0);
-  const rewardRate = parseFloat(document.getElementById('ref-rate').value) || 0.05;
+  const rewardRate = 0.05; // Fixed 5%
 
   const totalVolume = invitees * avgParticipation;
-  const potentialReward = totalVolume * rewardRate;
+  const boosterReward = newInvitees * 0.5; // First-referral booster: 0.5 USDT per new invitee
+  const baseReward = totalVolume * rewardRate;
+  const totalReward = boosterReward + baseReward;
 
   document.getElementById('ref-total-invitees').textContent = invitees.toLocaleString();
   document.getElementById('ref-total-volume').textContent = totalVolume.toLocaleString() + ' USDT';
-  document.getElementById('ref-potential-reward').textContent = Math.round(potentialReward).toLocaleString() + ' USDT';
+  document.getElementById('ref-potential-reward').textContent = Math.round(baseReward).toLocaleString() + ' USDT';
 
   document.getElementById('ref-res-volume').textContent = totalVolume.toLocaleString() + ' USDT';
-  document.getElementById('ref-res-rate').textContent = (rewardRate * 100).toFixed(0) + '%';
-  document.getElementById('ref-res-reward').textContent = Math.round(potentialReward).toLocaleString() + ' USDT';
-  document.getElementById('ref-res-final').textContent = Math.round(potentialReward).toLocaleString() + ' USDT';
+  document.getElementById('ref-res-booster').textContent = boosterReward.toFixed(1) + ' USDT';
+  document.getElementById('ref-res-base').textContent = Math.round(baseReward).toLocaleString() + ' USDT';
+  document.getElementById('ref-res-final').textContent = totalReward.toFixed(1) + ' USDT';
 }
 
 // Initialize CV calculator on load

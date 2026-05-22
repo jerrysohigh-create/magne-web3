@@ -1362,6 +1362,170 @@
     .lb-status.pending { background: rgba(255,215,0,0.1); color: var(--accent-gold); }
     .lb-status.below { background: rgba(255,255,255,0.05); color: var(--text-tertiary); }
     .lb-status.review { background: rgba(255,165,0,0.1); color: #ffa500; }
+
+    /* INVITE MODULE */
+    .invite-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .invite-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .invite-card .ic-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .invite-card .ic-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    .invite-card .ic-desc {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+    }
+
+    /* MILESTONE */
+    .milestone-progress {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .milestone-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .milestone-header h4 {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    .milestone-badge {
+      background: rgba(0,255,136,0.1);
+      border: 1px solid rgba(0,255,136,0.3);
+      color: var(--accent-secondary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .milestone-bar-wrapper {
+      margin: 1rem 0;
+    }
+    .milestone-bar {
+      height: 8px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .milestone-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-secondary), var(--accent));
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+    .milestone-next {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.75rem;
+    }
+    .milestone-next strong {
+      color: var(--accent);
+    }
+
+    .milestone-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+    }
+    .milestone-table th, .milestone-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .milestone-table th {
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .milestone-table td:first-child {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .milestone-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+    }
+    .milestone-status.unlocked {
+      background: rgba(0,255,136,0.1);
+      color: var(--accent-secondary);
+    }
+    .milestone-status.progress {
+      background: rgba(255,215,0,0.1);
+      color: var(--accent-gold);
+    }
+    .milestone-status.locked {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-tertiary);
+    }
+
+    /* REWARD TABLE */
+    .reward-table-wrapper {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+    .reward-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .reward-table th, .reward-table td {
+      padding: 0.75rem 1rem;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .reward-table th {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .reward-table td {
+      color: var(--text-primary);
+    }
+    .reward-table td:first-child {
+      text-align: left;
+      color: var(--text-secondary);
+    }
+    .reward-table td:not(:first-child) {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent);
+    }
   </style>
 </head>
 <body>
@@ -1678,6 +1842,140 @@
   </div>
 </section>
 
+<!-- INVITE MODULE -->
+<section id="invite">
+  <div class="section-header">
+    <h2>邀請好友，解鎖里程碑</h2>
+    <p>邀請真實的新用戶參與 Session2，即可解鎖直接邀請獎勵預覽、身份里程碑及產品型權益資格預覽。</p>
+  </div>
+  <div class="simulator-section">
+    <div class="simulator-badge">演示數據，僅供邀請機制與介面預覽。</div>
+
+    <div class="invite-cards-grid">
+      <div class="invite-card">
+        <div class="ic-value">1.0 USDT</div>
+        <div class="ic-label">首位有效邀請獎勵</div>
+        <div class="ic-desc">包含 0.5 USDT 基礎獎勵 + 0.5 USDT 首邀加速獎勵</div>
+      </div>
+      <div class="invite-card">
+        <div class="ic-value">0.5 USDT</div>
+        <div class="ic-label">後續有效參與獎勵</div>
+        <div class="ic-desc">每筆符合資格的 10 USDT 參與</div>
+      </div>
+      <div class="invite-card">
+        <div class="ic-value">10,000 USDT</div>
+        <div class="ic-label">首邀加速獎勵池</div>
+        <div class="ic-desc">最多支持 20,000 名新有效被邀請用戶</div>
+      </div>
+      <div class="invite-card">
+        <div class="ic-value">AI Agent</div>
+        <div class="ic-label">新好友權益</div>
+        <div class="ic-desc">Trial Pass 資格預覽，以最終活動規則為準</div>
+      </div>
+    </div>
+
+    <div class="reward-table-wrapper">
+      <table class="reward-table">
+        <thead>
+          <tr>
+            <th>行為</th>
+            <th>基礎直接邀請獎勵</th>
+            <th>首邀加速獎勵</th>
+            <th>合計獎勵預覽</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>好友首次有效參與 10 USDT</td>
+            <td>0.5 USDT</td>
+            <td>+0.5 USDT</td>
+            <td>1.0 USDT</td>
+          </tr>
+          <tr>
+            <td>同一好友第 2 次及後續有效參與</td>
+            <td>0.5 USDT</td>
+            <td>—</td>
+            <td>0.5 USDT / 次</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size: 0.8rem; color: var(--text-tertiary); text-align: center; margin-bottom: 1.5rem;">
+      當首邀加速獎勵池使用完畢後：僅保留基礎 0.5 USDT 直接邀請獎勵預覽，具體以最終活動規則為準。
+    </p>
+
+    <div class="milestone-progress">
+      <div class="milestone-header">
+        <h4>你的邀請進度</h4>
+        <span class="milestone-badge">Referral Starter</span>
+      </div>
+      <div class="milestone-bar-wrapper">
+        <div class="milestone-bar">
+          <div class="milestone-bar-fill" style="width: 67%"></div>
+        </div>
+      </div>
+      <div class="milestone-next">
+        <strong>2 / 3</strong> 名有效好友 — 再邀請 <strong>1 名</strong>即可解鎖 Community Explorer
+      </div>
+    </div>
+
+    <div class="reward-table-wrapper">
+      <table class="milestone-table">
+        <thead>
+          <tr>
+            <th>有效邀請人數</th>
+            <th>里程碑身份</th>
+            <th>權益預覽</th>
+            <th>狀態</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 人</td>
+            <td>Referral Starter</td>
+            <td>首邀加速獎勵預覽 + 身份徽章</td>
+            <td><span class="milestone-status unlocked">✓ 已解鎖</span></td>
+          </tr>
+          <tr>
+            <td>3 人</td>
+            <td>Community Explorer</td>
+            <td>AI Agent Trial 延長資格預覽</td>
+            <td><span class="milestone-status progress">● 進行中</span></td>
+          </tr>
+          <tr>
+            <td>5 人</td>
+            <td>Session2 Connector</td>
+            <td>後續活動優先資格評估</td>
+            <td><span class="milestone-status locked">🔒 未解鎖</span></td>
+          </tr>
+          <tr>
+            <td>10 人</td>
+            <td>MAGNE Pioneer</td>
+            <td>Phone Gen1 Priority Access 資格評估</td>
+            <td><span class="milestone-status locked">🔒 未解鎖</span></td>
+          </tr>
+          <tr>
+            <td>25 人</td>
+            <td>Community Advocate</td>
+            <td>專屬社群身份及活動展示資格評估</td>
+            <td><span class="milestone-status locked">🔒 未解鎖</span></td>
+          </tr>
+          <tr>
+            <td>≥ 100,000 CV</td>
+            <td>Community Builder</td>
+            <td>Community Builder Pool 資格評估</td>
+            <td><span class="milestone-status locked">🔒 未解鎖</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+      本模塊僅供介面預覽。不執行真實邀請追蹤、獎勵分發或里程碑解鎖。所有獎勵及資格以最終活動規則及資格審核為準。
+    </p>
+  </div>
+</section>
+
 <!-- CONTRIBUTION VALUE -->
 <section id="contribution-value">
   <div class="section-header">
@@ -1815,7 +2113,7 @@
 <section id="referral-rewards">
   <div class="section-header">
     <h2>直接邀請獎勵預覽</h2>
-    <p>作為符合資格的邀請人，根據被邀請人的活動預覽您的潛在直接邀請獎勵。活動資金的 5% 用於直接邀請獎勵。</p>
+    <p>作為符合資格的邀請人，預覽您基於被邀請人活動的潛在直接邀請獎勵，包括首邀加速獎勵。</p>
   </div>
   <div class="simulator-section">
     <div class="simulator-badge">僅為模擬演示 — 不構成保證回報。需遵守 TGE 規則及資格要求。</div>
@@ -1846,20 +2144,21 @@
           </div>
         </div>
         <div class="referral-input-group">
+          <label>新被邀請人（僅首次參與）</label>
+          <div class="swap-input-wrapper">
+            <input type="number" id="ref-new-invitees" value="3" min="0" oninput="updateRefCalc()">
+            <span class="suffix">錢包</span>
+          </div>
+        </div>
+        <div class="referral-input-group">
           <label>每位被邀請人平均參與額 (USDT)</label>
           <div class="swap-input-wrapper">
             <input type="number" id="ref-avg-participation" value="1000" min="0" max="1000" oninput="updateRefCalc()">
             <span class="suffix">USDT</span>
           </div>
         </div>
-        <div class="referral-input-group">
-          <label>直接邀請獎勵比例（固定）</label>
-          <select class="calc-select" id="ref-rate" disabled>
-            <option value="0.05" selected>5%（每筆 10 USDT 蔘與，邀請人獲 0.5 USDT）</option>
-          </select>
-        </div>
         <div style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.5rem;">
-          每位被邀請人上限：100 次 × 10 USDT = 每人最多 1,000 USDT。
+          基礎獎勵：每筆 10 USDT 參與 0.5 USDT。首邀加速：每名新被邀請人額外 0.5 USDT（來自 10,000 USDT 首邀加速池，最多支援 20,000 名新用戶）。
         </div>
       </div>
       <div class="referral-result-panel">
@@ -1869,22 +2168,21 @@
           <span class="value" id="ref-res-volume">12,000 USDT</span>
         </div>
         <div class="referral-result-row">
-          <span class="label">獎勵比例</span>
-          <span class="value" id="ref-res-rate">5%</span>
+          <span class="label">首邀加速獎勵（新被邀請人）</span>
+          <span class="value" id="ref-res-booster">1.5 USDT</span>
         </div>
         <div class="referral-result-row">
-          <span class="label">潛在直接獎勵</span>
-          <span class="value" id="ref-res-reward">600 USDT</span>
+          <span class="label">基礎直接獎勵</span>
+          <span class="value" id="ref-res-base">600 USDT</span>
         </div>
         <div class="referral-result-row highlight">
-          <span class="label">獎勵預覽（TGE 前）</span>
-          <span class="value" id="ref-res-final">600 USDT</span>
+          <span class="label">獎勵預覽總計</span>
+          <span class="value" id="ref-res-final">601.5 USDT</span>
         </div>
         <div class="referral-formula-box">
-          <div>被邀請總參與額 = 12 × 1,000 USDT（上限）</div>
-          <div>= 12,000 USDT</div>
-          <div style="margin-top: 0.5rem;">潛在獎勵 = 12,000 × 5%</div>
-          <div>= <strong style="color: var(--accent-secondary)">600 USDT</strong></div>
+          <div>首邀加速獎勵 = 3 新用戶 × 0.5 USDT = 1.5 USDT</div>
+          <div>基礎直接獎勵 = 12,000 × 5% = 600 USDT</div>
+          <div style="margin-top: 0.5rem;">合計 = 1.5 + 600 = <strong style="color: var(--accent-secondary)">601.5 USDT</strong></div>
         </div>
       </div>
     </div>
@@ -2510,20 +2808,22 @@ function updateCVCalc() {
 // Update Direct Referral Rewards Calculator
 function updateRefCalc() {
   const invitees = parseInt(document.getElementById('ref-invitees').value) || 0;
+  const newInvitees = parseInt(document.getElementById('ref-new-invitees').value) || 0;
   const avgParticipation = Math.min(1000, parseFloat(document.getElementById('ref-avg-participation').value) || 0);
-  const rewardRate = parseFloat(document.getElementById('ref-rate').value) || 0.05;
+  const rewardRate = 0.05; // Fixed 5%
 
   const totalVolume = invitees * avgParticipation;
-  const potentialReward = totalVolume * rewardRate;
-
+  const boosterReward = newInvitees * 0.5; // First-referral booster: 0.5 USDT per new invitee
+  const baseReward = totalVolume * rewardRate;
+  const totalReward = boosterReward + baseReward;
   document.getElementById('ref-total-invitees').textContent = invitees.toLocaleString();
   document.getElementById('ref-total-volume').textContent = totalVolume.toLocaleString() + ' USDT';
-  document.getElementById('ref-potential-reward').textContent = Math.round(potentialReward).toLocaleString() + ' USDT';
+  document.getElementById('ref-potential-reward').textContent = Math.round(baseReward).toLocaleString() + ' USDT';
 
   document.getElementById('ref-res-volume').textContent = totalVolume.toLocaleString() + ' USDT';
-  document.getElementById('ref-res-rate').textContent = (rewardRate * 100).toFixed(0) + '%';
-  document.getElementById('ref-res-reward').textContent = Math.round(potentialReward).toLocaleString() + ' USDT';
-  document.getElementById('ref-res-final').textContent = Math.round(potentialReward).toLocaleString() + ' USDT';
+  document.getElementById('ref-res-booster').textContent = boosterReward.toFixed(1) + ' USDT';
+  document.getElementById('ref-res-base').textContent = Math.round(baseReward).toLocaleString() + ' USDT';
+  document.getElementById('ref-res-final').textContent = totalReward.toFixed(1) + ' USDT';
 }
 
 // Initialize CV calculator on load
