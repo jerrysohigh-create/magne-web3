@@ -2382,10 +2382,10 @@
           <span class="value" id="ref-res-final">30.0 USDT</span>
         </div>
         <div class="referral-formula-box">
-          <div>Total Entries = 10 friends × 5 entries = <strong>50 entries</strong></div>
-          <div>Base Rewards = 50 × 0.5 = <strong>25.0 USDT</strong></div>
-          <div>Booster = 10 × 0.5 = <strong>5.0 USDT</strong></div>
-          <div style="margin-top: 0.5rem;">Potential = 25.0 + 5.0 = <strong style="color: var(--accent-secondary)">30.0 USDT</strong></div>
+          <div id="ref-formula-entries">Total Entries = 10 friends × 5 entries = <strong>50 entries</strong></div>
+          <div id="ref-formula-base">Base Rewards = 50 × 0.5 = <strong>25.0 USDT</strong></div>
+          <div id="ref-formula-booster">Booster = 10 × 0.5 = <strong>5.0 USDT</strong></div>
+          <div id="ref-formula-total" style="margin-top: 0.5rem;">Potential = 25.0 + 5.0 = <strong style="color: var(--accent-secondary)">30.0 USDT</strong></div>
         </div>
       </div>
     </div>
@@ -3057,6 +3057,11 @@ function updateRefCalc() {
   document.getElementById('ref-res-base').textContent = baseReward.toFixed(1) + ' USDT';
   document.getElementById('ref-res-booster').textContent = boosterReward.toFixed(1) + ' USDT';
   document.getElementById('ref-res-final').textContent = totalReward.toFixed(1) + ' USDT';
+
+  document.getElementById('ref-formula-entries').innerHTML = 'Total Entries = ' + invitees + ' friends × ' + avgEntries + ' entries = <strong>' + totalEntries.toLocaleString() + ' entries</strong>';
+  document.getElementById('ref-formula-base').innerHTML = 'Base Rewards = ' + totalEntries + ' × 0.5 = <strong>' + baseReward.toFixed(1) + ' USDT</strong>';
+  document.getElementById('ref-formula-booster').innerHTML = 'Booster = ' + invitees + ' × 0.5 = <strong>' + boosterReward.toFixed(1) + ' USDT</strong>';
+  document.getElementById('ref-formula-total').innerHTML = 'Potential = ' + baseReward.toFixed(1) + ' + ' + boosterReward.toFixed(1) + ' = <strong style="color: var(--accent-secondary)">' + totalReward.toFixed(1) + ' USDT</strong>';
 }
 
 // Initialize CV calculator on load

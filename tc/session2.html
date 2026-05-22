@@ -2380,10 +2380,10 @@
           <span class="value" id="ref-res-final">30.0 USDT</span>
         </div>
         <div class="referral-formula-box">
-          <div>總參與次數 = 10 人 × 5 次 = <strong>50 次</strong></div>
-          <div>基礎獎勵 = 50 × 0.5 = <strong>25.0 USDT</strong></div>
-          <div>首邀加速 = 10 × 0.5 = <strong>5.0 USDT</strong></div>
-          <div style="margin-top: 0.5rem;">合計 = 25.0 + 5.0 = <strong style="color: var(--accent-secondary)">30.0 USDT</strong></div>
+          <div id="ref-formula-entries">總參與次數 = 10 人 × 5 次 = <strong>50 次</strong></div>
+          <div id="ref-formula-base">基礎獎勵 = 50 × 0.5 = <strong>25.0 USDT</strong></div>
+          <div id="ref-formula-booster">首邀加速 = 10 × 0.5 = <strong>5.0 USDT</strong></div>
+          <div id="ref-formula-total" style="margin-top: 0.5rem;">合計 = 25.0 + 5.0 = <strong style="color: var(--accent-secondary)">30.0 USDT</strong></div>
         </div>
       </div>
     </div>
@@ -3041,6 +3041,11 @@ function updateRefCalc() {
   document.getElementById('ref-res-base').textContent = baseReward.toFixed(1) + ' USDT';
   document.getElementById('ref-res-booster').textContent = boosterReward.toFixed(1) + ' USDT';
   document.getElementById('ref-res-final').textContent = totalReward.toFixed(1) + ' USDT';
+
+  document.getElementById('ref-formula-entries').innerHTML = '總參與次數 = ' + invitees + ' 人 × ' + avgEntries + ' 次 = <strong>' + totalEntries.toLocaleString() + ' 次</strong>';
+  document.getElementById('ref-formula-base').innerHTML = '基礎獎勵 = ' + totalEntries + ' × 0.5 = <strong>' + baseReward.toFixed(1) + ' USDT</strong>';
+  document.getElementById('ref-formula-booster').innerHTML = '首邀加速 = ' + invitees + ' × 0.5 = <strong>' + boosterReward.toFixed(1) + ' USDT</strong>';
+  document.getElementById('ref-formula-total').innerHTML = '合計 = ' + baseReward.toFixed(1) + ' + ' + boosterReward.toFixed(1) + ' = <strong style="color: var(--accent-secondary)">' + totalReward.toFixed(1) + ' USDT</strong>';
 }
 
 // Initialize CV calculator on load
