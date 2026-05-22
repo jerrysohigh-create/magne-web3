@@ -1372,15 +1372,15 @@
     <a href="/" class="nav-logo">MAGNE.AI</a>
   </div>
   <ul class="nav-links">
-    <li><a href="/">首頁</a></li>
-    <li><a href="/learn.html">學習</a></li>
-    <li><a href="/developers.html">開發者</a></li>
-    <li><a href="/network.html">網絡</a></li>
-    <li><a href="/token.html">代幣</a></li>
-    <li><a href="/ecosystem.html">生態</a></li>
-    <li><a href="/transparency.html">透明中心</a></li>
-    <li><a href="/faq.html">常見問題</a></li>
-    <li><a href="/session2.html" class="active">Session2</a></li>
+    <li><a href="./magne-home.html">首頁</a></li>
+    <li><a href="./learn.html">學習</a></li>
+    <li><a href="./developers.html">開發者</a></li>
+    <li><a href="./network.html">網絡</a></li>
+    <li><a href="./token.html">代幣</a></li>
+    <li><a href="./ecosystem.html">生態</a></li>
+    <li><a href="./transparency.html">透明中心</a></li>
+    <li><a href="./faq.html">常見問題</a></li>
+    <li><a href="./session2.html" class="active">Session2</a></li>
   </ul>
   <div class="nav-actions">
     <div class="nav-lang">
@@ -1569,11 +1569,11 @@
   <div class="ms2-grid">
     <div class="ms2-card">
       <h3><span class="badge">代幣</span> 什麼是 MS2？</h3>
-      <p>MS2 是分配給 Session2 參與者的活動代幣。可在 PancakeSwap 交易、質押以提升活動權重，或持有待未來用途。</p>
+      <p>MS2 是分配給 Session2 參與者的活動代幣。未來可根據最終啟動安排提供交易功能，亦可質押以提升活動權重，或持有待未來用途。</p>
     </div>
     <div class="ms2-card">
       <h3><span class="badge">交易</span> 市場可用性</h3>
-      <p>MS2 可在 PancakeSwap V2 交易。初始流動性 10 萬 USDT 提供合理的市場深度。活動資金的一部分可能用於 MS2 回購與銷毀。</p>
+      <p>MS2 未來可根據最終啟動安排，透過受支持的流動性池提供市場交易功能。計劃初始流動性最高為 100,000 USDT 等值，實際安排以最終啟動條件及官方公告為準。</p>
     </div>
     <div class="ms2-card">
       <h3><span class="badge">質押</span> 質押用途</h3>
@@ -1643,9 +1643,12 @@
       <div class="tier-item">
         <div class="tier-name">鑽石</div>
         <div class="tier-req">≥ 100,000 USDT</div>
-        <div class="tier-bonus">+10% + 分池</div>
+        <div class="tier-bonus">+10% 權重加成</div>
       </div>
     </div>
+    <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-tertiary);">
+      鑽石等級可參與 Community Builder Pool 資格評估
+    </p>
 
     <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">
       <strong style="color: var(--accent);">注意：</strong> MS2 質押僅用於活動權重計算，不構成固定收益產品或收益承諾。
@@ -1768,7 +1771,7 @@
           </div>
           <div class="result-row highlight">
             <span class="label">最終社群貢獻值</span>
-            <span class="value" id="cv-res-final">121,000 點</span>
+            <span class="value" id="cv-res-final">116,000 點</span>
           </div>
         </div>
         <div class="contrib-formula-box">
@@ -1829,11 +1832,9 @@
           </div>
         </div>
         <div class="referral-input-group">
-          <label>直接邀請獎勵比例</label>
-          <select class="calc-select" id="ref-rate" onchange="updateRefCalc()">
-            <option value="0.03">3%</option>
-            <option value="0.05" selected>5%（活動比例）</option>
-            <option value="0.07">7%</option>
+          <label>直接邀請獎勵比例（固定）</label>
+          <select class="calc-select" id="ref-rate" disabled>
+            <option value="0.05" selected>5%（每筆 10 USDT 蔘與，邀請人獲 0.5 USDT）</option>
           </select>
         </div>
         <div style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.5rem;">
@@ -1852,11 +1853,11 @@
         </div>
         <div class="referral-result-row">
           <span class="label">潛在直接獎勵</span>
-          <span class="value" id="ref-res-reward">2,260 USDT</span>
+          <span class="value" id="ref-res-reward">600 USDT</span>
         </div>
         <div class="referral-result-row highlight">
           <span class="label">獎勵預覽（TGE 前）</span>
-          <span class="value" id="ref-res-final">2,260 USDT</span>
+          <span class="value" id="ref-res-final">600 USDT</span>
         </div>
         <div class="referral-formula-box">
           <div>被邀請總參與額 = 12 × 1,000 USDT（上限）</div>
@@ -1969,7 +1970,7 @@
 <section id="allocation">
   <div class="section-header">
     <h2>資金分配</h2>
-    <p>活動收益透明分配</p>
+    <p>活動資金用途說明</p>
   </div>
   <div class="allocation-grid">
     <div class="alloc-item">
@@ -2164,7 +2165,7 @@
             <option value="0.02">青銅 ≥1,000 USDT (+2%)</option>
             <option value="0.05">白銀 ≥5,000 USDT (+5%)</option>
             <option value="0.1" selected>黃金 ≥20,000 USDT (+10%)</option>
-            <option value="0.1">鑽石 ≥100,000 USDT (+10% + 獎池)</option>
+            <option value="0.1">鑽石 ≥100,000 USDT (+10% 權重加成)</option>
           </select>
         </div>
         <div class="calc-input-group">
@@ -2272,9 +2273,9 @@
     </div>
     <div class="timeline-item past">
       <div class="timeline-dot"></div>
-      <div class="timeline-date">1000 次參與後</div>
-      <div class="timeline-title">MS2 流動性開放</div>
-      <div class="timeline-desc">PancakeSwap MS2/USDT 流動性池上線。</div>
+      <div class="timeline-date">達到預定條件後</div>
+      <div class="timeline-title">MS2 流動性計劃</div>
+      <div class="timeline-desc">計劃開放 MS2/USDT 流動性池，具體時間以最終啟動條件及官方公告為準。</div>
     </div>
     <div class="timeline-item current">
       <div class="timeline-dot"></div>
@@ -2303,136 +2304,6 @@
   </div>
 </section>
 
-<!-- TRADING SIMULATOR -->
-<section id="trading">
-  <div class="section-header">
-    <h2>MS2 市場預覽</h2>
-    <p>僅為 Demo 介面 — 不執行真實交易</p>
-  </div>
-  <div class="trading-section">
-    <div class="trading-header">
-      <div class="trading-pair">
-        <div class="pair-icon">MS2</div>
-        <div>
-          <div class="pair-name">MS2 / USDT</div>
-          <div style="font-size: 0.8rem; color: var(--text-tertiary);">PancakeSwap V2</div>
-        </div>
-        <div style="margin-left: 1rem;">
-          <div class="pair-price" id="ms2-price">$0.0984</div>
-          <div>
-            <span class="pair-change up">+2.34%</span>
-          </div>
-        </div>
-      </div>
-      <div class="trading-pair" style="gap: 1.5rem;">
-        <div style="text-align: center;">
-          <div style="font-size: 0.75rem; color: var(--text-tertiary);">24小時最高</div>
-          <div style="font-family: 'JetBrains Mono', monospace; color: var(--accent-secondary);">$0.1021</div>
-        </div>
-        <div style="text-align: center;">
-          <div style="font-size: 0.75rem; color: var(--text-tertiary);">24小時最低</div>
-          <div style="font-family: 'JetBrains Mono', monospace; color: #f85149;">$0.0892</div>
-        </div>
-        <div style="text-align: center;">
-          <div style="font-size: 0.75rem; color: var(--text-tertiary);">24小時成交量</div>
-          <div style="font-family: 'JetBrains Mono', monospace;">240萬 MS2</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="trading-grid">
-      <!-- Price Chart -->
-      <div class="trading-card">
-        <h4>價格圖表</h4>
-        <div class="price-chart" id="price-chart">
-          <!-- Bars will be generated by JS -->
-        </div>
-      </div>
-
-      <!-- Order Form -->
-      <div class="trading-card">
-        <h4>下單</h4>
-        
-        <div class="wallet-balance">
-          <div class="balance-item">
-            <div class="label">USDT 餘額</div>
-            <div class="value green" id="usdt-balance">1,000.00</div>
-          </div>
-          <div class="balance-item">
-            <div class="label">MS2 餘額</div>
-            <div class="value teal" id="ms2-balance">500.00</div>
-          </div>
-        </div>
-
-        <div class="order-tabs">
-          <button class="order-tab buy active" onclick="setOrderType('buy')">買入</button>
-          <button class="order-tab sell" onclick="setOrderType('sell')">賣出</button>
-        </div>
-
-        <div class="order-input-group">
-          <label>價格 (USDT)</label>
-          <div class="order-input-wrapper">
-            <input type="number" id="order-price" value="0.0984" step="0.0001" placeholder="0.00">
-            <span class="input-suffix">USDT</span>
-          </div>
-        </div>
-
-        <div class="order-input-group">
-          <label>數量 (MS2)</label>
-          <div class="order-input-wrapper">
-            <input type="number" id="order-amount" value="100" step="1" placeholder="0">
-            <span class="input-suffix">MS2</span>
-          </div>
-        </div>
-
-        <div class="order-presets">
-          <button class="preset-btn" onclick="setAmount(25)">25%</button>
-          <button class="preset-btn" onclick="setAmount(50)">50%</button>
-          <button class="preset-btn" onclick="setAmount(75)">75%</button>
-          <button class="preset-btn" onclick="setAmount(100)">最大</button>
-        </div>
-
-        <div class="order-slider">
-          <input type="range" id="order-slider" min="0" max="100" value="10" oninput="updateSlider(this.value)">
-        </div>
-
-        <div class="order-summary">
-          <span>總計</span>
-          <span class="value" id="order-total">9.84 USDT</span>
-        </div>
-
-        <button class="order-btn buy" id="order-btn" onclick="placeOrder()">買入 MS2</button>
-
-        <div class="mock-notice">
-          ⚠️ 這是模擬交易介面，僅供演示用途。不執行任何真實訂單。
-        </div>
-      </div>
-
-      <!-- Order Book -->
-      <div class="trading-card trading-orderbook">
-        <h4>訂單簿</h4>
-        <div class="orderbook-list">
-          <div class="orderbook-header">
-            <span>價格</span>
-            <span style="text-align: center;">數量</span>
-            <span style="text-align: right;">總計</span>
-          </div>
-          <div id="orderbook-asks">
-            <!-- Asks will be generated by JS -->
-          </div>
-          <div style="display: flex; justify-content: center; padding: 0.75rem 0; background: rgba(0,212,212,0.1); border-radius: 4px; margin: 0.5rem 0;">
-            <span style="font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600;" id="spread-price">$0.0984</span>
-            <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">價差: $0.0002</span>
-          </div>
-          <div id="orderbook-bids">
-            <!-- Bids will be generated by JS -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- DISCLAIMER -->
 <section id="disclaimer">
   <div class="disclaimer">
@@ -2451,10 +2322,10 @@
 <!-- FOOTER -->
 <footer>
   <p>
-    <a href="/">MAGNE.AI</a> | 
-    <a href="/developers.html">開發者</a> | 
-    <a href="/ecosystem.html">生態</a> | 
-    <a href="/learn.html">學習</a> | 
+    <a href="./magne-home.html">MAGNE.AI</a> | 
+    <a href="./developers.html">開發者</a> | 
+    <a href="./ecosystem.html">生態</a> | 
+    <a href="./learn.html">學習</a> | 
     <a href="https://web3.magne.ai" target="_blank">Web3 入口 ↗️</a>
   </p>
   <p style="margin-top: 1rem;">

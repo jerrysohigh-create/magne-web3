@@ -1573,7 +1573,7 @@
     </div>
     <div class="ms2-card">
       <h3><span class="badge">Trade</span> Market Availability</h3>
-      <p>MS2 can be traded on PancakeSwap V2. Initial liquidity of 100,000 USDT provides reasonable market depth. Part of campaign funds may be used for MS2 buyback and burn.</p>
+      <p>MS2 may have market trading functionality through supported liquidity pools based on final launch arrangements. Planned initial liquidity is up to 100,000 USDT equivalent, subject to final launch conditions and official announcements.</p>
     </div>
     <div class="ms2-card">
       <h3><span class="badge">Stake</span> Staking Utility</h3>
@@ -1643,9 +1643,12 @@
       <div class="tier-item">
         <div class="tier-name">Diamond</div>
         <div class="tier-req">≥ 100,000 USDT</div>
-        <div class="tier-bonus">+10% + Pool</div>
+        <div class="tier-bonus">+10% Weight Bonus</div>
       </div>
     </div>
+    <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-tertiary);">
+      Diamond tier may be eligible for Community Builder Pool review
+    </p>
 
     <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">
       <strong style="color: var(--accent);">Note:</strong> MS2 staking is for campaign weight calculation only. 
@@ -1769,7 +1772,7 @@
           </div>
           <div class="result-row highlight">
             <span class="label">Final Contribution Value</span>
-            <span class="value" id="cv-res-final">121,000</span>
+            <span class="value" id="cv-res-final">116,000</span>
           </div>
         </div>
         <div class="contrib-formula-box">
@@ -1830,11 +1833,9 @@
           </div>
         </div>
         <div class="referral-input-group">
-          <label>Direct Referral Reward Rate</label>
-          <select class="calc-select" id="ref-rate" onchange="updateRefCalc()">
-            <option value="0.03">3%</option>
-            <option value="0.05" selected>5% (Campaign Rate)</option>
-            <option value="0.07">7%</option>
+          <label>Direct Referral Reward Rate (Fixed)</label>
+          <select class="calc-select" id="ref-rate" disabled>
+            <option value="0.05" selected>5% (0.5 USDT per 10 USDT entry)</option>
           </select>
         </div>
         <div style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.5rem;">
@@ -1853,11 +1854,11 @@
         </div>
         <div class="referral-result-row">
           <span class="label">Potential Direct Reward</span>
-          <span class="value" id="ref-res-reward">2,260 USDT</span>
+          <span class="value" id="ref-res-reward">600 USDT</span>
         </div>
         <div class="referral-result-row highlight">
           <span class="label">Reward Preview (Pre-TGE)</span>
-          <span class="value" id="ref-res-final">2,260 USDT</span>
+          <span class="value" id="ref-res-final">600 USDT</span>
         </div>
         <div class="referral-formula-box">
           <div>Total Invited Volume = 12 × 1,000 USDT (cap)</div>
@@ -1970,7 +1971,7 @@
 <section id="allocation">
   <div class="section-header">
     <h2>Fund Allocation</h2>
-    <p>Transparent distribution of campaign proceeds</p>
+    <p>Campaign fund allocation preview</p>
   </div>
   <div class="allocation-grid">
     <div class="alloc-item">
@@ -2165,7 +2166,7 @@
             <option value="0.02">Bronze ≥1,000 USDT (+2%)</option>
             <option value="0.05">Silver ≥5,000 USDT (+5%)</option>
             <option value="0.1" selected>Gold ≥20,000 USDT (+10%)</option>
-            <option value="0.1">Diamond ≥100,000 USDT (+10% + Pool)</option>
+            <option value="0.1">Diamond ≥100,000 USDT (+10% Weight Bonus)</option>
           </select>
         </div>
         <div class="calc-input-group">
@@ -2273,9 +2274,9 @@
     </div>
     <div class="timeline-item past">
       <div class="timeline-dot"></div>
-      <div class="timeline-date">After 1,000 Entries</div>
-      <div class="timeline-title">MS2 Liquidity Opens</div>
-      <div class="timeline-desc">PancakeSwap MS2/USDT pool goes live with initial liquidity.</div>
+      <div class="timeline-date">Upon Reaching Milestone</div>
+      <div class="timeline-title">MS2 Liquidity Plan</div>
+      <div class="timeline-desc">Planned MS2/USDT pool launch, subject to final launch conditions and official announcements.</div>
     </div>
     <div class="timeline-item current">
       <div class="timeline-dot"></div>
@@ -2300,136 +2301,6 @@
       <div class="timeline-date">TGE + 7 Days</div>
       <div class="timeline-title">MS2 Unlock Window</div>
       <div class="timeline-desc">Stakers can begin claiming unlocked MS2 from the staking contract.</div>
-    </div>
-  </div>
-</section>
-
-<!-- TRADING SIMULATOR -->
-<section id="trading">
-  <div class="section-header">
-    <h2>MS2 Market Preview</h2>
-    <p>Demo Interface Only — No real transaction is executed</p>
-  </div>
-  <div class="trading-section">
-    <div class="trading-header">
-      <div class="trading-pair">
-        <div class="pair-icon">MS2</div>
-        <div>
-          <div class="pair-name">MS2 / USDT</div>
-          <div style="font-size: 0.8rem; color: var(--text-tertiary);">PancakeSwap V2</div>
-        </div>
-        <div style="margin-left: 1rem;">
-          <div class="pair-price" id="ms2-price">$0.0984</div>
-          <div>
-            <span class="pair-change up">+2.34%</span>
-          </div>
-        </div>
-      </div>
-      <div class="trading-pair" style="gap: 1.5rem;">
-        <div style="text-align: center;">
-          <div style="font-size: 0.75rem; color: var(--text-tertiary);">24h High</div>
-          <div style="font-family: 'JetBrains Mono', monospace; color: var(--accent-secondary);">$0.1021</div>
-        </div>
-        <div style="text-align: center;">
-          <div style="font-size: 0.75rem; color: var(--text-tertiary);">24h Low</div>
-          <div style="font-family: 'JetBrains Mono', monospace; color: #f85149;">$0.0892</div>
-        </div>
-        <div style="text-align: center;">
-          <div style="font-size: 0.75rem; color: var(--text-tertiary);">24h Volume</div>
-          <div style="font-family: 'JetBrains Mono', monospace;">2.4M MS2</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="trading-grid">
-      <!-- Price Chart -->
-      <div class="trading-card">
-        <h4>Price Chart</h4>
-        <div class="price-chart" id="price-chart">
-          <!-- Bars will be generated by JS -->
-        </div>
-      </div>
-
-      <!-- Order Form -->
-      <div class="trading-card">
-        <h4>Place Order</h4>
-        
-        <div class="wallet-balance">
-          <div class="balance-item">
-            <div class="label">USDT Balance</div>
-            <div class="value green" id="usdt-balance">1,000.00</div>
-          </div>
-          <div class="balance-item">
-            <div class="label">MS2 Balance</div>
-            <div class="value teal" id="ms2-balance">500.00</div>
-          </div>
-        </div>
-
-        <div class="order-tabs">
-          <button class="order-tab buy active" onclick="setOrderType('buy')">Buy</button>
-          <button class="order-tab sell" onclick="setOrderType('sell')">Sell</button>
-        </div>
-
-        <div class="order-input-group">
-          <label>Price (USDT)</label>
-          <div class="order-input-wrapper">
-            <input type="number" id="order-price" value="0.0984" step="0.0001" placeholder="0.00">
-            <span class="input-suffix">USDT</span>
-          </div>
-        </div>
-
-        <div class="order-input-group">
-          <label>Amount (MS2)</label>
-          <div class="order-input-wrapper">
-            <input type="number" id="order-amount" value="100" step="1" placeholder="0">
-            <span class="input-suffix">MS2</span>
-          </div>
-        </div>
-
-        <div class="order-presets">
-          <button class="preset-btn" onclick="setAmount(25)">25%</button>
-          <button class="preset-btn" onclick="setAmount(50)">50%</button>
-          <button class="preset-btn" onclick="setAmount(75)">75%</button>
-          <button class="preset-btn" onclick="setAmount(100)">Max</button>
-        </div>
-
-        <div class="order-slider">
-          <input type="range" id="order-slider" min="0" max="100" value="10" oninput="updateSlider(this.value)">
-        </div>
-
-        <div class="order-summary">
-          <span>Total</span>
-          <span class="value" id="order-total">9.84 USDT</span>
-        </div>
-
-        <button class="order-btn buy" id="order-btn" onclick="placeOrder()">Buy MS2</button>
-
-        <div class="mock-notice">
-          ⚠️ This is a simulated trading interface for demo purposes only. No real orders are executed.
-        </div>
-      </div>
-
-      <!-- Order Book -->
-      <div class="trading-card trading-orderbook">
-        <h4>Order Book</h4>
-        <div class="orderbook-list">
-          <div class="orderbook-header">
-            <span>Price</span>
-            <span style="text-align: center;">Amount</span>
-            <span style="text-align: right;">Total</span>
-          </div>
-          <div id="orderbook-asks">
-            <!-- Asks will be generated by JS -->
-          </div>
-          <div style="display: flex; justify-content: center; padding: 0.75rem 0; background: rgba(0,212,212,0.1); border-radius: 4px; margin: 0.5rem 0;">
-            <span style="font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 600;" id="spread-price">$0.0984</span>
-            <span style="font-size: 0.75rem; color: var(--text-tertiary); margin-left: 0.5rem;">Spread: $0.0002</span>
-          </div>
-          <div id="orderbook-bids">
-            <!-- Bids will be generated by JS -->
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
