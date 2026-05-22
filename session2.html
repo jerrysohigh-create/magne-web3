@@ -1974,6 +1974,56 @@
     <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
       This module is for interface preview only. No real referral tracking, reward distribution, or milestone unlocking is executed. All rewards and eligibility are subject to final campaign rules and eligibility checks.
     </p>
+
+    <!-- REFERRAL DASHBOARD -->
+    <div class="milestone-progress" style="margin-top: 2rem;">
+      <div class="milestone-header">
+        <h4>My Referral Dashboard</h4>
+        <span class="simulator-badge">Demo Only</span>
+      </div>
+      <div class="invite-cards-grid" style="margin-top: 1rem;">
+        <div class="invite-card">
+          <div class="ic-value">2</div>
+          <div class="ic-label">Eligible Invited Friends</div>
+        </div>
+        <div class="invite-card">
+          <div class="ic-value">120 USDT</div>
+          <div class="ic-label">Total Eligible Friend Participation</div>
+        </div>
+        <div class="invite-card">
+          <div class="ic-value">7.0 USDT</div>
+          <div class="ic-label">Pending Referral Rewards</div>
+        </div>
+        <div class="invite-card">
+          <div class="ic-value">0.0 USDT</div>
+          <div class="ic-label">Claimable Rewards</div>
+        </div>
+      </div>
+      <div style="margin-top: 1rem; padding: 1rem; background: rgba(255,215,0,0.05); border: 1px solid rgba(255,215,0,0.15); border-radius: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary);">Current Status</div>
+            <div style="font-size: 0.9rem; font-weight: 600; color: var(--accent-gold);">Pending Review</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.85rem; color: var(--text-secondary);">Next Step</div>
+            <div style="font-size: 0.9rem; color: var(--accent);">Invite 1 more to unlock Community Explorer</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-tertiary); line-height: 1.8;">
+        <strong style="color: var(--text-secondary);">Calculation Breakdown (Demo):</strong><br>
+        Friend A: 10 eligible entries<br>
+        &nbsp;&nbsp;First entry reward = 1.0 USDT<br>
+        &nbsp;&nbsp;Subsequent 9 entries = 9 × 0.5 = 4.5 USDT<br>
+        &nbsp;&nbsp;Friend A total = <strong style="color: var(--accent);">5.5 USDT</strong><br><br>
+        Friend B: 2 eligible entries<br>
+        &nbsp;&nbsp;First entry reward = 1.0 USDT<br>
+        &nbsp;&nbsp;Subsequent 1 entry = 0.5 USDT<br>
+        &nbsp;&nbsp;Friend B total = <strong style="color: var(--accent);">1.5 USDT</strong><br><br>
+        Total Referral Reward Preview: <strong style="color: var(--accent-secondary);">5.5 + 1.5 = 7.0 USDT</strong>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2113,83 +2163,75 @@
 <!-- DIRECT REFERRAL REWARDS SIMULATOR -->
 <section id="referral-rewards">
   <div class="section-header">
-    <h2>Direct Referral Rewards Preview</h2>
-    <p>As a qualified referrer, preview your potential direct referral rewards including first-referral booster based on your invited participants' activity.</p>
+    <h2>Direct Referral Rewards Simulator</h2>
+    <p>Preview your potential direct referral rewards based on your invited network activity. All referral rewards apply only to one-level direct referrals — no multi-level referral reward exists.</p>
   </div>
   <div class="simulator-section">
     <div class="simulator-badge">Simulation only — No guaranteed returns. Subject to TGE rules and eligibility.</div>
 
-    <div class="referral-summary-cards">
-      <div class="referral-summary-card">
-        <div class="rsc-value" id="ref-total-invitees">12</div>
-        <div class="rsc-label">Qualified Invitees</div>
-      </div>
-      <div class="referral-summary-card">
-        <div class="rsc-value" id="ref-total-volume">12,000 USDT</div>
-        <div class="rsc-label">Total Invited Volume (Max 1,000/invitee)</div>
-      </div>
-      <div class="referral-summary-card">
-        <div class="rsc-value" id="ref-potential-reward">600 USDT</div>
-        <div class="rsc-label">Potential Reward (5%)</div>
-      </div>
-    </div>
-
     <div class="referral-sim-container">
       <div class="referral-input-panel">
-        <h4>Your Invited Network (Demo)</h4>
+        <h4>Your Network (Demo)</h4>
         <div class="referral-input-group">
-          <label>Number of Qualified Invitees</label>
+          <label>Eligible Invited Friends</label>
           <div class="swap-input-wrapper">
-            <input type="number" id="ref-invitees" value="12" min="0" oninput="updateRefCalc()">
-            <span class="suffix">wallets</span>
+            <input type="number" id="ref-invitees" value="10" min="0" oninput="updateRefCalc()">
+            <span class="suffix">friends</span>
           </div>
         </div>
         <div class="referral-input-group">
-          <label>New Invitees (First Entry Only)</label>
+          <label>Avg. Eligible Entries Per Friend</label>
           <div class="swap-input-wrapper">
-            <input type="number" id="ref-new-invitees" value="3" min="0" oninput="updateRefCalc()">
-            <span class="suffix">wallets</span>
+            <input type="number" id="ref-avg-entries" value="5" min="0" oninput="updateRefCalc()">
+            <span class="suffix">entries</span>
           </div>
         </div>
         <div class="referral-input-group">
-          <label>Avg. Participation per Invitee (USDT)</label>
+          <label>Entry Amount</label>
           <div class="swap-input-wrapper">
-            <input type="number" id="ref-avg-participation" value="1000" min="0" max="1000" oninput="updateRefCalc()">
+            <input type="number" id="ref-entry-amount" value="10" min="0" oninput="updateRefCalc()">
             <span class="suffix">USDT</span>
           </div>
         </div>
-        <div style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.5rem;">
-          Base reward: 0.5 USDT per 10 USDT entry. First-referral booster: +0.5 USDT for each new invitee's first eligible entry (from 10,000 USDT Launch Booster Pool, max 20,000 new invitees).
+        <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 0.8rem; color: var(--text-tertiary);">
+          <div><strong style="color: var(--text-secondary);">Base Direct Reward:</strong> 0.5 USDT per 10 USDT entry</div>
+          <div style="margin-top: 0.25rem;"><strong style="color: var(--text-secondary);">First-Referral Booster:</strong> +0.5 USDT for each new invitee's first eligible entry</div>
+          <div style="margin-top: 0.25rem;"><strong style="color: var(--text-secondary);">Note:</strong> Booster from 10,000 USDT Launch Pool (max 20,000 new users)</div>
         </div>
       </div>
       <div class="referral-result-panel">
-        <h4>Calculated Rewards Preview</h4>
+        <h4>Reward Preview</h4>
         <div class="referral-result-row">
-          <span class="label">Total Invited Volume</span>
-          <span class="value" id="ref-res-volume">12,000 USDT</span>
+          <span class="label">Total Eligible Entries</span>
+          <span class="value" id="ref-res-entries">50</span>
         </div>
         <div class="referral-result-row">
-          <span class="label">First-Referral Booster (New Invitees)</span>
-          <span class="value" id="ref-res-booster">1.5 USDT</span>
+          <span class="label">Total Friend Participation</span>
+          <span class="value" id="ref-res-volume">500 USDT</span>
         </div>
         <div class="referral-result-row">
           <span class="label">Base Direct Rewards</span>
-          <span class="value" id="ref-res-base">600 USDT</span>
+          <span class="value" id="ref-res-base">25.0 USDT</span>
+        </div>
+        <div class="referral-result-row">
+          <span class="label">First-Referral Booster</span>
+          <span class="value" id="ref-res-booster">5.0 USDT</span>
         </div>
         <div class="referral-result-row highlight">
-          <span class="label">Total Reward Preview</span>
-          <span class="value" id="ref-res-final">601.5 USDT</span>
+          <span class="label">Potential Reward Preview</span>
+          <span class="value" id="ref-res-final">30.0 USDT</span>
         </div>
         <div class="referral-formula-box">
-          <div>First-Referral Booster = 3 new × 0.5 USDT = 1.5 USDT</div>
-          <div>Base Direct Rewards = 12,000 × 5% = 600 USDT</div>
-          <div style="margin-top: 0.5rem;">Total = 1.5 + 600 = <strong style="color: var(--accent-secondary)">601.5 USDT</strong></div>
+          <div>Total Entries = 10 friends × 5 entries = <strong>50 entries</strong></div>
+          <div>Base Rewards = 50 × 0.5 = <strong>25.0 USDT</strong></div>
+          <div>Booster = 10 × 0.5 = <strong>5.0 USDT</strong></div>
+          <div style="margin-top: 0.5rem;">Potential = 25.0 + 5.0 = <strong style="color: var(--accent-secondary)">30.0 USDT</strong></div>
         </div>
       </div>
     </div>
 
     <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
-      This simulator is for model understanding only. Direct referral rewards are subject to campaign rules, eligibility checks, TGE timing, and risk-control review. Rewards are not guaranteed and may be adjusted based on final campaign terms.
+      This simulator is for referral mechanism preview only. All referral rewards apply only to one-level direct referrals. No multi-level referral reward exists. Any actual reward, if available, is subject to final campaign rules, risk-control verification, eligibility review, reward pool availability, and applicable restrictions.
     </p>
   </div>
 </section>
@@ -2822,22 +2864,19 @@ function updateCVCalc() {
 // Update Direct Referral Rewards Calculator
 function updateRefCalc() {
   const invitees = parseInt(document.getElementById('ref-invitees').value) || 0;
-  const newInvitees = parseInt(document.getElementById('ref-new-invitees').value) || 0;
-  const avgParticipation = Math.min(1000, parseFloat(document.getElementById('ref-avg-participation').value) || 0);
-  const rewardRate = 0.05; // Fixed 5%
+  const avgEntries = Math.min(100, parseInt(document.getElementById('ref-avg-entries').value) || 0);
+  const entryAmount = parseFloat(document.getElementById('ref-entry-amount').value) || 10;
 
-  const totalVolume = invitees * avgParticipation;
-  const boosterReward = newInvitees * 0.5; // First-referral booster: 0.5 USDT per new invitee
-  const baseReward = totalVolume * rewardRate;
-  const totalReward = boosterReward + baseReward;
+  const totalEntries = invitees * avgEntries;
+  const totalVolume = totalEntries * entryAmount;
+  const baseReward = totalEntries * 0.5; // 0.5 USDT per entry
+  const boosterReward = invitees * 0.5; // 0.5 USDT per new invitee's first entry
+  const totalReward = baseReward + boosterReward;
 
-  document.getElementById('ref-total-invitees').textContent = invitees.toLocaleString();
-  document.getElementById('ref-total-volume').textContent = totalVolume.toLocaleString() + ' USDT';
-  document.getElementById('ref-potential-reward').textContent = Math.round(baseReward).toLocaleString() + ' USDT';
-
+  document.getElementById('ref-res-entries').textContent = totalEntries.toLocaleString();
   document.getElementById('ref-res-volume').textContent = totalVolume.toLocaleString() + ' USDT';
+  document.getElementById('ref-res-base').textContent = baseReward.toFixed(1) + ' USDT';
   document.getElementById('ref-res-booster').textContent = boosterReward.toFixed(1) + ' USDT';
-  document.getElementById('ref-res-base').textContent = Math.round(baseReward).toLocaleString() + ' USDT';
   document.getElementById('ref-res-final').textContent = totalReward.toFixed(1) + ' USDT';
 }
 
