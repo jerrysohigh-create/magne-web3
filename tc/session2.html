@@ -1802,11 +1802,11 @@
         <div class="rsc-label">符合資格被邀請人</div>
       </div>
       <div class="referral-summary-card">
-        <div class="rsc-value" id="ref-total-volume">45,200 USDT</div>
-        <div class="rsc-label">被邀請總參與額</div>
+        <div class="rsc-value" id="ref-total-volume">12,000 USDT</div>
+        <div class="rsc-label">被邀請總參與額（每人上限 1,000）</div>
       </div>
       <div class="referral-summary-card">
-        <div class="rsc-value" id="ref-potential-reward">2,260 USDT</div>
+        <div class="rsc-value" id="ref-potential-reward">600 USDT</div>
         <div class="rsc-label">潛在獎勵 (5%)</div>
       </div>
     </div>
@@ -1824,7 +1824,7 @@
         <div class="referral-input-group">
           <label>每位被邀請人平均參與額 (USDT)</label>
           <div class="swap-input-wrapper">
-            <input type="number" id="ref-avg-participation" value="3766" min="0" oninput="updateRefCalc()">
+            <input type="number" id="ref-avg-participation" value="1000" min="0" max="1000" oninput="updateRefCalc()">
             <span class="suffix">USDT</span>
           </div>
         </div>
@@ -1837,7 +1837,7 @@
           </select>
         </div>
         <div style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.5rem;">
-          每位被邀請人平均參與約 10 次（每次 100 USDT）。
+          每位被邀請人上限：100 次 × 10 USDT = 每人最多 1,000 USDT。
         </div>
       </div>
       <div class="referral-result-panel">
@@ -2618,7 +2618,7 @@ function updateCVCalc() {
 // Update Direct Referral Rewards Calculator
 function updateRefCalc() {
   const invitees = parseInt(document.getElementById('ref-invitees').value) || 0;
-  const avgParticipation = parseFloat(document.getElementById('ref-avg-participation').value) || 0;
+  const avgParticipation = Math.min(1000, parseFloat(document.getElementById('ref-avg-participation').value) || 0);
   const rewardRate = parseFloat(document.getElementById('ref-rate').value) || 0.05;
 
   const totalVolume = invitees * avgParticipation;

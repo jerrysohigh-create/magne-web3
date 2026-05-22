@@ -1803,11 +1803,11 @@
         <div class="rsc-label">Qualified Invitees</div>
       </div>
       <div class="referral-summary-card">
-        <div class="rsc-value" id="ref-total-volume">45,200 USDT</div>
-        <div class="rsc-label">Total Invited Volume</div>
+        <div class="rsc-value" id="ref-total-volume">12,000 USDT</div>
+        <div class="rsc-label">Total Invited Volume (Max 1,000/invitee)</div>
       </div>
       <div class="referral-summary-card">
-        <div class="rsc-value" id="ref-potential-reward">2,260 USDT</div>
+        <div class="rsc-value" id="ref-potential-reward">600 USDT</div>
         <div class="rsc-label">Potential Reward (5%)</div>
       </div>
     </div>
@@ -1825,7 +1825,7 @@
         <div class="referral-input-group">
           <label>Avg. Participation per Invitee (USDT)</label>
           <div class="swap-input-wrapper">
-            <input type="number" id="ref-avg-participation" value="3766" min="0" oninput="updateRefCalc()">
+            <input type="number" id="ref-avg-participation" value="1000" min="0" max="1000" oninput="updateRefCalc()">
             <span class="suffix">USDT</span>
           </div>
         </div>
@@ -1838,7 +1838,7 @@
           </select>
         </div>
         <div style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.5rem;">
-          Each invitee participated ~10 times (100 USDT each) on average.
+          Each invitee max: 100 entries × 10 USDT = 1,000 USDT cap per wallet.
         </div>
       </div>
       <div class="referral-result-panel">
@@ -2632,7 +2632,7 @@ function updateCVCalc() {
 // Update Direct Referral Rewards Calculator
 function updateRefCalc() {
   const invitees = parseInt(document.getElementById('ref-invitees').value) || 0;
-  const avgParticipation = parseFloat(document.getElementById('ref-avg-participation').value) || 0;
+  const avgParticipation = Math.min(1000, parseFloat(document.getElementById('ref-avg-participation').value) || 0);
   const rewardRate = parseFloat(document.getElementById('ref-rate').value) || 0.05;
 
   const totalVolume = invitees * avgParticipation;
