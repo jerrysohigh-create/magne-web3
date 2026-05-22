@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAGNE Agent Pay | M Hash L2 上的 AI 支付工作流程演示</title>
   <meta name="description" content="MAGNE Agent Pay 是 M Hash L2 測試網上的開發階段 AI 支付工作流程演示。已驗證智能合約部署與 AI 任務收據記錄。">
-  <meta property="og:title" content="MAGNE Agent Pay V0.1 | x402 相容 AI 代理支付演示">
-  <meta property="og:description" content="A developer demo for AI agent payment on M Hash L2. Designed for low-cost, scalable settlement. Public performance metrics will be published as testnet validation progresses.">
+  <meta property="og:title" content="MAGNE Agent Pay | M Hash L2 上的 AI 支付工作流程演示">
+  <meta property="og:description" content="MAGNE Agent Pay 是 M Hash L2 測試網上的開發階段 AI 支付工作流程演示。結合測試合約部署與 AI 任務收據記錄能力。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://web3.magne.ai/agent-pay.html">
   <meta name="twitter:card" content="summary_large_image">
@@ -594,8 +594,8 @@
       <div class="badge-testnet">⚡ testnet-stage developer demo</div>
       <h1>Agents can think.<br><em>They still cannot safely pay.</em></h1>
       <p class="hero-sub">
-        MAGNE Agent Pay 是面向 AI 代理的開發階段支付工作流程演示，結合 M Hash L2 測試網合約部署與可驗證的 AI 任務收據記錄。<br>
-        <span style="color: var(--text-secondary); font-size: 0.95rem;">目前演示已部署 M Hash L2 測試網上的測試代幣部署與收據記錄能力；正式 x402 相容性、瀏覽器錢包授權及生產級 facilitator 工作流程，仍有待進一步實作與測試。</span>
+        MAGNE Agent Pay 是面向 AI 代理支付場景的開發階段演示，結合 M Hash L2 測試網上的合約部署與 AI 任務收據記錄能力。<br>
+        <span style="color: var(--text-secondary); font-size: 0.95rem;">目前已完成測試網合約部署與收據記錄演示；正式 HTTP 402 支付流程、瀏覽器錢包授權、Facilitator 驗證與結算流程，以及 x402 相容性測試，仍在開發與驗證中。</span>
       </p>
       <div class="btn-group">
         <a href="#terminal" class="btn btn-primary">查看終端演示</a>
@@ -608,12 +608,16 @@
           <div class="lbl">Chain ID</div>
         </div>
         <div class="hero-stat">
-          <div class="val">V0.1</div>
-          <div class="lbl">M Hash L2 合約</div>
+          <div class="val">20250827</div>
+          <div class="lbl">M Hash L2 Chain ID</div>
+        </div>
+        <div class="hero-stat">
+          <div class="val">V0.2</div>
+          <div class="lbl">合約與收據演示已完成</div>
         </div>
         <div class="hero-stat">
           <div class="val">x402</div>
-          <div class="lbl">Compatible</div>
+          <div class="lbl">相容性驗證中</div>
         </div>
       </div>
     </div>
@@ -657,7 +661,11 @@
       <div class="section-header">
         <span class="section-eyebrow">解決方案</span>
         <h2>Agent Pay 工作流程</h2>
-        <p>從任務請求到可驗收收據 — M Hash L2 上 AI 代理支付的工作流程演示。</p>
+        <p>從任務請求到可驗證收據 — M Hash L2 上 AI 代理支付的工作流程演示。</p>
+      </div>
+
+      <div style="background: rgba(210,153,34,0.08); border: 1px solid rgba(210,153,34,0.2); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 1.5rem;">
+        <p style="font-size: 0.88rem; color: var(--yellow); line-height: 1.7; margin: 0;">⚠ 以下工作流程展示 MAGNE Agent Pay 的目標設計。當前已驗證部分為 M Hash L2 測試網上的合約部署與 AI 任務收據記錄；HTTP 402 支付挑戰、瀏覽器錢包授權及 Facilitator 驗證／結算流程仍在開發中。</p>
       </div>
       <div class="flow-diagram">
         <div class="flow-step">
@@ -715,7 +723,7 @@
           <span class="terminal-title">magne@agent-pay-demo</span>
           <span class="terminal-badge">M HASH L2 測試網已部署</span>
         </div>
-        <div class="terminal-body"><span class="t-prompt">$</span> magne agent task create "analyze wallet risk"<span class="t-newline"></span><span class="t-ok">✓ task created</span> — <span class="t-val">task_demo_20260522</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne api call wallet-risk --wallet 0x742d35Cc6634C0532925a3b844Bc9e7595f2E26E<span class="t-newline"></span><span class="t-err">✕ 402 需要支付</span><span class="t-newline"></span><span class="t-label">  金額：</span><span class="t-val">0.01 mMHA</span><span class="t-newline"></span><span class="t-label">  收款人：</span><span class="t-hash">0xf39Fd6e51aad88F6F4ce6aB8827279cffB922f66</span><span class="t-newline"></span><span class="t-label">  鏈：</span><span class="t-val">mhash-l2-testnet (20250827)</span><span class="t-newline"></span><span class="t-label">  RPC：</span><span class="t-val">https://l2-rpc.testnet.magicalhash.com</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne pay settle --tx 0x0000000000000000000000000000000000000000000000000000000000000000 --network mhash-l2<span class="t-newline"></span><span class="t-ok">✓ 支付已部署</span><span class="t-newline"></span><span class="t-label">  status: </span><span class="t-ok">verified</span><span class="t-newline"></span><span class="t-label">  block: </span><span class="t-val">confirmed on M Hash L2</span><span class="t-newline"></span><span class="t-label">  token: </span><span class="t-val">mMHA (ERC20)</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne receipt create --task task_demo_20260522<span class="t-newline"></span><span class="t-ok">✓ AI 任務收據已創建</span><span class="t-newline"></span><span class="t-label">  收據ID：</span><span class="t-hash">0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-label">  交易：</span><span class="t-hash">0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-label">  瀏覽器：</span><span class="t-val">https://l2-explorer.testnet.magicalhash.com/tx/0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne receipt inspect 0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd<span class="t-newline"></span><span class="t-label">  代理：       </span><span class="t-val">MAGNE-Agent-001</span><span class="t-newline"></span><span class="t-label">  服務：     </span><span class="t-val">錢包風險分析</span><span class="t-newline"></span><span class="t-label">  金額：    </span><span class="t-val">0.01 mMHA</span><span class="t-newline"></span><span class="t-label">  狀態：     </span><span class="t-ok">已結算</span><span class="t-newline"></span><span class="t-label">  網絡：    </span><span class="t-val">M Hash L2 (chainId: 20250827)</span><span class="t-newline"></span><span class="t-label">  payment 交易：</span><span class="t-hash">0xe97d…3a0c</span><span class="t-newline"></span><span class="t-prompt">$</span> <span class="cursor">█</span></div>
+        <div class="terminal-body"><span class="t-prompt">$</span> magne agent task create "analyze wallet risk"<span class="t-newline"></span><span class="t-ok">✓ task created</span> — <span class="t-val">task_demo_20260522</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne api call wallet-risk --wallet 0x742d35Cc6634C0532925a3b844Bc9e7595f2E26E<span class="t-newline"></span><span class="t-err">✕ 402 需要支付</span><span class="t-newline"></span><span class="t-label">  金額：</span><span class="t-val">0.01 mMHA</span><span class="t-newline"></span><span class="t-label">  收款人：</span><span class="t-hash">0xf39Fd6e51aad88F6F4ce6aB8827279cffB922f66</span><span class="t-newline"></span><span class="t-label">  鏈：</span><span class="t-val">mhash-l2-testnet (20250827)</span><span class="t-newline"></span><span class="t-label">  RPC：</span><span class="t-val">https://l2-rpc.testnet.magicalhash.com</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne pay settle --tx 0x0000000000000000000000000000000000000000000000000000000000000000 --network mhash-l2<span class="t-newline"></span><span class="t-ok">✓ 測試網部署完成</span><span class="t-newline"></span><span class="t-label">  status: </span><span class="t-ok">verified</span><span class="t-newline"></span><span class="t-label">  block: </span><span class="t-val">confirmed on M Hash L2</span><span class="t-newline"></span><span class="t-label">  token: </span><span class="t-val">mMHA (ERC20)</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne receipt create --task task_demo_20260522<span class="t-newline"></span><span class="t-ok">✓ AI 任務收據已創建</span><span class="t-newline"></span><span class="t-label">  收據ID：</span><span class="t-hash">0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-label">  交易：</span><span class="t-hash">0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-label">  瀏覽器：</span><span class="t-val">https://l2-explorer.testnet.magicalhash.com/tx/0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne receipt inspect 0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd<span class="t-newline"></span><span class="t-label">  代理：       </span><span class="t-val">MAGNE-Agent-001</span><span class="t-newline"></span><span class="t-label">  服務：     </span><span class="t-val">錢包風險分析</span><span class="t-newline"></span><span class="t-label">  金額：    </span><span class="t-val">0.01 mMHA</span><span class="t-newline"></span><span class="t-label">  狀態：     </span><span class="t-ok">已結算</span><span class="t-newline"></span><span class="t-label">  網絡：    </span><span class="t-val">M Hash L2 (chainId: 20250827)</span><span class="t-newline"></span><span class="t-label">  payment 交易：</span><span class="t-hash">0xe97d…3a0c</span><span class="t-newline"></span><span class="t-prompt">$</span> <span class="cursor">█</span></div>
       </div>
     </div>
   </section>
@@ -731,7 +739,7 @@
       <div class="receipt-grid">
         <div class="receipt-card">
           <h3>為什麼收據重要</h3>
-          <p>AI 任務收據是可驗證的證明，證明支付已發生、任務已請求、結果已返回。任何一方 — 代理、用戶、審計員或測試代幣 — 都可以獨立在鏈上驗證完整歷史。</p>
+          <p>AI 任務收據是可驗證的證明，證明支付已發生、任務已請求、結果已返回。任何一方，包括 AI 代理、使用者、審計方或智能合約，均可透過鏈上資料獨立查驗相關記錄。</p>
           <p style="margin-top: 1rem;">收據被設計為可編程的：代理可以在後續交易中引用它們、爭議解決合約可以讀取它們、合規系統可以在不需要可信中介的情況下審計它們。</p>
         </div>
         <div class="receipt-card">
@@ -759,7 +767,7 @@
     <div class="container">
       <div class="section-header">
         <span class="section-eyebrow">Developer Integration</span>
-        <h2>你的代碼 + SKILL.md = 一個 Aapp</h2>
+        <h2>以 SKILL.md 描述代理可調用的服務</h2>
         <p>SKILL.md 定義了面向代理的合約。代理讀取它；服務履行它。不需要專有 SDK。</p>
       </div>
       <div class="sdk-code"><span class="cmt">// SKILL.md — AI Agent Service Contract</span>
@@ -891,156 +899,79 @@
     </div>
   </section>
 
-<section id="compatibility">
+<section 
     <div class="container">
-    <h2 class="section-label">Compatibility 路線圖</h2>
-    <p class="compat-intro">MAGNE Agent Pay 與新興的開放 x402 標準和 AP2 風格授權意識保持一致。不是 Coinbase 的合作夥伴 — 而是面向更廣泛生態的開發者演示。</p>
+    <h2 class="section-label">生態定位參考</h2>
+    <p class="compat-intro">以下定位僅供技術研究方向說明，不表示 MAGNE.AI 與任何第三方存在合作或官方整合。</p>
     
     <div class="compat-grid">
       <div class="compat-tier">
-        <h3 class="tier-p0">P0 — Must Align</h3>
+        <h3 class="tier-p0">P0 — 開放協議</h3>
         <div class="compat-items">
           <div class="compat-item">
             <div class="compat-header">
-              <span class="compat-name">x402 Foundation / Linux Foundation</span>
+              <span class="compat-name">x402</span>
               <span class="compat-badge p0">P0</span>
             </div>
-            <p>x402 是由 Coinbase 首創、目前於 Linux Foundation 旗下 x402 Foundation 推進的開放支付協議。MAGNE Agent Pay 參考正在形成的 x402 相容工作流程，用於未來互通研究。本頁不表示存在合作、背書、官方整合或已完成的相容性認證。</p>
-          </div>
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">Google AP2 / Authorization</span>
-              <span class="compat-badge p0">P0</span>
-            </div>
-            <p>AP2 風格授權 / 信任層。MAGNE Phone 作安全授權終端，採用 TEE/SE 支援的簽名和代理消費控制。</p>
-          </div>
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">MAGNE Facilitator</span>
-              <span class="compat-badge p0">P0</span>
-            </div>
-            <p>面向 M Hash L2 的促進者模組。不是全球 x402 促進者的替代品 — 專注於安全行動端授權和 AI 任務收據創建。</p>
-          </div>
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">USDC / Stablecoin Support</span>
-              <span class="compat-badge p0">P0</span>
-            </div>
-            <p>V0.1：mMHA 本地演示。V0.2：M Hash L2 上的 mMHA。V0.3：穩定幣風格結算資產。V1.0：若橋樑 / 流動性就緒，則支援 USDC 相容流程。</p>
-          </div>
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">Cloudflare / MCP / Agent Infra</span>
-              <span class="compat-badge p0">P0</span>
-            </div>
-            <p>MCP 風格工具調用 + HTTP 402 付費 API。Cloudflare Agents SDK / MCP 伺服器整合。付費推理 API、錢包風險 API、鏈數據 API。</p>
-          </div>
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">Wallet / Agent Wallet</span>
-              <span class="compat-badge p0">P0</span>
-            </div>
-            <p>EVM 錢包相容。TEE / Secure Element 支援的簽名。代理消費策略控制。未來：WalletConnect、嵌入式錢包風格。</p>
+            <p>以 HTTP 402 為基礎的開放支付協議方向，由 Coinbase 首創並於 2026 年 4 月移交 Linux Foundation 管理。作為 AI 代理支付工作流程的研究參考；正式相容性仍待驗證。</p>
           </div>
         </div>
       </div>
-
       <div class="compat-tier">
-        <h3 class="tier-p1">P1 — Reference Align</h3>
+        <h3 class="tier-p1">P1 — 產業參考</h3>
         <div class="compat-items">
           <div class="compat-item">
             <div class="compat-header">
-              <span class="compat-name">Base / CDP Pattern</span>
+              <span class="compat-name">B402 / Binance x402</span>
               <span class="compat-badge p1">P1</span>
             </div>
-            <p>參考對齊 Coinbase CDP 促進者模式：verify / settle / KYT 流程。Base 主網、Base Sepolia、Polygon、Arbitrum 相容性。</p>
+            <p>Binance 基於 x402 的交易驗證與提交服務。作為公開產業案例參考；不表示 MAGNE 已接入 Binance 服務。</p>
           </div>
           <div class="compat-item">
             <div class="compat-header">
-              <span class="compat-name">BNB Chain / Binance</span>
+              <span class="compat-name">Google AP2</span>
               <span class="compat-badge p1">P1</span>
             </div>
-            <p>保留幣安生態系統相容性敘事。BNB 鏈作為參考，用於未來多鏈對齊。</p>
-          </div>
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">Solana</span>
-              <span class="compat-badge p1">P1</span>
-            </div>
-            <p>Solana Web3 手機作為競爭對手參考。x402.org 測試促進者支援 Solana Devnet。Solana 作為多鏈促進者模式的參考。</p>
-          </div>
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">OpenZeppelin Relayer</span>
-              <span class="compat-badge p1">P1</span>
-            </div>
-            <p>企業中繼器 / 審計基礎設施作為未來促進者development.</p>
-          </div>
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">OpenFacilitator / OpenX402.ai</span>
-              <span class="compat-badge p1">P1</span>
-            </div>
-            <p>開源、自部署、無需許可的促進者作為參考架ure.</p>
+            <p>面向 AI agent 支付授權、信任與責任鏈的協議方向。作為行動端安全授權及可驗證支付意圖的概念參考。</p>
           </div>
         </div>
       </div>
-
       <div class="compat-tier">
-        <h3 class="tier-p2">P2 — Observe / Future</h3>
+        <h3 class="tier-p0">自研</h3>
         <div class="compat-items">
           <div class="compat-item">
             <div class="compat-header">
-              <span class="compat-name">Stripe Tempo / MPP</span>
-              <span class="compat-badge p2">P2</span>
+              <span class="compat-name">MAGNE Agent Pay</span>
+              <span class="compat-badge p0">P0</span>
             </div>
-            <p>企業級機器支付 / 會話預授權。未來路線 may explore session-based authorization.</p>
-          </div>
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">OpenAI ACP</span>
-              <span class="compat-badge p2">P2</span>
-            </div>
-            <p>代理對商戶結帳。未來路線可能探索商戶結帳roperability.</p>
-          </div>
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">Stellar / Algorand / HyperEVM</span>
-              <span class="compat-badge p2">P2</span>
-            </div>
-            <p>觀察多鏈促進者模式。暂无即时整合计划。p>
+            <p>M Hash L2 測試網上的合約與 AI 任務收據演示。聚焦行動端安全授權方向與鏈上收據記錄。</p>
           </div>
         </div>
       </div>
     </div>
-
+    
     <div class="compat-summary">
-      <h3>MAGNE Positioning</h3>
-      <p>x402 相容支付執行<br>
-      + AP2 風格授權意識<br>
-      + M Hash L2 receipt<br>
-      + MAGNE Phone 安全簽名<br>
-      + 未來穩定幣結算支援</p>
+      <h3>生態定位說明</h3>
+      <p>本表僅用於說明公開可查的技術方向與 MAGNE Agent Pay 的研究定位，不表示 MAGNE.AI 與 Coinbase、Linux Foundation、Binance、Google 或任何第三方存在合作、背書、官方整合，亦不表示已完成相關協議或服務的相容性驗證。</p>
     </div>
-  </section>
-
-<!-- ROADMAP -->
+    
+  <!-- ROADMAP -->
   <section class="flow-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow">Development 路線圖</span>
+        <span class="section-eyebrow">技術驗證路線</span>
         <h2>What's Next</h2>
         <p>取決於技術驗證和安全審查。</p>
       </div>
       <div class="roadmap-grid">
         <div class="roadmap-item">
-          <span class="roadmap-phase done">✓ V0.1 — Done</span>
+          <span class="roadmap-phase done">✓ V0.1 — 已完成</span>
           <h3>M Hash L2 合約演示</h3>
-          <p>完整支付流程在本地 Hardhat 上驗證。ERC20 支付、促進者驗證、鏈上收據。</p>
+          <p>完整支付流程在本地 Hardhat 上驗證。ERC20 支付、Facilitator驗證、鏈上收據。</p>
           <ul>
             <li>Smart contracts compile and deploy</li>
             <li>Backend API with x402 response</li>
-            <li>促進者嚴格驗證模式</li>
+            <li>Facilitator 嚴格驗證模式</li>
             <li>AI 任務收據事件</li>
           </ul>
         </div>
@@ -1052,11 +983,42 @@
             <li>M Hash L2 測試網部署</li>
             <li>真實錢包 MetaMask 流程</li>
             <li>瀏覽器實時交易驗證</li>
-            <li>測試網上的促進者</li>
+            <li>測試網上的Facilitator</li>
+          </ul>
+        </div>
+        
+        <div class="roadmap-item">
+          <span class="roadmap-phase next">○ V0.3 — 開發中</span>
+          <h3>真實 HTTP 402、瀏覽器錢包授權、Facilitator 驗證與結算</h3>
+          <p>真實 HTTP 402 挑戰與重試流程、瀏覽器錢包授權，以及 Facilitator 鏈上結算驗證。積極開發中。</p>
+          <ul>
+            <li>MetaMask / 瀏覽器錢包連接</li>
+            <li>HTTP 402 挑戰與重試流程</li>
+            <li>Facilitator verify / settle 工作流程</li>
+            <li>端到端用戶授權流程</li>
           </ul>
         </div>
         <div class="roadmap-item">
-          <span class="roadmap-phase next">○ V1.0 — 生產就緒</span>
+          <span class="roadmap-phase next">○ V0.4 — 研究中</span>
+          <h3>x402 相容性測試與 B402 / Binance x402 服務模式研究</h3>
+          <p>研究與驗證中。</p>
+          <ul>
+            <li>x402 相容性測試</li>
+            <li>B402 服務模式研究</li>
+          </ul>
+        </div>
+        <div class="roadmap-item">
+          <span class="roadmap-phase next">○ V0.5 — 規劃中</span>
+          <h3>穩定幣結算、MAGNE Phone 安全授權及安全審查</h3>
+          <p>規劃中。</p>
+          <ul>
+            <li>穩定幣結算支援</li>
+            <li>MAGNE Phone 安全授權</li>
+            <li>安全審查準備</li>
+          </ul>
+        </div>
+<div class="roadmap-item">
+          <span class="roadmap-phase next">○ V1.0 — 計劃中</span>
           <h3>主網就緒</h3>
           <p>取決於安全審計、合規評估和治理批准。計劃中。</p>
           <ul>
@@ -1067,6 +1029,7 @@
           </ul>
         </div>
       </div>
+      <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">以上內容屬產品與技術驗證方向，可能依據安全審查、技術結果、協議演進、監管因素及治理決策調整，不構成對功能上線時間、合作關係、交易支援或商業成果的承諾。</p>
     </div>
   </section>
 
@@ -1106,7 +1069,7 @@
     <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" target="_blank">Agent Pay Demo</a>
   </p>
   <p class="footer-disclaimer">
-    MAGNE Agent Pay V0.1 是一個測試網階段的開發者演示。它不是生產支付系統、不是財務建議、也不是未來功能的保證。所有交易都在 M Hash L2 測試網上 — 沒有主網活動。MHA 和 mMHA 是沒有主網價值的測試代幣。取決於適用的合規要求。
+    MAGNE Agent Pay 是測試網階段的開發者演示，不是生產支付系統。頁面所示內容不構成對正式 x402 相容性、未來功能、合作關係、支付可用性、代幣價值或商業成果的保證。測試網資產僅供技術演示用途，不具主網或法幣價值。
   </p>
 </footer>
 
