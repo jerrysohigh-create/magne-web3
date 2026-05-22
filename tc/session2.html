@@ -1526,6 +1526,72 @@
       font-family: 'JetBrains Mono', monospace;
       color: var(--accent);
     }
+
+    /* Demo Action Buttons */
+    .action-btn {
+      background: rgba(0, 255, 200, 0.08);
+      border: 1px solid rgba(0, 255, 200, 0.3);
+      color: var(--accent);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .action-btn:hover {
+      background: rgba(0, 255, 200, 0.15);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* Demo Modal */
+    .demo-modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      backdrop-filter: blur(4px);
+    }
+    .demo-modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .demo-modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+    }
+    .demo-modal-msg {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .demo-modal-close {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 0.6rem 2rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .demo-modal-close:hover {
+      opacity: 0.9;
+    }
   </style>
 </head>
 <body>
@@ -2022,6 +2088,12 @@
         邀請獎勵總預覽：<strong style="color: var(--accent-secondary);">5.5 + 1.5 = 7.0 USDT</strong>
       </div>
     </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; justify-content: center;">
+      <button class="action-btn" onclick="showDemoModal('copy-link')">📋 複製我的邀請連結</button>
+      <button class="action-btn" onclick="showDemoModal('progress')">📊 查看邀請進度</button>
+      <button class="action-btn" onclick="showDemoModal('simulate')">🎁 模擬邀請獎勵</button>
+      <button class="action-btn" onclick="showDemoModal('milestone')">🏆 查看下一里程碑</button>
+    </div>
   </div>
 </section>
 
@@ -2349,14 +2421,19 @@
       <span class="alloc-pct">15%</span>
     </div>
     <div class="alloc-item">
-      <span class="alloc-label">直接邀請獎勵</span>
+      <span class="alloc-label">基礎直接邀請獎勵</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 5%"></div></div>
       <span class="alloc-pct">5%</span>
     </div>
     <div class="alloc-item">
-      <span class="alloc-label">運營/流動性</span>
-      <div class="alloc-bar"><div class="alloc-fill" style="width: 10%"></div></div>
-      <span class="alloc-pct">10%</span>
+      <span class="alloc-label">首邀加速獎勵池</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 1%"></div></div>
+      <span class="alloc-pct">1%</span>
+    </div>
+    <div class="alloc-item">
+      <span class="alloc-label">運營/流動性/風控儲備</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 9%"></div></div>
+      <span class="alloc-pct">9%</span>
     </div>
   </div>
 </section>
@@ -2870,6 +2947,21 @@ document.addEventListener('DOMContentLoaded', updateCVCalc);
 // Initialize calculator on load
 document.addEventListener('DOMContentLoaded', updateCalc);
 document.addEventListener('DOMContentLoaded', updateRefCalc);
+
+function showDemoModal(type) {
+  const messages = {
+    'copy-link': { title: '📋 複製我的邀請連結', msg: '僅為 Demo 介面預覽。此頁面不生成真實邀請連結、不發放實際獎勵，也不執行任何鏈上操作。' },
+    'progress': { title: '📊 查看邀請進度', msg: '僅為 Demo 介面預覽。目前顯示的邀請進度、里程碑狀態及獎勵計算均為模擬數據，不構成任何承諾或保證。' },
+    'simulate': { title: '🎁 模擬邀請獎勵', msg: '僅為 Demo 介面預覽。獎勵計算結果為模擬值，所有實際獎勵若有，均須符合最終活動規則、風控驗證、資格審核及適用限制。' },
+    'milestone': { title: '🏆 查看下一里程碑', msg: '僅為 Demo 介面預覽。里程碑解鎖條件、身份升級及相關權益為模擬預覽，不構成任何獎勵或資格承諾。' }
+  };
+  const info = messages[type] || { title: 'Demo', msg: '僅為 Demo 介面預覽。' };
+  const modal = document.createElement('div');
+  modal.className = 'demo-modal-overlay';
+  modal.innerHTML = '<div class="demo-modal-box"><div class="demo-modal-title">' + info.title + '</div><div class="demo-modal-msg">' + info.msg + '</div><button class="demo-modal-close" onclick="this.closest(\\'.demo-modal-overlay\\').remove()">關閉</button></div>';
+  modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+  document.body.appendChild(modal);
+}
 
 function showToast(icon, title, msg) {
   const existing = document.querySelector('.toast');

@@ -1529,6 +1529,72 @@
       font-family: 'JetBrains Mono', monospace;
       color: var(--accent);
     }
+
+    /* Demo Action Buttons */
+    .action-btn {
+      background: rgba(0, 255, 200, 0.08);
+      border: 1px solid rgba(0, 255, 200, 0.3);
+      color: var(--accent);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .action-btn:hover {
+      background: rgba(0, 255, 200, 0.15);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    /* Demo Modal */
+    .demo-modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      backdrop-filter: blur(4px);
+    }
+    .demo-modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .demo-modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+    }
+    .demo-modal-msg {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .demo-modal-close {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 0.6rem 2rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .demo-modal-close:hover {
+      opacity: 0.9;
+    }
   </style>
 </head>
 <body>
@@ -2024,6 +2090,12 @@
         Total Referral Reward Preview: <strong style="color: var(--accent-secondary);">5.5 + 1.5 = 7.0 USDT</strong>
       </div>
     </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; justify-content: center;">
+      <button class="action-btn" onclick="showDemoModal('copy-link')">📋 Copy My Referral Link</button>
+      <button class="action-btn" onclick="showDemoModal('progress')">📊 View Referral Progress</button>
+      <button class="action-btn" onclick="showDemoModal('simulate')">🎁 Simulate Referral Reward</button>
+      <button class="action-btn" onclick="showDemoModal('milestone')">🏆 View Next Milestone</button>
+    </div>
   </div>
 </section>
 
@@ -2351,14 +2423,19 @@
       <span class="alloc-pct">15%</span>
     </div>
     <div class="alloc-item">
-      <span class="alloc-label">Direct Referral Rewards</span>
+      <span class="alloc-label">Base Direct Referral Rewards</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 5%"></div></div>
       <span class="alloc-pct">5%</span>
     </div>
     <div class="alloc-item">
-      <span class="alloc-label">Operations/Liquidity</span>
-      <div class="alloc-bar"><div class="alloc-fill" style="width: 10%"></div></div>
-      <span class="alloc-pct">10%</span>
+      <span class="alloc-label">Launch Referral Booster Pool</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 1%"></div></div>
+      <span class="alloc-pct">1%</span>
+    </div>
+    <div class="alloc-item">
+      <span class="alloc-label">Operations/Liquidity/Risk Reserve</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 9%"></div></div>
+      <span class="alloc-pct">9%</span>
     </div>
   </div>
 </section>
@@ -2886,6 +2963,21 @@ document.addEventListener('DOMContentLoaded', updateRefCalc);
 
 // Initialize calculator on load
 document.addEventListener('DOMContentLoaded', updateCalc);
+
+function showDemoModal(type) {
+  const messages = {
+    'copy-link': { title: '📋 Copy My Referral Link', msg: 'Demo interface preview only. This page does not generate a real referral link, distribute actual rewards, or execute any on-chain operation.' },
+    'progress': { title: '📊 View Referral Progress', msg: 'Demo interface preview only. Referral progress, milestone status, and reward calculations shown are simulated data and do not constitute any commitment or guarantee.' },
+    'simulate': { title: '🎁 Simulate Referral Reward', msg: 'Demo interface preview only. Reward calculations are simulated values. Any actual rewards, if available, are subject to final campaign rules, risk-control verification, eligibility review, and applicable restrictions.' },
+    'milestone': { title: '🏆 View Next Milestone', msg: 'Demo interface preview only. Milestone unlock conditions, identity upgrades, and related benefits are simulated previews and do not constitute any reward or eligibility commitment.' }
+  };
+  const info = messages[type] || { title: 'Demo', msg: 'Demo interface preview only.' };
+  const modal = document.createElement('div');
+  modal.className = 'demo-modal-overlay';
+  modal.innerHTML = '<div class="demo-modal-box"><div class="demo-modal-title">' + info.title + '</div><div class="demo-modal-msg">' + info.msg + '</div><button class="demo-modal-close" onclick="this.closest(\\'.demo-modal-overlay\\').remove()">Close</button></div>';
+  modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+  document.body.appendChild(modal);
+}
 
 // Show Toast Notification
 function showToast(icon, title, msg) {
