@@ -1262,6 +1262,95 @@
       line-height: 2;
     }
 
+    /* REFERRAL REWARDS SIMULATOR */
+    .referral-sim-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .referral-sim-container { grid-template-columns: 1fr; }
+    }
+    .referral-input-panel, .referral-result-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .referral-input-panel h4, .referral-result-panel h4 {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .referral-input-group {
+      margin-bottom: 1rem;
+    }
+    .referral-input-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      margin-bottom: 0.4rem;
+    }
+    .referral-result-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.95rem;
+    }
+    .referral-result-row:last-child { border-bottom: none; }
+    .referral-result-row .label { color: var(--text-secondary); }
+    .referral-result-row .value { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+    .referral-result-row.highlight {
+      background: rgba(0,255,136,0.08);
+      border: 1px solid rgba(0,255,136,0.2);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-top: 0.5rem;
+    }
+    .referral-result-row.highlight .value { color: var(--accent-secondary); font-size: 1.2rem; }
+    .referral-formula-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent);
+      line-height: 2;
+    }
+    .referral-summary-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .referral-summary-cards { grid-template-columns: 1fr; }
+    }
+    .referral-summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .referral-summary-card .rsc-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .referral-summary-card .rsc-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
     /* LEADERBOARD STATUS */
     .lb-status {
       font-size: 0.75rem;
@@ -1694,6 +1783,92 @@
 
     <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
       本模擬器僅用於模型理解。最終社群貢獻值、排行榜資格及獎池份額預覽，均以活動規則、資格審核、風控審查及官方公告為準。
+    </p>
+  </div>
+</section>
+
+<!-- DIRECT REFERRAL REWARDS SIMULATOR -->
+<section id="referral-rewards">
+  <div class="section-header">
+    <h2>直接邀請獎勵預覽</h2>
+    <p>作為符合資格的邀請人，根據被邀請人的活動預覽您的潛在直接邀請獎勵。活動資金的 5% 用於直接邀請獎勵。</p>
+  </div>
+  <div class="simulator-section">
+    <div class="simulator-badge">僅為模擬演示 — 不構成保證回報。需遵守 TGE 規則及資格要求。</div>
+
+    <div class="referral-summary-cards">
+      <div class="referral-summary-card">
+        <div class="rsc-value" id="ref-total-invitees">12</div>
+        <div class="rsc-label">符合資格被邀請人</div>
+      </div>
+      <div class="referral-summary-card">
+        <div class="rsc-value" id="ref-total-volume">45,200 USDT</div>
+        <div class="rsc-label">被邀請總參與額</div>
+      </div>
+      <div class="referral-summary-card">
+        <div class="rsc-value" id="ref-potential-reward">2,260 USDT</div>
+        <div class="rsc-label">潛在獎勵 (5%)</div>
+      </div>
+    </div>
+
+    <div class="referral-sim-container">
+      <div class="referral-input-panel">
+        <h4>你的被邀請網絡 (Demo)</h4>
+        <div class="referral-input-group">
+          <label>符合資格被邀請人數量</label>
+          <div class="swap-input-wrapper">
+            <input type="number" id="ref-invitees" value="12" min="0" oninput="updateRefCalc()">
+            <span class="suffix">錢包</span>
+          </div>
+        </div>
+        <div class="referral-input-group">
+          <label>每位被邀請人平均參與額 (USDT)</label>
+          <div class="swap-input-wrapper">
+            <input type="number" id="ref-avg-participation" value="3766" min="0" oninput="updateRefCalc()">
+            <span class="suffix">USDT</span>
+          </div>
+        </div>
+        <div class="referral-input-group">
+          <label>直接邀請獎勵比例</label>
+          <select class="calc-select" id="ref-rate" onchange="updateRefCalc()">
+            <option value="0.03">3%</option>
+            <option value="0.05" selected>5%（活動比例）</option>
+            <option value="0.07">7%</option>
+          </select>
+        </div>
+        <div style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 0.5rem;">
+          每位被邀請人平均參與約 10 次（每次 100 USDT）。
+        </div>
+      </div>
+      <div class="referral-result-panel">
+        <h4>獎勵計算預覽</h4>
+        <div class="referral-result-row">
+          <span class="label">被邀請總參與額</span>
+          <span class="value" id="ref-res-volume">45,200 USDT</span>
+        </div>
+        <div class="referral-result-row">
+          <span class="label">獎勵比例</span>
+          <span class="value" id="ref-res-rate">5%</span>
+        </div>
+        <div class="referral-result-row">
+          <span class="label">潛在直接獎勵</span>
+          <span class="value" id="ref-res-reward">2,260 USDT</span>
+        </div>
+        <div class="referral-result-row highlight">
+          <span class="label">獎勵預覽（TGE 前）</span>
+          <span class="value" id="ref-res-final">2,260 USDT</span>
+        </div>
+        <div class="referral-formula-box">
+          <div>被邀請總參與額 = 12 × 3,766 USDT</div>
+          <div>= 45,200 USDT</div>
+          <div style="margin-top: 0.5rem;">潛在獎勵 = 45,200 × 5%</div>
+          <div>= <strong style="color: var(--accent-secondary)">2,260 USDT</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+      本模擬器僅用於模型理解。直接邀請獎勵需遵守活動規則、資格審核、TGE 時間及風控審查。獎勵不構成保證，且可根據最終活動條款進行調整。
     </p>
   </div>
 </section>
@@ -2440,11 +2615,31 @@ function updateCVCalc() {
   document.getElementById('cv-formula-risk').innerHTML = '− ' + riskDeduction.toLocaleString() + '（風控）= <strong style="color:var(--accent-secondary)">' + Math.round(finalValue).toLocaleString() + ' 點</strong>';
 }
 
+// Update Direct Referral Rewards Calculator
+function updateRefCalc() {
+  const invitees = parseInt(document.getElementById('ref-invitees').value) || 0;
+  const avgParticipation = parseFloat(document.getElementById('ref-avg-participation').value) || 0;
+  const rewardRate = parseFloat(document.getElementById('ref-rate').value) || 0.05;
+
+  const totalVolume = invitees * avgParticipation;
+  const potentialReward = totalVolume * rewardRate;
+
+  document.getElementById('ref-total-invitees').textContent = invitees.toLocaleString();
+  document.getElementById('ref-total-volume').textContent = totalVolume.toLocaleString() + ' USDT';
+  document.getElementById('ref-potential-reward').textContent = Math.round(potentialReward).toLocaleString() + ' USDT';
+
+  document.getElementById('ref-res-volume').textContent = totalVolume.toLocaleString() + ' USDT';
+  document.getElementById('ref-res-rate').textContent = (rewardRate * 100).toFixed(0) + '%';
+  document.getElementById('ref-res-reward').textContent = Math.round(potentialReward).toLocaleString() + ' USDT';
+  document.getElementById('ref-res-final').textContent = Math.round(potentialReward).toLocaleString() + ' USDT';
+}
+
 // Initialize CV calculator on load
 document.addEventListener('DOMContentLoaded', updateCVCalc);
 
 // Initialize calculator on load
 document.addEventListener('DOMContentLoaded', updateCalc);
+document.addEventListener('DOMContentLoaded', updateRefCalc);
 
 function showToast(icon, title, msg) {
   const existing = document.querySelector('.toast');
