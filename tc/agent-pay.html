@@ -591,7 +591,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="container">
-      <div class="badge-testnet">⚡ testnet-stage developer demo</div>
+      <div class="badge-testnet">⚡ 測試網階段開發者演示</div>
       <h1>代理會思考。<br><em>但它們仍然無法安全地支付。</em></h1>
       <p class="hero-sub">
         MAGNE Agent Pay 是面向 AI 代理支付場景的開發階段演示，結合 M Hash L2 測試網上的合約部署與 AI 任務收據記錄能力。<br>
@@ -599,17 +599,17 @@
       </p>
       <div class="btn-group">
         <a href="#terminal" class="btn btn-primary">查看終端演示</a>
-        <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank">View GitHub</a>
+        <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank">查看 GitHub</a>
         <a href="developers.html" class="btn btn-secondary">開發者文檔</a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
           <div class="val">20250827</div>
-          <div class="lbl">Chain ID</div>
+          <div class="lbl">鏈 ID</div>
         </div>
         <div class="hero-stat">
           <div class="val">20250827</div>
-          <div class="lbl">M Hash L2 Chain ID</div>
+          <div class="lbl">M Hash L2 鏈 ID</div>
         </div>
         <div class="hero-stat">
           <div class="val">V0.2</div>
@@ -620,7 +620,6 @@
           <div class="lbl">相容性驗證中</div>
         </div>
       </div>
-    </div>
     </div>
   </section>
 
@@ -670,38 +669,38 @@
       <div class="flow-diagram">
         <div class="flow-step">
           <div class="flow-step-num">1</div>
-          <div class="flow-step-label">AI Agent Task</div>
-          <div class="flow-step-desc">Create task via API</div>
+          <div class="flow-step-label">AI 代理任務</div>
+          <div class="flow-step-desc">透過 API 建立任務</div>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step">
           <div class="flow-step-num">2</div>
-          <div class="flow-step-label">402 Response</div>
-          <div class="flow-step-desc">Payment required metadata</div>
+          <div class="flow-step-label">HTTP 402 回應</div>
+          <div class="flow-step-desc">返回支付要求資料</div>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step">
           <div class="flow-step-num">3</div>
-          <div class="flow-step-label">Wallet Auth</div>
+          <div class="flow-step-label">錢包授權</div>
           <div class="flow-step-desc">MetaMask 或 MAGNE Phone</div>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step">
           <div class="flow-step-num">4</div>
-          <div class="flow-step-label">mMHA Transfer</div>
-          <div class="flow-step-desc">ERC20 on M Hash L2</div>
+          <div class="flow-step-label">mMHA 轉帳</div>
+          <div class="flow-step-desc">M Hash L2 測試網 ERC20</div>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step">
           <div class="flow-step-num">5</div>
           <div class="flow-step-label">Facilitator</div>
-          <div class="flow-step-desc">Strict tx verification</div>
+          <div class="flow-step-desc">支付驗證與結算模組</div>
         </div>
         <div class="flow-arrow">→</div>
         <div class="flow-step">
           <div class="flow-step-num">6</div>
-          <div class="flow-step-label">AI Task Receipt</div>
-          <div class="flow-step-desc">On-chain, immutable</div>
+          <div class="flow-step-label">AI 任務收據</div>
+          <div class="flow-step-desc">鏈上記錄，不可竄改</div>
         </div>
       </div>
     </div>
@@ -711,9 +710,9 @@
   <section id="terminal">
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow">M Hash L2 演示</span>
-        <h2>合約部署與收據演示</h2>
-        <p>M Hash L2 測試網合約部署與收據記錄。所有交易均在鏈上驗證。</p>
+        <span class="section-eyebrow">工作流程示意</span>
+        <h2>工作流程示意與已驗證鏈上記錄</h2>
+        <p>以下流程包含目標工作流程示意。其中，M Hash L2 測試網合約部署與 AI 任務收據記錄已完成驗證；HTTP 402 支付挑戰、瀏覽器錢包授權及 Facilitator 驗證/結算流程仍在開發中。</p>
       </div>
       <div class="terminal">
         <div class="terminal-bar">
@@ -732,8 +731,8 @@
   <section>
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow">On-Chain Verification</span>
-        <h2>AI Task 收據層</h2>
+        <span class="section-eyebrow">鏈上記錄查驗</span>
+        <h2>AI 任務收據層</h2>
         <p>每筆支付都在 M Hash L2 上創建不可篡改、可編程的收據。</p>
       </div>
       <div class="receipt-grid">
@@ -744,7 +743,7 @@
         </div>
         <div class="receipt-card">
           <h3>合約事件</h3>
-          <p style="margin-bottom: 0.5rem; font-size: 0.88rem;">The <code style="color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">AITaskReceiptCreated</code> event is emitted on M Hash L2 when a receipt is finalized:</p>
+          <p style="margin-bottom: 0.5rem; font-size: 0.88rem;">當收據最終確認時，<code style="color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">AITaskReceiptCreated</code> event 會在 M Hash L2 上觸發：</p>
           <div class="receipt-event">
             <span class="evt-name">事件 AITaskReceiptCreated(</span>
             <div class="evt-field"><span class="evt-key">收據ID</span><span class="evt-val">bytes32</span></div>
@@ -766,7 +765,7 @@
   <section class="sdk-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow">Developer Integration</span>
+        <span class="section-eyebrow">開發者整合</span>
         <h2>以 SKILL.md 描述代理可調用的服務</h2>
         <p>SKILL.md 定義了面向代理的合約。代理讀取它；服務履行它。不需要專有 SDK。</p>
       </div>
@@ -787,13 +786,13 @@
     <span class="k">"verify"</span>: <span class="str">"GET /api/v1/receipt/:id"</span>
   }
 }
-<span class="cmt">// Agent flow:</span>
-<span class="t-fn">1. POST /api/v1/wallet-risk → 402 + payment metadata</span>
+<span class="cmt">// 代理流程：</span>
+<span class="t-fn">1. POST /api/v1/wallet-risk → 402 + 支付元資料</span>
 <span class="t-fn">2. mMHA.transfer(recipient, amount) on M Hash L2</span>
 <span class="t-fn">3. Facilitator.strictVerify(paymentTxHash, 任務ID, amount)</span>
-<span class="t-fn">4. AI Task Receipt event → on-chain proof</span></div>
+<span class="t-fn">4. AI Task Receipt event → 鏈上證明</span></div>
       <div class="btn-group" style="margin-top: 2rem;">
-        <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank">View Full Demo Repo</a>
+        <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank">查看完整演示倉庫</a>
         <a href="developers.html" class="btn btn-secondary">開發者文檔</a>
       </div>
     </div>
@@ -803,7 +802,7 @@
   <section>
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow">Verification 狀態</span>
+        <span class="section-eyebrow">驗證狀態</span>
         <h2>M Hash L2 演示</h2>
         <p>每個聲明都由鏈上數據或運行時日誌支持。沒有猜測。</p>
       </div>
@@ -854,113 +853,71 @@
     </div>
   </section>
 
-  <!-- WHERE MAGNE FITS -->
-  <section id="where-magne-fits">
+  <section id="ecosystem-position">
     <div class="container">
       <div class="section-header">
-        <span class="section-eyebrow">Ecosystem Position</span>
-        <h2>MAGNE 與其他代理支付方案的比較</h2>
-        <p>MAGNE 不是在與 Coinbase、OKX 或幣安競爭。它專注於一個特定層：安全行動端授權和 M Hash L2 上的可驗證 AI 任務收據。</p>
+        <span class="section-eyebrow">生態定位</span>
+        <h2>生態定位參考</h2>
+        <p>以下定位僅供技術研究方向說明，不表示 MAGNE.AI 與任何第三方存在合作或官方整合。</p>
       </div>
-      <div class="compat-table">
-        <div class="compat-row header">
-          <div class="compat-cell">協議</div>
-          <div class="compat-cell">核心聚焦</div>
-          <div class="compat-cell">MAGNE 對齊</div>
+      <div class="compat-grid">
+        <div class="compat-tier">
+          <h3 class="tier-p0">P0 — 開放協議</h3>
+          <div class="compat-items">
+            <div class="compat-item">
+              <div class="compat-header">
+                <span class="compat-name">x402</span>
+                <span class="compat-badge p0">P0</span>
+              </div>
+              <p>以 HTTP 402 為基礎的開放支付協議方向，由 Coinbase 首創並於 2026 年 4 月移交 Linux Foundation 管理。作為 AI 代理支付工作流程的研究參考；正式相容性仍待驗證。</p>
+            </div>
+          </div>
         </div>
-        <div class="compat-row">
-          <div class="compat-cell mono">Coinbase x402</div>
-          <div class="compat-cell">HTTP 原生支付協議，用於按次計費 API 與網路資源</div>
-          <div class="compat-cell">x402 相容流程 — 相同支付握手模式</div>
+        <div class="compat-tier">
+          <h3 class="tier-p1">P1 — 產業參考</h3>
+          <div class="compat-items">
+            <div class="compat-item">
+              <div class="compat-header">
+                <span class="compat-name">B402 / Binance x402</span>
+                <span class="compat-badge p1">P1</span>
+              </div>
+              <p>Binance 基於 x402 的交易驗證與提交服務。作為公開產業案例參考；不表示 MAGNE 已接入 Binance 服務。</p>
+            </div>
+            <div class="compat-item">
+              <div class="compat-header">
+                <span class="compat-name">Google AP2</span>
+                <span class="compat-badge p1">P1</span>
+              </div>
+              <p>面向 AI agent 支付授權、信任與責任鏈的協議方向。作為行動端安全授權及可驗證支付意圖的概念參考。</p>
+            </div>
+          </div>
         </div>
-        <div class="compat-row">
-          <div class="compat-cell mono">OKX APP</div>
-          <div class="compat-cell">Agent 商業工作流程：意圖、經紀商、託管、計量、爭議</div>
-          <div class="compat-cell">僅供參考 — 範圍不同</div>
-        </div>
-        <div class="compat-row">
-          <div class="compat-cell mono">Binance x402</div>
-          <div class="compat-cell">BNB Chain 可編程支付實現</div>
-          <div class="compat-cell">僅供參考 — 不同鏈生態系</div>
-        </div>
-        <div class="compat-row highlight">
-          <div class="compat-cell mono">MAGNE Agent Pay</div>
-          <div class="compat-cell">安全行動授權 + 服務商驗證 + M Hash L2 上的 AI 任務收據</div>
-          <div class="compat-cell">核心聚焦 — 我們的差異化優勢</div>
+        <div class="compat-tier">
+          <h3 class="tier-p0">自研</h3>
+          <div class="compat-items">
+            <div class="compat-item">
+              <div class="compat-header">
+                <span class="compat-name">MAGNE Agent Pay</span>
+                <span class="compat-badge p0">P0</span>
+              </div>
+              <p>M Hash L2 測試網上的合約與 AI 任務收據演示。聚焦行動端安全授權方向與鏈上收據記錄。</p>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="ecosystem-links">
-        <p class="mono">x402 Foundation:</p>
-        <a href="https://x402.org" target="_blank">x402.org</a> ·
-        <a href="https://www.linuxfoundation.org/" target="_blank">Linux Foundation</a> ·
-        <a href="https://developers.cloudflare.com/agents/agentic-payments/x402/" target="_blank">Cloudflare x402</a>
+      <div class="compat-summary">
+        <h3>生態定位說明</h3>
+        <p>本表僅用於說明公開可查的技術方向與 MAGNE Agent Pay 的研究定位，不表示 MAGNE.AI 與 Coinbase、Linux Foundation、Binance、Google 或任何第三方存在合作、背書、官方整合，亦不表示已完成相關協議或服務的相容性驗證。</p>
       </div>
-      <p class="compliance-note">對 Coinbase、OKX、幣安、x402 Foundation 及 BNB Chain 的引用僅供生態比較之用，不表示存在合作、背書、整合或附屬關係。</p>
     </div>
   </section>
 
-<section 
-    <div class="container">
-    <h2 class="section-label">生態定位參考</h2>
-    <p class="compat-intro">以下定位僅供技術研究方向說明，不表示 MAGNE.AI 與任何第三方存在合作或官方整合。</p>
-    
-    <div class="compat-grid">
-      <div class="compat-tier">
-        <h3 class="tier-p0">P0 — 開放協議</h3>
-        <div class="compat-items">
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">x402</span>
-              <span class="compat-badge p0">P0</span>
-            </div>
-            <p>以 HTTP 402 為基礎的開放支付協議方向，由 Coinbase 首創並於 2026 年 4 月移交 Linux Foundation 管理。作為 AI 代理支付工作流程的研究參考；正式相容性仍待驗證。</p>
-          </div>
-        </div>
-      </div>
-      <div class="compat-tier">
-        <h3 class="tier-p1">P1 — 產業參考</h3>
-        <div class="compat-items">
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">B402 / Binance x402</span>
-              <span class="compat-badge p1">P1</span>
-            </div>
-            <p>Binance 基於 x402 的交易驗證與提交服務。作為公開產業案例參考；不表示 MAGNE 已接入 Binance 服務。</p>
-          </div>
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">Google AP2</span>
-              <span class="compat-badge p1">P1</span>
-            </div>
-            <p>面向 AI agent 支付授權、信任與責任鏈的協議方向。作為行動端安全授權及可驗證支付意圖的概念參考。</p>
-          </div>
-        </div>
-      </div>
-      <div class="compat-tier">
-        <h3 class="tier-p0">自研</h3>
-        <div class="compat-items">
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">MAGNE Agent Pay</span>
-              <span class="compat-badge p0">P0</span>
-            </div>
-            <p>M Hash L2 測試網上的合約與 AI 任務收據演示。聚焦行動端安全授權方向與鏈上收據記錄。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="compat-summary">
-      <h3>生態定位說明</h3>
-      <p>本表僅用於說明公開可查的技術方向與 MAGNE Agent Pay 的研究定位，不表示 MAGNE.AI 與 Coinbase、Linux Foundation、Binance、Google 或任何第三方存在合作、背書、官方整合，亦不表示已完成相關協議或服務的相容性驗證。</p>
-    </div>
-    
   <!-- ROADMAP -->
   <section class="flow-section">
     <div class="container">
       <div class="section-header">
         <span class="section-eyebrow">技術驗證路線</span>
-        <h2>What's Next</h2>
+        <h2>後續規劃</h2>
         <p>取決於技術驗證和安全審查。</p>
       </div>
       <div class="roadmap-grid">
@@ -969,8 +926,8 @@
           <h3>M Hash L2 合約演示</h3>
           <p>完整支付流程在本地 Hardhat 上驗證。ERC20 支付、Facilitator驗證、鏈上收據。</p>
           <ul>
-            <li>Smart contracts compile and deploy</li>
-            <li>Backend API with x402 response</li>
+            <li>智能合約編譯與部署</li>
+            <li>後端 API 的 x402 回應</li>
             <li>Facilitator 嚴格驗證模式</li>
             <li>AI 任務收據事件</li>
           </ul>
@@ -1024,8 +981,8 @@
           <ul>
             <li>安全審計</li>
             <li>MHA 作為結算資產</li>
-            <li>Production facilitator SLA</li>
-            <li>x402 spec compliance review</li>
+            <li>生產環境 Facilitator 服務等級協議</li>
+            <li>x402 規範合規審查</li>
           </ul>
         </div>
       </div>
@@ -1049,12 +1006,12 @@
 <!-- CTA -->
   <section class="cta-section">
     <div class="container">
-      <h2>Start Building.</h2>
+      <h2>開始建構。</h2>
       <p>閱讀 SKILL.md，Fork 演示，然後發布你的第一個代理支付整合。</p>
       <div class="btn-group">
-        <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-primary" target="_blank">Fork the Demo</a>
+        <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-primary" target="_blank">Fork 演示</a>
         <a href="developers.html" class="btn btn-secondary">開發者文檔</a>
-        <a href="transparency.html" class="btn btn-secondary">Transparency Center</a>
+        <a href="transparency.html" class="btn btn-secondary">透明中心</a>
       </div>
     </div>
   </section>
