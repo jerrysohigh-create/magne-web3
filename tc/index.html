@@ -154,7 +154,7 @@
         <a href="./index.html" class="active">繁中</a>
       </div>
       <a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank" class="github-icon" title="GitHub">⌘</a>
-      <a href="https://forms.example.com/preorder" target="_blank" class="nav-cta">預購</a>
+      <a href="#" class="nav-cta" onclick="return false;">預購</a>
       <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
     </div>
   </div>
@@ -188,12 +188,13 @@
     <div class="section-label">旗艦產品</div>
     <h2 class="section-headline">Agent Pay — 為 AI 代理設計的可編程支付軌道。</h2>
     <p class="section-sub">
-      MAGNE Agent Pay 演示端到端 AI 任務支付流程：HTTP 402 授權、促進者驗證、以及 M Hash L2 上的不可篡改 AI 任務收據。
+      MAGNE Agent Pay 已完成 M Hash L2 測試網上的合約部署與 AI 任務收據記錄演示。HTTP 402 支付流程、瀏覽器錢包授權及促進者驗證/結算仍在開發中。
     </p>
     <div class="terminal mt-3">
       <div class="terminal-header">
         <span class="terminal-dot red"></span><span class="terminal-dot yellow"></span><span class="terminal-dot green"></span>
         <span class="terminal-title">magne — agent-pay-demo</span>
+        <span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--yellow);background:rgba(210,153,34,0.1);padding:0.2rem 0.5rem;border-radius:2px;">⚠ 工作流程示意</span>
       </div>
       <div class="terminal-body">
         <span class="line cmd">$ magne agent task create "錢包風險分析" --network mhash-l2-testnet</span>
@@ -225,14 +226,14 @@
         <div class="product-icon">⚡</div>
         <div class="product-label">結算</div>
         <h3 class="product-title">M Hash L2 結算</h3>
-        <p class="product-desc">在 M Hash L2 上進行原子化支付結算。促進者驗證授權並執行鏈上代幣轉移。</p>
+        <p class="product-desc">M Hash L2 測試網結算。促進者驗證與鏈上結算流程仍在開發中。</p>
         <a href="./network.html" class="product-link">探索網絡 →</a>
       </div>
       <div class="product-card">
         <div class="product-icon">📋</div>
         <div class="product-label">收據層</div>
         <h3 class="product-title">AI 任務收據</h3>
-        <p class="product-desc">每筆已結算任務生成不可篡改的 EVM 事件日誌收據 — 任何一方（包括代理本身）都可驗證。</p>
+        <p class="product-desc">AI 任務收據在已完成演示的工作流程中生成，提供不可篡改、可查驗的鏈上記錄。</p>
         <a href="./agent-pay.html#receipts" class="product-link">查看事件規格 →</a>
       </div>
     </div>

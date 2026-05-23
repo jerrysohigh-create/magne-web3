@@ -57,18 +57,23 @@ This repository contains the public Web3 infrastructure portal for MAGNE.AI.
 |-----------|--------|
 | Smart contracts — compile | ✓ Verified |
 | Smart contracts — local deploy | ✓ Verified |
-| mMHA ERC-20 deployment | ✓ Verified |
-| Local runtime verification | ✓ Verified |
-| M Hash L2 testnet deployment | ⏳ In Progress |
-| Browser wallet flow | ⏳ Pending |
-| Public explorer evidence | ⏳ Pending |
-| Formal security audit | ⏳ Pending |
+| mMHA ERC-20 deployment (testnet) | ✓ Verified |
+| AI Task Receipt recording (testnet) | ✓ Verified |
+| Public explorer evidence | ✓ Available |
+| M Hash L2 testnet contract deployment | ✓ Verified |
+| HTTP 402 payment flow | ⏳ In Development |
+| Browser wallet authorization | ⏳ In Development |
+| Facilitator verify / settle workflow | ⏳ In Development |
+| Formal x402 compatibility | 🔍 Under Validation |
+| Production deployment | 📋 Planned |
 
-## Agent Pay定位
+## Agent Pay 定位
 
-MAGNE Agent Pay is positioned as the flagship developer demo — demonstrating x402-compatible payment flow, secure mobile authorization (TEE + Secure Element), facilitator verification, and AI Task Receipts on M Hash L2.
+MAGNE Agent Pay 是面向 AI 代理支付場景的開發階段演示，結合 M Hash L2 測試網上的合約部署與 AI 任務收據記錄能力。
 
-It is NOT the entire Web3 portal homepage. The homepage is a portal with Agent Pay as the hero narrative and primary CTA.
+正式 HTTP 402 支付流程、瀏覽器錢包授權、Facilitator 驗證與結算流程，以及 x402 相容性測試仍在開發與驗證中。
+
+Agent Pay 是旗艦開發者演示頁，不是整個 Web3 入口的首頁。首頁是以 Agent Pay 為核心敘事的主頁門戶。
 
 ## Important Notice
 

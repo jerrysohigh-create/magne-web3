@@ -82,15 +82,15 @@ Corrected 7 messaging items on agent-pay.html:
 |-----------|--------|
 | Smart contracts compile | ✓ Verified |
 | Smart contracts deploy (local) | ✓ Verified |
-| Backend server runtime | ✓ Verified |
-| mMHA ERC-20 payment | ✓ Verified |
-| Facilitator strict verify | ✓ Verified |
-| AI Task Receipt tx | ✓ Verified |
-| Local runtime verified | ✓ Verified |
-| M Hash L2 testnet deployment | ⏳ In Progress |
-| Browser wallet flow | ⏳ Pending |
-| Public explorer evidence | ⏳ Pending |
-| Formal security audit | ⏳ Pending |
+| mMHA ERC-20 (testnet) | ✓ Verified |
+| AI Task Receipt recording (testnet) | ✓ Verified |
+| Public explorer evidence | ✓ Available |
+| M Hash L2 testnet contract deployment | ✓ Verified |
+| HTTP 402 payment flow | ⏳ In Development |
+| Browser wallet authorization | ⏳ In Development |
+| Facilitator verify / settle workflow | ⏳ In Development |
+| Formal x402 compatibility | 🔍 Under Validation |
+| Production deployment | 📋 Planned |
 
 ---
 
@@ -105,6 +105,13 @@ Corrected 7 messaging items on agent-pay.html:
 | v1.0.0 | 2026-05-01 | Initial English public release |
 
 > Versions prior to 2026-05-22 are archived. Current active development is unversioned (rolling releases).
+>
+> **2026-05-23 — Architecture + Status Revision**
+> - Site-wide status口径统一 (STATUS-CONSTANTS.md)
+> - EVIDENCE-REGISTER.md 建立
+> - Agent Pay EN/TC 首页与演示页状态口径修正
+> - Session2 隔离声明强化
+> - coming-soon.html 转为语言说明页
 
 ---
 
