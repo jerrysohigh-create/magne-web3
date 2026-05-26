@@ -329,6 +329,9 @@ module.exports = {
             <span style="background: rgba(57,208,214,0.1); border: 1px solid rgba(57,208,214,0.3); color: #39d0d6; font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 2px; font-family: 'JetBrains Mono', monospace;">TESTNET-STAGE</span>
           </div>
           <p style="margin: 1rem 0;">MAGNE Agent Pay is a developer demo for AI agent payment on M Hash L2. Agents call a service → service returns HTTP 402 with payment metadata → wallet authorizes mMHA transfer → facilitator verifies on M Hash L2 → AI Task Receipt created on-chain.</p>
+          <div style="background: rgba(210,153,34,0.08); border: 1px solid rgba(210,153,34,0.2); border-radius: 8px; padding: 1rem; margin-top: 1rem;">
+            <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 0;">The flow above is an integration reference architecture. Publicly disclosed testnet evidence currently covers identified contract deployments and AI Task Receipt recording. HTTP 402 payment handling, browser wallet authorization and Facilitator verify/settle logic remain in development or under validation.</p>
+          </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
             <div>
               <h4 style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Network</h4>
@@ -341,9 +344,10 @@ module.exports = {
             <div>
               <h4 style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Contracts</h4>
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-secondary);">
-                <div>mMHA (ERC20): <span style="color: var(--text-primary);">0x5FbDB...80aa3</span></div>
-                <div>AITaskReceipt: <span style="color: var(--text-primary);">0xe7f172...3F0512</span></div>
-                <div style="font-size: 0.7rem; color: rgba(139,148,158,0.5);">* local Hardhat verified</div>
+                <div>mMHA (ERC20): <span style="color: var(--text-primary);">0x13fadbC67B25870cF93DBa44f570f355dE456A2E</span></div>
+                <div>AITaskReceipt: <span style="color: var(--text-primary);">0xa0Fe7AD300152eeDC4ca0c17514A1001D6afA408</span></div>
+                <div style="font-size: 0.7rem; color: rgba(210,153,34,0.7);">* M Hash L2 testnet deployment — view <a href="evidence.html" style="color: var(--accent);">Technical Evidence</a></div>
+                <div style="font-size: 0.7rem; color: rgba(139,148,158,0.5); margin-top: 0.35rem;">⚠ MockMHA 0x5FbDB2315678afecb367f032d93F642f64180aa3 / AITaskReceipt 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512 — local Hardhat dev addresses, not testnet</div>
               </div>
             </div>
           </div>
@@ -377,6 +381,7 @@ const result = await facilitator.strictVerify({
         </div>
         <div style="text-align: center; margin-top: 2rem;">
           <a href="agent-pay.html" class="btn btn-primary">View Full Agent Pay Demo</a>
+          <a href="developers-agent-pay.html" class="btn btn-secondary" style="margin-left: 1rem;">Testnet-stage Integration Reference</a>
           <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank" style="margin-left: 1rem;">View GitHub</a>
         </div>
       </div>
