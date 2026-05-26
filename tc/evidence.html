@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>技術證據存檔 — MAGNE.AI</title>
+  <meta name="description" content="MAGNE Agent Pay 測試網階段已披露之鏈上證據：合約地址、AI 任務收據記錄及獨立驗證參考。">
+  <link rel="alternate" hreflang="en" href="../evidence.html">
+  <link rel="alternate" hreflang="zh-Hant" href="evidence.html">
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --bg-card: #12121a;
+      --border: rgba(255,255,255,0.08);
+      --text-primary: #e8e8ed;
+      --text-secondary: #8a8a9a;
+      --accent: #39d0d6;
+      --accent-green: #27c93f;
+      --accent-yellow: #d29922;
+      --accent-red: #ff5f56;
+      --accent-purple: #bd93f9;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0.75rem 2rem; display: flex; align-items: center; gap: 1rem; }
+    .nav-brand { font-weight: 700; font-size: 1rem; }
+    .nav-brand a { color: #fff; }
+    .nav-lang { margin-left: auto; display: flex; gap: 0.5rem; align-items: center; }
+    .nav-lang a { font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 4px; border: 1px solid var(--border); color: var(--text-secondary); }
+    .nav-lang a.active { color: var(--accent); border-color: var(--accent); }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; }
+    .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--text-secondary); margin: 4px 0; }
+    ul.nav-links { display: flex; gap: 0.25rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.4rem 0.65rem; border-radius: 6px; transition: all 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(57,208,214,0.08); }
+    .nav-cta { background: var(--accent); color: #000 !important; padding: 0.4rem 1rem !important; border-radius: 5px; font-size: 0.8rem !important; font-weight: 700; white-space: nowrap; margin-left: 0.5rem; }
+    .nav-cta:hover { opacity: 0.85; text-decoration: none; }
+    main { padding-top: 80px; }
+    .hero { padding: 5rem 2rem 3rem; text-align: center; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(135deg, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 640px; margin: 0 auto 2rem; }
+    .status-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(57,208,214,0.1); border: 1px solid rgba(57,208,214,0.3); color: var(--accent); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; margin-bottom: 2rem; }
+    .section { padding: 4rem 0; border-top: 1px solid var(--border); }
+    .section h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .section-sub { color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem; }
+    .evidence-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .evidence-card h3 { font-size: 1rem; margin-bottom: 0.75rem; color: #fff; }
+    .tx-row { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+    .tx-row:last-child { border-bottom: none; }
+    .tx-label { color: var(--accent-yellow); min-width: 100px; font-weight: 600; }
+    .tx-value { color: var(--text-secondary); word-break: break-all; }
+    .tx-value a { color: var(--accent); }
+    .limitations { background: rgba(255,95,86,0.08); border: 1px solid rgba(255,95,86,0.2); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+    .limitations h3 { color: var(--accent-red); margin-bottom: 1rem; font-size: 1rem; }
+    .limitations ul { list-style: none; }
+    .limitations li { padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.9rem; padding-left: 1.5rem; position: relative; }
+    .limitations li::before { content: '—'; position: absolute; left: 0; color: var(--accent-red); }
+    .disclaimer { background: rgba(210,153,34,0.08); border: 1px solid rgba(210,153,34,0.2); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+    .disclaimer h3 { color: var(--accent-yellow); margin-bottom: 1rem; font-size: 1rem; }
+    .disclaimer p { font-size: 0.85rem; color: var(--text-secondary); }
+    footer { padding: 3rem 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 0.8rem; }
+    @media (max-width: 768px) { ul.nav-links { display: none; } .nav-lang { display: none; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand"><a href="index.html">MAGNE.AI</a></div>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html">主頁</a></li>
+      <li><a href="agent-pay.html">AGENT PAY</a></li>
+      <li><a href="network.html">網絡</a></li>
+      <li><a href="developers.html">開發者</a></li>
+      <li><a href="token.html">代幣</a></li>
+      <li><a href="ecosystem.html">生態</a></li>
+      <li><a href="transparency.html">透明度</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <div class="nav-lang">
+      <a href="../evidence.html">EN</a>
+      <a href="evidence.html" class="active">繁中</a>
+    </div>
+    <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank" rel="noopener noreferrer">預購</a>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <h1>技術證據存檔</h1>
+      <p>本頁集中展示 MAGNE Agent Pay 測試網階段已披露之鏈上證據：合約地址、AI 任務收據記錄交易及獨立驗證參考。</p>
+      <div class="status-badge">🔗 僅限測試網證據 — 有待進一步驗證</div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>M Hash L2 測試網合約部署</h2>
+        <p class="section-sub">已披露之 M Hash L2 測試網合約部署（chainId：20250827）。可透過 M Hash L2 測試網瀏覽器進行獨立驗證。</p>
+        <div class="evidence-card">
+          <h3>📦 Agent Pay 合約</h3>
+          <div class="tx-row"><span class="tx-label">網絡</span><span class="tx-value">M Hash L2 測試網（20250827）</span></div>
+          <div class="tx-row"><span class="tx-label">MockMHA 代幣</span><span class="tx-value"><a href="https://l2-explorer.testnet.magicalhash.com/address/0x13fadbC67B25870cF93DBa44f570f355dE456A2E" target="_blank" rel="noopener">0x13fadbC67B25870cF93DBa44f570f355dE456A2E</a></span></div>
+          <div class="tx-row"><span class="tx-label">AITaskReceipt 合約</span><span class="tx-value"><a href="https://l2-explorer.testnet.magicalhash.com/address/0xa0Fe7AD300152eeDC4ca0c17514A1001D6afA408" target="_blank" rel="noopener">0xa0Fe7AD300152eeDC4ca0c17514A1001D6afA408</a></span></div>
+          <div class="tx-row"><span class="tx-label">部署交易</span><span class="tx-value">尚未公開。合約地址已提供以供公眾查驗；相應的部署交易參考仍有待獨立確認。</span></div>
+          <div class="tx-row"><span class="tx-label">區塊</span><span class="tx-value">8603</span></div>
+          <div class="tx-row"><span class="tx-label">時間戳記</span><span class="tx-value">有待透過測試網瀏覽器或節點資料進行獨立確認。</span></div>
+        </div>
+        <div class="limitations">
+          <h3>⚠️ 此類證據不證明以下事項</h3>
+          <ul>
+            <li>生產支付流程就緒程度或 HTTP 402 相容性</li>
+            <li>促進者驗證／結算功能</li>
+            <li>錢包授權與瀏覽器擴展整合</li>
+            <li>主網端到端支付結算成功</li>
+            <li>MHA 代幣價值、交易所掛牌或經濟可行性</li>
+            <li>所描述工作流程的未來部署承諾</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>AI 任務收據記錄</h2>
+        <p class="section-sub">作為已披露演示架構的一部分，在 M Hash L2 測試網上創建之 AI 任務收據記錄範例。提供瀏覽器連結以供獨立驗證。</p>
+        <div class="evidence-card">
+          <h3>🧾 範例 AI 任務收據 #1</h3>
+          <div class="tx-row"><span class="tx-label">收據 ID</span><span class="tx-value">task_demo_20260522</span></div>
+          <div class="tx-row"><span class="tx-label">交易哈希</span><span class="tx-value"><a href="https://l2-explorer.testnet.magicalhash.com/tx/0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd" target="_blank" rel="noopener">0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</a></span></div>
+          <div class="tx-row"><span class="tx-label">網絡</span><span class="tx-value">M Hash L2 測試網（20250827）</span></div>
+          <div class="tx-row"><span class="tx-label">瀏覽器</span><span class="tx-value"><a href="https://l2-explorer.testnet.magicalhash.com/tx/0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd" target="_blank" rel="noopener">在 L2 測試網瀏覽器查看 →</a></span></div>
+          <div class="tx-row"><span class="tx-label">狀態</span><span class="tx-value">⚠ 測試網演示 — 非生產支付收據</span></div>
+        </div>
+        <div class="disclaimer">
+          <h3>📋 證據局限性說明</h3>
+          <p>AI 任務收據記錄展示在受控測試網演示中進行的鏈上記錄。它們不代表生產支付收據、商業協議或保證的服務級別結果。要完整理解收據數據，需要了解具體的智能合約邏輯，開發者章節對此有說明。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>獨立驗證方法指南</h2>
+        <p class="section-sub">在 M Hash L2 測試網上獨立驗證已披露證據的步驟。</p>
+        <div class="evidence-card">
+          <h3>🔍 驗證方法</h3>
+          <div class="tx-row"><span class="tx-label">步驟一</span><span class="tx-value">訪問 M Hash L2 測試網瀏覽器：<a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" rel="noopener">l2-explorer.testnet.magicalhash.com</a></span></div>
+          <div class="tx-row"><span class="tx-label">步驟二</span><span class="tx-value">輸入上方證據卡片中的合約地址或交易哈希</span></div>
+          <div class="tx-row"><span class="tx-label">步驟三</span><span class="tx-value">確認交易狀態、區塊號及合約交互數據</span></div>
+          <div class="tx-row"><span class="tx-label">步驟四</span><span class="tx-value">將解碼後的合約輸入與開發者章節中的文檔進行比對</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>活動範圍聲明</h2>
+        <p class="section-sub">本頁發布的證據僅限於 MAGNE Agent Pay 在 M Hash L2 測試網上的開發者演示，與 MAGNE.AI Phone Gen1 活動無關。</p>
+        <div class="disclaimer">
+          <h3>📌 獨立社群活動聲明</h3>
+          <p>Phone Gen1 活動是一個獨立的、面向社群的活動。其參與指標、活動記錄及結果不屬於本證據架構的一部分，不得作為網絡功能、Agent Pay 生產就緒程度、MHA 代幣價值或主網上線的證明。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Magical Hash Global Tech Limited. MAGNE.AI 正在積極開發中。所有披露的證據僅限測試網階段。</p>
+    <p style="margin-top:0.5rem;"><a href="transparency.html">透明度</a> · <a href="agent-pay.html">Agent Pay</a> · <a href="ecosystem.html">生態</a></p>
+  </footer>
+</body>
+</html>

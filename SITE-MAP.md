@@ -50,7 +50,10 @@
 | `developers-connect.html` | Connect to testnet | Footer / Developers |
 | `developers-contract.html` | Contract reference | Footer / Developers |
 | `developers-app.html` | Build DApp guide | Footer / Developers |
+| `developers-agent-pay.html` | Agent Pay Integration Reference | Footer / Developers |
+| `evidence.html` | Technical Evidence Archive | Footer / Transparency |
 | `tokenomics-detail.html` | Tokenomics detail | Footer |
+| `token-status.html` | Token Status & Clarifications | Footer / Token |
 | `coming-soon.html` | Coming soon (deprecated) | None |
 
 ### TC
@@ -62,7 +65,10 @@
 | `developers-connect.html` | 連接測試網 | Footer / 開發者 |
 | `developers-contract.html` | 合約參考 | Footer / 開發者 |
 | `developers-app.html` | 建構 DApp 指南 | Footer / 開發者 |
+| `developers-agent-pay.html` | Agent Pay 整合參考 | Footer / 開發者 |
+| `evidence.html` | 技術證據存檔 | Footer / 透明中心 |
 | `tokenomics-detail.html` | 代幣經濟詳情 | Footer |
+| `token-status.html` | 代幣狀態 | Footer / 代幣 |
 | `coming-soon.html` | 即將上線（停用）| None |
 
 ---
@@ -93,14 +99,19 @@ The following files are retained in the repository but are not part of current p
 index.html (HOME)
 ├── agent-pay.html (Flagship demo — main product page)
 ├── network.html (Technical infrastructure)
+│   └── evidence.html (Technical Evidence Archive)
 ├── developers.html (Dev hub)
 │   ├── developers-connect.html
 │   ├── developers-contract.html
-│   └── developers-app.html
+│   ├── developers-app.html
+│   └── developers-agent-pay.html (Agent Pay Integration Reference)
 ├── token.html (Token disclosure)
-│   └── tokenomics-detail.html
+│   ├── tokenomics-detail.html
+│   └── token-status.html (Token Status & Clarifications)
 ├── ecosystem.html (Ecosystem with external Phone Gen1 Campaign reference)
 ├── transparency.html (Evidence and verification)
+│   ├── evidence.html
+│   └── token-status.html
 ├── learn.html (Educational content)
 ├── version-history.html (Version history)
 └── faq.html (FAQ)

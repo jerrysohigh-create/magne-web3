@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Token Status — MAGNE.AI</title>
-  <link rel="alternate" hreflang="en" href="token-status.html">
-  <link rel="alternate" hreflang="zh-Hant" href="tc/token-status.html">
+  <title>代幣狀態 — MAGNE.AI</title>
+  <meta name="description" content="MHA 與 mMHA 狀態說明：區分計劃中的 MHA 生態實用代幣與測試網用途的 mMHA。">
+  <link rel="alternate" hreflang="en" href="../token-status.html">
+  <link rel="alternate" hreflang="zh-Hant" href="token-status.html">
   <style>
     :root {
       --bg: #0a0a0c;
@@ -27,14 +28,14 @@
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0.75rem 2rem; display: flex; align-items: center; gap: 1rem; }
     .nav-brand { font-weight: 700; font-size: 1rem; }
     .nav-brand a { color: #fff; }
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; }
-    .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--text-secondary); margin: 4px 0; }
-    ul.nav-links { display: flex; gap: 0.25rem; list-style: none; margin-left: auto; }
-    .nav-links a { color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.4rem 0.65rem; border-radius: 6px; transition: all 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(57,208,214,0.08); }
     .nav-lang { margin-left: auto; display: flex; gap: 0.5rem; align-items: center; }
     .nav-lang a { font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 4px; border: 1px solid var(--border); color: var(--text-secondary); }
     .nav-lang a.active { color: var(--accent); border-color: var(--accent); }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; }
+    .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--text-secondary); margin: 4px 0; }
+    ul.nav-links { display: flex; gap: 0.25rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.4rem 0.65rem; border-radius: 6px; transition: all 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(57,208,214,0.08); }
     .nav-cta { background: var(--accent); color: #000 !important; padding: 0.4rem 1rem !important; border-radius: 5px; font-size: 0.8rem !important; font-weight: 700; white-space: nowrap; margin-left: 0.5rem; }
     .nav-cta:hover { opacity: 0.85; text-decoration: none; }
     main { padding-top: 80px; }
@@ -73,7 +74,6 @@
     .cell-available { color: var(--accent-green) !important; font-weight: 600; }
     .cell-testnet { color: var(--accent) !important; font-weight: 600; }
     .cell-na { color: var(--text-secondary) !important; opacity: 0.6; }
-    .cell-unavailable { color: var(--accent-red) !important; }
     .disclaimer-box { background: rgba(255,95,86,0.06); border: 1px solid rgba(255,95,86,0.15); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
     .disclaimer-box h3 { color: var(--accent-red); font-size: 0.95rem; margin-bottom: 1rem; }
     .disclaimer-box ul { list-style: none; }
@@ -88,56 +88,56 @@
     <div class="nav-brand"><a href="index.html">MAGNE.AI</a></div>
     <button class="nav-toggle"><span></span><span></span><span></span></button>
     <ul class="nav-links">
-      <li><a href="index.html">HOME</a></li>
+      <li><a href="index.html">主頁</a></li>
       <li><a href="agent-pay.html">AGENT PAY</a></li>
-      <li><a href="network.html">NETWORK</a></li>
-      <li><a href="developers.html">DEVELOPERS</a></li>
-      <li><a href="token.html">TOKEN</a></li>
-      <li><a href="ecosystem.html">ECOSYSTEM</a></li>
-      <li><a href="transparency.html">TRANSPARENCY</a></li>
+      <li><a href="network.html">網絡</a></li>
+      <li><a href="developers.html">開發者</a></li>
+      <li><a href="token.html">代幣</a></li>
+      <li><a href="ecosystem.html">生態</a></li>
+      <li><a href="transparency.html">透明度</a></li>
       <li><a href="faq.html">FAQ</a></li>
     </ul>
     <div class="nav-lang">
-      <a href="tc/token-status.html">繁中</a>
-      <a href="token-status.html" class="active">EN</a>
+      <a href="../token-status.html">EN</a>
+      <a href="token-status.html" class="active">繁中</a>
     </div>
-    <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank" rel="noopener noreferrer">Preorder</a>
+    <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank" rel="noopener noreferrer">預購</a>
   </nav>
 
   <main>
     <section class="hero">
-      <h1>Token Status</h1>
-      <p>Current status of tokens referenced in the MAGNE ecosystem. This page provides a clear, accurate description of what each token is and is not — replacing speculation with disclosed facts.</p>
+      <h1>代幣狀態</h1>
+      <p>本頁旨在區分計劃中的 MHA 生態實用代幣與測試網用途的 mMHA，說明其目前狀態、用途方向及限制。</p>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>Token Status Matrix</h2>
-        <p class="section-sub">Quick reference for the current status of tokens within the MAGNE ecosystem.</p>
+        <h2>代幣狀態矩陣</h2>
+        <p class="section-sub">MAGNE 生態系統內各代幣當前狀態的快速參考。</p>
         <table class="status-table">
           <thead>
             <tr>
-              <th>Token</th>
-              <th>Type</th>
-              <th>Network</th>
-              <th>Status</th>
-              <th>Monetary Value</th>
+              <th>代幣</th>
+              <th>類型</th>
+              <th>網絡</th>
+              <th>狀態</th>
+              <th>貨幣價值</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>$MHA</td>
-              <td>Planned native utility token</td>
-              <td>TBD (not deployed)</td>
-              <td class="cell-planned">⚠ Planned</td>
-              <td class="cell-na">N/A — not listed</td>
+              <td>計劃原生實用代幣</td>
+              <td>待定（未部署）</td>
+              <td class="cell-planned">⚠ 計劃中</td>
+              <td class="cell-na">不適用 — 未掛牌</td>
             </tr>
             <tr>
               <td>mMHA</td>
-              <td>Testnet/demo ERC-20</td>
-              <td>M Hash L2 Testnet (20250827)</td>
-              <td class="cell-testnet">✓ Testnet Demo</td>
-              <td class="cell-na">None — test token</td>
+              <td>測試網／演示 ERC-20</td>
+              <td>M Hash L2 測試網（20250827）</td>
+              <td class="cell-testnet">✓ 測試網演示</td>
+              <td class="cell-na">無 — 測試代幣</td>
             </tr>
           </tbody>
         </table>
@@ -151,31 +151,27 @@
             <div class="token-icon">MHA</div>
             <div class="token-title">
               <h3>MHA</h3>
-              <div class="token-name">Planned Native Utility Token</div>
+              <div class="token-name">計劃原生實用代幣</div>
             </div>
-            <div class="token-status-badge badge-planned">⚠ Planned — Not Deployed</div>
+            <div class="token-status-badge badge-planned">⚠ 計劃中 — 未部署</div>
           </div>
-          <p class="token-desc">$MHA is described as the planned native utility token of the MAGNE.AI ecosystem. It has not been deployed on any network, is not listed on any exchange, and no claims should be made about its economic value, launch timeline, or utility readiness.</p>
+          <p class="token-desc">$MHA 被描述為 MAGNE.AI 生態系統的計劃原生實用代幣。它尚未在任何網絡上部署，未在任何交易所掛牌，不得對其經濟價值、推出時間表或實用性就緒程度作出任何聲明。</p>
           <div class="token-facts">
-            <div class="fact-item"><div class="label">Total Supply</div><div class="value">10,000,000,000 MHA (described)</div></div>
-            <div class="fact-item"><div class="label">Network</div><div class="value">TBD</div></div>
-            <div class="fact-item"><div class="label">Listing</div><div class="value" style="color: var(--accent-red);">None</div></div>
-            <div class="fact-item"><div class="label">Status</div><div class="value" style="color: var(--accent-yellow);">Planned</div></div>
+            <div class="fact-item"><div class="label">總供應量</div><div class="value">10,000,000,000 MHA（所述）</div></div>
+            <div class="fact-item"><div class="label">網絡</div><div class="value">待定</div></div>
+            <div class="fact-item"><div class="label">掛牌</div><div class="value" style="color: var(--accent-red);">無</div></div>
+            <div class="fact-item"><div class="label">狀態</div><div class="value" style="color: var(--accent-yellow);">計劃中</div></div>
           </div>
-          <h4 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Described Utility Directions</h4>
+          <h4 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">所述用途方向</h4>
           <ul class="uses-list">
-            <li>Network utility (gas/transaction fees) — described, subject to launch configuration</li>
-            <li>Governance participation — described, subject to governance approval</li>
-            <li>Ecosystem functionality and access — in development</li>
-            <li>Device incentives and AI compute participation — described, subject to governance and technical readiness</li>
+            <li>網絡實用（gas／交易費用）— 所述，視乎啟動配置</li>
+            <li>治理參與 — 所述，視乎治理批准</li>
+            <li>生態功能和訪問 — 開發中</li>
+            <li>設備激勵和 AI 算力參與 — 所述，視乎治理和技術就緒程度</li>
           </ul>
-          <h4 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">This Token Is NOT</h4>
+          <h4 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">此代幣不是</h4>
           <ul class="not-list">
-            <li>Not offered or presented on this website as an investment product, financial instrument, or entitlement to profit, income, liquidity or token value. Legal classification, where relevant, depends on applicable laws, distribution structure and jurisdiction-specific analysis.</li>
-            <li>Listed or traded on any exchange</li>
-            <li>Supported by any guaranteed revenue, profit sharing, or liquidity provision</li>
-            <li>Confirmed for any specific mainnet or launch date</li>
-            <li>An assurance of any specific functionality upon launch</li>
+            <li>不作為投資產品、金融工具或收益、收入、流動性或代幣價值的權利在本站上提供或展示。如涉及法律分類，仍須依適用法律、分發結構及具體司法管轄區進行分析。</li>
           </ul>
         </div>
 
@@ -184,40 +180,40 @@
             <div class="token-icon">mMHA</div>
             <div class="token-title">
               <h3>mMHA</h3>
-              <div class="token-name">Testnet / Demo ERC-20</div>
+              <div class="token-name">測試網／演示 ERC-20</div>
             </div>
-            <div class="token-status-badge badge-testnet">✓ Testnet Demo Only</div>
+            <div class="token-status-badge badge-testnet">✓ 僅測試網演示</div>
           </div>
-          <p class="token-desc">mMHA is a testnet and demo ERC-20 token deployed on M Hash L2 testnet for use within disclosed Agent Pay demonstration workflows. It has no monetary value and does not represent a production settlement asset.</p>
+          <p class="token-desc">mMHA 是一個測試網和演示 ERC-20 代幣，部署在 M Hash L2 測試網上，用於已披露的 Agent Pay 演示工作流程。它沒有貨幣價值，不代表生產結算資產。</p>
           <div class="token-facts">
-            <div class="fact-item"><div class="label">Token Standard</div><div class="value">ERC-20</div></div>
-            <div class="fact-item"><div class="label">Network</div><div class="value">M Hash L2 Testnet (20250827)</div></div>
-            <div class="fact-item"><div class="label">Token Contract</div><div class="value" style="font-size:0.8rem;font-family:monospace;">0x13fadbC67B25870cF93DBa44f570f355dE456A2E (MockMHA)</div></div>
-            <div class="fact-item"><div class="label">Related Demo Contract</div><div class="value" style="font-size:0.8rem;font-family:monospace;">0xa0Fe7AD300152eeDC4ca0c17514A1001D6afA408 (AITaskReceipt)</div></div>
-            <div class="fact-item"><div class="label">Monetary Value</div><div class="value" style="color:var(--accent-red);">None</div></div>
+            <div class="fact-item"><div class="label">代幣標準</div><div class="value">ERC-20</div></div>
+            <div class="fact-item"><div class="label">網絡</div><div class="value">M Hash L2 測試網（20250827）</div></div>
+            <div class="fact-item"><div class="label">代幣合約</div><div class="value" style="font-size:0.75rem;font-family:monospace;">0x13fadbC67B25870cF93DBa44f570f355dE456A2E（MockMHA）</div></div>
+            <div class="fact-item"><div class="label">相關演示合約</div><div class="value" style="font-size:0.75rem;font-family:monospace;">0xa0Fe7AD300152eeDC4ca0c17514A1001D6afA408（AITaskReceipt）</div></div>
+            <div class="fact-item"><div class="label">貨幣價值</div><div class="value" style="color:var(--accent-red);">無</div></div>
           </div>
-          <h4 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">What mMHA Is Used For</h4>
+          <h4 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">mMHA 的用途</h4>
           <ul class="uses-list">
-            <li>Referenced in disclosed Agent Pay demonstration workflow examples</li>
-            <li>Payment amount denomination in testnet payment flow illustrations</li>
-            <li>AI Task Receipt record denomination on M Hash L2 testnet</li>
+            <li>在已披露的 Agent Pay 演示工作流程範例中引用</li>
+            <li>測試網支付流程說明中的支付金額標示</li>
+            <li>M Hash L2 測試網上的 AI 任務收據記錄標示</li>
           </ul>
-          <h4 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">This Token Is NOT</h4>
+          <h4 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">此代幣不是</h4>
           <ul class="not-list">
-            <li>A production payment token or settlement asset</li>
-            <li>An investment product or store of value</li>
-            <li>Tradable on any exchange at equivalent value to any production token</li>
-            <li>An assurance that production settlements will use mMHA or any equivalent</li>
+            <li>生產支付代幣或結算資產</li>
+            <li>投資產品或價值儲存</li>
+            <li>以任何生產代幣的等價價值在任何交易所進行交易</li>
+            <li>生產結算將使用 mMHA 或任何等價物的保證</li>
           </ul>
         </div>
 
         <div class="disclaimer-box">
-          <h3>⚠ General Token Disclaimer</h3>
+          <h3>⚠️ 代幣總體免責聲明</h3>
           <ul>
-            <li>MAGNE.AI does not guarantee any token rewards, income, profit, liquidity, exchange listing, or token value</li>
-            <li>Any future device-based participation, incentive, staking, or governance-related program will be subject to governance-approved rules, technical availability, eligibility requirements, applicable terms, and regulatory considerations</li>
-            <li>This page is for informational purposes only and does not constitute legal, financial, or investment advice</li>
-            <li>Token descriptions reflect disclosed plans and demonstration components — not confirmed launch commitments</li>
+            <li>MAGNE.AI 不保證任何代幣獎勵、收入、利潤、流動性、交易所掛牌或代幣價值</li>
+            <li>任何未來的設備參與、激勵、質押或治理相關計劃，均須遵守治理批准的規則、技術可用性、資格要求、適用條款及監管考量</li>
+            <li>本頁僅供參考，不構成法律、財務或投資建議</li>
+            <li>代幣描述反映披露的計劃和演示元件，不構成確認的推出承諾</li>
           </ul>
         </div>
       </div>
@@ -225,8 +221,8 @@
   </main>
 
   <footer>
-    <p>© 2026 Magical Hash Global Tech Limited. MAGNE.AI is in active development. Tokens described are subject to technical, governance, and regulatory considerations.</p>
-    <p style="margin-top:0.5rem;"><a href="transparency.html">Transparency</a> · <a href="agent-pay.html">Agent Pay</a> · <a href="ecosystem.html">Ecosystem</a></p>
+    <p>© 2026 Magical Hash Global Tech Limited. MAGNE.AI 正在積極開發中。所述代幣須遵守技術、治理及監管考量。</p>
+    <p style="margin-top:0.5rem;"><a href="transparency.html">透明度</a> · <a href="agent-pay.html">Agent Pay</a> · <a href="ecosystem.html">生態</a></p>
   </footer>
 </body>
 </html>

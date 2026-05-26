@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Technical Evidence — MAGNE.AI</title>
+  <link rel="alternate" hreflang="en" href="evidence.html">
+  <link rel="alternate" hreflang="zh-Hant" href="tc/evidence.html">
   <style>
     :root {
       --bg: #0a0a0c;
@@ -31,7 +33,10 @@
     ul.nav-links { display: flex; gap: 0.25rem; list-style: none; margin-left: auto; }
     .nav-links a { color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.4rem 0.65rem; border-radius: 6px; transition: all 0.2s; }
     .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(57,208,214,0.08); }
-    .nav-cta { background: var(--accent); color: #000 !important; padding: 0.4rem 1rem !important; border-radius: 5px; font-size: 0.8rem !important; font-weight: 700; white-space: nowrap; }
+    .nav-lang { margin-left: auto; display: flex; gap: 0.5rem; align-items: center; }
+    .nav-lang a { font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 4px; border: 1px solid var(--border); color: var(--text-secondary); }
+    .nav-lang a.active { color: var(--accent); border-color: var(--accent); }
+    .nav-cta { background: var(--accent); color: #000 !important; padding: 0.4rem 1rem !important; border-radius: 5px; font-size: 0.8rem !important; font-weight: 700; white-space: nowrap; margin-left: 0.5rem; }
     .nav-cta:hover { opacity: 0.85; text-decoration: none; }
     main { padding-top: 80px; }
     .hero { padding: 5rem 2rem 3rem; text-align: center; }
@@ -57,7 +62,7 @@
     .disclaimer h3 { color: var(--accent-yellow); margin-bottom: 1rem; font-size: 1rem; }
     .disclaimer p { font-size: 0.85rem; color: var(--text-secondary); }
     footer { padding: 3rem 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 0.8rem; }
-    @media (max-width: 768px) { ul.nav-links { display: none; } }
+    @media (max-width: 768px) { ul.nav-links { display: none; } .nav-lang { display: none; } }
   </style>
 </head>
 <body>
@@ -74,6 +79,10 @@
       <li><a href="transparency.html">TRANSPARENCY</a></li>
       <li><a href="faq.html">FAQ</a></li>
     </ul>
+    <div class="nav-lang">
+      <a href="tc/evidence.html">繁中</a>
+      <a href="evidence.html" class="active">EN</a>
+    </div>
     <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank" rel="noopener noreferrer">Preorder</a>
   </nav>
 

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agent Pay Integration — MAGNE.AI Developers</title>
-  <link rel="alternate" hreflang="en" href="developers-agent-pay.html">
-  <link rel="alternate" hreflang="zh-Hant" href="tc/developers-agent-pay.html">
+  <title>Agent Pay 整合參考 — MAGNE.AI 開發者</title>
+  <meta name="description" content="供開發者了解 MAGNE Agent Pay 的目標整合架構、測試網環境、目前已披露證據與尚在開發中的功能邊界。">
+  <link rel="alternate" hreflang="en" href="../developers-agent-pay.html">
+  <link rel="alternate" hreflang="zh-Hant" href="developers-agent-pay.html">
   <style>
     :root {
       --bg: #0a0a0c;
@@ -27,14 +28,14 @@
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0.75rem 2rem; display: flex; align-items: center; gap: 1rem; }
     .nav-brand { font-weight: 700; font-size: 1rem; }
     .nav-brand a { color: #fff; }
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; }
-    .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--text-secondary); margin: 4px 0; }
-    ul.nav-links { display: flex; gap: 0.25rem; list-style: none; margin-left: auto; }
-    .nav-links a { color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.4rem 0.65rem; border-radius: 6px; transition: all 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(57,208,214,0.08); }
     .nav-lang { margin-left: auto; display: flex; gap: 0.5rem; align-items: center; }
     .nav-lang a { font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 4px; border: 1px solid var(--border); color: var(--text-secondary); }
     .nav-lang a.active { color: var(--accent); border-color: var(--accent); }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; }
+    .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--text-secondary); margin: 4px 0; }
+    ul.nav-links { display: flex; gap: 0.25rem; list-style: none; }
+    .nav-links a { color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.4rem 0.65rem; border-radius: 6px; transition: all 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(57,208,214,0.08); }
     .nav-cta { background: var(--accent); color: #000 !important; padding: 0.4rem 1rem !important; border-radius: 5px; font-size: 0.8rem !important; font-weight: 700; white-space: nowrap; margin-left: 0.5rem; }
     .nav-cta:hover { opacity: 0.85; text-decoration: none; }
     main { padding-top: 80px; }
@@ -64,10 +65,6 @@
     .warning-box { background: rgba(210,153,34,0.08); border: 1px solid rgba(210,153,34,0.2); border-radius: 10px; padding: 1.25rem; margin-bottom: 2rem; }
     .warning-box h3 { color: var(--accent-yellow); font-size: 0.95rem; margin-bottom: 0.75rem; }
     .warning-box p { font-size: 0.85rem; color: var(--text-secondary); }
-    .api-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 0.85rem; }
-    .api-table th { text-align: left; padding: 0.75rem 1rem; background: var(--bg-card); border-bottom: 1px solid var(--border); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem; }
-    .api-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
-    .api-table td code { font-family: 'JetBrains Mono', monospace; color: var(--accent-purple); font-size: 0.8rem; }
     footer { padding: 3rem 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 0.8rem; }
     @media (max-width: 768px) { ul.nav-links { display: none; } .nav-lang { display: none; } }
   </style>
@@ -77,141 +74,141 @@
     <div class="nav-brand"><a href="index.html">MAGNE.AI</a></div>
     <button class="nav-toggle"><span></span><span></span><span></span></button>
     <ul class="nav-links">
-      <li><a href="index.html">HOME</a></li>
+      <li><a href="index.html">主頁</a></li>
       <li><a href="agent-pay.html">AGENT PAY</a></li>
-      <li><a href="network.html">NETWORK</a></li>
-      <li><a href="developers.html">DEVELOPERS</a></li>
-      <li><a href="token.html">TOKEN</a></li>
-      <li><a href="ecosystem.html">ECOSYSTEM</a></li>
-      <li><a href="transparency.html">TRANSPARENCY</a></li>
+      <li><a href="network.html">網絡</a></li>
+      <li><a href="developers.html">開發者</a></li>
+      <li><a href="token.html">代幣</a></li>
+      <li><a href="ecosystem.html">生態</a></li>
+      <li><a href="transparency.html">透明度</a></li>
       <li><a href="faq.html">FAQ</a></li>
     </ul>
     <div class="nav-lang">
-      <a href="tc/developers-agent-pay.html">繁中</a>
-      <a href="developers-agent-pay.html" class="active">EN</a>
+      <a href="../developers-agent-pay.html">EN</a>
+      <a href="developers-agent-pay.html" class="active">繁中</a>
     </div>
-    <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank" rel="noopener noreferrer">Preorder</a>
+    <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank" rel="noopener noreferrer">預購</a>
   </nav>
 
   <main>
     <section class="hero">
-      <h1>Agent Pay Integration</h1>
-      <p>Technical reference for developers integrating with the MAGNE Agent Pay demonstration workflow. This page describes the target integration architecture — components marked as in-development or under validation are not yet available for production use.</p>
+      <h1>Agent Pay 整合參考</h1>
+      <p>供開發者了解 MAGNE Agent Pay 的目標整合架構、測試網環境、目前已披露證據與尚在開發中的功能邊界。</p>
       <div class="status-grid">
         <div class="status-chip">
-          <div class="label">HTTP 402 Payment Flow</div>
-          <div class="value yellow">⚠ In Development</div>
+          <div class="label">M Hash L2 測試網環境</div>
+          <div class="value green">✓ 可用</div>
         </div>
         <div class="status-chip">
-          <div class="label">Browser Wallet Authorization</div>
-          <div class="value yellow">⚠ In Development</div>
+          <div class="label">AI 任務收據記錄證據</div>
+          <div class="value green">✓ 已披露</div>
         </div>
         <div class="status-chip">
-          <div class="label">Facilitator Verify/Settle</div>
-          <div class="value red">⚠ In Development</div>
+          <div class="label">HTTP 402 支付流程</div>
+          <div class="value yellow">⚠ 開發中</div>
         </div>
         <div class="status-chip">
-          <div class="label">x402 Compatibility</div>
-          <div class="value yellow">⚠ Under Validation</div>
+          <div class="label">瀏覽器錢包授權</div>
+          <div class="value yellow">⚠ 開發中</div>
         </div>
         <div class="status-chip">
-          <div class="label">M Hash L2 Testnet</div>
-          <div class="value green">✓ Available</div>
+          <div class="label">Facilitator 驗證／結算</div>
+          <div class="value red">⚠ 開發中</div>
         </div>
         <div class="status-chip">
-          <div class="label">AI Task Receipt Recording</div>
-          <div class="value green">✓ Demo Evidence</div>
+          <div class="label">正式 x402 相容性</div>
+          <div class="value yellow">⚠ 驗證中</div>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>Target Integration Flow</h2>
-        <p class="section-sub">The diagram below illustrates the target end-to-end Agent Pay workflow. Components currently in development or under validation are shown in yellow.</p>
+        <h2>目標整合流程</h2>
+        <p class="section-sub">下圖說明目標端到端 Agent Pay 工作流程。處於開發或驗證階段的元件以黃色顯示。</p>
 
         <div class="flow-step">
           <div class="step-num">1</div>
           <div class="step-content">
-            <h3>Agent Service Call → HTTP 402 Response</h3>
-            <p>Agent service receives a request and returns HTTP 402 Payment Required with payment metadata. This flow is in active development and not yet available for production integration.</p>
+            <h3>代理服務調用 → HTTP 402 回應</h3>
+            <p>代理服務收到請求並返回 HTTP 402 Payment Required（含支付元數據）。此流程正在積極開發中，尚未可用於生產整合。</p>
           </div>
         </div>
         <div class="flow-step">
           <div class="step-num">2</div>
           <div class="step-content">
-            <h3>Browser Wallet Authorization</h3>
-            <p>Client initiates wallet authorization for the payment amount in mMHA. Browser extension integration is in development. Current demo uses direct wallet interaction without browser extension automation.</p>
+            <h3>瀏覽器錢包授權</h3>
+            <p>客戶端啟動錢包授權以支付金額（以 mMHA 計算）。瀏覽器擴展整合正在開發中。當前演示使用直接錢包交互，無瀏覽器擴展自動化。</p>
           </div>
         </div>
         <div class="flow-step">
           <div class="step-num">3</div>
           <div class="step-content">
-            <h3>Token Transfer on M Hash L2</h3>
-            <p>Authorized payment is transferred as mMHA (testnet/demo ERC-20) on M Hash L2 testnet to the facilitator address. This step is described as part of the disclosed testnet-stage demonstration architecture. Transaction-level evidence will be referenced through the Technical Evidence Archive once published.</p>
+            <h3>M Hash L2 代幣轉帳</h3>
+            <p>授權支付作為 mMHA（測試網／演示 ERC-20）在 M Hash L2 測試網上轉移至促進者地址。此步驟已在測試網階段演示中進行展示。</p>
           </div>
         </div>
         <div class="flow-step">
           <div class="step-num">4</div>
           <div class="step-content">
-            <h3>Facilitator Verify → AI Task Receipt</h3>
-            <p>Facilitator verifies payment and triggers AI Task Receipt creation on-chain. Facilitator verification and settlement logic is in development.</p>
+            <h3>促進者驗證 → AI 任務收據</h3>
+            <p>促進者驗證支付並在鏈上觸發 AI 任務收據創建。促進者驗證及結算邏輯正在開發中。</p>
           </div>
         </div>
 
         <div class="warning-box">
-          <h3>⚠ Development Status Disclaimer</h3>
-          <p>The full HTTP 402 payment flow, browser wallet authorization, and Facilitator verify/settle logic described above remain in development. They have been publicly disclosed as target architecture and testnet demonstration components — not as production-ready integrations. Formal x402 protocol compatibility is under validation.</p>
+          <h3>⚠️ 開發狀態聲明</h3>
+          <p>上述完整的 HTTP 402 支付流程、瀏覽器錢包授權及促進者驗證／結算邏輯仍處於開發中。它們已作為目標架構和測試網演示元件公開披露，而非作為生產就緒的整合。正式的 x402 協議相容性正在驗證中。</p>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>Test Environment</h2>
-        <p class="section-sub">Available test environment for Agent Pay demonstration integration.</p>
+        <h2>測試環境</h2>
+        <p class="section-sub">Agent Pay 演示整合的可用測試環境。</p>
         <div class="code-block">
-<span class="info"># M Hash L2 Testnet Configuration</span>
+<span class="info"># M Hash L2 測試網配置</span>
 <span class="cmd">chainId:</span> <span class="output">20250827</span>
-<span class="cmd">Network Name:</span> <span class="output">M Hash L2 Testnet</span>
-<span class="cmd">RPC Endpoint:</span> <span class="output">https://l2-rpc.testnet.magicalhash.com</span>
-<span class="cmd">Explorer:</span> <span class="output">https://l2-explorer.testnet.magicalhash.com</span>
-<span class="cmd">Asset:</span> <span class="output">mMHA (ERC20, testnet)</span>
-<span class="cmd">Status:</span> <span class="info">testnet-stage developer demo</span>
+<span class="cmd">網絡名稱：</span> <span class="output">M Hash L2 測試網</span>
+<span class="cmd">RPC 端點：</span> <span class="output">https://l2-rpc.testnet.magicalhash.com</span>
+<span class="cmd">瀏覽器：</span> <span class="output">https://l2-explorer.testnet.magicalhash.com</span>
+<span class="cmd">資產：</span> <span class="output">mMHA（ERC20，測試網）</span>
+<span class="cmd">狀態：</span> <span class="info">測試網階段開發者演示</span>
         </div>
         <div class="warning-box">
-          <h3>🔧 Development-Only Environment</h3>
-          <p>M Hash L2 testnet is a development and testing environment. It is not the production network. mMHA tokens on testnet have no monetary value and do not represent production settlement assets.</p>
+          <h3>🔧 僅限開發環境</h3>
+          <p>M Hash L2 測試網是一個開發和測試環境，不是主網。測試網上的 mMHA 代幣沒有貨幣價值，不代表生產結算資產。</p>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>Disclosed Evidence</h2>
-        <p class="section-sub">On-chain evidence from the testnet demonstration is documented in the Technical Evidence archive.</p>
+        <h2>已披露的證據</h2>
+        <p class="section-sub">測試網演示的鏈上證據記錄在技術證據存檔中。</p>
         <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
-          <p style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.95rem;">Disclosed testnet evidence includes M Hash L2 contract deployment and AI Task Receipt recording examples.</p>
-          <a href="evidence.html" style="display: inline-block; background: rgba(57,208,214,0.1); border: 1px solid rgba(57,208,214,0.3); color: var(--accent); padding: 0.6rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem;">View Evidence Archive →</a>
+          <p style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.95rem;">已披露的測試網證據包括 M Hash L2 合約部署及 AI 任務收據記錄範例。</p>
+          <a href="evidence.html" style="display: inline-block; background: rgba(57,208,214,0.1); border: 1px solid rgba(57,208,214,0.3); color: var(--accent); padding: 0.6rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem;">查看技術證據存檔 →</a>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>x402 Compatibility</h2>
-        <p class="section-sub">Formal x402 protocol compatibility is currently under validation. The HTTP 402 payment flow is being designed with x402 compatibility as a target.</p>
+        <h2>x402 相容性</h2>
+        <p class="section-sub">正式的 x402 協議相容性正在驗證中。HTTP 402 支付流程正在設計中，以 x402 相容性為目標。</p>
         <div class="warning-box">
-          <h3>⏳ Under Validation</h3>
-          <p>x402 is an emerging HTTP payment header standard. MAGNE Agent Pay is being designed for x402 compatibility, but this integration has not been formally validated or certified. Do not represent x402 compatibility as a completed feature.</p>
+          <h3>⏳ 驗證中</h3>
+          <p>x402 是一個新興的 HTTP 支付頭標準。MAGNE Agent Pay 正在設計中以實現 x402 相容性，但此整合尚未經過正式驗證或認證。請勿將 x402 相容性作為已完成的特性進行宣傳。</p>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2026 Magical Hash Global Tech Limited. MAGNE.AI is in active development. Integration references are for developers evaluating the testnet-stage demonstration.</p>
-    <p style="margin-top:0.5rem;"><a href="transparency.html">Transparency</a> · <a href="developers.html">Developers</a> · <a href="ecosystem.html">Ecosystem</a></p>
+    <p>© 2026 Magical Hash Global Tech Limited. MAGNE.AI 正在積極開發中。整合參考僅供評估測試網階段演示的開發者使用。</p>
+    <p style="margin-top:0.5rem;"><a href="transparency.html">透明度</a> · <a href="developers.html">開發者</a> · <a href="ecosystem.html">生態</a></p>
   </footer>
 </body>
 </html>

@@ -37,7 +37,10 @@ MAGNE.AI Phone Gen1 Campaign is referenced only as a separate external campaign 
 | developers-contract.html | Deploy Smart Contracts |
 | developers-connect.html | Connect to Testnets |
 | developers-app.html | Build a DApp |
+| developers-agent-pay.html | Agent Pay Integration Reference |
+| evidence.html | Technical Evidence Archive |
 | token.html | Token |
+| token-status.html | Token Status & Clarifications |
 | ecosystem.html | Ecosystem overview with separate external Phone Gen1 Campaign reference |
 | transparency.html | Transparency Center |
 | version-history.html | Version History |
@@ -50,10 +53,14 @@ MAGNE.AI Phone Gen1 Campaign is referenced only as a separate external campaign 
 | tc/agent-pay.html | Agent Pay — x402 AI 支付演示 |
 | tc/network.html | M Hash L2 網絡 |
 | tc/developers.html | 開發者中心 |
+| tc/developers-agent-pay.html | Agent Pay 整合參考 |
 | tc/token.html | 代幣 |
+| tc/token-status.html | 代幣狀態 |
 | tc/ecosystem.html | 生態概述（含獨立外部 Phone Gen1 Campaign 參考）|
 | tc/transparency.html | 透明中心 |
+| tc/evidence.html | 技術證據存檔 |
 | tc/faq.html | 常見問題 |
+| tc/version-history.html | 版本歷史 |
 
 > Additional TC pages (tokenomics-detail, version-history) remain as prior versions pending update.
 
