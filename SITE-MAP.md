@@ -123,9 +123,9 @@ index.html (HOME)
 
 | Page | EN CTA | TC CTA |
 |------|--------|--------|
-| index.html | `https://forms.example.com/preorder` | `https://forms.example.com/preorder` |
+| index.html | `https://payment.magne.ai/buy` | `https://payment.magne.ai/buy` |
 
-**Note:** TC preorder link at `forms.example.com` — verify before publishing.
+**Note:** All Preorder links updated to `https://payment.magne.ai/buy`.
 
 ---
 
