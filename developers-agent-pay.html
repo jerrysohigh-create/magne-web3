@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Pay Integration — MAGNE.AI Developers</title>
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --bg-card: #12121a;
+      --border: rgba(255,255,255,0.08);
+      --text-primary: #e8e8ed;
+      --text-secondary: #8a8a9a;
+      --accent: #39d0d6;
+      --accent-green: #27c93f;
+      --accent-yellow: #d29922;
+      --accent-red: #ff5f56;
+      --accent-purple: #bd93f9;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0.75rem 2rem; display: flex; align-items: center; gap: 1rem; }
+    .nav-brand { font-weight: 700; font-size: 1rem; }
+    .nav-brand a { color: #fff; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; }
+    .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--text-secondary); margin: 4px 0; }
+    ul.nav-links { display: flex; gap: 0.25rem; list-style: none; margin-left: auto; }
+    .nav-links a { color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.4rem 0.65rem; border-radius: 6px; transition: all 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(57,208,214,0.08); }
+    .nav-cta { background: var(--accent); color: #000 !important; padding: 0.4rem 1rem !important; border-radius: 5px; font-size: 0.8rem !important; font-weight: 700; white-space: nowrap; }
+    .nav-cta:hover { opacity: 0.85; text-decoration: none; }
+    main { padding-top: 80px; }
+    .hero { padding: 5rem 2rem 3rem; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(135deg, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 640px; margin-bottom: 1.5rem; }
+    .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .status-chip { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center; }
+    .status-chip .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 0.5rem; }
+    .status-chip .value { font-weight: 700; font-size: 0.95rem; }
+    .status-chip .value.green { color: var(--accent-green); }
+    .status-chip .value.yellow { color: var(--accent-yellow); }
+    .status-chip .value.red { color: var(--accent-red); }
+    .section { padding: 4rem 0; border-top: 1px solid var(--border); }
+    .section h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .section-sub { color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem; }
+    .code-block { background: #0d0d14; border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 0.82rem; line-height: 1.7; overflow-x: auto; margin-bottom: 1.5rem; color: var(--text-primary); }
+    .code-block .cmd { color: var(--accent-purple); }
+    .code-block .output { color: var(--accent-green); }
+    .code-block .info { color: var(--text-secondary); }
+    .code-block .error { color: var(--accent-red); }
+    .code-block .comment { color: var(--text-secondary); font-style: italic; }
+    .flow-step { display: flex; gap: 1.5rem; margin-bottom: 2rem; align-items: flex-start; }
+    .step-num { width: 36px; height: 36px; border-radius: 50%; background: rgba(57,208,214,0.15); border: 1px solid rgba(57,208,214,0.3); color: var(--accent); font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.9rem; }
+    .step-content h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .step-content p { color: var(--text-secondary); font-size: 0.9rem; }
+    .warning-box { background: rgba(210,153,34,0.08); border: 1px solid rgba(210,153,34,0.2); border-radius: 10px; padding: 1.25rem; margin-bottom: 2rem; }
+    .warning-box h3 { color: var(--accent-yellow); font-size: 0.95rem; margin-bottom: 0.75rem; }
+    .warning-box p { font-size: 0.85rem; color: var(--text-secondary); }
+    .api-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 0.85rem; }
+    .api-table th { text-align: left; padding: 0.75rem 1rem; background: var(--bg-card); border-bottom: 1px solid var(--border); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem; }
+    .api-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+    .api-table td code { font-family: 'JetBrains Mono', monospace; color: var(--accent-purple); font-size: 0.8rem; }
+    footer { padding: 3rem 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 0.8rem; }
+    @media (max-width: 768px) { ul.nav-links { display: none; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand"><a href="index.html">MAGNE.AI</a></div>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="agent-pay.html">AGENT PAY</a></li>
+      <li><a href="network.html">NETWORK</a></li>
+      <li><a href="developers.html">DEVELOPERS</a></li>
+      <li><a href="token.html">TOKEN</a></li>
+      <li><a href="ecosystem.html">ECOSYSTEM</a></li>
+      <li><a href="transparency.html">TRANSPARENCY</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank" rel="noopener noreferrer">Preorder</a>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <h1>Agent Pay Integration</h1>
+      <p>Technical reference for developers integrating with the MAGNE Agent Pay demonstration workflow. This page describes the target integration architecture — components marked as in-development or under validation are not yet available for production use.</p>
+      <div class="status-grid">
+        <div class="status-chip">
+          <div class="label">HTTP 402 Payment Flow</div>
+          <div class="value yellow">⚠ In Development</div>
+        </div>
+        <div class="status-chip">
+          <div class="label">Browser Wallet Authorization</div>
+          <div class="value yellow">⚠ In Development</div>
+        </div>
+        <div class="status-chip">
+          <div class="label">Facilitator Verify/Settle</div>
+          <div class="value red">⚠ In Development</div>
+        </div>
+        <div class="status-chip">
+          <div class="label">x402 Compatibility</div>
+          <div class="value yellow">⚠ Under Validation</div>
+        </div>
+        <div class="status-chip">
+          <div class="label">M Hash L2 Testnet</div>
+          <div class="value green">✓ Available</div>
+        </div>
+        <div class="status-chip">
+          <div class="label">AI Task Receipt Recording</div>
+          <div class="value green">✓ Demo Evidence</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Target Integration Flow</h2>
+        <p class="section-sub">The diagram below illustrates the target end-to-end Agent Pay workflow. Components currently in development or under validation are shown in yellow.</p>
+
+        <div class="flow-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Agent Service Call → HTTP 402 Response</h3>
+            <p>Agent service receives a request and returns HTTP 402 Payment Required with payment metadata. This flow is in active development and not yet available for production integration.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Browser Wallet Authorization</h3>
+            <p>Client initiates wallet authorization for the payment amount in mMHA. Browser extension integration is in development. Current demo uses direct wallet interaction without browser extension automation.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Token Transfer on M Hash L2</h3>
+            <p>Authorized payment is transferred as mMHA (testnet/demo ERC-20) on M Hash L2 testnet to the facilitator address. This step has been demonstrated in the testnet-stage evidence.</p>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Facilitator Verify → AI Task Receipt</h3>
+            <p>Facilitator verifies payment and triggers AI Task Receipt creation on-chain. Facilitator verification and settlement logic is in development.</p>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h3>⚠ Development Status Disclaimer</h3>
+          <p>The full HTTP 402 payment flow, browser wallet authorization, and Facilitator verify/settle logic described above remain in development. They have been publicly disclosed as target architecture and testnet demonstration components — not as production-ready integrations. Formal x402 protocol compatibility is under validation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Test Environment</h2>
+        <p class="section-sub">Available test environment for Agent Pay demonstration integration.</p>
+        <div class="code-block">
+<span class="info"># M Hash L2 Testnet Configuration</span>
+<span class="cmd">chainId:</span> <span class="output">20250827</span>
+<span class="cmd">Network Name:</span> <span class="output">M Hash L2 Testnet</span>
+<span class="cmd">RPC Endpoint:</span> <span class="output">https://l2.testnet.magicalhash.com</span>
+<span class="cmd">Explorer:</span> <span class="output">https://l2-explorer.testnet.magicalhash.com</span>
+<span class="cmd">Asset:</span> <span class="output">mMHA (ERC20, testnet)</span>
+<span class="cmd">Status:</span> <span class="info">testnet-stage developer demo</span>
+        </div>
+        <div class="warning-box">
+          <h3>🔧 Development-Only Environment</h3>
+          <p>M Hash L2 testnet is a development and testing environment. It is not the production network. mMHA tokens on testnet have no monetary value and do not represent production settlement assets.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Disclosed Evidence</h2>
+        <p class="section-sub">On-chain evidence from the testnet demonstration is documented in the Technical Evidence archive.</p>
+        <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;">
+          <p style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 0.95rem;">Disclosed testnet evidence includes M Hash L2 contract deployment and AI Task Receipt recording examples.</p>
+          <a href="evidence.html" style="display: inline-block; background: rgba(57,208,214,0.1); border: 1px solid rgba(57,208,214,0.3); color: var(--accent); padding: 0.6rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem;">View Evidence Archive →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>x402 Compatibility</h2>
+        <p class="section-sub">Formal x402 protocol compatibility is currently under validation. The HTTP 402 payment flow is being designed with x402 compatibility as a target.</p>
+        <div class="warning-box">
+          <h3>⏳ Under Validation</h3>
+          <p>x402 is an emerging HTTP payment header standard. MAGNE Agent Pay is being designed for x402 compatibility, but this integration has not been formally validated or certified. Do not represent x402 compatibility as a completed feature.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Magical Hash Global Tech Limited. MAGNE.AI is in active development. Integration references are for developers evaluating the testnet-stage demonstration.</p>
+    <p style="margin-top:0.5rem;"><a href="transparency.html">Transparency</a> · <a href="developers.html">Developers</a> · <a href="ecosystem.html">Ecosystem</a></p>
+  </footer>
+</body>
+</html>

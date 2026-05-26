@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Token Status — MAGNE.AI</title>
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --bg-card: #12121a;
+      --border: rgba(255,255,255,0.08);
+      --text-primary: #e8e8ed;
+      --text-secondary: #8a8a9a;
+      --accent: #39d0d6;
+      --accent-green: #27c93f;
+      --accent-yellow: #d29922;
+      --accent-red: #ff5f56;
+      --accent-purple: #bd93f9;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,12,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0.75rem 2rem; display: flex; align-items: center; gap: 1rem; }
+    .nav-brand { font-weight: 700; font-size: 1rem; }
+    .nav-brand a { color: #fff; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.25rem; }
+    .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--text-secondary); margin: 4px 0; }
+    ul.nav-links { display: flex; gap: 0.25rem; list-style: none; margin-left: auto; }
+    .nav-links a { color: var(--text-secondary); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.4rem 0.65rem; border-radius: 6px; transition: all 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(57,208,214,0.08); }
+    .nav-cta { background: var(--accent); color: #000 !important; padding: 0.4rem 1rem !important; border-radius: 5px; font-size: 0.8rem !important; font-weight: 700; white-space: nowrap; }
+    .nav-cta:hover { opacity: 0.85; text-decoration: none; }
+    main { padding-top: 80px; }
+    .hero { padding: 5rem 2rem 3rem; text-align: center; }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(135deg, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 640px; margin: 0 auto 2rem; }
+    .section { padding: 4rem 0; border-top: 1px solid var(--border); }
+    .section h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .section-sub { color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem; }
+    .token-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }
+    .token-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .token-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(57,208,214,0.15); border: 1px solid rgba(57,208,214,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+    .token-title h3 { font-size: 1.3rem; margin-bottom: 0.25rem; }
+    .token-title .token-name { color: var(--text-secondary); font-size: 0.85rem; }
+    .token-status-badge { margin-left: auto; padding: 0.35rem 0.85rem; border-radius: 100px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge-planned { background: rgba(210,153,34,0.12); border: 1px solid rgba(210,153,34,0.3); color: var(--accent-yellow); }
+    .badge-testnet { background: rgba(57,208,214,0.1); border: 1px solid rgba(57,208,214,0.3); color: var(--accent); }
+    .token-desc { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; }
+    .token-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .fact-item { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 0.85rem 1rem; }
+    .fact-item .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 0.35rem; }
+    .fact-item .value { font-weight: 600; font-size: 0.9rem; }
+    .uses-list { list-style: none; margin-bottom: 1.5rem; }
+    .uses-list li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 0.75rem; font-size: 0.9rem; color: var(--text-secondary); }
+    .uses-list li:last-child { border-bottom: none; }
+    .uses-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; }
+    .not-list { list-style: none; margin-bottom: 1.5rem; }
+    .not-list li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 0.75rem; font-size: 0.9rem; color: var(--accent-red); opacity: 0.8; }
+    .not-list li:last-child { border-bottom: none; }
+    .not-list li::before { content: '✕'; flex-shrink: 0; }
+    .status-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.85rem; }
+    .status-table th { text-align: left; padding: 0.75rem 1rem; background: var(--bg-card); border-bottom: 2px solid var(--border); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.72rem; }
+    .status-table td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+    .status-table td:first-child { font-weight: 600; color: var(--text-primary); }
+    .cell-planned { color: var(--accent-yellow) !important; font-weight: 600; }
+    .cell-available { color: var(--accent-green) !important; font-weight: 600; }
+    .cell-testnet { color: var(--accent) !important; font-weight: 600; }
+    .cell-na { color: var(--text-secondary) !important; opacity: 0.6; }
+    .cell-unavailable { color: var(--accent-red) !important; }
+    .disclaimer-box { background: rgba(255,95,86,0.06); border: 1px solid rgba(255,95,86,0.15); border-radius: 12px; padding: 1.5rem; margin-top: 2rem; }
+    .disclaimer-box h3 { color: var(--accent-red); font-size: 0.95rem; margin-bottom: 1rem; }
+    .disclaimer-box ul { list-style: none; }
+    .disclaimer-box li { padding: 0.35rem 0; color: var(--text-secondary); font-size: 0.85rem; padding-left: 1.25rem; position: relative; }
+    .disclaimer-box li::before { content: '—'; position: absolute; left: 0; color: var(--accent-red); opacity: 0.6; }
+    footer { padding: 3rem 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-secondary); font-size: 0.8rem; }
+    @media (max-width: 768px) { ul.nav-links { display: none; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand"><a href="index.html">MAGNE.AI</a></div>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="agent-pay.html">AGENT PAY</a></li>
+      <li><a href="network.html">NETWORK</a></li>
+      <li><a href="developers.html">DEVELOPERS</a></li>
+      <li><a href="token.html">TOKEN</a></li>
+      <li><a href="ecosystem.html">ECOSYSTEM</a></li>
+      <li><a href="transparency.html">TRANSPARENCY</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+    <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank" rel="noopener noreferrer">Preorder</a>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <h1>Token Status</h1>
+      <p>Current status of tokens referenced in the MAGNE ecosystem. This page provides a clear, accurate description of what each token is and is not — replacing speculation with disclosed facts.</p>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Token Status Matrix</h2>
+        <p class="section-sub">Quick reference for the current status of tokens within the MAGNE ecosystem.</p>
+        <table class="status-table">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Type</th>
+              <th>Network</th>
+              <th>Status</th>
+              <th>Monetary Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>$MHA</td>
+              <td>Planned native utility token</td>
+              <td>TBD (not deployed)</td>
+              <td class="cell-planned">⚠ Planned</td>
+              <td class="cell-na">N/A — not listed</td>
+            </tr>
+            <tr>
+              <td>mMHA</td>
+              <td>Testnet/demo ERC-20</td>
+              <td>M Hash L2 Testnet (20250827)</td>
+              <td class="cell-testnet">✓ Testnet Demo</td>
+              <td class="cell-na">None — test token</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="token-card">
+          <div class="token-header">
+            <div class="token-icon">MHA</div>
+            <div class="token-title">
+              <h3>MHA</h3>
+              <div class="token-name">Planned Native Utility Token</div>
+            </div>
+            <div class="token-status-badge badge-planned">⚠ Planned — Not Deployed</div>
+          </div>
+          <p class="token-desc">$MHA is described as the planned native utility token of the MAGNE.AI ecosystem. It has not been deployed on any network, is not listed on any exchange, and no claims should be made about its economic value, launch timeline, or utility readiness.</p>
+          <div class="token-facts">
+            <div class="fact-item"><div class="label">Total Supply</div><div class="value">10,000,000,000 MHA (described)</div></div>
+            <div class="fact-item"><div class="label">Network</div><div class="value">TBD</div></div>
+            <div class="fact-item"><div class="label">Listing</div><div class="value" style="color: var(--accent-red);">None</div></div>
+            <div class="fact-item"><div class="label">Status</div><div class="value" style="color: var(--accent-yellow);">Planned</div></div>
+          </div>
+          <h4 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">Described Utility Directions</h4>
+          <ul class="uses-list">
+            <li>Network utility (gas/transaction fees) — described, subject to launch configuration</li>
+            <li>Governance participation — described, subject to governance approval</li>
+            <li>Ecosystem functionality and access — in development</li>
+            <li>Device incentives and AI compute participation — described, subject to governance and technical readiness</li>
+          </ul>
+          <h4 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">This Token Is NOT</h4>
+          <ul class="not-list">
+            <li>A security, investment product, or financial instrument</li>
+            <li>Listed or traded on any exchange</li>
+            <li>Supported by any guaranteed revenue, profit sharing, or liquidity provision</li>
+            <li>Confirmed for any specific mainnet or launch date</li>
+            <li>An assurance of any specific functionality upon launch</li>
+          </ul>
+        </div>
+
+        <div class="token-card">
+          <div class="token-header">
+            <div class="token-icon">mMHA</div>
+            <div class="token-title">
+              <h3>mMHA</h3>
+              <div class="token-name">Testnet / Demo ERC-20</div>
+            </div>
+            <div class="token-status-badge badge-testnet">✓ Testnet Demo Only</div>
+          </div>
+          <p class="token-desc">mMHA is a testnet and demo ERC-20 token deployed on M Hash L2 testnet for use within disclosed Agent Pay demonstration workflows. It has no monetary value and does not represent a production settlement asset.</p>
+          <div class="token-facts">
+            <div class="fact-item"><div class="label">Token Standard</div><div class="value">ERC-20</div></div>
+            <div class="fact-item"><div class="label">Network</div><div class="value">M Hash L2 Testnet (20250827)</div></div>
+            <div class="fact-item"><div class="label">Contract</div><div class="value" style="font-size:0.8rem;font-family:monospace;">0x[deployed address]</div></div>
+            <div class="fact-item"><div class="label">Monetary Value</div><div class="value" style="color:var(--accent-red);">None</div></div>
+          </div>
+          <h4 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">What mMHA Is Used For</h4>
+          <ul class="uses-list">
+            <li>Referenced in disclosed Agent Pay demonstration workflow examples</li>
+            <li>Payment amount denomination in testnet payment flow illustrations</li>
+            <li>AI Task Receipt record denomination on M Hash L2 testnet</li>
+          </ul>
+          <h4 style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em;">This Token Is NOT</h4>
+          <ul class="not-list">
+            <li>A production payment token or settlement asset</li>
+            <li>An investment product or store of value</li>
+            <li>Tradable on any exchange at equivalent value to any production token</li>
+            <li>An assurance that production settlements will use mMHA or any equivalent</li>
+          </ul>
+        </div>
+
+        <div class="disclaimer-box">
+          <h3>⚠ General Token Disclaimer</h3>
+          <ul>
+            <li>MAGNE.AI does not guarantee any token rewards, income, profit, liquidity, exchange listing, or token value</li>
+            <li>Any future device-based participation, incentive, staking, or governance-related program will be subject to governance-approved rules, technical availability, eligibility requirements, applicable terms, and regulatory considerations</li>
+            <li>This page is for informational purposes only and does not constitute legal, financial, or investment advice</li>
+            <li>Token descriptions reflect disclosed plans and demonstration components — not confirmed launch commitments</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Magical Hash Global Tech Limited. MAGNE.AI is in active development. Tokens described are subject to technical, governance, and regulatory considerations.</p>
+    <p style="margin-top:0.5rem;"><a href="transparency.html">Transparency</a> · <a href="agent-pay.html">Agent Pay</a> · <a href="ecosystem.html">Ecosystem</a></p>
+  </footer>
+</body>
+</html>
