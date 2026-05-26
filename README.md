@@ -21,8 +21,9 @@ This repository contains the public Web3 infrastructure portal for MAGNE.AI.
 - Deploy Smart Contracts (`developers-contract.html`)
 - Build a DApp (`developers-app.html`)
 
-### Campaign Pages
-- **Session2** (`session2.html`) — Separate community campaign page. Not in main nav. Accessible via Ecosystem page. Separate campaign terms apply.
+## Campaign Reference
+
+MAGNE.AI Phone Gen1 Campaign is referenced only as a separate external campaign link from the Ecosystem page. It is not part of the Agent Pay developer demonstration, M Hash L2 testnet evidence, MHA token disclosure or technical network narrative.
 
 ## Page Tree
 
@@ -37,33 +38,35 @@ This repository contains the public Web3 infrastructure portal for MAGNE.AI.
 | developers-connect.html | Connect to Testnets |
 | developers-app.html | Build a DApp |
 | token.html | Token |
-| ecosystem.html | Ecosystem (includes Session2 campaign card) |
+| ecosystem.html | Ecosystem overview with separate external Phone Gen1 Campaign reference |
 | transparency.html | Transparency Center |
 | version-history.html | Version History |
 | faq.html | FAQ |
-| session2.html | **Session2 Campaign** |
 
 ### Traditional Chinese (`/tc/`)
 | Page | Title |
 |------|-------|
 | tc/index.html | Web3 入口 / Agent Pay 主叙事 |
-| tc/session2.html | Session2 活动页面 |
+| tc/agent-pay.html | Agent Pay — x402 AI 支付演示 |
+| tc/network.html | M Hash L2 網絡 |
+| tc/developers.html | 開發者中心 |
+| tc/token.html | 代幣 |
+| tc/ecosystem.html | 生態概述（含獨立外部 Phone Gen1 Campaign 參考）|
+| tc/transparency.html | 透明中心 |
+| tc/faq.html | 常見問題 |
 
-> Additional TC pages (token, transparency, faq, version-history) remain as prior versions pending update.
+> Additional TC pages (tokenomics-detail, version-history) remain as prior versions pending update.
 
 ## Technical Status
 
 | Component | Status |
 |-----------|--------|
-| Smart contracts — compile | ✓ Verified |
-| Smart contracts — local deploy | ✓ Verified |
-| mMHA ERC-20 deployment (testnet) | ✓ Verified |
-| AI Task Receipt recording (testnet) | ✓ Verified |
+| M Hash L2 testnet contract deployment | ✓ Verified Demo |
+| AI Task Receipt recording | ✓ Verified Demo |
 | Public explorer evidence | ✓ Available |
-| M Hash L2 testnet contract deployment | ✓ Verified |
 | HTTP 402 payment flow | ⏳ In Development |
 | Browser wallet authorization | ⏳ In Development |
-| Facilitator verify / settle workflow | ⏳ In Development |
+| Facilitator verify / settle | ⏳ In Development |
 | Formal x402 compatibility | 🔍 Under Validation |
 | Production deployment | 📋 Planned |
 
@@ -81,7 +84,16 @@ Agent Pay 是旗艦開發者演示頁，不是整個 Web3 入口的首頁。首�
 
 Nothing on this website constitutes investment advice, financial advice, public offering, solicitation, or a guarantee of rewards, income, profit, liquidity, exchange listing, or token value.
 
-Campaign participation information (including Session2) is governed by separate campaign terms. Session2 does not form part of the technical network disclosure.
+Campaign participation information is governed by separate campaign terms. The MAGNE.AI Phone Gen1 Campaign referenced on the Ecosystem page does not form part of the technical network disclosure.
+
+## Legacy / Unpublished Files
+
+The following files are retained in the repository but are not part of current public navigation or site map:
+
+| File | Note |
+|------|------|
+| `session2.html` | Legacy / unpublished test file; not linked from public pages and not part of current public site architecture. |
+| `tc/session2.html` | Legacy / unpublished test file; not linked from public pages and not part of current public site architecture. |
 
 ## Deployment
 

@@ -244,6 +244,10 @@
     .status-value { text-align: right; font-size: 0.78rem; }
     .verified { color: var(--accent-green); }
     .pending { color: var(--accent-yellow); }
+    .available { color: var(--accent-green); }
+    .in-dev { color: var(--accent-yellow); }
+    .validation { color: #a855f7; }
+    .planned { color: var(--text-secondary); }
 
     /* ── LINK GRID ── */
     .link-grid {
@@ -577,36 +581,36 @@
     </p>
     <div class="status-table mt-3">
       <div class="status-row">
-        <div class="status-label">Smart contracts — compile</div>
-        <div class="status-value verified">[✓ verified]</div>
+        <div class="status-label">M Hash L2 testnet contract deployment</div>
+        <div class="status-value verified">[✓ Verified Demo]</div>
       </div>
       <div class="status-row">
-        <div class="status-label">Smart contracts — local deploy</div>
-        <div class="status-value verified">[✓ verified]</div>
-      </div>
-      <div class="status-row">
-        <div class="status-label">mMHA ERC-20 deployment</div>
-        <div class="status-value verified">[✓ verified]</div>
-      </div>
-      <div class="status-row">
-        <div class="status-label">Local runtime verification</div>
-        <div class="status-value verified">[✓ verified]</div>
-      </div>
-      <div class="status-row">
-        <div class="status-label">M Hash L2 testnet deployment</div>
-        <div class="status-value pending">[⏳ pending]</div>
-      </div>
-      <div class="status-row">
-        <div class="status-label">Browser wallet flow</div>
-        <div class="status-value pending">[⏳ pending]</div>
+        <div class="status-label">AI Task Receipt recording</div>
+        <div class="status-value verified">[✓ Verified Demo]</div>
       </div>
       <div class="status-row">
         <div class="status-label">Public explorer evidence</div>
-        <div class="status-value pending">[⏳ pending]</div>
+        <div class="status-value available">[✓ Available]</div>
       </div>
       <div class="status-row">
-        <div class="status-label">Formal security audit</div>
-        <div class="status-value pending">[⏳ pending]</div>
+        <div class="status-label">HTTP 402 payment flow</div>
+        <div class="status-value in-dev">[⏳ In Development]</div>
+      </div>
+      <div class="status-row">
+        <div class="status-label">Browser wallet authorization</div>
+        <div class="status-value in-dev">[⏳ In Development]</div>
+      </div>
+      <div class="status-row">
+        <div class="status-label">Facilitator verify / settle</div>
+        <div class="status-value in-dev">[⏳ In Development]</div>
+      </div>
+      <div class="status-row">
+        <div class="status-label">Formal x402 compatibility</div>
+        <div class="status-value validation">[🔍 Under Validation]</div>
+      </div>
+      <div class="status-row">
+        <div class="status-label">Production deployment</div>
+        <div class="status-value planned">[📋 Planned]</div>
       </div>
     </div>
     <div class="mt-3" style="display:flex;gap:0.75rem;flex-wrap:wrap">

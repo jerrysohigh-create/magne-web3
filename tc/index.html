@@ -99,6 +99,10 @@
     .status-value { text-align: right; font-size: 0.78rem; }
     .verified { color: var(--accent-green); }
     .pending { color: var(--accent-yellow); }
+    .available { color: var(--accent-green); }
+    .in-dev { color: var(--accent-yellow); }
+    .validation { color: #a855f7; }
+    .planned { color: var(--text-secondary); }
 
     .link-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
     @media (max-width: 768px) { .link-grid { grid-template-columns: 1fr 2fr; } }
@@ -376,14 +380,14 @@
     <h2 class="section-headline">透明中心 — 我們知道的、我們不知道的、以及我們正在努力的。</h2>
     <p class="section-sub">MAGNE.AI 發布真實的狀態報告、代碼驗證證據和決策日誌。本網站任何內容均不構成財務建議。</p>
     <div class="status-table mt-3">
-      <div class="status-row"><div class="status-label">智能合約 — 編譯</div><div class="status-value verified">[✓ 已驗證]</div></div>
-      <div class="status-row"><div class="status-label">智能合約 — 本地部署</div><div class="status-value verified">[✓ 已驗證]</div></div>
-      <div class="status-row"><div class="status-label">mMHA ERC-20 部署</div><div class="status-value verified">[✓ 已驗證]</div></div>
-      <div class="status-row"><div class="status-label">本地運行時驗證</div><div class="status-value verified">[✓ 已驗證]</div></div>
-      <div class="status-row"><div class="status-label">M Hash L2 測試網部署</div><div class="status-value pending">[⏳ 進行中]</div></div>
-      <div class="status-row"><div class="status-label">瀏覽器錢包流程</div><div class="status-value pending">[⏳ 進行中]</div></div>
-      <div class="status-row"><div class="status-label">公開瀏覽器證據</div><div class="status-value pending">[⏳ 進行中]</div></div>
-      <div class="status-row"><div class="status-label">正式安全審計</div><div class="status-value pending">[⏳ 進行中]</div></div>
+      <div class="status-row"><div class="status-label">M Hash L2 測試網合約部署</div><div class="status-value verified">[✓ 已驗證演示]</div></div>
+      <div class="status-row"><div class="status-label">AI 任務收據記錄</div><div class="status-value verified">[✓ 已驗證演示]</div></div>
+      <div class="status-row"><div class="status-label">公開瀏覽器證據</div><div class="status-value available">[✓ 已提供]</div></div>
+      <div class="status-row"><div class="status-label">HTTP 402 支付流程</div><div class="status-value in-dev">[⏳ 開發中]</div></div>
+      <div class="status-row"><div class="status-label">瀏覽器錢包授權</div><div class="status-value in-dev">[⏳ 開發中]</div></div>
+      <div class="status-row"><div class="status-label">Facilitator 驗證 / 結算</div><div class="status-value in-dev">[⏳ 開發中]</div></div>
+      <div class="status-row"><div class="status-label">正式 x402 相容性</div><div class="status-value validation">[🔍 驗證中]</div></div>
+      <div class="status-row"><div class="status-label">正式部署</div><div class="status-value planned">[📋 規劃中]</div></div>
     </div>
     <div class="mt-3" style="display:flex;gap:0.75rem;flex-wrap:wrap">
       <a href="./transparency.html" class="btn-primary">→ 透明中心</a>
