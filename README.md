@@ -62,7 +62,7 @@ MAGNE.AI Phone Gen1 Campaign is referenced only as a separate external campaign 
 | tc/faq.html | 常見問題 |
 | tc/version-history.html | 版本歷史 |
 
-> Additional TC pages (tokenomics-detail, version-history) remain as prior versions pending update.
+> Secondary TC pages (tokenomics-detail) are maintained as part of the bilingual portal structure.
 
 ## Technical Status
 

@@ -138,4 +138,4 @@ index.html (HOME)
 
 ## Status
 
-This site map reflects the architecture as of **v2.0.0**. Agent Pay is the flagship developer demo. Network and Developers provide technical support. Token and Transparency provide disclosure support. The MAGNE.AI Phone Gen1 Campaign is referenced as an external separate campaign and is not part of the technical network narrative.
+This site map reflects the architecture as of **v2.1**. Agent Pay is the flagship developer demo. Network and Developers provide technical support. Token and Transparency provide disclosure support. The MAGNE.AI Phone Gen1 Campaign is referenced as an external separate campaign and is not part of the technical network narrative.
