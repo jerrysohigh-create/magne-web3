@@ -129,9 +129,12 @@
     .footer-col li { margin-bottom: 0.4rem; }
     .footer-col a { color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
     .footer-col a:hover { color: var(--accent-cyan); }
-    .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; }
-    .footer-bottom p { color: var(--text-muted); font-size: 0.78rem; }
-    .footer-disclaimer { color: var(--text-muted); font-size: 0.72rem; line-height: 1.6; max-width: 700px; }
+    .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+    .footer-social { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+    .social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
+    .social-icon:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+    .social-icon img { width: 16px; height: 16px; }
+    .footer-trademark { color: var(--text-muted); font-size: 0.75rem; text-align: center; line-height: 1.6; }
     .mt-1 { margin-top: 1rem; } .mt-2 { margin-top: 2rem; } .mt-3 { margin-top: 3rem; }
   </style>
 </head>
@@ -452,10 +455,15 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 MAGNE.AI. 版權所有。</p>
-      <p class="footer-disclaimer">
-        本網站為測試網階段開發者演示。本網站任何內容均不構成財務建議、出售要約或購買要約。關於未來計劃、功能或能力的任何聲明均為前瞻性表述，可能會發生變化。過去表現不代表未來結果。代理、開發者和用戶在參與任何社區活動前，應查閱完整的活動條款及條件。
-      </p>
+      <div class="footer-social">
+        <a href="https://x.com/magneai" target="_blank" class="social-icon" title="X"><img src="https://cdn.simpleicons.org/x/white" alt="X"></a>
+        <a href="https://t.me/magneai" target="_blank" class="social-icon" title="Telegram"><img src="https://cdn.simpleicons.org/telegram/white" alt="Telegram"></a>
+        <a href="https://discord.gg/magneai" target="_blank" class="social-icon" title="Discord"><img src="https://cdn.simpleicons.org/discord/white" alt="Discord"></a>
+        <a href="https://github.com/magne-ai" target="_blank" class="social-icon" title="GitHub"><img src="https://cdn.simpleicons.org/github/white" alt="GitHub"></a>
+        <a href="https://youtube.com/@magneai" target="_blank" class="social-icon" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube"></a>
+        <a href="./press-kit.html" class="social-icon" title="新聞稿"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></a>
+      </div>
+      <p class="footer-trademark">MAGNE.AI™ 為 Magical Hash Global Tech Limited 的註冊商标，現正申請中（USPTO 序號：99311528）。</p>
     </div>
   </div>
 </footer>
