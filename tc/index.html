@@ -34,6 +34,8 @@
     nav .container { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 1rem; }
     .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; flex-shrink: 0; }
     .nav-logo span { color: var(--accent-cyan); }
+    .nav-brand { display: flex; align-items: center; }
+    .nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
     .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
     .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; font-weight: 500; padding: 0.35rem 0.65rem; border-radius: 4px; transition: color 0.2s, background 0.2s; letter-spacing: 0.02em; white-space: nowrap; }
     .nav-links a:hover { color: var(--text-primary); background: var(--surface); }
@@ -410,7 +412,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="./index.html" class="nav-logo">MAGNE<span>.AI</span></a>
+        <a href="./index.html"><img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" style="height:28px;width:auto;display:block;margin-bottom:0.5rem;"></a>
         <p>安全行動端授權、M Hash L2 結算與 AI 任務收據，服務於正在形成的代理支付工作流程。</p>
       </div>
       <div class="footer-col">
