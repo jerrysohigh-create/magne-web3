@@ -22,6 +22,7 @@
       font-family: 'Noto Sans TC', 'Inter', system-ui, sans-serif;
       line-height: 1.6; overflow-x: hidden;
     }
+    body.menu-open { overflow: hidden; }
     .grid-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0;
       background-image: linear-gradient(rgba(57,208,214,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(57,208,214,0.025) 1px, transparent 1px);
       background-size: 60px 60px; }
@@ -50,7 +51,65 @@
     .nav-cta { background: var(--accent-cyan); color: #000; padding: 0.4rem 1rem; border-radius: 5px; font-size: 0.8rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s; white-space: nowrap; }
     .nav-cta:hover { opacity: 0.85; }
     .mobile-menu-btn { display: none; background: none; border: 1px solid var(--border); color: var(--text-primary); font-size: 1.2rem; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 58px;
+      left: 0;
+      right: 0;
+      min-height: calc(100dvh - 58px);
+      background: rgba(7,9,16,0.98);
+      backdrop-filter: blur(18px);
+      z-index: 999;
+      overflow-y: auto;
+      padding: 1.5rem 1.125rem 2rem;
+      flex-direction: column;
+      gap: 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      list-style: none;
+      flex: 1;
+    }
+    .mobile-menu-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.6rem 0.5rem;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu-links a:hover,
+    .mobile-menu-links a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.06); }
+    .mobile-menu-divider { height: 1px; background: var(--border); margin: 0.75rem 0; }
+    .mobile-menu-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding-top: 0.75rem;
+    }
+    .mobile-menu-footer .lang-toggle { justify-content: flex-start; }
+    .mobile-menu-footer .github-icon {
+      width: auto;
+      height: auto;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      gap: 0.4rem;
+    }
+
     @media (max-width: 1024px) { .nav-links { display: none; } .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem; gap: 0.25rem; } .mobile-menu-btn { display: block; } }
+    @media (max-width: 768px) {
+      .nav-right .lang-toggle,
+      .nav-right .github-icon { display: none; }
+      .nav-right { gap: 0.5rem; }
+    }
 
     .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
     .section-label::before { content: ''; display: inline-block; width: 16px; height: 1px; background: var(--accent-cyan); }
@@ -68,7 +127,18 @@
     .btn-secondary:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
 
     .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+      .product-grid,
+      .feature-grid,
+      .link-grid {
+        grid-template-columns: 1fr;
+      }
+      .product-card,
+      .feature-card,
+      .link-card {
+        padding: 1.25rem 1rem;
+      }
+    }
     .product-card { background: var(--surface); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; }
     .product-icon { font-size: 1.75rem; }
     .product-label { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-cyan); font-weight: 700; }
@@ -78,16 +148,25 @@
     .product-link:hover { gap: 0.6rem; }
 
     .terminal { background: #010108; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; font-family: 'JetBrains Mono', monospace; }
-    .terminal-header { display: flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); }
-    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .terminal-header { display: flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
     .terminal-dot.red{background:#ff5f56}.terminal-dot.yellow{background:#ffbd2e}.terminal-dot.green{background:#27c93f}
     .terminal-title { font-size: 0.72rem; color: var(--text-muted); margin-left: 0.5rem; }
-    .terminal-body { padding: 1.25rem 1.5rem; font-size: 0.82rem; line-height: 1.85; color: var(--accent-green); overflow-x: auto; }
+    .terminal-badge {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--accent-yellow);
+      background: rgba(210,153,34,0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .terminal-body { padding: 1.25rem 1.5rem; font-size: 0.82rem; line-height: 1.85; color: var(--accent-green); overflow-x: hidden; }
     .terminal-body .cmd{color:var(--text-primary)}.terminal-body .output{color:var(--accent-green)}.terminal-body .info{color:var(--text-secondary)}.terminal-body .accent{color:var(--accent-cyan)}.terminal-body .error{color:var(--accent-red)}
-    .terminal-body .line{display:block;margin-bottom:0.2rem}.terminal-body .line:empty{margin-bottom:0.6rem}
+    .terminal-body .line{display:block;margin-bottom:0.2rem;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}.terminal-body .line:empty{margin-bottom:0.6rem}
 
     .feature-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    @media (max-width: 768px) { .feature-grid { grid-template-columns: 1fr; } }
     .feature-card { background: var(--surface); padding: 2rem 1.75rem; }
     .feature-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
     .feature-title { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
@@ -107,7 +186,6 @@
     .planned { color: var(--text-secondary); }
 
     .link-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-    @media (max-width: 768px) { .link-grid { grid-template-columns: 1fr 2fr; } }
     .link-card { background: var(--surface); padding: 1.5rem; text-decoration: none; display: block; transition: background 0.2s; }
     .link-card:hover { background: var(--surface-2); }
     .link-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.4rem; }
@@ -140,6 +218,71 @@
     .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
     .footer-links a:hover { color: var(--accent-cyan); }
     .mt-1 { margin-top: 1rem; } .mt-2 { margin-top: 2rem; } .mt-3 { margin-top: 3rem; }
+
+    /* ═══════════════════════════════════════
+       MOBILE RESPONSIVE (<= 768px)
+    ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .container { padding: 0 1.125rem; }
+      section { padding: 3.5rem 0; }
+      #hero {
+        min-height: auto;
+        padding-top: 92px;
+        padding-bottom: 3.25rem;
+      }
+      .hero-title {
+        font-size: clamp(1.9rem, 8.6vw, 2.3rem);
+        line-height: 1.25;
+        letter-spacing: -0.015em;
+      }
+      .hero-sub {
+        font-size: 0.95rem;
+        line-height: 1.75;
+      }
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      .hero-actions .btn-primary,
+      .hero-actions .btn-secondary {
+        width: 100%;
+        min-height: 48px;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .container { padding: 0 1rem; }
+    }
+
+    @media (max-width: 640px) {
+      .status-row {
+        grid-template-columns: 1fr;
+      }
+      .status-row > div { padding: 0.85rem 1rem; }
+      .status-value { text-align: left; }
+    }
+
+    @media (max-width: 560px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+      footer { padding: 2.5rem 0 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .terminal-badge {
+        margin-left: 0;
+        margin-top: 0.4rem;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .terminal-body {
+        padding: 0.95rem 0.8rem;
+        font-size: 0.7rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -172,10 +315,32 @@
       </div>
       <a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank" class="github-icon" title="GitHub">⌘</a>
       <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">預購</a>
-      <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="切換導航選單" aria-expanded="false" aria-controls="mobileMenu">☰</button>
     </div>
   </div>
 </nav>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="流動版導航">
+  <ul class="mobile-menu-links">
+    <li><a href="./index.html" class="active">首頁</a></li>
+    <li><a href="./agent-pay.html">AGENT PAY</a></li>
+    <li><a href="./network.html">網絡</a></li>
+    <li><a href="./developers.html">開發者</a></li>
+    <li><a href="./token.html">代幣</a></li>
+    <li><a href="./ecosystem.html">生態</a></li>
+    <li><a href="./transparency.html">透明中心</a></li>
+    <li><a href="./faq.html">常見問題</a></li>
+  </ul>
+  <div class="mobile-menu-divider"></div>
+  <div class="mobile-menu-footer">
+    <div class="lang-toggle">
+      <a href="../index.html">EN</a>
+      <a href="./index.html" class="active">繁中</a>
+    </div>
+    <a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank" class="github-icon" title="GitHub">⌘ GitHub</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -211,7 +376,7 @@
       <div class="terminal-header">
         <span class="terminal-dot red"></span><span class="terminal-dot yellow"></span><span class="terminal-dot green"></span>
         <span class="terminal-title">magne — agent-pay-demo</span>
-        <span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--yellow);background:rgba(210,153,34,0.1);padding:0.2rem 0.5rem;border-radius:2px;">⚠ 工作流程示意</span>
+        <span class="terminal-badge">⚠ 工作流程示意</span>
       </div>
       <div class="terminal-body">
         <span class="line cmd">$ magne agent task create "錢包風險分析" --network mhash-l2-testnet</span>
@@ -457,6 +622,14 @@
           <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M-Hash-L2 ↗</a></li>
         </ul>
       </div>
+      <div class="footer-col">
+        <h4>媒體</h4>
+        <ul>
+          <li><a href="./media-kit.html">媒體資料</a></li>
+          <li><a href="./privacy.html">隱私政策</a></li>
+          <li><a href="./contact.html">聯繫我們</a></li>
+        </ul>
+      </div>
     </div>
     <div class="footer-bottom">
       <div class="footer-social">
@@ -477,6 +650,41 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  let menuOpen = false;
+
+  mobileMenuBtn.addEventListener('click', function() {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    mobileMenuBtn.setAttribute('aria-expanded', menuOpen);
+    document.body.classList.toggle('menu-open', menuOpen);
+  });
+
+  // Close menu on link click
+  mobileMenu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    });
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && menuOpen) {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      mobileMenuBtn.focus();
+    }
+  });
+</script>
 
 </body>
 </html>

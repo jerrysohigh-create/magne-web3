@@ -33,6 +33,7 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
+    body.menu-open { overflow: hidden; }
     .grid-bg {
       position: fixed; inset: 0;
       background-image:
@@ -110,6 +111,60 @@
       color: var(--text-primary); font-size: 1.2rem;
       padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer;
     }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 58px;
+      left: 0;
+      right: 0;
+      min-height: calc(100dvh - 58px);
+      background: rgba(7,9,16,0.98);
+      backdrop-filter: blur(18px);
+      z-index: 999;
+      overflow-y: auto;
+      padding: 1.5rem 1.125rem 2rem;
+      flex-direction: column;
+      gap: 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      list-style: none;
+      flex: 1;
+    }
+    .mobile-menu-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.6rem 0.5rem;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu-links a:hover,
+    .mobile-menu-links a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.06); }
+    .mobile-menu-divider { height: 1px; background: var(--border); margin: 0.75rem 0; }
+    .mobile-menu-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding-top: 0.75rem;
+    }
+    .mobile-menu-footer .lang-toggle { justify-content: flex-start; }
+    .mobile-menu-footer .github-icon {
+      width: auto;
+      height: auto;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      gap: 0.4rem;
+    }
+
+    /* Desktop nav: hide lang/github in nav-right when mobile menu is present */
     @media (max-width: 1024px) {
       .nav-links { display: none; }
       .nav-links.open {
@@ -119,6 +174,12 @@
         padding: 1rem; gap: 0.25rem;
       }
       .mobile-menu-btn { display: block; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-right .lang-toggle,
+      .nav-right .github-icon { display: none; }
+      .nav-right { gap: 0.5rem; }
     }
 
     /* ── SECTION LABEL ── */
@@ -174,7 +235,18 @@
       gap: 1px; background: var(--border);
       border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
     }
-    @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+      .product-grid,
+      .feature-grid,
+      .link-grid {
+        grid-template-columns: 1fr;
+      }
+      .product-card,
+      .feature-card,
+      .link-card {
+        padding: 1.25rem 1rem;
+      }
+    }
     .product-card {
       background: var(--surface); padding: 2rem 1.75rem;
       display: flex; flex-direction: column; gap: 0.75rem;
@@ -206,15 +278,31 @@
     .terminal-header {
       display: flex; align-items: center; gap: 0.5rem;
       padding: 0.65rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
     }
-    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
     .terminal-dot.red{background:#ff5f56}.terminal-dot.yellow{background:#ffbd2e}.terminal-dot.green{background:#27c93f}
     .terminal-title { font-size: 0.72rem; color: var(--text-muted); margin-left: 0.5rem; }
-    .terminal-body { padding: 1.25rem 1.5rem; font-size: 0.82rem; line-height: 1.85; color: var(--accent-green); overflow-x: auto; }
+    .terminal-badge {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--accent-yellow);
+      background: rgba(210,153,34,0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .terminal-body {
+      padding: 1.25rem 1.5rem; font-size: 0.82rem;
+      line-height: 1.85; color: var(--accent-green);
+      overflow-x: hidden;
+    }
     .terminal-body .cmd{color:var(--text-primary)}.terminal-body .output{color:var(--accent-green)}
     .terminal-body .info{color:var(--text-secondary)}.terminal-body .accent{color:var(--accent-cyan)}
     .terminal-body .purple{color:var(--accent-purple)}.terminal-body .error{color:var(--accent-red)}
-    .terminal-body .line{display:block;margin-bottom:0.2rem}.terminal-body .line:empty{margin-bottom:0.6rem}
+    .terminal-body .line{display:block;margin-bottom:0.2rem;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
+    .terminal-body .line:empty{margin-bottom:0.6rem}
 
     /* ── FEATURE GRID ── */
     .feature-grid {
@@ -222,7 +310,6 @@
       gap: 1px; background: var(--border);
       border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
     }
-    @media (max-width: 768px) { .feature-grid { grid-template-columns: 1fr; } }
     .feature-card { background: var(--surface); padding: 2rem 1.75rem; }
     .feature-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
     .feature-title {
@@ -257,7 +344,6 @@
       gap: 1px; background: var(--border);
       border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
     }
-    @media (max-width: 768px) { .link-grid { grid-template-columns: 1fr 2fr; } }
     .link-card {
       background: var(--surface); padding: 1.5rem;
       text-decoration: none; display: block;
@@ -318,6 +404,71 @@
       border-radius: 6px; padding: 1rem 1.25rem;
       font-size: 0.82rem; color: var(--accent-yellow); line-height: 1.6;
     }
+
+    /* ═══════════════════════════════════════
+       MOBILE RESPONSIVE (<= 768px)
+    ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .container { padding: 0 1.125rem; }
+      section { padding: 3.5rem 0; }
+      #hero {
+        min-height: auto;
+        padding-top: 92px;
+        padding-bottom: 3.25rem;
+      }
+      .hero-title {
+        font-size: clamp(1.9rem, 8.6vw, 2.3rem);
+        line-height: 1.25;
+        letter-spacing: -0.015em;
+      }
+      .hero-sub {
+        font-size: 0.95rem;
+        line-height: 1.75;
+      }
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      .hero-actions .btn-primary,
+      .hero-actions .btn-secondary {
+        width: 100%;
+        min-height: 48px;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .container { padding: 0 1rem; }
+    }
+
+    @media (max-width: 640px) {
+      .status-row {
+        grid-template-columns: 1fr;
+      }
+      .status-row > div { padding: 0.85rem 1rem; }
+      .status-value { text-align: left; }
+    }
+
+    @media (max-width: 560px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+      footer { padding: 2.5rem 0 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .terminal-badge {
+        margin-left: 0;
+        margin-top: 0.4rem;
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .terminal-body {
+        padding: 0.95rem 0.8rem;
+        font-size: 0.7rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -350,10 +501,32 @@
       </div>
       <a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank" class="github-icon" title="GitHub">⌘</a>
       <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">Preorder</a>
-      <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
     </div>
   </div>
 </nav>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+  <ul class="mobile-menu-links">
+    <li><a href="./" class="active">HOME</a></li>
+    <li><a href="./agent-pay.html">AGENT PAY</a></li>
+    <li><a href="./network.html">NETWORK</a></li>
+    <li><a href="./developers.html">DEVELOPERS</a></li>
+    <li><a href="./token.html">TOKEN</a></li>
+    <li><a href="./ecosystem.html">ECOSYSTEM</a></li>
+    <li><a href="./transparency.html">TRANSPARENCY</a></li>
+    <li><a href="./faq.html">FAQ</a></li>
+  </ul>
+  <div class="mobile-menu-divider"></div>
+  <div class="mobile-menu-footer">
+    <div class="lang-toggle">
+      <a href="./" class="active">EN</a>
+      <a href="./tc/index.html">繁中</a>
+    </div>
+    <a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank" class="github-icon" title="GitHub">⌘ GitHub</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -392,7 +565,7 @@
         <span class="terminal-dot yellow"></span>
         <span class="terminal-dot green"></span>
         <span class="terminal-title">magne — agent-pay-demo</span>
-        <span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--yellow);background:rgba(210,153,34,0.1);padding:0.2rem 0.5rem;border-radius:2px;">⚠ Workflow Illustration</span>
+        <span class="terminal-badge">⚠ Workflow Illustration</span>
       </div>
       <div class="terminal-body">
         <span class="line cmd">$ magne agent task create "wallet risk analysis" --network mhash-l2-testnet</span>
@@ -690,6 +863,41 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  let menuOpen = false;
+
+  mobileMenuBtn.addEventListener('click', function() {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    mobileMenuBtn.setAttribute('aria-expanded', menuOpen);
+    document.body.classList.toggle('menu-open', menuOpen);
+  });
+
+  // Close menu on link click
+  mobileMenu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    });
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && menuOpen) {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      mobileMenuBtn.focus();
+    }
+  });
+</script>
 
 </body>
 </html>
