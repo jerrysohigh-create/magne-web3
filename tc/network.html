@@ -20,6 +20,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+<style>
 :root {
       --bg-primary: #0a0a0c;
       --bg-secondary: #0f0f12;
@@ -127,7 +128,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
 
     
 
-@media (max-width: 1024px) { .nav-links { display: none; }
+@media (max-width: 1024px) { .nav-links { display: none; } .mobile-menu-btn { display: block; } }
 
 @media (max-width: 768px) {
       .nav-right .lang-toggle,
@@ -394,6 +395,7 @@ footer { border-top: 1px solid var(--border); padding: 3rem 0 2rem; position: re
       gap: 0.4rem;
     }
     .mobile-menu-btn { display: none; background: none; border: 1px solid var(--border); color: var(--text-primary); font-size: 1.2rem; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; }
+
 
 
 </style>
