@@ -588,19 +588,37 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand">
+  <div class="container">
+    <div class="nav-brand">
       <a href="index.html">
         <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
       </a>
     </div>
-  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
-    <span></span><span></span><span></span>
-  </button>
-  <div class="lang-toggle" style="margin-right:0.5rem;">
-    <a href="../index.html">EN</a>
-    <a href="./index.html" class="active">繁中</a>
+    <ul class="nav-links">
+      <li><a href="./index.html">首頁</a></li>
+      <li><a href="./agent-pay.html" class="active">AGENT PAY</a></li>
+      <li><a href="./network.html">網絡</a></li>
+      <li><a href="./developers.html">開發者</a></li>
+      <li><a href="./token.html">代幣</a></li>
+      <li><a href="./ecosystem.html">生態</a></li>
+      <li><a href="./transparency.html">透明中心</a></li>
+      <li><a href="./faq.html">常見問題</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <a href="../index.html">EN</a>
+        <a href="./index.html" class="active">繁中</a>
+      </div>
+      <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-cta">Phone Portal ↗️</a>
+      <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">預購</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="切換導航選單" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+    </div>
   </div>
-  <ul class="nav-links">
+</nav>
+
+<!-- MOBILE MENU OVERLAY -->
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="流動版導航">
+  <ul class="mobile-menu-links">
     <li><a href="./index.html">首頁</a></li>
     <li><a href="./agent-pay.html" class="active">AGENT PAY</a></li>
     <li><a href="./network.html">網絡</a></li>
@@ -610,9 +628,17 @@
     <li><a href="./transparency.html">透明中心</a></li>
     <li><a href="./faq.html">常見問題</a></li>
   </ul>
-  <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-link" style="border:1px solid var(--border);padding:0.4rem 1rem;border-radius:5px;">Phone Portal ↗️</a>
-  <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank">Preorder</a>
-</nav>
+  <div class="mobile-menu-divider"></div>
+  <div class="mobile-menu-footer">
+    <div class="lang-toggle">
+      <a href="../index.html">EN</a>
+      <a href="./index.html" class="active">繁中</a>
+    </div>
+    <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-cta">Phone Portal ↗️</a>
+  </div>
+</div>
+
+
 
 <main>
 
