@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
 
   <!-- SEO Metadata -->
   <meta name="description" content="MAGNE.AI network infrastructure overview. Learn about MAGNE L1 and M Hash L2 testnets, node architecture, and network parameters.">
-  <!-- Open Graph -->
+  <!-- 打開 Graph -->
   <meta property="og:title" content="MAGNE.AI Web3 | Network">
   <meta property="og:description" content="MAGNE.AI network infrastructure overview. Learn about MAGNE L1 and M Hash L2 testnets, node architecture, and network parameters.">
   <meta property="og:type" content="website">
@@ -322,39 +322,44 @@
     <li><a href="./faq.html">常見問題</a></li>
   </ul>
   <div class="mobile-menu-divider"></div>
-
-
+  <div class="mobile-menu-footer">
+    <div class="lang-toggle">
+      <a href="../network.html">EN</a>
+      <a href="./network.html" class="active">繁中</a>
+    </div>
+    <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-cta">Phone Portal ↗️</a>
+  </div>
 </div>
 
 
 <main>
     <!-- Hero -->
     <section class="hero">
-      <h1>Network Status</h1>
-      <p>Current status of MAGNE L1 and M Hash L2 networks, including testnet information and developer resources.</p>
+      <h1>網絡狀態</h1>
+      <p>MAGNE L1 與 M Hash L2 網絡的當前狀態，包括測試網信息與開發者資源。</p>
     </section>
 
-    <!-- Live Networks -->
+    <!-- 已上線網絡 -->
     <section>
       <div class="container">
         <div class="section-header">
-          <h2>Live Testnet Networks</h2>
+          <h2>已上線測試網絡</h2>
         </div>
 
         <!-- MAGNE L1 -->
         <div class="card">
           <div class="card-header">
-            <h3>MAGNE L1 Testnet</h3>
-            <span class="network-status">Testnet Live</span>
+            <h3>MAGNE L1 測試網</h3>
+            <span class="network-status">測試網已上線</span>
           </div>
-          <p>EVM-compatible base network designed for native Web3 applications, asset ownership, and ecosystem coordination.</p>
+          <p>EVM 兼容的基礎網絡，專為原生 Web3 應用、資產所有權與生態系統協調而設計。</p>
           <table class="info-table">
             <tr>
-              <td>Chain ID</td>
+              <td>鏈 ID</td>
               <td class="value">20250810</td>
             </tr>
             <tr>
-              <td>Symbol</td>
+              <td>代幣符號</td>
               <td class="value">MHA</td>
             </tr>
             <tr>
@@ -362,30 +367,30 @@
               <td class="value">https://rpc.testnet.magicalhash.com</td>
             </tr>
             <tr>
-              <td>Explorer</td>
+              <td>區塊瀏覽器</td>
               <td class="value">https://explorer.testnet.magicalhash.com</td>
             </tr>
           </table>
           <div class="btn-group">
-            <a href="https://explorer.testnet.magicalhash.com" target="_blank" class="btn btn-primary">Block Explorer</a>
-            <a href="developers.html" class="btn btn-secondary">View Configuration</a>
+            <a href="https://explorer.testnet.magicalhash.com" target="_blank" class="btn btn-primary">區塊瀏覽器</a>
+            <a href="developers.html" class="btn btn-secondary">查看配置</a>
           </div>
         </div>
 
         <!-- M Hash L2 -->
         <div class="card">
           <div class="card-header">
-            <h3>M Hash L2 Testnet</h3>
-            <span class="network-status">Testnet Live</span>
+            <h3>M Hash L2 測試網</h3>
+            <span class="network-status">測試網已上線</span>
           </div>
-          <p>OP Stack-based Layer 2 for scalable smart contracts, lower-cost transactions, and developer experimentation.</p>
+          <p>基於 OP Stack 的 Layer 2，支援可擴展智能合約、更低成本交易與開發者實驗。</p>
           <table class="info-table">
             <tr>
-              <td>Chain ID</td>
+              <td>鏈 ID</td>
               <td class="value">20250827</td>
             </tr>
             <tr>
-              <td>Symbol</td>
+              <td>代幣符號</td>
               <td class="value">MHA</td>
             </tr>
             <tr>
@@ -393,94 +398,94 @@
               <td class="value">https://l2-rpc.testnet.magicalhash.com</td>
             </tr>
             <tr>
-              <td>Explorer</td>
+              <td>區塊瀏覽器</td>
               <td class="value">https://l2-explorer.testnet.magicalhash.com</td>
             </tr>
           </table>
           <div class="btn-group">
-            <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="btn btn-primary">Block Explorer</a>
-            <a href="developers.html" class="btn btn-secondary">View Configuration</a>
+            <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="btn btn-primary">區塊瀏覽器</a>
+            <a href="developers.html" class="btn btn-secondary">查看配置</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Mainnet Status -->
+    <!-- 主網狀態 -->
     <section>
       <div class="container">
         <div class="section-header">
-          <h2>Mainnet Status</h2>
+          <h2>主網狀態</h2>
         </div>
 
         <div class="card">
           <div class="card-header">
-            <h3>Mainnet</h3>
-            <span class="network-status planned">In Planning</span>
+            <h3>主網</h3>
+            <span class="network-status planned">計劃中</span>
           </div>
-          <p>Mainnet is currently in planning and development. Specific timelines and launch details will be announced through official channels.</p>
+          <p>主網當前處於規劃與開發階段。具體時間表與上線詳情將通過官方渠道公佈。</p>
           <table class="info-table">
             <tr>
-              <td>Status</td>
-              <td class="value">In Planning</td>
+              <td>狀態</td>
+              <td class="value">計劃中</td>
             </tr>
             <tr>
               <td>RPC</td>
-              <td>To be announced</td>
+              <td>待公佈</td>
             </tr>
             <tr>
-              <td>Chain ID</td>
-              <td>To be announced</td>
+              <td>鏈 ID</td>
+              <td>待公佈</td>
             </tr>
           </table>
         </div>
 
         <div class="disclaimer">
-          <p><strong>Disclaimer:</strong> Testnet parameters may change. Do not use testnet endpoints for production purposes. Mainnet launch is subject to technical development, security audits, regulatory considerations, and governance approval.</p>
+          <p><strong>免責聲明：</strong>測試網參數可能會變更。請勿將測試網端點用於生產目的。主網上線以技術開發、安全審計、監管因素與治理批准為準。</p>
         </div>
       </div>
     </section>
 
-    <!-- Developer Resources -->
+    <!-- 開發者資源 -->
     <section>
       <div class="container">
         <div class="section-header">
-          <h2>Developer Resources</h2>
+          <h2>開發者資源</h2>
         </div>
 
         <div class="tools-grid">
           <div class="tool-card">
             <div class="tool-icon">🔍</div>
-            <h4>L1 Explorer</h4>
-            <p>MAGNE L1 block explorer</p>
+            <h4>L1 瀏覽器</h4>
+            <p>MAGNE L1 區塊瀏覽器</p>
             <div class="btn-group" style="margin-top: 1rem; justify-content: center;">
-              <a href="https://explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary" style="padding: 0.5rem 1rem;">Open</a>
+              <a href="https://explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary" style="padding: 0.5rem 1rem;">打開</a>
             </div>
           </div>
 
           <div class="tool-card">
             <div class="tool-icon">🔍</div>
-            <h4>L2 Explorer</h4>
-            <p>M Hash L2 block explorer</p>
+            <h4>L2 瀏覽器</h4>
+            <p>M Hash L2 區塊瀏覽器</p>
             <div class="btn-group" style="margin-top: 1rem; justify-content: center;">
-              <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary" style="padding: 0.5rem 1rem;">Open</a>
+              <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary" style="padding: 0.5rem 1rem;">打開</a>
             </div>
           </div>
 
           <div class="tool-card">
             <div class="tool-icon">💧</div>
-            <h4>Faucet</h4>
-            <p>Get testnet MHA tokens</p>
+            <h4>水龍頭</h4>
+            <p>獲取測試網 MHA 代幣</p>
             <div class="btn-group" style="margin-top: 1rem; justify-content: center;">
-              <a href="#" class="btn btn-secondary" style="padding: 0.5rem 1rem;">Coming Soon</a>
+              <a href="#" class="btn btn-secondary" style="padding: 0.5rem 1rem;">即將推出</a>
             </div>
           </div>
 
           <div class="tool-card">
             <div class="tool-icon">📂</div>
-            <h4>Documentation</h4>
-            <p>Developer guides and docs</p>
+            <h4>文檔</h4>
+            <p>開發者指南與文檔</p>
             <div class="btn-group" style="margin-top: 1rem; justify-content: center;">
-              <a href="developers.html" class="btn btn-secondary" style="padding: 0.5rem 1rem;">View Docs</a>
+              <a href="developers.html" class="btn btn-secondary" style="padding: 0.5rem 1rem;">查看文檔</a>
             </div>
           </div>
         </div>
@@ -556,19 +561,19 @@
   // Mobile menu toggle
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-  let menuOpen = false;
+  let menu打開 = false;
 
   mobileMenuBtn.addEventListener('click', function() {
-    menuOpen = !menuOpen;
-    mobileMenu.classList.toggle('open', menuOpen);
-    mobileMenuBtn.setAttribute('aria-expanded', menuOpen);
-    document.body.classList.toggle('menu-open', menuOpen);
+    menu打開 = !menu打開;
+    mobileMenu.classList.toggle('open', menu打開);
+    mobileMenuBtn.setAttribute('aria-expanded', menu打開);
+    document.body.classList.toggle('menu-open', menu打開);
   });
 
   // Close menu on link click
   mobileMenu.querySelectorAll('a').forEach(function(link) {
     link.addEventListener('click', function() {
-      menuOpen = false;
+      menu打開 = false;
       mobileMenu.classList.remove('open');
       mobileMenuBtn.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('menu-open');
@@ -577,8 +582,8 @@
 
   // Close on Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && menuOpen) {
-      menuOpen = false;
+    if (e.key === 'Escape' && menu打開) {
+      menu打開 = false;
       mobileMenu.classList.remove('open');
       mobileMenuBtn.setAttribute('aria-expanded', 'false');
       document.body.classList.remove('menu-open');
