@@ -298,9 +298,32 @@ footer { border-top: 1px solid var(--border); padding: 3rem 0 2rem; position: re
 .lang-toggle a:hover { color: var(--text-secondary); }
 .lang-toggle a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.08); }
 
+
+
+/* === Shell container parity: match tc/index.html max-width/padding === */
+nav .shell-header-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
+}
+
+footer .shell-footer-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
+}
+
 </style>
 <nav>
-  <div class="container">
+  <div class="container shell-header-container">
     <div class="nav-brand">
       <a href="index.html">
         <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
@@ -511,7 +534,7 @@ footer { border-top: 1px solid var(--border); padding: 3rem 0 2rem; position: re
   </main>
 
 <footer>
-  <div class="container">
+  <div class="container shell-footer-container">
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="./index.html"><img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" style="height:28px;width:auto;display:block;margin-bottom:0.5rem;"></a>
