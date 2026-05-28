@@ -447,6 +447,10 @@
     .footer-col a:hover { color: var(--accent); }
     .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
     .footer-social { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+.social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
+.social-icon:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+.social-icon img { width: 16px; height: 16px; }
+
     .social-icon img { width: 20px; height: 20px; }
     .footer-trademark { color: var(--text-muted); font-size: 0.75rem; text-align: center; line-height: 1.6; }
     .footer-copyright { color: var(--text-muted); font-size: 0.75rem; text-align: center; }
@@ -1171,14 +1175,13 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Phone Portal</h4>
+        <h4>網絡</h4>
         <ul>
-          <li><a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank">MAGNE.AI Phone Gen1 ↗</a></li>
-          <li><a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-security.html" target="_blank">安全架構 ↗</a></li>
-          <li><a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-compliance.html" target="_blank">合規與認證 ↗</a></li>
-          <li><a href="https://payment.magne.ai/buy" target="_blank">預訂 ↗</a></li>
+          <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank">L2 瀏覽器 ↗</a></li>
+          <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M-Hash-L2 ↗</a></li>
         </ul>
       </div>
+
     </div>
     <div class="footer-bottom">
       <div class="footer-social">
@@ -1187,6 +1190,7 @@
         <a href="https://discord.gg/magneai" target="_blank" class="social-icon" title="Discord"><img src="https://cdn.simpleicons.org/discord/white" alt="Discord"></a>
         <a href="https://github.com/magne-ai" target="_blank" class="social-icon" title="GitHub"><img src="https://cdn.simpleicons.org/github/white" alt="GitHub"></a>
         <a href="https://youtube.com/@magneai" target="_blank" class="social-icon" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube"></a>
+        <a href="./press-kit.html" class="social-icon" title="新聞稿"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></a>
       </div>
       <div class="footer-links">
         <a href="https://magne.ai/privacy-policy.html" target="_blank">隱私政策</a>
@@ -1198,6 +1202,41 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  let menuOpen = false;
+
+  mobileMenuBtn.addEventListener('click', function() {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    mobileMenuBtn.setAttribute('aria-expanded', menuOpen);
+    document.body.classList.toggle('menu-open', menuOpen);
+  });
+
+  // Close menu on link click
+  mobileMenu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    });
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && menuOpen) {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      mobileMenuBtn.focus();
+    }
+  });
+</script>
 
 </body>
 </html>
