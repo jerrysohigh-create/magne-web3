@@ -88,7 +88,6 @@
     .footer-brand-logo { margin-bottom: 1.5rem; }
     .footer-brand-img { height: 24px; margin-bottom: 0.5rem; }
     .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; }
-    .footer-socials { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
     .footer-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); transition: all 0.2s; }
     .footer-icon:hover { border-color: var(--accent); color: var(--accent); }
     .footer-icon svg { width: 18px; height: 18px; }
@@ -125,6 +124,18 @@
     .nav-cta:hover { opacity: 0.85; }
     .mobile-menu-btn { display: none; background: none; border: 1px solid var(--border); color: var(--text-primary); font-size: 1.2rem; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; }
     .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 58px;
+      left: 0;
+      right: 0;
+      min-height: calc(100dvh - 58px);
+      background: rgba(7,9,16,0.98);
+      backdrop-filter: blur(16px);
+      z-index: 999;
+      flex-direction: column;
+      padding: 1.5rem;
+    }
     .mobile-menu.open { display: flex; }
     .mobile-menu-links {
     .mobile-menu-links a {
