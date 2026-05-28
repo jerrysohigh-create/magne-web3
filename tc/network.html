@@ -41,8 +41,8 @@
     .lang-btn.inactive { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
     .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
     .nav-cta { background: var(--accent); color: #000 !important; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; }
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-secondary); margin: 5px 0; }
+    
+    
     main { position: relative; z-index: 1; padding-top: 80px; }
     .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
     section { padding: 5rem 0; }
@@ -98,8 +98,7 @@
     .lang-link.inactive { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
     .trademark-notice { font-size: 0.8rem; margin-top: 1rem; }
     .copyright { margin-top: 1.5rem; opacity: 0.5; }
-    @media (max-width: 900px) { nav { padding: 1rem 1.5rem; } .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10, 10, 12, 0.98); flex-direction: column; padding: 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border); } .nav-links.active { display: flex; } .nav-toggle { display: block; } .lang-switch { margin-left: 0; margin-top: 1rem; } h1 { font-size: 2rem; } .hero { padding: 6rem 1.5rem 4rem; } .card { padding: 1.25rem; } }
-  
+    @media (max-width: 1024px) { .nav-links { display: none; } .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem; gap: 0.25rem; } .mobile-menu-btn { display: block; } }
     /* ===== PORTAL HEADER (isolated namespace) ===== */
     /* Mobile menu */
 
@@ -178,9 +177,9 @@
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="./index.html" class="active">首頁</a></li>
+      <li><a href="./index.html">首頁</a></li>
       <li><a href="./agent-pay.html">AGENT PAY</a></li>
-      <li><a href="./network.html">網絡</a></li>
+      <li><a href="./network.html" class="active">網絡</a></li>
       <li><a href="./developers.html">開發者</a></li>
       <li><a href="./token.html">代幣</a></li>
       <li><a href="./ecosystem.html">生態</a></li>
@@ -189,8 +188,8 @@
     </ul>
     <div class="nav-right">
       <div class="lang-toggle">
-        <a href="../index.html">EN</a>
-        <a href="./index.html" class="active">繁中</a>
+        <a href="../network.html">EN</a>
+        <a href="./network.html" class="active">繁中</a>
       </div>
       <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-cta">Phone Portal ↗️</a>
       <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">預購</a>
@@ -201,9 +200,9 @@
 
 <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="流動版導航">
   <ul class="mobile-menu-links">
-    <li><a href="./index.html" class="active">首頁</a></li>
+    <li><a href="./index.html">首頁</a></li>
     <li><a href="./agent-pay.html">AGENT PAY</a></li>
-    <li><a href="./network.html">網絡</a></li>
+    <li><a href="./network.html" class="active">網絡</a></li>
     <li><a href="./developers.html">開發者</a></li>
     <li><a href="./token.html">代幣</a></li>
     <li><a href="./ecosystem.html">生態</a></li>
@@ -213,8 +212,8 @@
   <div class="mobile-menu-divider"></div>
   <div class="mobile-menu-footer">
     <div class="lang-toggle">
-      <a href="../index.html">EN</a>
-      <a href="./index.html" class="active">繁中</a>
+      <a href="../network.html">EN</a>
+      <a href="./network.html" class="active">繁中</a>
     </div>
     <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-cta">Phone Portal ↗️</a>
   </div>
