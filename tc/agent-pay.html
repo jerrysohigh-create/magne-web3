@@ -59,7 +59,60 @@
     .nav-links { display: flex; gap: 0 0.75rem; list-style: none; }
     .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; padding: 0.4rem 0.5rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
     .nav-links a:hover, .nav-links a.active, .nav-links a:focus { color: var(--accent-cyan); }
-    .nav-cta { background: var(--accent-cyan); color: #000 !important; padding: 0.4rem 1rem; border-radius: 5px; font-weight: 700; text-decoration: none; }    .phone-portal-link {
+    .nav-cta { background: var(--accent-cyan); color: #000 !important; padding: 0.4rem 1rem; border-radius: 5px; font-weight: 700; text-decoration: none; }
+
+.mobile-menu-btn { display: none; background: none; border: 1px solid var(--border); color: var(--text-primary); font-size: 1.2rem; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; }
+.mobile-menu {
+      display: none;
+      position: fixed;
+      top: 58px;
+      left: 0;
+      right: 0;
+      min-height: calc(100dvh - 58px);
+      background: rgba(7,9,16,0.98);
+      backdrop-filter: blur(18px);
+      z-index: 999;
+      overflow-y: auto;
+      padding: 1.5rem 1.125rem 2rem;
+      flex-direction: column;
+      gap: 0;
+    }
+.mobile-menu.open { display: flex; }
+.mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      list-style: none;
+      flex: 1;
+    }
+.mobile-menu-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.6rem 0.5rem;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      border-bottom: 1px solid var(--border);
+    }
+.mobile-menu-links a:hover,
+    .mobile-menu-links a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.06); }
+.mobile-menu-divider { height: 1px; background: var(--border); margin: 0.75rem 0; }
+.mobile-menu-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding-top: 0.75rem;
+    }
+.mobile-menu-footer .lang-toggle { justify-content: flex-start; }
+.mobile-menu-footer .github-icon {
+      width: auto;
+      height: auto;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      gap: 0.4rem;
+    }
+    .phone-portal-link {
       background: transparent;
       color: var(--accent-cyan);
       border: 1px solid var(--accent-cyan);
@@ -648,6 +701,7 @@
       <a href="./agent-pay.html" class="active">繁中</a>
     </div>
     <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-link phone-portal-link">Phone Portal ↗️</a>
+    <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">預購</a>
   </div>
 </div>
 
