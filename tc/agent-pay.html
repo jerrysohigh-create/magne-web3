@@ -577,6 +577,10 @@
   <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')">
     <span></span><span></span><span></span>
   </button>
+  <div class="lang-toggle" style="margin-right:0.5rem;">
+    <a href="../index.html">EN</a>
+    <a href="./index.html" class="active">繁中</a>
+  </div>
   <ul class="nav-links">
     <li><a href="./index.html">首頁</a></li>
     <li><a href="./agent-pay.html" class="active">AGENT PAY</a></li>
@@ -587,6 +591,7 @@
     <li><a href="./transparency.html">透明中心</a></li>
     <li><a href="./faq.html">常見問題</a></li>
   </ul>
+  <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-link" style="border:1px solid var(--border);padding:0.4rem 1rem;border-radius:5px;">Phone Portal ↗️</a>
   <a href="https://payment.magne.ai/buy" class="nav-cta" target="_blank">Preorder</a>
 </nav>
 
@@ -596,7 +601,7 @@
   <section class="hero">
     <div class="container">
       <div class="badge-testnet">⚡ 測試網階段開發者演示</div>
-      <h1>代理會思考。<br><em>但它們仍然無法安全地支付。</em></h1>
+      <h1>代理會思考。<br><em>但仍需要安全授權與可驗證的支付軌道。</em></h1>
       <p class="hero-sub">
         MAGNE Agent Pay 是面向 AI 代理支付場景的開發階段演示，結合 M Hash L2 測試網上的合約部署與 AI 任務收據記錄能力。<br>
         <span style="color: var(--text-secondary); font-size: 0.95rem;">目前已完成測試網合約部署與收據記錄演示；正式 HTTP 402 支付流程、瀏覽器錢包授權、Facilitator 驗證與結算流程，以及 x402 相容性測試，仍在開發與驗證中。</span>
@@ -636,19 +641,19 @@
           <span class="problem-zero">401</span>
           <span class="problem-label">無安全授權</span>
           <h3>代理可以觸發。用戶無法驗證。</h3>
-          <p>代理可以觸發任務，但支付仍需要可信的人類逐步授權。目前沒有密碼學可驗證的授權路徑。</p>
+          <p>代理可以觸發任務，但支付仍需要可信的人類逐步授權。在新興代理支付場景中，如何形成可驗證且可控的授權路徑，仍是重要實作課題。</p>
         </div>
         <div class="problem-card">
           <span class="problem-zero">0</span>
           <span class="problem-label">無代理支付軌道</span>
           <h3>服務存在。代理無法支付。</h3>
-          <p>代理支付軌道正在興起。安全行動端授權和可驗證任務收據仍是開放的實施挑戰。</p>
+          <p>代理支付軌道仍在形成中。安全行動端授權和可驗證任務收據仍是開放的實施挑戰。</p>
         </div>
         <div class="problem-card">
           <span class="problem-zero">0</span>
           <span class="problem-label">無可驗證收據</span>
           <h3>任務執行。無法證明。</h3>
-          <p>AI 任務需要可審計的記錄：誰發起、誰支付、結算了什麼、返回了什麼。現有工作流程不留下可追蹤記錄。</p>
+          <p>AI 任務需要可審計的記錄：誰發起、誰支付、結算了什麼、返回了什麼。部分現有工作流程未能提供一致、可獨立查驗的鏈上記錄。</p>
         </div>
       </div>
     </div>
@@ -659,12 +664,12 @@
     <div class="container">
       <div class="section-header">
         <span class="section-eyebrow">解決方案</span>
-        <h2>Agent Pay 工作流程</h2>
+        <h2>工作流程示意與已驗證鏈上記錄</h2>
         <p>從任務請求到可驗證收據 — M Hash L2 上 AI 代理支付的工作流程演示。</p>
       </div>
 
       <div style="background: rgba(210,153,34,0.08); border: 1px solid rgba(210,153,34,0.2); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 1.5rem;">
-        <p style="font-size: 0.88rem; color: var(--yellow); line-height: 1.7; margin: 0;">⚠ 以下工作流程展示 MAGNE Agent Pay 的目標設計。當前已驗證部分為 M Hash L2 測試網上的合約部署與 AI 任務收據記錄；HTTP 402 支付挑戰、瀏覽器錢包授權及 Facilitator 驗證／結算流程仍在開發中。</p>
+        <p style="font-size: 0.88rem; color: var(--yellow); line-height: 1.7; margin: 0;">⚠ 下列終端內容同時包含目標工作流程示意與已披露鏈上證據。標示為「示意」的步驟尚未完成公開驗證；標示為「已驗證」的內容僅限於測試網合約部署與 AI 任務收據記錄。</p>
       </div>
       <div class="flow-diagram">
         <div class="flow-step">
@@ -722,7 +727,7 @@
           <span class="terminal-title">magne@agent-pay-demo</span>
           <span class="terminal-badge">M HASH L2 測試網已部署</span>
         </div>
-        <div class="terminal-body"><span class="t-prompt">$</span> magne agent task create "analyze wallet risk"<span class="t-newline"></span><span class="t-ok">✓ task created</span> — <span class="t-val">task_demo_20260522</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne api call wallet-risk --wallet 0x742d35Cc6634C0532925a3b844Bc9e7595f2E26E<span class="t-newline"></span><span class="t-err">✕ 402 需要支付</span><span class="t-newline"></span><span class="t-label">  金額：</span><span class="t-val">0.01 mMHA</span><span class="t-newline"></span><span class="t-label">  收款人：</span><span class="t-hash">0xf39Fd6e51aad88F6F4ce6aB8827279cffB922f66</span><span class="t-newline"></span><span class="t-label">  鏈：</span><span class="t-val">mhash-l2-testnet (20250827)</span><span class="t-newline"></span><span class="t-label">  RPC：</span><span class="t-val">https://l2-rpc.testnet.magicalhash.com</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne pay settle --tx 0x0000000000000000000000000000000000000000000000000000000000000000 --network mhash-l2<span class="t-newline"></span><span class="t-ok">✓ 測試網部署完成</span><span class="t-newline"></span><span class="t-label">  status: </span><span class="t-ok">verified</span><span class="t-newline"></span><span class="t-label">  block: </span><span class="t-val">confirmed on M Hash L2</span><span class="t-newline"></span><span class="t-label">  token: </span><span class="t-val">mMHA (ERC20)</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne receipt create --task task_demo_20260522<span class="t-newline"></span><span class="t-ok">✓ AI 任務收據已創建</span><span class="t-newline"></span><span class="t-label">  收據ID：</span><span class="t-hash">0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-label">  交易：</span><span class="t-hash">0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-label">  瀏覽器：</span><span class="t-val">https://l2-explorer.testnet.magicalhash.com/tx/0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne receipt inspect 0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd<span class="t-newline"></span><span class="t-label">  代理：       </span><span class="t-val">MAGNE-Agent-001</span><span class="t-newline"></span><span class="t-label">  服務：     </span><span class="t-val">錢包風險分析</span><span class="t-newline"></span><span class="t-label">  金額：    </span><span class="t-val">0.01 mMHA</span><span class="t-newline"></span><span class="t-label">  狀態：     </span><span class="t-ok">已結算</span><span class="t-newline"></span><span class="t-label">  網絡：    </span><span class="t-val">M Hash L2 (chainId: 20250827)</span><span class="t-newline"></span><span class="t-label">  payment 交易：</span><span class="t-hash">0xe97d…3a0c</span><span class="t-newline"></span><span class="t-prompt">$</span> <span class="cursor">█</span></div>
+        <div class="terminal-body"><span class="t-prompt">$</span> magne agent task create "analyze wallet risk"<span class="t-newline"></span><span class="t-ok">✓ task created</span> — <span class="t-val">task_demo_20260522</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne api call wallet-risk --wallet 0x742d35Cc6634C0532925a3b844Bc9e7595f2E26E<span class="t-newline"></span><span class="t-err">✕ [示意] 402 需要支付</span><span class="t-newline"></span><span class="t-label">  金額：</span><span class="t-val">0.01 mMHA</span><span class="t-newline"></span><span class="t-label">  收款人：</span><span class="t-hash">0xf39Fd6e51aad88F6F4ce6aB8827279cffB922f66</span><span class="t-newline"></span><span class="t-label">  鏈：</span><span class="t-val">mhash-l2-testnet (20250827)</span><span class="t-newline"></span><span class="t-label">  RPC：</span><span class="t-val">https://l2-rpc.testnet.magicalhash.com</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne pay settle --tx 0x0000000000000000000000000000000000000000000000000000000000000000 --network mhash-l2<span class="t-newline"></span><span class="t-ok">✓ 測試網部署完成</span><span class="t-newline"></span><span class="t-label">  status: [示意] </span><span class="t-ok">verified</span><span class="t-newline"></span><span class="t-label">  block: </span><span class="t-val">confirmed on M Hash L2</span><span class="t-newline"></span><span class="t-label">  token: </span><span class="t-val">mMHA (ERC20)</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne receipt create --task task_demo_20260522<span class="t-newline"></span><span class="t-ok">✓ AI 任務收據已創建</span><span class="t-newline"></span><span class="t-label">  收據ID：</span><span class="t-hash">0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-label">  交易：</span><span class="t-hash">0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-label">  瀏覽器：</span><span class="t-val">https://l2-explorer.testnet.magicalhash.com/tx/0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne receipt inspect 0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd<span class="t-newline"></span><span class="t-label">  代理：       </span><span class="t-val">MAGNE-Agent-001</span><span class="t-newline"></span><span class="t-label">  服務：     </span><span class="t-val">錢包風險分析</span><span class="t-newline"></span><span class="t-label">  金額：    </span><span class="t-val">0.01 mMHA</span><span class="t-newline"></span><span class="t-label">  狀態：     </span><span class="t-ok">已結算</span><span class="t-newline"></span><span class="t-label">  網絡：    </span><span class="t-val">M Hash L2 (chainId: 20250827)</span><span class="t-newline"></span><span class="t-label">  payment 交易：</span><span class="t-hash">0xe97d…3a0c</span><span class="t-newline"></span><span class="t-prompt">$</span> <span class="cursor">█</span></div>
       </div>
     </div>
   </section>
@@ -733,12 +738,12 @@
       <div class="section-header">
         <span class="section-eyebrow">鏈上記錄查驗</span>
         <h2>AI 任務收據層</h2>
-        <p>每筆支付都在 M Hash L2 上創建不可篡改、可編程的收據。</p>
+        <p>在已披露的測試網演示中，AI 任務收據用於記錄與查驗相關鏈上資訊，展示未來代理支付工作流程中的可驗證收據方向。</p>
       </div>
       <div class="receipt-grid">
         <div class="receipt-card">
           <h3>為什麼收據重要</h3>
-          <p>AI 任務收據是可驗證的證明，證明支付已發生、任務已請求、結果已返回。任何一方，包括 AI 代理、使用者、審計方或智能合約，均可透過鏈上資料獨立查驗相關記錄。</p>
+          <p>AI 任務收據是可驗證的證明，AI 任務收據可用於記錄已披露演示中的支付參考資料、工作資訊與結果雜湊等鏈上資料。任何一方，包括 AI 代理、使用者、審計方或智能合約，均可透過鏈上資料獨立查驗相關記錄。</p>
           <p style="margin-top: 1rem;">收據被設計為可編程的：代理可以在後續交易中引用它們、爭議解決合約可以讀取它們、合規系統可以在不需要可信中介的情況下審計它們。</p>
         </div>
         <div class="receipt-card">
@@ -780,7 +785,7 @@
   <span class="k">"paymentToken"</span>: <span class="str">"mMHA (ERC20)"</span>,
   <span class="k">"facilitator"</span>: <span class="str">"https://api.magne.ai/facilitator"</span>,
   <span class="k">"receiptContract"</span>: <span class="str">"0xa0Fe7AD300152eeDC4ca0c17514A1001D6afA408"</span>,
-  <span class="k">"x402Compatible"</span>: <span class="k">true</span>,
+  <span class="k">"x402Compatibility"</span>: <span class="str">"under-validation"</span>,
   <span class="k">"endpoints"</span>: {
     <span class="k">"analyze"</span>: <span class="str">"POST /api/v1/wallet-risk"</span>,
     <span class="k">"verify"</span>: <span class="str">"GET /api/v1/receipt/:id"</span>
@@ -789,7 +794,8 @@
 <span class="cmt">// 代理流程：</span>
 <span class="t-fn">1. POST /api/v1/wallet-risk → 402 + 支付元資料</span>
 <span class="t-fn">2. mMHA.transfer(recipient, amount) on M Hash L2</span>
-<span class="t-fn">3. Facilitator.strictVerify(paymentTxHash, 任務ID, amount)</span>
+<span class="t-fn">3. // 目標流程示例；尚未完成公開端到端驗證
+        // Facilitator.strictVerify(paymentTxHash, 任務ID, amount)</span>
 <span class="t-fn">4. AI Task Receipt event → 鏈上證明</span></div>
       <div class="btn-group" style="margin-top: 2rem;">
         <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank">查看完整演示倉庫</a>
@@ -804,7 +810,7 @@
       <div class="section-header">
         <span class="section-eyebrow">驗證狀態</span>
         <h2>M Hash L2 演示</h2>
-        <p>每個聲明都由鏈上數據或運行時日誌支持。沒有猜測。</p>
+        <p>以下狀態區分已披露的測試網演示證據，以及仍在開發、研究或規劃中的能力。</p>
       </div>
       <table class="status-table">
         <thead>
@@ -844,7 +850,7 @@
                 <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0; line-height: 1.7;"><strong style="color: var(--red); font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em;">⚠ 安全提示：</strong>目前披露的測試網部署僅供開發者演示用途。正式部署將需要受控簽署基礎設施、安全審查、合約管理程序及適用的合規評估。</p>
               </div>
               <div style="margin-top: 1rem; padding: 1rem; background: rgba(210,153,34,0.06); border: 1px solid rgba(210,153,34,0.2); border-radius: 6px;">
-                <p style="font-size: 0.8rem; color: var(--accent-yellow); margin: 0; line-height: 1.7;"><strong>已歸檔部署：</strong>先前披露的部署 MockMHA <code style="font-size:0.75rem">0x5FbDB2315678afecb367f032d93F642f64180aa3</code> / AITaskReceipt <code style="font-size:0.75rem">0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512</code> 使用了公開已知的測試密鑰。新的安全部署已完成。請勿將暴露密鑰的部署用於演示以外的任何用途。</p>
+                <p style="font-size: 0.8rem; color: var(--accent-yellow); margin: 0; line-height: 1.7;"><strong>已歸檔部署：</strong>先前披露的部署 MockMHA <code style="font-size:0.75rem">0x5FbDB2315678afecb367f032d93F642f64180aa3</code> / AITaskReceipt <code style="font-size:0.75rem">0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512</code> 使用了公開已知的測試密鑰。後續測試部署資訊已更新於本頁，僅供開發者演示與公開查驗參考；正式部署仍需完成受控簽署、安全審查、合約管理及適用合規評估。請勿將暴露密鑰的部署用於演示以外的任何用途。</p>
               </div>
             </td>
           </tr>
@@ -858,6 +864,7 @@
       <div class="section-header">
         <span class="section-eyebrow">生態定位</span>
         <h2>生態定位參考</h2>
+        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem;">本表僅用於說明公開可查的技術方向與 MAGNE Agent Pay 的研究定位，不表示 MAGNE.AI 與任何第三方存在合作、背書或官方整合。</p>
         <p>以下定位僅供技術研究方向說明，不表示 MAGNE.AI 與任何第三方存在合作或官方整合。</p>
       </div>
       <div class="compat-grid">
@@ -980,7 +987,7 @@
           <p>取決於安全審計、合規評估和治理批准。計劃中。</p>
           <ul>
             <li>安全審計</li>
-            <li>MHA 作為結算資產</li>
+            <li>MHA 作為網絡實用代幣</li>
             <li>生產環境 Facilitator 服務等級協議</li>
             <li>x402 規範合規審查</li>
           </ul>
@@ -996,7 +1003,7 @@
         <div style="max-width: 900px; margin: 0 auto;">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem;">⚠ 安全提示</div>
           <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8;">
-            目前披露的測試網部署僅供開發者演示用途。正式部署將需要受控簽署基礎設施、安全審查、合約管理程序及適用的合規評估。本演示使用臨時測試密鑰 — 請勿用於生產環境。MHA 和 mMHA 是沒有主網價值的測試代幣。
+            目前披露的測試網部署僅供開發者演示用途。正式部署將需要受控簽署基礎設施、安全審查、合約管理程序及適用的合規評估。本演示使用臨時測試密鑰 — 請勿用於生產環境。本演示使用的 mMHA 為測試用途資產，不具有貨幣價值，也不代表正式生產環境中的結算資產。MHA 的角色與相關披露，請以代幣頁面及適用文件為準。
           </p>
         </div>
       </div>
@@ -1020,14 +1027,67 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>
-    <a href="index.html">MAGNE.AI</a> ·
-    <a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M Hash L2</a> ·
-    <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" target="_blank">Agent Pay Demo</a>
-  </p>
-  <p class="footer-disclaimer">
-    MAGNE Agent Pay 是測試網階段的開發者演示，不是生產支付系統。頁面所示內容不構成對正式 x402 相容性、未來功能、合作關係、支付可用性、代幣價值或商業成果的保證。測試網資產僅供技術演示用途，不具主網或法幣價值。
-  </p>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="./index.html"><img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" style="height:28px;width:auto;display:block;margin-bottom:0.5rem;"></a>
+        <p>安全行動端授權、M Hash L2 測試網演示與 AI 任務收據記錄，服務於正在形成的代理支付工作流程。</p>
+      </div>
+      <div class="footer-col">
+        <h4>產品</h4>
+        <ul>
+          <li><a href="./agent-pay.html">Agent Pay</a></li>
+          <li><a href="./network.html">網絡</a></li>
+          <li><a href="./ecosystem.html">生態</a></li>
+          <li><a href="./learn.html">學習</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>開發者</h4>
+        <ul>
+          <li><a href="./developers.html">文檔</a></li>
+          <li><a href="./developers-contract.html">合約</a></li>
+          <li><a href="./developers-connect.html">連接</a></li>
+          <li><a href="./developers-app.html">構建 DApp</a></li>
+          <li><a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank">GitHub ↗</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>資源</h4>
+        <ul>
+          <li><a href="./token.html">代幣</a></li>
+          <li><a href="./transparency.html">透明中心</a></li>
+          <li><a href="./faq.html">常見問題</a></li>
+          <li><a href="./version-history.html">版本歷史</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Phone Portal</h4>
+        <ul>
+          <li><a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank">MAGNE.AI Phone Gen1 ↗</a></li>
+          <li><a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-security.html" target="_blank">安全架構 ↗</a></li>
+          <li><a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-compliance.html" target="_blank">合規與認證 ↗</a></li>
+          <li><a href="https://payment.magne.ai/buy" target="_blank">預訂 ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-social">
+        <a href="https://x.com/magneai" target="_blank" class="social-icon" title="X"><img src="https://cdn.simpleicons.org/x/white" alt="X"></a>
+        <a href="https://t.me/magneai" target="_blank" class="social-icon" title="Telegram"><img src="https://cdn.simpleicons.org/telegram/white" alt="Telegram"></a>
+        <a href="https://discord.gg/magneai" target="_blank" class="social-icon" title="Discord"><img src="https://cdn.simpleicons.org/discord/white" alt="Discord"></a>
+        <a href="https://github.com/magne-ai" target="_blank" class="social-icon" title="GitHub"><img src="https://cdn.simpleicons.org/github/white" alt="GitHub"></a>
+        <a href="https://youtube.com/@magneai" target="_blank" class="social-icon" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube"></a>
+      </div>
+      <div class="footer-links">
+        <a href="https://magne.ai/privacy-policy.html" target="_blank">隱私政策</a>
+        <a href="https://magne.ai/magne-contact.html" target="_blank">聯繫我們</a>
+        <a href="https://magne.ai/media-kit.html" target="_blank">媒體資料</a>
+      </div>
+      <p class="footer-trademark">MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（USPTO 序號：99311528）。</p>
+      <p class="footer-copyright">© 2026 MAGNE.AI. 版權所有。</p>
+    </div>
+  </div>
 </footer>
 
 </body>
