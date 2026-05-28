@@ -125,6 +125,14 @@
       white-space: nowrap;
     }
     .phone-portal-link:hover { opacity: 0.75; }
+
+    /* Nav Right */
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+    .lang-toggle { display: flex; gap: 0.25rem; }
+    .lang-toggle a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.5rem; border-radius: 3px; transition: all 0.2s; }
+    .lang-toggle a:hover { color: var(--text-secondary); }
+    .lang-toggle a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.08); }
+
     .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
     .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-secondary); margin: 5px 0; transition: 0.3s; }
 
