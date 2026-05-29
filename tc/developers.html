@@ -52,6 +52,9 @@ body {
 
 
 nav .container {
+  max-width: 1200px;
+  width: 100%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -61,7 +64,7 @@ nav .container {
 
 
 
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(7,9,16,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(7,9,16,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); overflow-x: hidden; }
 
 .nav-brand { display: flex; align-items: center; }
 
