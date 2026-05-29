@@ -227,7 +227,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
       }
 
       .mobile-menu-btn {
-        display: inline-flex;
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
         align-items: center;
         justify-content: center;
         width: 42px;
@@ -675,6 +677,22 @@ module.exports = {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   let menuOpen = false;
+
+  // Force hamburger visibility on mobile - bypass CSS cascade issues
+  function updateHamburgerVisibility() {
+    const isMobile = window.matchMedia('(max-width: 1024px)').matches;
+    if (isMobile) {
+      mobileMenuBtn.style.display = 'inline-flex';
+      mobileMenuBtn.style.visibility = 'visible';
+      mobileMenuBtn.style.opacity = '1';
+    } else {
+      mobileMenuBtn.style.display = '';
+      mobileMenuBtn.style.visibility = '';
+      mobileMenuBtn.style.opacity = '';
+    }
+  }
+  updateHamburgerVisibility();
+  window.addEventListener('resize', updateHamburgerVisibility);
 
   mobileMenuBtn.addEventListener('click', function() {
     menuOpen = !menuOpen;
