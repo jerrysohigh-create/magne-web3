@@ -45,18 +45,12 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   line-height: 1.6;
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 
 
-.portal-shell-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  position: relative;
-  z-index: 1;
-}
+
 nav .container {
   display: flex;
   align-items: center;
@@ -195,7 +189,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
 
 .footer-links a:hover { color: var(--accent-cyan); }
 
-@media (max-width: 1024px) { .nav-links { display: none; } .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem; gap: 0.25rem; } .mobile-menu-btn { display: block; z-index: 1001; position: relative; } }
+@media (max-width: 1024px) { .nav-links { display: none; } .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem; gap: 0.25rem; } .mobile-menu-btn { display: block; } }
     
 
 @media (max-width: 768px) {
@@ -234,8 +228,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
         width: 42px;
         height: 42px;
         flex-shrink: 0;
-        z-index: 1001;
-        position: relative;
       }
     }
 
@@ -290,7 +282,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
       border-radius: 2px;
       white-space: nowrap;
     }
-    .terminal-body { padding: 1.25rem 1.5rem; font-size: 0.82rem; line-height: 1.85; color: var(--accent-green); overflow-x: hidden; }
+    .terminal-body {
+  padding: 1.25rem 1.5rem; font-size: 0.82rem; line-height: 1.85; color: var(--accent-green);   overflow-x: hidden;
+}
     .terminal-body .cmd{color:var(--text-primary)}.terminal-body .output{color:var(--accent-green)}.terminal-body .info{color:var(--text-secondary)}.terminal-body .accent{color:var(--accent-cyan)}.terminal-body .error{color:var(--accent-red)}
     .terminal-body .line{display:block;margin-bottom:0.2rem;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}.terminal-body .line:empty{margin-bottom:0.6rem}
 
