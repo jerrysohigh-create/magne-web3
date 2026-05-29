@@ -20,6 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   
 <style>
+
 :root { --bg-primary: #0a0a0c; --bg-secondary: #0f0f12; --bg-card: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.06); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.5); --accent: #FFD700;
       --bg: #070910;
       --accent-cyan: #39d0d6; 
@@ -50,29 +51,18 @@ body {
 
 
 
-.portal-shell-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  position: relative;
-}
-nav .portal-shell-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  gap: 1rem;
-}
+
+nav 
 
 
 
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(7,9,16,0.95); backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom: 1px solid var(--border); }
 
-.nav-brand { display: flex; align-items: center; }
 
-.nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
 
-.nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
+
+
+
 
 .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; font-weight: 500; padding: 0.35rem 0.65rem; border-radius: 4px; transition: color 0.2s, background 0.2s; letter-spacing: 0.02em; white-space: nowrap; }
 
@@ -80,9 +70,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
 
 .nav-links a.active { color: var(--accent-cyan); }
 
-.nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
 
-.lang-toggle { display: flex; gap: 0.25rem; }
+
+
 
 .lang-toggle a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.5rem; border-radius: 3px; transition: all 0.2s; }
 
@@ -90,15 +80,252 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
 
 .lang-toggle a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.08); }
 
-.github-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; font-size: 1rem; }
+
 
 .github-icon:hover { border-color: var(--border-bright); color: var(--text-primary); }
 
-.nav-cta { background: var(--accent-cyan); color: #000; padding: 0.4rem 1rem; border-radius: 5px; font-size: 0.8rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s; white-space: nowrap; }
+
 
 .nav-cta:hover { opacity: 0.85; }
 
+
+
+
+
+
+
+
+
+.mobile-menu-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.6rem 0.5rem;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      border-bottom: 1px solid var(--border);
+    }
+
+.mobile-menu-links a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.06); }
+
+
+
+
+
+.mobile-menu-footer 
+
+.mobile-menu-footer 
+
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 2rem; }
+
+.footer-brand p { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.7; margin-top: 0.75rem; }
+
+.footer-col h4 { font-size: 0.7rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.85rem; }
+
+.footer-col ul { list-style: none; }
+
+.footer-col li { margin-bottom: 0.4rem; }
+
+.footer-col a { color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+
+.footer-col a:hover { color: var(--accent-cyan); }
+
+.footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+
+.footer-social { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+
+.social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
+
+.social-icon:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+
+.social-icon img { width: 16px; height: 16px; }
+
+.footer-trademark { color: var(--text-muted); font-size: 0.75rem; text-align: center; line-height: 1.6; }
+
+.footer-trademark a { color: #5795ef; text-decoration: none; }
+
+.footer-copyright { color: var(--text-muted); font-size: 0.75rem; text-align: center; }
+
+.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+
+.footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
+
+.footer-links a:hover { color: var(--accent-cyan); }
+
+
+    
+
+
+
+    @media (max-width: 1024px) { .nav-links { display: none; } .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem; gap: 0.25rem; } .mobile-menu-btn { display: block; } }
+
+@media (max-width: 768px) {
+      .nav-right .lang-toggle,
+      .nav-right > .nav-cta,
+      .nav-right .github-icon {
+        display: none;
+      }
+
+      nav .container {
+        padding: 0 1.125rem;
+        gap: 0.75rem;
+      }
+
+      .nav-brand {
+        min-width: 0;
+      }
+
+      .nav-logo-img {
+        height: 26px;
+        max-width: calc(100vw - 88px);
+        object-fit: contain;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        flex-shrink: 0;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+      }
+    }
+
+@media (max-width: 768px) {
+      .container { padding: 0 1.125rem; }
+      section { padding: 3.5rem 0; }
+      #hero {
+        min-height: auto;
+        padding-top: 92px;
+        padding-bottom: 3.25rem;
+      }
+      .hero-title {
+        font-size: clamp(1.9rem, 8.6vw, 2.3rem);
+        line-height: 1.25;
+        letter-spacing: -0.015em;
+      }
+      .hero-sub {
+        font-size: 0.95rem;
+        line-height: 1.75;
+      }
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+      .hero-actions .btn-primary,
+      .hero-actions .btn-secondary {
+        width: 100%;
+        min-height: 48px;
+        justify-content: center;
+      }
+    }
+
+@media (max-width: 390px) {
+      .container { padding: 0 1rem; }
+    }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+
+.container { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 1rem; }
+
+.container {
+        padding: 0 1.125rem;
+        gap: 0.75rem;
+      }
+
+.container { padding: 0 1.125rem; }
+
+.container { padding: 0 1rem; }
+
+nav .container { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 1rem; }
+
+nav .container {
+        padding: 0 1.125rem;
+        gap: 0.75rem;
+      }
+
+.nav-brand { display: flex; align-items: center; }
+
+.nav-brand {
+        min-width: 0;
+      }
+
+.nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
+
+.nav-logo-img {
+        height: 26px;
+        max-width: calc(100vw - 88px);
+        object-fit: contain;
+      }
+
+.nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
+
+.nav-links { display: none; }
+
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; font-weight: 500; padding: 0.35rem 0.65rem; border-radius: 4px; transition: color 0.2s, background 0.2s; letter-spacing: 0.02em; white-space: nowrap; }
+
+.nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+
+.nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        flex-shrink: 0;
+      }
+
+.lang-toggle { display: flex; gap: 0.25rem; }
+
+.lang-toggle { justify-content: flex-start; }
+
+.lang-toggle,
+      .nav-right > .nav-cta,
+      .nav-right .github-icon {
+        display: none;
+      }
+
+.lang-toggle a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.5rem; border-radius: 3px; transition: all 0.2s; }
+
+.github-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; font-size: 1rem; }
+
+.github-icon {
+      width: auto;
+      height: auto;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      gap: 0.4rem;
+    }
+
+.github-icon {
+        display: none;
+      }
+
+.nav-cta { background: var(--accent-cyan); color: #000; padding: 0.4rem 1rem; border-radius: 5px; font-size: 0.8rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s; white-space: nowrap; }
+
+.nav-cta,
+      .nav-right .github-icon {
+        display: none;
+      }
+
 .mobile-menu-btn { display: none; background: none; border: 1px solid var(--border); color: var(--text-primary); font-size: 1.2rem; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; }
+
+.mobile-menu-btn { display: block; }
+
+.mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+      }
 
 .mobile-menu {
       display: none;
@@ -137,8 +364,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
       border-bottom: 1px solid var(--border);
     }
 
-.mobile-menu-links a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.06); }
-
 .mobile-menu-divider { height: 1px; background: var(--border); margin: 0.75rem 0; }
 
 .mobile-menu-footer {
@@ -158,89 +383,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
       gap: 0.4rem;
     }
 
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 2rem; }
-
-.footer-brand p { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.7; margin-top: 0.75rem; }
-
-.footer-col h4 { font-size: 0.7rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.85rem; }
-
-.footer-col ul { list-style: none; }
-
-.footer-col li { margin-bottom: 0.4rem; }
-
-.footer-col a { color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
-
-.footer-col a:hover { color: var(--accent-cyan); }
-
-.footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
-
-.footer-social { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-
-.social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
-
-.social-icon:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
-
-.social-icon img { width: 16px; height: 16px; }
-
-.footer-trademark { color: var(--text-muted); font-size: 0.75rem; text-align: center; line-height: 1.6; }
-
-.footer-trademark a { color: #5795ef; text-decoration: none; }
-
-.footer-copyright { color: var(--text-muted); font-size: 0.75rem; text-align: center; }
-
-.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-
-.footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
-
-.footer-links a:hover { color: var(--accent-cyan); }
-
-@media (max-width: 1024px) { .nav-links { display: none; } .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 1rem; gap: 0.25rem; } .mobile-menu-btn { display: block !important; visibility: visible !important; opacity: 1 !important; z-index: 1001; position: relative; } }
-    
-
-@media (max-width: 768px) {
-      .nav-right .lang-toggle,
-      .nav-right > .nav-cta,
-      .nav-right .github-icon {
-        display: none;
-      }
-
-      nav .portal-shell-container {
-        padding: 0 1.125rem;
-        gap: 0.75rem;
-      }
-
-      .nav-brand {
-        min-width: 0;
-      }
-
-      .nav-logo-img {
-        height: 26px;
-        max-width: calc(100vw - 88px);
-        object-fit: contain;
-      }
-
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 0;
-        flex-shrink: 0;
-      }
-
-      .mobile-menu-btn {
-        display: inline-flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        align-items: center;
-        justify-content: center;
-        width: 42px;
-        height: 42px;
-        flex-shrink: 0;
-        z-index: 1001;
-        position: relative;
-      }
-    }
-
-    .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+.section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
     .section-label::before { content: ''; display: inline-block; width: 16px; height: 1px; background: var(--accent-cyan); }
 
     #hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; padding-bottom: 4rem; }
@@ -337,7 +480,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
     }
 
 main { position: relative; z-index: 1; padding-top: 80px; }
-    .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+    
     section { padding: 5rem 0; }
     section:nth-child(even) { background: var(--bg-secondary); }
     h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
@@ -380,22 +523,27 @@ main { position: relative; z-index: 1; padding-top: 80px; }
     .tool-card p { font-size: 0.8rem; color: var(--text-secondary); }
     .disclaimer { background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.15); border-radius: 12px; padding: 1.25rem; margin-top: 2rem; }
     .disclaimer p { font-size: 0.9rem; }
+
+
+/* Overflow fixes for mobile */
+body { overflow-x: hidden; }
+pre, code, .terminal-body { max-width: 100%; overflow-x: auto; }
 </style>
 
 </head>
 <body>
   <nav>
-  <div class="portal-shell-container">
+  <div class="container">
     <div class="nav-brand">
       <a href="index.html">
         <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="./index.html">首頁</a></li>
+      <li><a href="./index.html" class="active">首頁</a></li>
       <li><a href="./agent-pay.html">AGENT PAY</a></li>
       <li><a href="./network.html">網絡</a></li>
-      <li><a href="./developers.html" class="active" aria-current="page">開發者</a></li>
+      <li><a href="./developers.html">開發者</a></li>
       <li><a href="./token.html">代幣</a></li>
       <li><a href="./ecosystem.html">生態</a></li>
       <li><a href="./transparency.html">透明中心</a></li>
@@ -403,8 +551,8 @@ main { position: relative; z-index: 1; padding-top: 80px; }
     </ul>
     <div class="nav-right">
       <div class="lang-toggle">
-        <a href="../developers.html">EN</a>
-        <a href="./developers.html" class="active">繁中</a>
+        <a href="../index.html">EN</a>
+        <a href="./index.html" class="active">繁中</a>
       </div>
       <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-cta">Phone Portal ↗️</a>
       <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">預購</a>
@@ -414,25 +562,18 @@ main { position: relative; z-index: 1; padding-top: 80px; }
 </nav>
 
   <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="流動版導航">
-    <ul class="mobile-menu-links">
-      <li><a href="./index.html">首頁</a></li>
-      <li><a href="./agent-pay.html">AGENT PAY</a></li>
-      <li><a href="./network.html">網絡</a></li>
-      <li><a href="./developers.html" class="active" aria-current="page">開發者</a></li>
-      <li><a href="./token.html">代幣</a></li>
-      <li><a href="./ecosystem.html">生態</a></li>
-      <li><a href="./transparency.html">透明中心</a></li>
-      <li><a href="./faq.html">常見問題</a></li>
-    </ul>
-    <div class="mobile-menu-divider"></div>
-    <div class="mobile-menu-footer">
-      <div class="lang-toggle">
-        <a href="../developers.html">EN</a>
-        <a href="./developers.html" class="active">繁中</a>
-      </div>
-      <a href="https://phone.magne.ai" target="_blank" class="nav-cta">Phone Portal ↗️</a>
-    </div>
-  </div>
+  <ul class="mobile-menu-links">
+    <li><a href="./index.html" class="active">首頁</a></li>
+    <li><a href="./agent-pay.html">AGENT PAY</a></li>
+    <li><a href="./network.html">網絡</a></li>
+    <li><a href="./developers.html">開發者</a></li>
+    <li><a href="./token.html">代幣</a></li>
+    <li><a href="./ecosystem.html">生態</a></li>
+    <li><a href="./transparency.html">透明中心</a></li>
+    <li><a href="./faq.html">常見問題</a></li>
+  </ul>
+  <div class="mobile-menu-divider"></div>
+  
 <main>
     <section class="hero">
       <h1>開發者中心</h1>
@@ -677,22 +818,6 @@ module.exports = {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   let menuOpen = false;
-
-  // Force hamburger visibility on mobile - bypass CSS cascade issues
-  function updateHamburgerVisibility() {
-    const isMobile = window.matchMedia('(max-width: 1024px)').matches;
-    if (isMobile) {
-      mobileMenuBtn.style.display = 'inline-flex';
-      mobileMenuBtn.style.visibility = 'visible';
-      mobileMenuBtn.style.opacity = '1';
-    } else {
-      mobileMenuBtn.style.display = '';
-      mobileMenuBtn.style.visibility = '';
-      mobileMenuBtn.style.opacity = '';
-    }
-  }
-  updateHamburgerVisibility();
-  window.addEventListener('resize', updateHamburgerVisibility);
 
   mobileMenuBtn.addEventListener('click', function() {
     menuOpen = !menuOpen;
