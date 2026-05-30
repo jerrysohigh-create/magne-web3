@@ -245,7 +245,27 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
         height: 42px;
         flex-shrink: 0;
       }
-    }
+    
+  /* Force hamburger to stay within viewport on mobile */
+  .mobile-menu-btn {
+    flex-shrink: 0;
+    margin-right: 0;
+  }
+
+  nav .container {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .nav-brand {
+    min-width: 0;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+}
 
     .section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-cyan); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
     .section-label::before { content: ''; display: inline-block; width: 16px; height: 1px; background: var(--accent-cyan); }
