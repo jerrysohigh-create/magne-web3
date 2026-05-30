@@ -37,6 +37,14 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 body {
@@ -45,7 +53,9 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   line-height: 1.6;
-    overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 
@@ -193,6 +203,12 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
     
 
 @media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
       .nav-right .lang-toggle,
       .nav-right > .nav-cta,
       .nav-right .github-icon {
@@ -330,7 +346,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgb
     }
 
 main { position: relative; z-index: 1; padding-top: 80px; }
-    .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+    .container { max-width: 100%; width: 100%; margin: 0 auto; padding: 0 1rem; }
     section { padding: 5rem 0; }
     section:nth-child(even) { background: var(--bg-secondary); }
     h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
@@ -373,7 +389,45 @@ main { position: relative; z-index: 1; padding-top: 80px; }
     .tool-card p { font-size: 0.8rem; color: var(--text-secondary); }
     .disclaimer { background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.15); border-radius: 12px; padding: 1.25rem; margin-top: 2rem; }
     .disclaimer p { font-size: 0.9rem; }
-</style>
+
+
+/* Mobile overflow protection */
+@media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 100%;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .tools-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  pre, .code-block, .terminal {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  code, pre, .rpc-url, .network-url, .endpoint, .mono {
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .hero, .hero-content {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+  </style>
 
 </head>
 <body>
