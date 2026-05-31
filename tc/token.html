@@ -166,19 +166,19 @@
       </a>
     </div>
     <ul class="nav-links">
-      <li><a href="./index.html" class="active">首頁</a></li>
+      <li><a href="./index.html">首頁</a></li>
       <li><a href="./agent-pay.html">AGENT PAY</a></li>
       <li><a href="./network.html">網絡</a></li>
       <li><a href="./developers.html">開發者</a></li>
-      <li><a href="./token.html">代幣</a></li>
+      <li><a href="./token.html" class="active">代幣</a></li>
       <li><a href="./ecosystem.html">生態</a></li>
       <li><a href="./transparency.html">透明中心</a></li>
       <li><a href="./faq.html">常見問題</a></li>
     </ul>
     <div class="nav-right">
       <div class="lang-toggle">
-        <a href="../index.html">EN</a>
-        <a href="./index.html" class="active">繁中</a>
+        <a href="../token.html">EN</a>
+        <a href="./token.html" class="active">繁中</a>
       </div>
       <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-cta">Phone Portal ↗️</a>
       <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">預購</a>
@@ -189,11 +189,11 @@
 
 <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="流動版導航">
   <ul class="mobile-menu-links">
-    <li><a href="./index.html" class="active">首頁</a></li>
+    <li><a href="./index.html">首頁</a></li>
     <li><a href="./agent-pay.html">AGENT PAY</a></li>
     <li><a href="./network.html">網絡</a></li>
     <li><a href="./developers.html">開發者</a></li>
-    <li><a href="./token.html">代幣</a></li>
+    <li><a href="./token.html" class="active">代幣</a></li>
     <li><a href="./ecosystem.html">生態</a></li>
     <li><a href="./transparency.html">透明中心</a></li>
     <li><a href="./faq.html">常見問題</a></li>
@@ -201,19 +201,20 @@
   <div class="mobile-menu-divider"></div>
   <div class="mobile-menu-footer">
     <div class="lang-toggle">
-      <a href="../index.html">EN</a>
-      <a href="./index.html" class="active">繁中</a>
+      <a href="../token.html">EN</a>
+      <a href="./token.html" class="active">繁中</a>
     </div>
     <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-cta">Phone Portal ↗️</a>
   </div>
 </div>
 
-
-
   <main>
     <section class="hero">
-      <h1>$MHA Token Disclosure</h1>
-      <p>MAGNE.AI 將以透明、合規和可驗證的方式披露 $MHA 的規劃分配、用途框架，解鎖原則、合約狀態與審計進度。相關內容可能隨最終法律、合規，技術和治理審查而調整。</p>
+      <div class="container">
+        <p class="eyebrow">代幣披露</p>
+        <h1>$MHA Token Disclosure</h1>
+        <p>MAGNE.AI 將以透明、合規和可驗證的方式披露 $MHA 的規劃分配、用途框架，解鎖原則、合約狀態與審計進度。相關內容可能隨最終法律、合規，技術和治理審查而調整。</p>
+      </div>
     </section>
 
     <section>
@@ -447,7 +448,6 @@
           <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M-Hash-L2 ↗</a></li>
         </ul>
       </div>
-
     </div>
     <div class="footer-bottom">
       <div class="footer-social">
@@ -470,19 +470,15 @@
 </footer>
 
 <script>
-  // Mobile menu toggle
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   let menuOpen = false;
-
   mobileMenuBtn.addEventListener('click', function() {
     menuOpen = !menuOpen;
     mobileMenu.classList.toggle('open', menuOpen);
     mobileMenuBtn.setAttribute('aria-expanded', menuOpen);
     document.body.classList.toggle('menu-open', menuOpen);
   });
-
-  // Close menu on link click
   mobileMenu.querySelectorAll('a').forEach(function(link) {
     link.addEventListener('click', function() {
       menuOpen = false;
@@ -491,8 +487,6 @@
       document.body.classList.remove('menu-open');
     });
   });
-
-  // Close on Escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && menuOpen) {
       menuOpen = false;
