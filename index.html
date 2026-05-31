@@ -178,8 +178,23 @@
 
     @media (max-width: 768px) {
       .nav-right .lang-toggle,
-      .nav-right .github-icon { display: none; }
-      .nav-right { gap: 0.5rem; }
+      .nav-right .github-icon,
+      .nav-right > .nav-cta { display: none; }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        flex-shrink: 0;
+      }
+      .nav-brand { min-width: 0; }
+      .mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+      }
     }
 
     /* ── SECTION LABEL ── */
