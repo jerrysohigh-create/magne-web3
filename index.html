@@ -401,12 +401,17 @@
     .footer-col li { margin-bottom: 0.4rem; }
     .footer-col a { color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
     .footer-col a:hover { color: var(--accent-cyan); }
-    .footer-bottom {
-      margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;
-    }
-    .footer-bottom p { color: var(--text-muted); font-size: 0.78rem; }
-    .footer-disclaimer { color: var(--text-muted); font-size: 0.72rem; line-height: 1.6; max-width: 700px; }
+    .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
+    .footer-social { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+    .social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
+    .social-icon:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+    .social-icon img { width: 16px; height: 16px; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+    .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent-cyan); }
+    .footer-trademark { color: var(--text-muted); font-size: 0.75rem; text-align: center; line-height: 1.6; }
+    .footer-trademark a { color: #5795ef; text-decoration: none; }
+    .footer-copyright { color: var(--text-muted); font-size: 0.75rem; text-align: center; }
 
     .mt-1 { margin-top: 1rem; }
     .mt-2 { margin-top: 2rem; }
@@ -509,7 +514,7 @@ nav {
   border-bottom: 1px solid var(--nav-border);
 }
 nav .container {
-  max-width: 1200px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
@@ -518,7 +523,7 @@ nav .container {
   height: 60px;
   gap: 1rem;
 }
-.nav-brand { display: flex; align-items: center; min-width: 0; }
+.nav-brand { display: flex; align-items: center; min-width: 0; flex: 0 0 auto; }
 .nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
 .nav-links {
   display: flex;
@@ -647,6 +652,9 @@ nav .container {
 @media (max-width: 1024px) {
   .nav-links { display: none; }
   .mobile-menu-btn { display: block; }
+}
+@media (max-width: 1320px) {
+  .nav-right > .nav-link { display: none; }
 }
 @media (max-width: 768px) {
   nav .container { padding: 0 1.125rem; gap: 0.75rem; }
@@ -1030,35 +1038,29 @@ nav .container {
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Phone Portal</h4>
-        <ul>
-          <li><a href="https://magne.ai/magne-phone.html" target="_blank">MAGNE.AI Phone Gen1 ↗</a></li>
-          <li><a href="https://magne.ai/magne-security.html" target="_blank">Security Architecture ↗</a></li>
-          <li><a href="https://magne.ai/magne-compliance.html" target="_blank">Compliance Center ↗</a></li>
-          <li><a href="https://payment.magne.ai/buy" target="_blank">Preorder ↗</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
         <h4>Network</h4>
         <ul>
           <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank">L2 Explorer ↗</a></li>
           <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M-Hash-L2 ↗</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Media</h4>
-        <ul>
-          <li><a href="./media-kit.html">Media Kit</a></li>
-          <li><a href="./privacy.html">Privacy Policy</a></li>
-          <li><a href="./contact.html">Contact Us</a></li>
-        </ul>
-      </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 MAGNE.AI. All rights reserved. MAGNE.AI™ is a commercial designation of Magical Hash Global Tech Limited (USPTO: 99311528).</p>
-      <p class="footer-disclaimer">
-        This site is a testnet-stage developer demonstration. Nothing on this site constitutes financial advice, an offer to sell, or a solicitation to buy any token. All statements regarding future plans, features, or capabilities are forward-looking and subject to change. Past performance is not indicative of future results. Agents, developers, and users should review the full campaign terms and conditions before participating in any community campaign.
-      </p>
+      <div class="footer-social">
+        <a href="https://x.com/magneai" target="_blank" class="social-icon" title="X"><img src="https://cdn.simpleicons.org/x/white" alt="X"></a>
+        <a href="https://t.me/magneai" target="_blank" class="social-icon" title="Telegram"><img src="https://cdn.simpleicons.org/telegram/white" alt="Telegram"></a>
+        <a href="https://discord.gg/magneai" target="_blank" class="social-icon" title="Discord"><img src="https://cdn.simpleicons.org/discord/white" alt="Discord"></a>
+        <a href="https://github.com/magne-ai" target="_blank" class="social-icon" title="GitHub"><img src="https://cdn.simpleicons.org/github/white" alt="GitHub"></a>
+        <a href="https://youtube.com/@magneai" target="_blank" class="social-icon" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube"></a>
+        <a href="https://magne.ai/media-kit.html" target="_blank" class="social-icon" title="Media Kit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></a>
+      </div>
+      <div class="footer-links">
+        <a href="https://magne.ai/privacy-policy.html" target="_blank">Privacy Policy</a>
+        <a href="https://magne.ai/magne-contact.html" target="_blank">Contact Us</a>
+        <a href="https://magne.ai/media-kit.html" target="_blank">Media Kit</a>
+      </div>
+      <p class="footer-trademark">MAGNE.AI™ is a commercial designation of Magical Hash Global Tech Limited and is currently in trademark registration proceedings (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO Serial No. 99311528</a>).</p>
+      <p class="footer-copyright">© 2026 MAGNE.AI. All rights reserved.</p>
     </div>
   </div>
 </footer>
