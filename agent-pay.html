@@ -44,23 +44,6 @@
       pointer-events: none; z-index: 0;
     }
 
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1rem 3rem;
-      display: flex; justify-content: space-between; align-items: center;
-      background: rgba(7, 9, 16, 0.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
-    .nav-brand a { color: var(--text-secondary); text-decoration: none; font-weight: 600; }
-    .nav-links { display: flex; gap: 0 0.75rem; list-style: none; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; padding: 0.4rem 0.5rem; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; }
-    .nav-links a:hover, .nav-links a.active, .nav-links a:focus { color: var(--accent); }
-    .nav-cta { background: var(--accent); color: #000 !important; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; }
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-secondary); margin: 5px 0; transition: 0.3s; }
-
     main { position: relative; z-index: 1; padding-top: 80px; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
     section { padding: 5rem 0; }
@@ -369,8 +352,9 @@
     .footer-col a:hover { color: var(--accent-cyan); }
     .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
     .footer-social { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-    .social-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
+    .social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
     .social-icon:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+    .social-icon img { width: 16px; height: 16px; }
     .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
     .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
     .footer-links a:hover { color: var(--accent-cyan); }
@@ -382,6 +366,10 @@
     @media (max-width: 560px) {
       .footer-grid { grid-template-columns: 1fr; gap: 1.6rem; }
       footer { padding: 2.5rem 0 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .footer-bottom { align-items: flex-start; }
+      .footer-social, .footer-links { justify-content: flex-start; }
     }
 
     /* ANIMATIONS */
@@ -715,12 +703,12 @@ nav .container {
 .mobile-menu-footer { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 0.75rem; }
 .mobile-menu-footer .lang-toggle { justify-content: flex-start; }
 .mobile-menu-footer .github-icon { width: auto; height: auto; padding: 0.35rem 0.75rem; font-size: 0.8rem; gap: 0.4rem; }
-@media (max-width: 1320px) {
-  .nav-right > .nav-link { display: none; }
-}
 @media (max-width: 1024px) {
   .nav-links { display: none; }
   .mobile-menu-btn { display: block; }
+}
+@media (max-width: 1320px) {
+  .nav-right > .nav-link { display: none; }
 }
 @media (max-width: 768px) {
   nav .container { padding: 0 1.125rem; gap: 0.75rem; }
@@ -731,9 +719,6 @@ nav .container {
   .nav-logo-img { height: 26px; max-width: calc(100vw - 88px); object-fit: contain; }
   .nav-right { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
   .mobile-menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; flex-shrink: 0; }
-}
-@media (max-width: 390px) {
-  .container { padding: 0 1rem; }
 }
 /* === End standard mobile navigation === */
 
