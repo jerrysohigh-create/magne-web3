@@ -11,1113 +11,907 @@
   <meta property="og:url" content="https://web3.magne.ai/agent-pay.html">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/portal-shell.css">
+  <link rel="stylesheet" href="./assets/css/portal-components.css">
+  <link rel="canonical" href="https://jerrysohigh-create.github.io/magne-web3/agent-pay.html">
+  <link rel="alternate" hreflang="en" href="https://jerrysohigh-create.github.io/magne-web3/agent-pay.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web3/tc/agent-pay.html">
+  <link rel="alternate" hreflang="x-default" href="https://jerrysohigh-create.github.io/magne-web3/agent-pay.html">
   <style>
-/* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(7,9,16,0.9);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-    nav .container {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px; gap: 1rem;
-    }
-    .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem; font-weight: 700;
-      color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; flex-shrink: 0;
-    }
-    .nav-logo span { color: var(--accent-cyan); }
-    .nav-brand { display: flex; align-items: center; }
-    .nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-    .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
-    .nav-links a {
-      color: var(--text-secondary); text-decoration: none;
-      font-size: 0.8rem; font-weight: 500;
-      padding: 0.35rem 0.65rem; border-radius: 4px;
-      transition: color 0.2s, background 0.2s; letter-spacing: 0.02em; white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--text-primary); background: var(--surface); }
-    .nav-links a.active { color: var(--accent-cyan); }
-    .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-    .lang-toggle { display: flex; gap: 0.25rem; }
-    .lang-toggle a {
-      color: var(--text-muted); text-decoration: none;
-      font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.5rem;
-      border-radius: 3px; transition: all 0.2s;
-    }
-    .lang-toggle a:hover { color: var(--text-secondary); }
-    .lang-toggle a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.08); }
-    .github-icon {
-      display: flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px; border-radius: 6px;
-      border: 1px solid var(--border); background: var(--surface);
-      color: var(--text-secondary); text-decoration: none;
-      transition: all 0.2s; font-size: 1rem;
-    }
-    .github-icon:hover { border-color: var(--border-bright); color: var(--text-primary); }
-    .nav-cta {
-      background: var(--accent-cyan); color: #000;
-      padding: 0.4rem 1rem; border-radius: 5px;
-      font-size: 0.8rem; font-weight: 700; text-decoration: none;
-      transition: opacity 0.2s; white-space: nowrap;
-    }
-    .nav-cta:hover { opacity: 0.85; }
-    .mobile-menu-btn {
-      display: none; background: none; border: 1px solid var(--border);
-      color: var(--text-primary); font-size: 1.2rem;
-      padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer;
-    }
-
-    /* Mobile menu overlay */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 58px;
-      left: 0;
-      right: 0;
-      min-height: calc(100dvh - 58px);
-      background: rgba(7,9,16,0.98);
-      backdrop-filter: blur(18px);
-      z-index: 999;
-      overflow-y: auto;
-      padding: 1.5rem 1.125rem 2rem;
-      flex-direction: column;
-      gap: 0;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-      list-style: none;
-      flex: 1;
-    }
-    .mobile-menu-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.6rem 0.5rem;
-      border-radius: 4px;
-      transition: color 0.2s, background 0.2s;
-      border-bottom: 1px solid var(--border);
-    }
-    .mobile-menu-links a:hover,
-    .mobile-menu-links a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.06); }
-    .mobile-menu-divider { height: 1px; background: var(--border); margin: 0.75rem 0; }
-    .mobile-menu-footer {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      padding-top: 0.75rem;
-    }
-    .mobile-menu-footer .lang-toggle { justify-content: flex-start; }
-    .mobile-menu-footer .github-icon {
-      width: auto;
-      height: auto;
-      padding: 0.35rem 0.75rem;
-      font-size: 0.8rem;
-      gap: 0.4rem;
-    }
-
-    /* Desktop nav: hide lang/github in nav-right when mobile menu is present */
-    @media (max-width: 1024px) {
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: absolute; top: 60px; left: 0; right: 0;
-        background: var(--bg); border-bottom: 1px solid var(--border);
-        padding: 1rem; gap: 0.25rem;
-      }
-      .mobile-menu-btn { display: block; }
-    }
-
-    @media (max-width: 768px) {
-      .nav-right .lang-toggle,
-      .nav-right .github-icon,
-      .nav-right > .nav-cta { display: none; }
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 0;
-        flex-shrink: 0;
-      }
-      .nav-brand { min-width: 0; }
-      .mobile-menu-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 42px;
-        height: 42px;
-        flex-shrink: 0;
-      }
-    }
-
-    
-    :root {
-      --bg-primary: #070910;
-      --bg-secondary: #0a0d14;
-      --bg-card: rgba(255, 255, 255, 0.03);
-      --border: rgba(255, 255, 255, 0.06);
-      --border-cyan: rgba(57, 208, 214, 0.2);
-      --text-primary: #e6edf3;
-      --text-secondary: #8b949e;
-      --accent: #FFD700;
-      --cyan: #39d0d6;
-      --green: #3fb950;
-      --yellow: #d29922;
-      --red: #f85149;
-      --purple: #a371f7;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { max-width: 100%; overflow-x: hidden; }
-    body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
-
-    /* GRID BACKGROUND */
-    body::before {
-      content: '';
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background-image:
-        linear-gradient(rgba(57,208,214,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(57,208,214,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none; z-index: 0;
-    }
-
-    main { position: relative; z-index: 1; padding-top: 80px; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-    section { padding: 5rem 0; }
-    h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.15; }
-    h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; }
-    h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
-    p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.75; }
-    .mono { font-family: 'JetBrains Mono', monospace; }
-
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 7rem 2rem 5rem;
-      background: radial-gradient(ellipse at center top, rgba(57,208,214,0.06) 0%, transparent 55%);
+    /* Agent Pay page specific styles */
+    .agentpay-page { padding-top: 60px; }
+    .agentpay-hero {
+      padding: 8rem 0 5rem;
       position: relative;
+      z-index: 1;
     }
-    .hero::before {
-      content: '';
-      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 600px; height: 300px;
-      background: radial-gradient(ellipse, rgba(57,208,214,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .badge-testnet {
+    .agentpay-hero-inner { max-width: 900px; }
+    .agentpay-badge {
       display: inline-block;
-      background: rgba(57,208,214,0.1);
-      border: 1px solid rgba(57,208,214,0.3);
-      color: var(--cyan);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.8rem;
-      border-radius: 2px;
-      margin-bottom: 1.5rem;
-    }
-    .hero h1 { color: var(--text-primary); }
-    .hero h1 em { color: var(--cyan); font-style: normal; }
-    .hero-sub {
-      max-width: 640px; margin: 0 auto 2.5rem;
-      color: var(--text-secondary); font-size: 1.1rem; line-height: 1.75;
-    }
-    .hero-stats {
-      display: flex; gap: 2rem; justify-content: center; margin-top: 2.5rem;
-      flex-wrap: wrap;
-    }
-    .hero-stat {
-      text-align: center;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      padding: 1rem 1.5rem;
-      min-width: 130px;
-      border-radius: 2px;
-    }
-    .hero-stat .val { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; font-weight: 700; color: var(--cyan); }
-    .hero-stat .lbl { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem; letter-spacing: 0.05em; text-transform: uppercase; }
-
-    /* PROBLEM GRID */
-    .section-header { text-align: center; margin-bottom: 3.5rem; }
-    .section-header h2 { }
-    .section-header p { max-width: 580px; margin: 0.5rem auto 0; }
-    .section-eyebrow {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--cyan); margin-bottom: 0.75rem;
-      display: block;
-    }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .problem-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 1.75rem;
-      border-radius: 2px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.2s;
-    }
-    .problem-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--cyan), transparent);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .problem-card:hover { border-color: var(--border-cyan); }
-    .problem-card:hover::before { opacity: 1; }
-    .problem-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--red);
-      margin-bottom: 1rem; display: block;
-    }
-    .problem-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-    .problem-card p { font-size: 0.95rem; }
-    .problem-zero {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 2rem; font-weight: 700;
-      color: rgba(248, 81, 73, 0.15);
-      position: absolute; top: 1rem; right: 1.25rem;
-    }
-
-    /* FLOW */
-    .flow-section { background: var(--bg-secondary); }
-    .flow-diagram {
-      display: flex; align-items: center; justify-content: center;
-      gap: 0; flex-wrap: wrap; margin-top: 2.5rem;
-    }
-    .flow-step {
-      display: flex; flex-direction: column; align-items: center;
-      background: var(--bg-card); border: 1px solid var(--border);
-      padding: 1.25rem 1rem; min-width: 130px; text-align: center;
-      border-radius: 2px; position: relative;
-    }
-    .flow-step-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; font-weight: 700;
-      color: var(--bg-primary); background: var(--cyan);
-      width: 20px; height: 20px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 0.6rem;
-    }
-    .flow-step-label { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); }
-    .flow-step-desc { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.25rem; }
-    .flow-arrow {
-      font-size: 1.2rem; color: var(--cyan);
-      padding: 0 0.5rem; opacity: 0.6;
-    }
-
-    /* TERMINAL */
-    .terminal {
-      background: #010108;
-      border: 1px solid rgba(57,208,214,0.2);
-      border-radius: 2px;
-      overflow: hidden;
-      box-shadow: 0 0 40px rgba(57,208,214,0.08);
-    }
-    .terminal-bar {
-      background: rgba(57,208,214,0.08);
-      border-bottom: 1px solid rgba(57,208,214,0.15);
-      padding: 0.6rem 1rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .terminal-dot.r { background: #ff5f56; }
-    .terminal-dot.y { background: #ffbd2e; }
-    .terminal-dot.g { background: #27c93f; }
-    .terminal-title { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.5rem; }
-    .terminal-badge {
-      margin-left: auto;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: rgba(57,208,214,0.15); color: var(--cyan);
-      padding: 0.2rem 0.5rem; border-radius: 2px;
-    }
-    .terminal-body {
-      padding: 1.25rem 1.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      line-height: 1.8;
-      color: #c9d1d9;
-      min-height: 300px;
-    }
-    .terminal-body .t-cmd { color: #e6edf3; }
-    .terminal-body .t-ok { color: var(--green); }
-    .terminal-body .t-err { color: var(--red); }
-    .terminal-body .t-warn { color: var(--yellow); }
-    .terminal-body .t-label { color: var(--text-secondary); }
-    .terminal-body .t-val { color: var(--cyan); }
-    .terminal-body .t-hash { color: var(--purple); }
-    .terminal-body .t-mono { font-family: 'JetBrains Mono', monospace; }
-    .t-prompt { color: var(--cyan); margin-right: 0.5rem; }
-    .t-newline { display: block; margin-top: 0.3rem; }
-
-    /* RECEIPT LAYER */
-    .receipt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
-    .receipt-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-      border-radius: 2px;
-    }
-    .receipt-card h3 { color: var(--text-primary); font-size: 1rem; margin-bottom: 0.5rem; }
-    .receipt-card p { font-size: 0.9rem; }
-    .receipt-event {
-      background: #010108;
-      border: 1px solid rgba(57,208,214,0.15);
-      padding: 1rem;
-      margin-top: 1rem;
-      border-radius: 2px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      line-height: 1.9;
-      color: var(--text-secondary);
-    }
-    .receipt-event .evt-name { color: var(--cyan); font-weight: 600; display: block; margin-bottom: 0.4rem; }
-    .receipt-event .evt-field { display: flex; gap: 0.5rem; }
-    .receipt-event .evt-key { color: var(--purple); min-width: 120px; }
-    .receipt-event .evt-val { color: #e6edf3; }
-
-    /* SDK */
-    .sdk-section { background: var(--bg-secondary); }
-    .sdk-code {
-      background: #010108;
-      border: 1px solid rgba(57,208,214,0.15);
-      padding: 1.5rem;
-      border-radius: 2px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      line-height: 1.8;
-      color: #c9d1d9;
-      overflow-x: auto;
-      margin-top: 1.5rem;
-    }
-    .sdk-code .k { color: var(--purple); }
-    .sdk-code .str { color: var(--green); }
-    .sdk-code .fn { color: var(--cyan); }
-    .sdk-code .cmt { color: rgba(139,148,158,0.6); font-style: italic; }
-    .sdk-code .num { color: var(--yellow); }
-
-    /* STATUS */
-    .status-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.82rem;
-    }
-    .status-table th {
-      text-align: left;
-      padding: 0.6rem 1rem;
-      border-bottom: 1px solid var(--border);
-      color: var(--text-secondary);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      font-weight: 600;
+      color: var(--ps-accent);
+      background: rgba(57,208,214,0.08);
+      border: 1px solid rgba(57,208,214,0.2);
+      padding: 0.3rem 0.75rem;
+      border-radius: 3px;
+      margin-bottom: 1.5rem;
     }
-    .status-table td {
-      padding: 0.6rem 1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-      color: var(--text-primary);
+    .agentpay-hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: var(--ps-text);
     }
-    .status-table tr:last-child td { border-bottom: none; }
-    .status-ok { color: var(--green); }
-    .status-pend { color: var(--yellow); }
-    .status-note { color: var(--text-secondary); font-size: 0.75rem; }
-
-    /* ROADMAP */
-    .roadmap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
-    .roadmap-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 1.5rem;
+    .agentpay-hero h1 em {
+      font-style: normal;
+      color: var(--ps-accent);
+    }
+    .agentpay-hero-sub {
+      font-size: 1.05rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 720px;
+    }
+    .agentpay-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .agentpay-stats {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .agentpay-stat-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ps-accent);
+    }
+    .agentpay-stat-lbl {
+      font-size: 0.75rem;
+      color: var(--ps-text-secondary);
+      margin-top: 0.2rem;
+    }
+    .agentpay-divider {
+      height: 1px;
+      background: var(--ps-border);
+      position: relative;
+      z-index: 1;
+    }
+    .agentpay-section {
+      padding: 5rem 0;
+      position: relative;
+      z-index: 1;
+    }
+    .agentpay-section-header {
+      margin-bottom: 2.5rem;
+    }
+    .agentpay-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ps-accent);
+      margin-bottom: 0.75rem;
+    }
+    .agentpay-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      color: var(--ps-text);
+    }
+    .agentpay-section-sub {
+      font-size: 1rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+    /* Problem grid */
+    .agentpay-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--ps-border);
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+    .agentpay-problem-card {
+      background: var(--ps-surface);
+      padding: 2rem 1.5rem;
+    }
+    .agentpay-problem-zero {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--ps-red);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .agentpay-problem-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ps-text-muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .agentpay-problem-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ps-text);
+      margin-bottom: 0.5rem;
+    }
+    .agentpay-problem-card p {
+      font-size: 0.85rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.65;
+    }
+    /* Flow */
+    .agentpay-warning-panel {
+      background: rgba(210,153,34,0.08);
+      border: 1px solid rgba(210,153,34,0.2);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .agentpay-warning-panel p {
+      font-size: 0.85rem;
+      color: var(--ps-yellow);
+      line-height: 1.7;
+      margin: 0;
+    }
+    .agentpay-flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .agentpay-flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      min-width: 100px;
+    }
+    .agentpay-flow-step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--ps-accent);
+      color: #000;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .agentpay-flow-step-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ps-text);
+      text-align: center;
+    }
+    .agentpay-flow-step-desc {
+      font-size: 0.65rem;
+      color: var(--ps-text-secondary);
+      text-align: center;
+    }
+    .agentpay-flow-arrow {
+      font-size: 1.25rem;
+      color: var(--ps-text-muted);
+    }
+    /* Terminal */
+    .agentpay-terminal {
+      background: #010108;
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+      overflow: hidden;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 1.5rem;
+    }
+    .agentpay-terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1rem;
+      background: var(--ps-surface);
+      border-bottom: 1px solid var(--ps-border);
+    }
+    .agentpay-terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .agentpay-terminal-dot.r { background: #ff5f56; }
+    .agentpay-terminal-dot.y { background: #ffbd2e; }
+    .agentpay-terminal-dot.g { background: #27c93f; }
+    .agentpay-terminal-title {
+      font-size: 0.72rem;
+      color: var(--ps-text-muted);
+      margin-left: 0.5rem;
+    }
+    .agentpay-terminal-badge {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--ps-yellow);
+      background: rgba(210,153,34,0.1);
+      padding: 0.2rem 0.5rem;
       border-radius: 2px;
     }
-    .roadmap-phase {
+    .agentpay-terminal-body {
+      padding: 1.25rem 1.5rem;
+      font-size: 0.82rem;
+      line-height: 1.85;
+      color: var(--ps-green);
+      overflow-x: auto;
+    }
+    .agentpay-terminal-body .t-prompt { color: var(--ps-text); }
+    .agentpay-terminal-body .t-ok { color: var(--ps-green); }
+    .agentpay-terminal-body .t-err { color: var(--ps-red); }
+    .agentpay-terminal-body .t-label { color: var(--ps-text-secondary); }
+    .agentpay-terminal-body .t-val { color: var(--ps-accent); }
+    .agentpay-terminal-body .t-hash { color: var(--ps-purple); }
+    /* Receipt grid */
+    .agentpay-receipt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .agentpay-receipt-card {
+      background: var(--ps-surface);
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+      padding: 2rem;
+    }
+    .agentpay-receipt-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ps-text);
+      margin-bottom: 0.75rem;
+    }
+    .agentpay-receipt-card p {
+      font-size: 0.85rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.65;
+    }
+    .agentpay-receipt-card code {
+      color: var(--ps-accent);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; margin-bottom: 0.75rem;
+      font-size: 0.85rem;
+    }
+    .agentpay-receipt-event {
+      background: var(--ps-surface-2);
+      border: 1px solid var(--ps-border);
+      border-radius: 4px;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      margin-top: 0.75rem;
+    }
+    .agentpay-evt-name { color: var(--ps-accent); }
+    .agentpay-evt-field { display: flex; gap: 0.5rem; padding-left: 1rem; }
+    .agentpay-evt-key { color: var(--ps-text); }
+    .agentpay-evt-val { color: var(--ps-purple); }
+    /* SDK code */
+    .agentpay-sdk-code {
+      background: #010108;
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin-top: 1.5rem;
+      white-space: pre;
+    }
+    .agentpay-sdk-code .cmt { color: var(--ps-text-muted); }
+    .agentpay-sdk-code .k { color: var(--ps-accent); }
+    .agentpay-sdk-code .str { color: var(--ps-green); }
+    .agentpay-sdk-code .num { color: var(--ps-purple); }
+    .agentpay-sdk-code .t-fn { color: var(--ps-text-secondary); }
+    /* Status table */
+    .agentpay-status-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .agentpay-status-box {
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+    .agentpay-status-box-verified {
+      background: rgba(63,185,80,0.05);
+      border: 1px solid rgba(63,185,80,0.2);
+    }
+    .agentpay-status-box-dev {
+      background: rgba(210,153,34,0.05);
+      border: 1px solid rgba(210,153,34,0.2);
+    }
+    .agentpay-status-box h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
+    }
+    .agentpay-status-box-verified h3 { color: var(--ps-green); }
+    .agentpay-status-box-dev h3 { color: var(--ps-yellow); }
+    .agentpay-status-box ul {
+      list-style: none;
+      font-size: 0.82rem;
+      color: var(--ps-text-secondary);
+      line-height: 2.1;
+      margin: 0;
+      padding: 0;
+    }
+    .agentpay-status-box ul li code {
+      font-size: 0.72rem;
+      color: var(--ps-text-muted);
+    }
+    .agentpay-security-notice {
+      margin-top: 1.25rem;
+      padding: 1rem;
+      background: rgba(248,81,73,0.04);
+      border: 1px solid rgba(248,81,73,0.12);
+      border-radius: 6px;
+    }
+    .agentpay-security-notice p {
+      font-size: 0.8rem;
+      color: var(--ps-text-secondary);
+      margin: 0;
+      line-height: 1.7;
+    }
+    .agentpay-security-notice strong {
+      color: var(--ps-red);
+      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.05em;
+    }
+    .agentpay-warning-notice {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(210,153,34,0.06);
+      border: 1px solid rgba(210,153,34,0.2);
+      border-radius: 6px;
+    }
+    .agentpay-warning-notice p {
+      font-size: 0.8rem;
+      color: var(--ps-yellow);
+      margin: 0;
+      line-height: 1.7;
+    }
+    .agentpay-warning-notice code {
+      font-size: 0.72rem;
+    }
+    /* Compat table */
+    .agentpay-compat-table {
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+    }
+    .agentpay-compat-row {
+      display: grid;
+      grid-template-columns: 1.5fr 2fr 1.5fr;
+      border-bottom: 1px solid var(--ps-border);
+    }
+    .agentpay-compat-row:last-child { border-bottom: none; }
+    .agentpay-compat-row.header {
+      background: var(--ps-surface);
+      font-weight: 700;
+    }
+    .agentpay-compat-row.highlight { background: rgba(57,208,214,0.04); }
+    .agentpay-compat-cell {
+      padding: 0.85rem 1.25rem;
+      color: var(--ps-text-secondary);
+    }
+    .agentpay-compat-row.header .agentpay-compat-cell { color: var(--ps-text); }
+    .agentpay-compat-cell.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--ps-accent); }
+    .agentpay-ecosystem-links {
+      margin-top: 1.25rem;
+      font-size: 0.82rem;
+      color: var(--ps-text-secondary);
+    }
+    .agentpay-ecosystem-links a { color: var(--ps-accent); text-decoration: none; }
+    .agentpay-ecosystem-links a:hover { text-decoration: underline; }
+    .agentpay-compliance-note {
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: var(--ps-text-muted);
+      font-style: italic;
+    }
+    /* Compat grid */
+    .agentpay-compat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .agentpay-compat-tier { }
+    .agentpay-tier-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ps-text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--ps-border);
+    }
+    .agentpay-tier-p0 { color: var(--ps-green); }
+    .agentpay-tier-p1 { color: var(--ps-purple); }
+    .agentpay-tier-self { color: var(--ps-accent); }
+    .agentpay-compat-item {
+      background: var(--ps-surface);
+      border: 1px solid var(--ps-border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .agentpay-compat-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    .agentpay-compat-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ps-text);
+    }
+    .agentpay-compat-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.4rem;
+      border-radius: 2px;
+    }
+    .agentpay-compat-badge.p0 { background: rgba(63,185,80,0.15); color: var(--ps-green); }
+    .agentpay-compat-badge.p1 { background: rgba(163,113,247,0.15); color: var(--ps-purple); }
+    .agentpay-compat-badge.self { background: rgba(57,208,214,0.15); color: var(--ps-accent); }
+    .agentpay-compat-item p {
+      font-size: 0.82rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .agentpay-compat-summary {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      background: var(--ps-surface);
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+    }
+    .agentpay-compat-summary h3 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ps-text);
+      margin-bottom: 0.5rem;
+    }
+    .agentpay-compat-summary p {
+      font-size: 0.82rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.65;
+      margin: 0;
+    }
+    /* Roadmap grid */
+    .agentpay-roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--ps-border);
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+    .agentpay-roadmap-item {
+      background: var(--ps-surface);
+      padding: 1.5rem;
+    }
+    .agentpay-roadmap-phase {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
       display: block;
     }
-    .roadmap-phase.done { color: var(--green); }
-    .roadmap-phase.active { color: var(--cyan); }
-    .roadmap-phase.next { color: var(--yellow); }
-    .roadmap-item h3 { font-size: 1rem; margin-bottom: 0.5rem; }
-    .roadmap-item p { font-size: 0.88rem; }
-    .roadmap-item ul { list-style: none; margin-top: 0.75rem; }
-    .roadmap-item ul li {
-      font-size: 0.85rem; color: var(--text-secondary);
-      padding: 0.2rem 0;
-      display: flex; align-items: flex-start; gap: 0.4rem;
+    .agentpay-roadmap-phase.done { color: var(--ps-green); }
+    .agentpay-roadmap-phase.active { color: var(--ps-accent); }
+    .agentpay-roadmap-phase.next { color: var(--ps-text-muted); }
+    .agentpay-roadmap-item h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--ps-text);
+      margin-bottom: 0.5rem;
     }
-    .roadmap-item ul li::before { content: '→'; color: var(--cyan); flex-shrink: 0; }
-
-    /* CTA */
-    .cta-section {
+    .agentpay-roadmap-item > p {
+      font-size: 0.8rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    .agentpay-roadmap-item ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.9;
+    }
+    .agentpay-roadmap-item ul li::before {
+      content: "– ";
+      color: var(--ps-text-muted);
+    }
+    /* Security section */
+    .agentpay-security-section {
+      padding: 4rem 0;
+      position: relative;
+      z-index: 1;
+      background: rgba(248,81,73,0.03);
+      border-top: 1px solid rgba(248,81,73,0.12);
+      border-bottom: 1px solid rgba(248,81,73,0.12);
+    }
+    .agentpay-security-section-inner { max-width: 900px; margin: 0 auto; }
+    .agentpay-security-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ps-red);
+      margin-bottom: 0.75rem;
+    }
+    .agentpay-security-section p {
+      font-size: 0.88rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.8;
+    }
+    .agentpay-security-section strong { color: var(--ps-text); }
+    /* CTA section */
+    .agentpay-cta-section {
+      padding: 5rem 0;
+      position: relative;
+      z-index: 1;
       text-align: center;
-      background: radial-gradient(ellipse at center bottom, rgba(57,208,214,0.06) 0%, transparent 60%);
-      padding: 6rem 2rem;
     }
-    .cta-section h2 { margin-bottom: 0.75rem; }
-    .cta-section p { max-width: 500px; margin: 0 auto 2rem; }
-    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn {
-      display: inline-block; padding: 0.75rem 1.75rem;
-      border-radius: 6px; font-weight: 600; font-size: 0.9rem;
-      text-decoration: none; transition: all 0.2s;
-      cursor: pointer; border: none; font-family: 'Outfit', sans-serif;
+    .agentpay-cta-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--ps-text);
+      margin-bottom: 1rem;
     }
-    .btn-primary { background: var(--cyan); color: #000; }
-    .btn-primary:hover { background: #5de0e6; box-shadow: 0 0 20px rgba(57,208,214,0.3); }
-    .btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
-    .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
-
-    /* FOOTER */
-    footer { border-top: 1px solid var(--border); padding: 3rem 0 2rem; position: relative; z-index: 1; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 2rem; }
-    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
-    .footer-brand p { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.7; margin-top: 0.75rem; }
-    .footer-col h4 { font-size: 0.7rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.85rem; }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 0.4rem; }
-    .footer-col a { color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
-    .footer-col a:hover { color: var(--accent-cyan); }
-    .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
-    .footer-social { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-    .social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
-    .social-icon:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
-    .social-icon img { width: 16px; height: 16px; }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-    .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--accent-cyan); }
-    .footer-trademark { color: var(--text-muted); font-size: 0.75rem; text-align: center; line-height: 1.6; }
-    .footer-trademark a { color: #5795ef; text-decoration: none; }
-    .footer-copyright { color: var(--text-muted); font-size: 0.75rem; text-align: center; }
-    footer a { color: var(--text-secondary); text-decoration: none; }
-    footer a:hover { color: var(--accent-cyan); }
-    @media (max-width: 560px) {
-      .footer-grid { grid-template-columns: 1fr; gap: 1.6rem; }
-      footer { padding: 2.5rem 0 1.5rem; }
+    .agentpay-cta-section > .ps-container > p {
+      font-size: 1rem;
+      color: var(--ps-text-secondary);
+      margin-bottom: 2rem;
     }
-    @media (max-width: 480px) {
-      .footer-bottom { align-items: flex-start; }
-      .footer-social, .footer-links { justify-content: flex-start; }
+    .agentpay-cta-btn-group {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-
-    /* ANIMATIONS */
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    .cursor { animation: blink 1s step-end infinite; color: var(--cyan); }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .grid-3 { grid-template-columns: 1fr; }
-      .receipt-grid { grid-template-columns: 1fr; }
-      .roadmap-grid { grid-template-columns: 1fr; }
-      .flow-diagram { gap: 0.5rem; }
-      .flow-arrow { display: none; }
-      h1 { font-size: 2.5rem; }
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      .nav-toggle { display: block; }
-      .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(7,9,16,0.98); padding: 1rem; border-bottom: 1px solid var(--border); }
+    @media (max-width: 1024px) {
+      .agentpay-grid-3 { grid-template-columns: 1fr; }
+      .agentpay-compat-grid { grid-template-columns: 1fr; }
+      .agentpay-roadmap-grid { grid-template-columns: 1fr; }
+      .agentpay-compat-row { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 600px) {
-      .hero-stats { gap: 1rem; }
-      .hero-stat { min-width: 100px; padding: 0.75rem 1rem; }
-      .flow-step { min-width: 100px; padding: 1rem 0.75rem; }
+    @media (max-width: 768px) {
+      .agentpay-hero { padding: 7rem 0 4rem; }
+      .agentpay-section { padding: 3.5rem 0; }
+      .agentpay-receipt-grid { grid-template-columns: 1fr; }
+      .agentpay-status-grid { grid-template-columns: 1fr; }
+      .agentpay-compat-row { grid-template-columns: 1fr; }
+      .agentpay-flow-diagram { flex-direction: column; }
+      .agentpay-flow-arrow { transform: rotate(90deg); }
+      .agentpay-stats { gap: 1.5rem; }
+      .agentpay-cta-btn-group { flex-direction: column; }
+      .agentpay-cta-btn-group .ps-btn { width: 100%; justify-content: center; }
     }
-
-
-/* 10 — Compatibility Roadmap */
-#compatibility {
-  border-top: 1px solid var(--border);
-}
-
-.compat-intro {
-  color: var(--text-secondary);
-  font-size: 1rem;
-  max-width: 800px;
-  margin-bottom: 2rem;
-  line-height: 1.7;
-}
-
-.compat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.compat-tier {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.tier-p0 {
-  background: rgba(248, 81, 73, 0.08);
-  border-bottom: 1px solid rgba(248, 81, 73, 0.2);
-  padding: 1rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--accent-red);
-  margin: 0;
-}
-
-.tier-p1 {
-  background: rgba(210, 153, 34, 0.08);
-  border-bottom: 1px solid rgba(210, 153, 34, 0.2);
-  padding: 1rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--accent-yellow);
-  margin: 0;
-}
-
-.tier-p2 {
-  background: rgba(139, 148, 158, 0.08);
-  border-bottom: 1px solid rgba(139, 148, 158, 0.2);
-  padding: 1rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin: 0;
-}
-
-.compat-items {
-  padding: 1rem;
-}
-
-.compat-item {
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.compat-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.compat-item:first-child {
-  padding-top: 0;
-}
-
-.compat-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
-}
-
-.compat-name {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.compat-badge {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  font-weight: 600;
-  padding: 0.2rem 0.5rem;
-  border-radius: 2px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  flex-shrink: 0;
-}
-
-.compat-badge.p0 {
-  background: rgba(248, 81, 73, 0.15);
-  color: var(--accent-red);
-  border: 1px solid rgba(248, 81, 73, 0.3);
-}
-
-.compat-badge.p1 {
-  background: rgba(210, 153, 34, 0.15);
-  color: var(--accent-yellow);
-  border: 1px solid rgba(210, 153, 34, 0.3);
-}
-
-.compat-badge.p2 {
-  background: rgba(139, 148, 158, 0.1);
-  color: var(--text-secondary);
-  border: 1px solid rgba(139, 148, 158, 0.2);
-}
-
-.compat-item p {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-.compat-summary {
-  background: var(--surface);
-  border: 1px solid var(--accent-cyan);
-  border-radius: 2px;
-  padding: 1.5rem;
-  text-align: center;
-}
-
-.compat-summary h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--accent-cyan);
-  margin-bottom: 1rem;
-}
-
-.compat-summary p {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.8;
-}
-
-
-/* === Standard mobile navigation: synced from index.html / tc/index.html === */
-:root {
-  --nav-bg: var(--bg, var(--bg-primary, #070910));
-  --nav-surface: var(--surface, var(--bg-card, #0d1520));
-  --nav-border: var(--border, rgba(255,255,255,0.08));
-  --nav-border-bright: var(--border-bright, rgba(57,208,214,0.32));
-  --nav-text-primary: var(--text-primary, #e6edf3);
-  --nav-text-secondary: var(--text-secondary, #8b949e);
-  --nav-text-muted: var(--text-muted, rgba(139,148,158,0.65));
-  --nav-accent: var(--accent-cyan, var(--accent, #39d0d6));
-}
-body.menu-open { overflow: hidden; }
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 0;
-  background: rgba(7,9,16,0.9);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--nav-border);
-}
-nav .container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  gap: 1rem;
-}
-.nav-brand { display: flex; align-items: center; min-width: 0; flex: 0 0 auto; }
-.nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-.nav-links {
-  display: flex;
-  gap: 0.25rem;
-  list-style: none;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
-.nav-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 0.35rem 0.65rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  min-width: 0;
-  text-transform: none;
-}
-.nav-links a:hover { color: var(--nav-text-primary); background: var(--nav-surface); }
-.nav-links a.active { color: var(--nav-accent); }
-.nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-.lang-toggle { display: flex; gap: 0.25rem; align-items: center; }
-.lang-toggle a {
-  color: var(--nav-text-muted);
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  transition: all 0.2s;
-}
-.lang-toggle a:hover { color: var(--nav-text-secondary); }
-.lang-toggle a.active { color: var(--nav-accent); background: rgba(57,208,214,0.08); }
-.nav-link {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.nav-link:hover { color: var(--nav-accent); }
-.github-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  border: 1px solid var(--nav-border);
-  background: var(--nav-surface);
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  transition: all 0.2s;
-  font-size: 1rem;
-}
-.github-icon:hover { border-color: var(--nav-border-bright); color: var(--nav-text-primary); }
-.nav-cta {
-  background: var(--nav-accent);
-  color: #000 !important;
-  padding: 0.4rem 1rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: opacity 0.2s;
-  white-space: nowrap;
-}
-.nav-cta:hover { opacity: 0.85; }
-.nav-toggle { display: none !important; }
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: 1px solid var(--nav-border);
-  color: var(--nav-text-primary);
-  font-size: 1.2rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 58px;
-  left: 0;
-  right: 0;
-  min-height: calc(100dvh - 58px);
-  background: rgba(7,9,16,0.98);
-  backdrop-filter: blur(18px);
-  z-index: 999;
-  overflow-y: auto;
-  padding: 1.5rem 1.125rem 2rem;
-  flex-direction: column;
-  gap: 0;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  list-style: none;
-  flex: 1;
-  margin: 0;
-  padding: 0;
-}
-.mobile-menu-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 0.6rem 0.5rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  border-bottom: 1px solid var(--nav-border);
-}
-.mobile-menu-links a:hover,
-.mobile-menu-links a.active { color: var(--nav-accent); background: rgba(57,208,214,0.06); }
-.mobile-menu-divider { height: 1px; background: var(--nav-border); margin: 0.75rem 0; }
-.mobile-menu-footer { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 0.75rem; }
-.mobile-menu-footer .lang-toggle { justify-content: flex-start; }
-.mobile-menu-footer .github-icon { width: auto; height: auto; padding: 0.35rem 0.75rem; font-size: 0.8rem; gap: 0.4rem; }
-@media (max-width: 1024px) {
-  .nav-links { display: none; }
-  .mobile-menu-btn { display: block; }
-}
-@media (max-width: 1320px) {
-  .nav-right > .nav-link { display: none; }
-}
-@media (max-width: 768px) {
-  nav .container { padding: 0 1.125rem; gap: 0.75rem; }
-  .nav-right .lang-toggle,
-  .nav-right > .nav-cta,
-  .nav-right .github-icon,
-  .nav-right > .nav-link { display: none; }
-  .nav-logo-img { height: 26px; max-width: calc(100vw - 88px); object-fit: contain; }
-  .nav-right { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
-  .mobile-menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; flex-shrink: 0; }
-}
-/* === End standard mobile navigation === */
-
   </style>
-
-    <style>
-    .compat-table { margin: 2rem 0; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
-    .compat-row { display: grid; grid-template-columns: 1.5fr 2fr 1.5fr; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); background: var(--bg-card); }
-    .compat-row:last-child { border-bottom: none; }
-    .compat-row.header { background: rgba(57, 208, 214, 0.05); border-bottom: 1px solid var(--border-cyan); }
-    .compat-row.header .compat-cell { font-weight: 600; color: var(--cyan); }
-    .compat-row.highlight { background: rgba(57, 208, 214, 0.08); }
-    .compat-row.highlight .compat-cell:first-child { color: var(--cyan); font-weight: 600; }
-    .compat-cell { font-size: 0.9rem; color: var(--text-secondary); }
-    .compat-cell.mono { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
-    .ecosystem-links { margin: 1.5rem 0; font-size: 0.85rem; color: var(--text-secondary); }
-    .ecosystem-links .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; margin-bottom: 0.5rem; color: var(--cyan); display: block; }
-    .ecosystem-links a { color: var(--text-secondary); text-decoration: none; }
-    .ecosystem-links a:hover { color: var(--cyan); }
-    .compliance-note { font-size: 0.75rem; color: var(--text-secondary); font-style: italic; margin-top: 1rem; padding: 0.75rem; background: rgba(139, 148, 158, 0.05); border: 1px solid var(--border); border-radius: 2px; }
-    </style>
 </head>
-<body>
+<body class="portal-shell">
+  <!-- Background Effects -->
+  <div class="portal-shell-grid"></div>
+  <div class="portal-shell-glow"></div>
 
-<!-- NAV -->
-<nav>
-  <div class="container">
-    <div class="nav-brand">
-      <a href="./">
-        <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
+  <!-- HEADER -->
+  <header class="portal-shell-header">
+    <div class="portal-shell-header-inner">
+      <a href="./index.html" class="portal-shell-brand">
+        <img src="./assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-logo">
       </a>
+      <nav aria-label="Main navigation">
+        <ul class="portal-shell-nav">
+          <li><a href="./index.html" class="portal-shell-nav-link">HOME</a></li>
+          <li><a href="./agent-pay.html" class="portal-shell-nav-link active">AGENT PAY</a></li>
+          <li><a href="./network.html" class="portal-shell-nav-link">NETWORK</a></li>
+          <li><a href="./developers.html" class="portal-shell-nav-link">DEVELOPERS</a></li>
+          <li><a href="./token.html" class="portal-shell-nav-link">TOKEN</a></li>
+        </ul>
+      </nav>
+      <div class="portal-shell-actions">
+        <div class="portal-shell-language" id="psLangDropdown">
+          <button class="portal-shell-language-btn" id="psLangBtn" aria-expanded="false" aria-haspopup="true">
+            EN <span class="ps-chevron">▼</span>
+          </button>
+          <ul class="portal-shell-language-menu" role="menu">
+            <li><a href="./agent-pay.html" class="portal-shell-language-option active" data-lang="en" data-url="./agent-pay.html">English</a></li>
+            <li><a href="./tc/agent-pay.html" class="portal-shell-language-option" data-lang="zh-Hant" data-url="./tc/agent-pay.html">繁中</a></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="ja">日本語 <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="ko">한국어 <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="fr">Français <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="es">Español <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="vi">Tiếng Việt <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="id">Bahasa Indonesia <span class="ps-soon">Coming soon</span></span></li>
+          </ul>
+        </div>
+        <a href="https://magne.ai/index.html" target="_blank" rel="noopener noreferrer" class="portal-shell-phone">Phone Portal ↗</a>
+        <a href="https://github.com/magneai" target="_blank" class="portal-shell-github" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://payment.magne.ai/buy" target="_blank" class="portal-shell-cta">Preorder</a>
+        <button class="portal-shell-toggle" id="psMobileToggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+      </div>
     </div>
-    <ul class="nav-links">
-      <li><a href="./">HOME</a></li>
-      <li><a href="./agent-pay.html" class="active">AGENT PAY</a></li>
-      <li><a href="./network.html">NETWORK</a></li>
-      <li><a href="./developers.html">DEVELOPERS</a></li>
-      <li><a href="./token.html">TOKEN</a></li>
-      <li><a href="./ecosystem.html">ECOSYSTEM</a></li>
-      <li><a href="./transparency.html">TRANSPARENCY</a></li>
-      <li><a href="./faq.html">FAQ</a></li>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <nav class="portal-shell-mobile" id="psMobileMenu" aria-label="Mobile navigation">
+    <ul class="portal-shell-mobile-links">
+      <li><a href="./index.html" class="portal-shell-mobile-link">HOME</a></li>
+      <li><a href="./agent-pay.html" class="portal-shell-mobile-link active">AGENT PAY</a></li>
+      <li><a href="./network.html" class="portal-shell-mobile-link">NETWORK</a></li>
+      <li><a href="./developers.html" class="portal-shell-mobile-link">DEVELOPERS</a></li>
+      <li><a href="./token.html" class="portal-shell-mobile-link">TOKEN</a></li>
+      <li><a href="./ecosystem.html" class="portal-shell-mobile-link">ECOSYSTEM</a></li>
+      <li><a href="./transparency.html" class="portal-shell-mobile-link">TRANSPARENCY</a></li>
+      <li><a href="./faq.html" class="portal-shell-mobile-link">FAQ</a></li>
     </ul>
-    <div class="nav-right">
-      <div class="lang-toggle">
-        <a href="./agent-pay.html" class="active">EN</a>
-        <a href="./tc/agent-pay.html">繁中</a>
+    <div class="portal-shell-mobile-divider"></div>
+    <div class="portal-shell-mobile-footer">
+      <div class="portal-shell-mobile-lang">
+        <a href="./agent-pay.html" class="portal-shell-mobile-lang-btn active">EN</a>
+        <a href="./tc/agent-pay.html" class="portal-shell-mobile-lang-btn">繁中</a>
+        <span class="portal-shell-mobile-lang-btn disabled">日本語</span>
+        <span class="portal-shell-mobile-lang-btn disabled">한국어</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Français</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Español</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Tiếng Việt</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Bahasa Indonesia</span>
       </div>
-      <a href="https://magne.ai/index.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-      <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">Preorder</a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+      <a href="https://magne.ai/index.html" target="_blank" rel="noopener noreferrer" class="portal-shell-phone" style="width:100%;text-align:center;margin-bottom:0.5rem;">Phone Portal ↗</a>
+      <a href="https://payment.magne.ai/buy" target="_blank" rel="noopener noreferrer" class="portal-shell-cta" style="width:100%;text-align:center;">Preorder</a>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- MOBILE MENU OVERLAY -->
-<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
-  <ul class="mobile-menu-links">
-    <li><a href="./">HOME</a></li>
-    <li><a href="./agent-pay.html" class="active">AGENT PAY</a></li>
-    <li><a href="./network.html">NETWORK</a></li>
-    <li><a href="./developers.html">DEVELOPERS</a></li>
-    <li><a href="./token.html">TOKEN</a></li>
-    <li><a href="./ecosystem.html">ECOSYSTEM</a></li>
-    <li><a href="./transparency.html">TRANSPARENCY</a></li>
-    <li><a href="./faq.html">FAQ</a></li>
-  </ul>
-  <div class="mobile-menu-divider"></div>
-  <div class="mobile-menu-footer">
-    <div class="lang-toggle">
-      <a href="./agent-pay.html" class="active">EN</a>
-      <a href="./tc/agent-pay.html">繁中</a>
-    </div>
-    <a href="https://magne.ai/index.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-  </div>
-</div>
-<main>
+  <!-- MAIN CONTENT -->
+  <main class="agentpay-page">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <div class="badge-testnet">⚡ testnet-stage developer demo</div>
-      <h1>Agents can think.<br><em>They still cannot safely pay.</em></h1>
-      <p class="hero-sub">
-        MAGNE Agent Pay is a developer-stage payment workflow demonstration for AI agents, combining M Hash L2 testnet contract deployment with verifiable AI Task Receipt records.<br>
-        <span style="color: var(--text-secondary); font-size: 0.95rem;">Currently demonstrating testnet contract deployment and AI Task Receipt recording on M Hash L2 (chainId: 20250827). Full HTTP 402 payment flow, browser wallet authorization, and Facilitator verify/settle are in active development.</span>
-      </p>
-      <div class="btn-group">
-        <a href="#terminal" class="btn btn-primary">View Terminal Demo</a>
-        <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank">View GitHub</a>
-        <a href="developers.html" class="btn btn-secondary">Developer Docs</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="val">20250827</div>
-          <div class="lbl">Chain ID</div>
-        </div>
-        <div class="hero-stat">
-          <div class="val">V0.2</div>
-          <div class="lbl">Contracts & Receipt Demo ✓</div>
-        </div>
-        <div class="hero-stat">
-          <div class="val">x402</div>
-          <div class="lbl">Compatibility Under Validation</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROBLEM GRID -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">The Problem</span>
-        <h2>AI agents hit a payment wall.</h2>
-        <p>Current infrastructure lets agents think but not transact reliably.</p>
-      </div>
-      <div class="grid-3">
-        <div class="problem-card">
-          <span class="problem-zero">401</span>
-          <span class="problem-label">No Secure Authorization</span>
-          <h3>Agents trigger. Users can't verify.</h3>
-          <p>Agents may trigger tasks, but payments still require a trusted human to authorize each step. There's no cryptographically verifiable authorization path.</p>
-        </div>
-        <div class="problem-card">
-          <span class="problem-zero">0</span>
-          <span class="problem-label">No Agent Payment Rail</span>
-          <h3>Services exist. Agents can't pay.</h3>
-          <p>Agent payment rails are emerging. Secure mobile authorization and verifiable task receipts remain open implementation challenges.</p>
-        </div>
-        <div class="problem-card">
-          <span class="problem-zero">0</span>
-          <span class="problem-label">No Verifiable Receipt</span>
-          <h3>Tasks run. Nothing is provable.</h3>
-          <p>AI tasks need auditable records: who requested, who paid, what settled, and what was returned. Today's workflows leave no traceable record.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FLOW -->
-  <section class="flow-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">The Solution</span>
-        <h2>Agent Pay Workflow</h2>
-        <p>From task request to verifiable receipt — a developer workflow for AI agent payment on M Hash L2.</p>
-      </div>
-
-      <div style="background: rgba(210,153,34,0.08); border: 1px solid rgba(210,153,34,0.2); border-radius: 2px; padding: 1rem 1.25rem; margin-bottom: 1.5rem;">
-        <p style="font-size: 0.88rem; color: var(--yellow); line-height: 1.7; margin: 0;">⚠ The workflow below shows MAGNE Agent Pay's target design. Currently verified: M Hash L2 testnet contract deployment and AI Task Receipt recording. HTTP 402 payment challenge, browser wallet authorization, and Facilitator verify/settle are in development.</p>
-      </div>
-      <div class="flow-diagram">
-        <div class="flow-step">
-          <div class="flow-step-num">1</div>
-          <div class="flow-step-label">AI Agent Task</div>
-          <div class="flow-step-desc">Create task via API</div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step">
-          <div class="flow-step-num">2</div>
-          <div class="flow-step-label">402 Response</div>
-          <div class="flow-step-desc">Payment required metadata</div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step">
-          <div class="flow-step-num">3</div>
-          <div class="flow-step-label">Wallet Auth</div>
-          <div class="flow-step-desc">MetaMask or MAGNE Phone</div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step">
-          <div class="flow-step-num">4</div>
-          <div class="flow-step-label">mMHA Transfer</div>
-          <div class="flow-step-desc">ERC20 on M Hash L2</div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step">
-          <div class="flow-step-num">5</div>
-          <div class="flow-step-label">Facilitator</div>
-          <div class="flow-step-desc">Strict tx verification</div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step">
-          <div class="flow-step-num">6</div>
-          <div class="flow-step-label">AI Task Receipt</div>
-          <div class="flow-step-desc">On-chain, immutable</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TERMINAL DEMO -->
-  <section id="terminal">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">Runtime Deployed</span>
-        <h2>Contract Deployment & Receipt Demo</h2>
-        <p>Contract deployment and receipt recording on M Hash L2 Testnet. AI Task Receipt recording reference disclosed.</p>
-      </div>
-      <div class="terminal">
-        <div class="terminal-bar">
-          <div class="terminal-dot r"></div>
-          <div class="terminal-dot y"></div>
-          <div class="terminal-dot g"></div>
-          <span class="terminal-title">magne@agent-pay-demo</span>
-          <span class="terminal-badge">M HASH L2 TESTNET DEMONSTRATION</span>
-        </div>
-        <div class="terminal-body"><span class="t-prompt">$</span> magne agent task create "analyze wallet risk"<span class="t-newline"></span><span class="t-ok">✓ task created</span> — <span class="t-val">task_demo_20260522</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne api call wallet-risk --wallet 0x742d35Cc6634C0532925a3b844Bc9e7595f2E26E<span class="t-newline"></span><span class="t-err">✕ 402 Payment Required</span><span class="t-newline"></span><span class="t-label">  amount: </span><span class="t-val">0.01 mMHA</span><span class="t-newline"></span><span class="t-label">  recipient: </span><span class="t-hash">0xf39Fd6e51aad88F6F4ce6aB8827279cffB922f66</span><span class="t-newline"></span><span class="t-label">  chain: </span><span class="t-val">mhash-l2-testnet (20250827)</span><span class="t-newline"></span><span class="t-label">  rpc: </span><span class="t-val">https://l2-rpc.testnet.magicalhash.com</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne pay settle --tx 0x0000000000000000000000000000000000000000000000000000000000000000 --network mhash-l2<span class="t-newline"></span><span class="t-ok">✓ payment verified</span><span class="t-newline"></span><span class="t-label">  status: </span><span class="t-ok">verified</span><span class="t-newline"></span><span class="t-label">  block: </span><span class="t-val">8603</span><span class="t-newline"></span><span class="t-label">  token: </span><span class="t-val">mMHA (ERC20)</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne receipt create --task task_demo_20260522<span class="t-newline"></span><span class="t-ok">✓ AI Task Receipt created</span><span class="t-newline"></span><span class="t-label">  receiptId: </span><span class="t-hash">0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-label">  tx: </span><span class="t-hash">0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-label">  explorer: </span><span class="t-val">https://l2-explorer.testnet.magicalhash.com/tx/0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><span class="t-newline"></span><span class="t-newline"></span><span class="t-prompt">$</span> magne receipt inspect 0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd<span class="t-newline"></span><span class="t-label">  agent:     </span><span class="t-val">MAGNE-Agent-001</span><span class="t-newline"></span><span class="t-label">  service:   </span><span class="t-val">wallet-risk-analysis</span><span class="t-newline"></span><span class="t-label">  amount:     </span><span class="t-val">0.01 mMHA</span><span class="t-newline"></span><span class="t-label">  status:    </span><span class="t-ok">settled</span><span class="t-newline"></span><span class="t-label">  network:   </span><span class="t-val">M Hash L2 (chainId: 20250827)</span><span class="t-newline"></span><span class="t-label">  payment tx: </span><span class="t-hash">0xe97d…3a0c</span><span class="t-newline"></span><span class="t-prompt">$</span> <span class="cursor">█</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RECEIPT LAYER -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">On-Chain Verification</span>
-        <h2>AI Task Receipt Layer</h2>
-        <p>AI Task Receipt recording on M Hash L2 is used for task verification.</p>
-      </div>
-      <div class="receipt-grid">
-        <div class="receipt-card">
-          <h3>Why Receipts Matter</h3>
-          <p>AI Task Receipts are verifiable proof that a payment was made, a task was requested, and a result was returned. Any party — agent, user, auditor, or smart contract — can independently verify the full history on-chain.</p>
-          <p style="margin-top: 1rem;">Receipts are designed to be programmable: agents can reference them in subsequent transactions, dispute resolution contracts can read them, and compliance systems can audit them without requiring trusted intermediaries.</p>
-        </div>
-        <div class="receipt-card">
-          <h3>Contract Event</h3>
-          <p style="margin-bottom: 0.5rem; font-size: 0.88rem;">The <code style="color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;">AITaskReceiptCreated</code> event is emitted on M Hash L2 when a receipt is finalized:</p>
-          <div class="receipt-event">
-            <span class="evt-name">event AITaskReceiptCreated(</span>
-            <div class="evt-field"><span class="evt-key">receiptId</span><span class="evt-val">bytes32</span></div>
-            <div class="evt-field"><span class="evt-key">taskId</span><span class="evt-val">string</span></div>
-            <div class="evt-field"><span class="evt-key">user</span><span class="evt-val">address</span></div>
-            <div class="evt-field"><span class="evt-key">provider</span><span class="evt-val">address</span></div>
-            <div class="evt-field"><span class="evt-key">amount</span><span class="evt-val">uint256</span></div>
-            <div class="evt-field"><span class="evt-key">token</span><span class="evt-val">address</span></div>
-            <div class="evt-field"><span class="evt-key">paymentTxHash</span><span class="evt-val">bytes32</span></div>
-            <div class="evt-field"><span class="evt-key">timestamp</span><span class="evt-val">uint256</span></div>
-            <span class="evt-name">)</span>
+    <!-- HERO -->
+    <section class="agentpay-hero">
+      <div class="ps-container">
+        <div class="agentpay-hero-inner">
+          <div class="agentpay-badge">⚡ testnet-stage developer demo</div>
+          <h1>Agents can think.<br><em>They still cannot safely pay.</em></h1>
+          <p class="agentpay-hero-sub">
+            MAGNE Agent Pay is a developer-stage payment workflow demonstration for AI agents, combining M Hash L2 testnet contract deployment with verifiable AI Task Receipt records.<br>
+            <span style="color: var(--ps-text-secondary); font-size: 0.95rem;">Currently demonstrating testnet contract deployment and AI Task Receipt recording on M Hash L2 (chainId: 20250827). Full HTTP 402 payment flow, browser wallet authorization, and Facilitator verify/settle are in active development.</span>
+          </p>
+          <div class="agentpay-btn-group">
+            <a href="#terminal" class="ps-btn ps-btn-primary">View Terminal Demo</a>
+            <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="ps-btn ps-btn-secondary" target="_blank">View GitHub</a>
+            <a href="developers.html" class="ps-btn ps-btn-secondary">Developer Docs</a>
+          </div>
+          <div class="agentpay-stats">
+            <div>
+              <div class="agentpay-stat-val">20250827</div>
+              <div class="agentpay-stat-lbl">Chain ID</div>
+            </div>
+            <div>
+              <div class="agentpay-stat-val">V0.2</div>
+              <div class="agentpay-stat-lbl">Contracts & Receipt Demo ✓</div>
+            </div>
+            <div>
+              <div class="agentpay-stat-val">x402</div>
+              <div class="agentpay-stat-lbl">Compatibility Under Validation</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SDK -->
-  <section class="sdk-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">Developer Integration</span>
-        <h2>Your Code + SKILL.md = An Aapp</h2>
-        <p>A SKILL.md defines the agent-facing contract. Agents read it; services fulfill it. No proprietary SDK required.</p>
+    <div class="agentpay-divider"></div>
+
+    <!-- PROBLEM GRID -->
+    <section class="agentpay-section">
+      <div class="ps-container">
+        <div class="agentpay-section-header">
+          <div class="agentpay-eyebrow">The Problem</div>
+          <h2>AI agents hit a payment wall.</h2>
+          <p class="agentpay-section-sub">Current infrastructure lets agents think but not transact reliably.</p>
+        </div>
+        <div class="agentpay-grid-3">
+          <div class="agentpay-problem-card">
+            <span class="agentpay-problem-zero">401</span>
+            <span class="agentpay-problem-label">No Secure Authorization</span>
+            <h3>Agents trigger. Users can't verify.</h3>
+            <p>Agents may trigger tasks, but payments still require a trusted human to authorize each step. There's no cryptographically verifiable authorization path.</p>
+          </div>
+          <div class="agentpay-problem-card">
+            <span class="agentpay-problem-zero">0</span>
+            <span class="agentpay-problem-label">No Agent Payment Rail</span>
+            <h3>Services exist. Agents can't pay.</h3>
+            <p>Agent payment rails are emerging. Secure mobile authorization and verifiable task receipts remain open implementation challenges.</p>
+          </div>
+          <div class="agentpay-problem-card">
+            <span class="agentpay-problem-zero">0</span>
+            <span class="agentpay-problem-label">No Verifiable Receipt</span>
+            <h3>Tasks run. Nothing is provable.</h3>
+            <p>AI tasks need auditable records: who requested, who paid, what settled, and what was returned. Today's workflows leave no traceable record.</p>
+          </div>
+        </div>
       </div>
-      <div class="sdk-code"><span class="cmt">// SKILL.md — AI Agent Service Contract</span>
+    </section>
+
+    <div class="agentpay-divider"></div>
+
+    <!-- FLOW -->
+    <section class="agentpay-section">
+      <div class="ps-container">
+        <div class="agentpay-section-header">
+          <div class="agentpay-eyebrow">The Solution</div>
+          <h2>Agent Pay Workflow</h2>
+          <p class="agentpay-section-sub">From task request to verifiable receipt — a developer workflow for AI agent payment on M Hash L2.</p>
+        </div>
+        <div class="agentpay-warning-panel">
+          <p>⚠ The workflow below shows MAGNE Agent Pay's target design. Currently verified: M Hash L2 testnet contract deployment and AI Task Receipt recording. HTTP 402 payment challenge, browser wallet authorization, and Facilitator verify/settle are in development.</p>
+        </div>
+        <div class="agentpay-flow-diagram">
+          <div class="agentpay-flow-step">
+            <div class="agentpay-flow-step-num">1</div>
+            <div class="agentpay-flow-step-label">AI Agent Task</div>
+            <div class="agentpay-flow-step-desc">Create task via API</div>
+          </div>
+          <div class="agentpay-flow-arrow">→</div>
+          <div class="agentpay-flow-step">
+            <div class="agentpay-flow-step-num">2</div>
+            <div class="agentpay-flow-step-label">402 Response</div>
+            <div class="agentpay-flow-step-desc">Payment required metadata</div>
+          </div>
+          <div class="agentpay-flow-arrow">→</div>
+          <div class="agentpay-flow-step">
+            <div class="agentpay-flow-step-num">3</div>
+            <div class="agentpay-flow-step-label">Wallet Auth</div>
+            <div class="agentpay-flow-step-desc">MetaMask or MAGNE Phone</div>
+          </div>
+          <div class="agentpay-flow-arrow">→</div>
+          <div class="agentpay-flow-step">
+            <div class="agentpay-flow-step-num">4</div>
+            <div class="agentpay-flow-step-label">mMHA Transfer</div>
+            <div class="agentpay-flow-step-desc">ERC20 on M Hash L2</div>
+          </div>
+          <div class="agentpay-flow-arrow">→</div>
+          <div class="agentpay-flow-step">
+            <div class="agentpay-flow-step-num">5</div>
+            <div class="agentpay-flow-step-label">Facilitator</div>
+            <div class="agentpay-flow-step-desc">Strict tx verification</div>
+          </div>
+          <div class="agentpay-flow-arrow">→</div>
+          <div class="agentpay-flow-step">
+            <div class="agentpay-flow-step-num">6</div>
+            <div class="agentpay-flow-step-label">AI Task Receipt</div>
+            <div class="agentpay-flow-step-desc">On-chain, immutable</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="agentpay-divider"></div>
+
+    <!-- TERMINAL DEMO -->
+    <section class="agentpay-section" id="terminal">
+      <div class="ps-container">
+        <div class="agentpay-section-header">
+          <div class="agentpay-eyebrow">Runtime Deployed</div>
+          <h2>Contract Deployment & Receipt Demo</h2>
+          <p class="agentpay-section-sub">Contract deployment and receipt recording on M Hash L2 Testnet. AI Task Receipt recording reference disclosed.</p>
+        </div>
+        <div class="agentpay-terminal">
+          <div class="agentpay-terminal-bar">
+            <div class="agentpay-terminal-dot r"></div>
+            <div class="agentpay-terminal-dot y"></div>
+            <div class="agentpay-terminal-dot g"></div>
+            <span class="agentpay-terminal-title">magne@agent-pay-demo</span>
+            <span class="agentpay-terminal-badge">M HASH L2 TESTNET DEMONSTRATION</span>
+          </div>
+          <div class="agentpay-terminal-body"><span class="t-prompt">$</span> magne agent task create "analyze wallet risk"<br><span class="t-ok">✓ task created</span> — <span class="t-val">task_demo_20260522</span><br><br><span class="t-prompt">$</span> magne api call wallet-risk --wallet 0x742d35Cc6634C0532925a3b844Bc9e7595f2E26E<br><span class="t-err">✕ 402 Payment Required</span><br><span class="t-label">  amount: </span><span class="t-val">0.01 mMHA</span><br><span class="t-label">  recipient: </span><span class="t-hash">0xf39Fd6e51aad88F6F4ce6aB8827279cffB922f66</span><br><span class="t-label">  chain: </span><span class="t-val">mhash-l2-testnet (20250827)</span><br><span class="t-label">  rpc: </span><span class="t-val">https://l2-rpc.testnet.magicalhash.com</span><br><br><span class="t-prompt">$</span> magne pay settle --tx 0x0000000000000000000000000000000000000000000000000000000000000000 --network mhash-l2<br><span class="t-ok">✓ payment verified</span><br><span class="t-label">  status: </span><span class="t-ok">verified</span><br><span class="t-label">  block: </span><span class="t-val">8603</span><br><span class="t-label">  token: </span><span class="t-val">mMHA (ERC20)</span><br><br><span class="t-prompt">$</span> magne receipt create --task task_demo_20260522<br><span class="t-ok">✓ AI Task Receipt created</span><br><span class="t-label">  receiptId: </span><span class="t-hash">0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><br><span class="t-label">  explorer: </span><span class="t-val">https://l2-explorer.testnet.magicalhash.com/tx/0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd</span><br><br><span class="t-prompt">$</span> magne receipt inspect 0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd<br><span class="t-label">  agent:     </span><span class="t-val">MAGNE-Agent-001</span><br><span class="t-label">  service:   </span><span class="t-val">wallet-risk-analysis</span><br><span class="t-label">  amount:    </span><span class="t-val">0.01 mMHA</span><br><span class="t-label">  status:    </span><span class="t-ok">settled</span><br><span class="t-label">  network:   </span><span class="t-val">M Hash L2 (chainId: 20250827)</span><br><span class="t-prompt">$</span> <span class="cursor">█</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="agentpay-divider"></div>
+
+    <!-- RECEIPT LAYER -->
+    <section class="agentpay-section">
+      <div class="ps-container">
+        <div class="agentpay-section-header">
+          <div class="agentpay-eyebrow">On-Chain Verification</div>
+          <h2>AI Task Receipt Layer</h2>
+          <p class="agentpay-section-sub">AI Task Receipt recording on M Hash L2 is used for task verification.</p>
+        </div>
+        <div class="agentpay-receipt-grid">
+          <div class="agentpay-receipt-card">
+            <h3>Why Receipts Matter</h3>
+            <p>AI Task Receipts are verifiable proof that a payment was made, a task was requested, and a result was returned. Any party — agent, user, auditor, or smart contract — can independently verify the full history on-chain.</p>
+            <p style="margin-top: 1rem;">Receipts are designed to be programmable: agents can reference them in subsequent transactions, dispute resolution contracts can read them, and compliance systems can audit them without requiring trusted intermediaries.</p>
+          </div>
+          <div class="agentpay-receipt-card">
+            <h3>Contract Event</h3>
+            <p style="margin-bottom: 0.5rem; font-size: 0.88rem;">The <code>AITaskReceiptCreated</code> event is emitted on M Hash L2 when a receipt is finalized:</p>
+            <div class="agentpay-receipt-event">
+<span class="agentpay-evt-name">event AITaskReceiptCreated(</span>
+<div class="agentpay-evt-field"><span class="agentpay-evt-key">receiptId</span><span class="agentpay-evt-val">bytes32</span></div>
+<div class="agentpay-evt-field"><span class="agentpay-evt-key">taskId</span><span class="agentpay-evt-val">string</span></div>
+<div class="agentpay-evt-field"><span class="agentpay-evt-key">user</span><span class="agentpay-evt-val">address</span></div>
+<div class="agentpay-evt-field"><span class="agentpay-evt-key">provider</span><span class="agentpay-evt-val">address</span></div>
+<div class="agentpay-evt-field"><span class="agentpay-evt-key">amount</span><span class="agentpay-evt-val">uint256</span></div>
+<div class="agentpay-evt-field"><span class="agentpay-evt-key">token</span><span class="agentpay-evt-val">address</span></div>
+<div class="agentpay-evt-field"><span class="agentpay-evt-key">paymentTxHash</span><span class="agentpay-evt-val">bytes32</span></div>
+<div class="agentpay-evt-field"><span class="agentpay-evt-key">timestamp</span><span class="agentpay-evt-val">uint256</span></div>
+<span class="agentpay-evt-name">)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="agentpay-divider"></div>
+
+    <!-- SDK -->
+    <section class="agentpay-section">
+      <div class="ps-container">
+        <div class="agentpay-section-header">
+          <div class="agentpay-eyebrow">Developer Integration</div>
+          <h2>Your Code + SKILL.md = An Aapp</h2>
+          <p class="agentpay-section-sub">A SKILL.md defines the agent-facing contract. Agents read it; services fulfill it. No proprietary SDK required.</p>
+        </div>
+        <div class="agentpay-sdk-code"><span class="cmt">// SKILL.md — AI Agent Service Contract</span>
 {
   <span class="k">"skill"</span>: <span class="str">"wallet-risk-analysis"</span>,
   <span class="k">"version"</span>: <span class="str">"1.0"</span>,
@@ -1128,386 +922,343 @@ nav .container {
   <span class="k">"paymentToken"</span>: <span class="str">"mMHA (ERC20)"</span>,
   <span class="k">"facilitator"</span>: <span class="str">"https://api.magne.ai/facilitator"</span>,
   <span class="k">"receiptContract"</span>: <span class="str">"0xa0Fe7AD300152eeDC4ca0c17514A1001D6afA408"</span>,
-  <span class="k">"x402Compatibility"</span>: <span class="k">"under-validation"</span>,
-  <span class="k">"endpoints"</span>: {
-    <span class="k">"analyze"</span>: <span class="str">"POST /api/v1/wallet-risk"</span>,
-    <span class="k">"verify"</span>: <span class="str">"GET /api/v1/receipt/:id"</span>
-  }
+  <span class="k">"x402Compatibility"</span>: <span class="k">"under-validation"</span>
 }
 <span class="cmt">// Agent flow:</span>
 <span class="t-fn">1. POST /api/v1/wallet-risk → 402 + payment metadata</span>
 <span class="t-fn">2. mMHA.transfer(recipient, amount) on M Hash L2</span>
 <span class="t-fn">3. Facilitator.strictVerify(paymentTxHash, taskId, amount)</span>
 <span class="t-fn">4. AI Task Receipt event → on-chain proof</span></div>
-      <div class="btn-group" style="margin-top: 2rem;">
-        <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-secondary" target="_blank">View Full Demo Repo</a>
-        <a href="developers.html" class="btn btn-secondary">Developer Docs</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATUS -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">Verification Status</span>
-        <h2>Contract Deployment Verification</h2>
-        <p>All verified items are supported by on-chain data. All pending items are actively being developed.</p>
-      </div>
-      <table class="status-table">
-        <thead>
-          <tr>
-            <th>Component</th>
-            <th>Status</th>
-            <th>Evidence</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td colspan="3">
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 0.5rem 0;">
-                <div style="background: rgba(63,185,80,0.05); border: 1px solid rgba(63,185,80,0.2); border-radius: 8px; padding: 1.25rem;">
-                  <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 0.85rem;">✓ Verified</h3>
-                  <ul style="list-style: none; font-size: 0.82rem; color: var(--text-secondary); line-height: 2.1; margin: 0; padding: 0;">
-                    <li>✓ M Hash L2 Testnet contract deployment</li>
-                    <li>✓ MockMHA test token contract<br><code style="font-size:0.72rem">0x13fadbC67B25870cF93DBa44f570f355dE456A2E</code></li>
-                    <li>✓ AITaskReceipt contract<br><code style="font-size:0.72rem">0xa0Fe7AD300152eeDC4ca0c17514A1001D6afA408</code></li>
-                    <li>✓ AI Task Receipt transaction reference<br><code style="font-size:0.72rem">tx: 0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd (block 8603)</code></li>
-                    <li>✓ Public explorer links available</li>
-                  </ul>
-                </div>
-                <div style="background: rgba(210,153,34,0.05); border: 1px solid rgba(210,153,34,0.2); border-radius: 8px; padding: 1.25rem;">
-                  <h3 style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.85rem;">⏳ In Development</h3>
-                  <ul style="list-style: none; font-size: 0.82rem; color: var(--text-secondary); line-height: 2.1; margin: 0; padding: 0;">
-                    <li>⏳ Real HTTP 402 challenge and retry flow</li>
-                    <li>⏳ Browser wallet authorization</li>
-                    <li>⏳ Facilitator verify / settle workflow</li>
-                    <li>⏳ Stablecoin settlement support</li>
-                    <li>⏳ Formal x402 compatibility review</li>
-                    <li>⏳ Production security review</li>
-                  </ul>
-                </div>
-              </div>
-              <div style="margin-top: 1.25rem; padding: 1rem; background: rgba(248,81,73,0.04); border: 1px solid rgba(248,81,73,0.12); border-radius: 6px;">
-                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0; line-height: 1.7;"><strong style="color: var(--red); font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em;">⚠ Security Notice:</strong> The currently disclosed testnet deployment is provided for developer demonstration purposes only. Production deployment will require controlled signing infrastructure, security review, contract administration procedures, and applicable compliance assessment.</p>
-              </div>
-              <div style="margin-top: 1rem; padding: 1rem; background: rgba(210,153,34,0.06); border: 1px solid rgba(210,153,34,0.2); border-radius: 6px;">
-                <p style="font-size: 0.8rem; color: var(--accent-yellow); margin: 0; line-height: 1.7;"><strong>Archived Deployment:</strong> The previously disclosed deployment at MockMHA <code style="font-size:0.75rem">0x5FbDB2315678afecb367f032d93F642f64180aa3</code> / AITaskReceipt <code style="font-size:0.75rem">0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512</code> used a publicly-known test key. A new secure deployment has been completed at the addresses listed above. Do not use exposed-key deployments for any purpose beyond demonstration.</p>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- WHERE MAGNE FITS -->
-  <section id="where-magne-fits">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">Ecosystem Position</span>
-        <h2>Where MAGNE Fits in the Agent Payment Landscape</h2>
-        <p>MAGNE is not competing with Coinbase, OKX, or Binance. It focuses on a specific layer: secure mobile authorization and verifiable AI Task Receipts on M Hash L2.</p>
-      </div>
-      <div class="compat-table">
-        <div class="compat-row header">
-          <div class="compat-cell">Protocol</div>
-          <div class="compat-cell">Core Focus</div>
-          <div class="compat-cell">MAGNE Alignment</div>
-        </div>
-        <div class="compat-row">
-          <div class="compat-cell mono">x402 Foundation</div>
-          <div class="compat-cell">Open payment protocol under Linux Foundation. Original design by Coinbase.</div>
-          <div class="compat-cell">MAGNE references emerging x402-compatible patterns. No official integration.</div>
-        </div>
-        <div class="compat-row">
-          <div class="compat-cell mono">OKX APP</div>
-          <div class="compat-cell">Agent commercial workflow: intents, brokers, escrow, metering, disputes</div>
-          <div class="compat-cell">Reference only — different scope</div>
-        </div>
-        <div class="compat-row">
-          <div class="compat-cell mono">Binance x402</div>
-          <div class="compat-cell">BNB Chain implementation for programmable payments</div>
-          <div class="compat-cell">Reference only — different chain ecosystem</div>
-        </div>
-        <div class="compat-row highlight">
-          <div class="compat-cell mono">MAGNE Agent Pay</div>
-          <div class="compat-cell">Secure mobile authorization + facilitator verification + AI Task Receipt on M Hash L2</div>
-          <div class="compat-cell">Core focus — our differentiation</div>
-        </div>
-      </div>
-      <div class="ecosystem-links">
-        <p class="mono">x402 Foundation:</p>
-        <a href="https://x402.org" target="_blank">x402.org</a> ·
-        <a href="https://www.linuxfoundation.org/" target="_blank">Linux Foundation</a> ·
-        <a href="https://developers.cloudflare.com/agents/agentic-payments/x402/" target="_blank">Cloudflare x402</a>
-      </div>
-      <p class="compliance-note">References to Coinbase, OKX, Binance, x402 Foundation, and BNB Chain are for ecosystem comparison only and do not imply partnership, endorsement, integration, or affiliation.</p>
-    </div>
-  </section>
-
-  <section id="ecosystem-positioning">
-    <div class="container">
-    <h2 class="section-label">Ecosystem Positioning</h2>
-    <p class="compat-intro">For technical research reference only. Does not indicate any partnership or official integration.</p>
-
-    <div class="compat-grid">
-      <div class="compat-tier">
-        <h3 class="tier-p0">P0 — Open Protocol</h3>
-        <div class="compat-items">
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">x402</span>
-              <span class="compat-badge p0">P0</span>
-            </div>
-            <p>HTTP 402-based open payment protocol for agent payments, initiated by Coinbase and transferred to the Linux Foundation in April 2026. Research reference for AI agent payment workflow; formal compatibility pending validation.</p>
-          </div>
-        </div>
-      </div>
-      <div class="compat-tier">
-        <h3 class="tier-p1">P1 — Industry Reference</h3>
-        <div class="compat-items">
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">B402 / Binance x402</span>
-              <span class="compat-badge p1">P1</span>
-            </div>
-            <p>Binance's x402-compatible payment verification and submission service on supported chains. Included as a public industry reference; does not indicate MAGNE is integrated with Binance services.</p>
-          </div>
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">Google AP2</span>
-              <span class="compat-badge p1">P1</span>
-            </div>
-            <p>Google's agent-to-agent payment authorization protocol addressing liability, trust chains, and delegation for AI agents. Concept reference for mobile secure authorization.</p>
-          </div>
-        </div>
-      </div>
-      <div class="compat-tier">
-        <h3 class="tier-p0">Self-developed</h3>
-        <div class="compat-items">
-          <div class="compat-item">
-            <div class="compat-header">
-              <span class="compat-name">MAGNE Agent Pay</span>
-              <span class="compat-badge p0">P0</span>
-            </div>
-            <p>Contracts and AI Task Receipt demonstration on M Hash L2 testnet. Focus on mobile secure authorization and on-chain receipt recording.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="compat-summary">
-      <h3>Positioning Note</h3>
-      <p>This table is for reference only, describing publicly available technical directions and MAGNE Agent Pay's research positioning. It does not indicate that MAGNE.AI has any partnership, endorsement, or official integration with Coinbase, Linux Foundation, Binance, Google, or any third party, nor does it indicate completion of compatibility certification for any protocol or service.</p>
-    </div>
-  </div>
-  </section>
-
-  <!-- ROADMAP -->
-  <section class="flow-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">Technical Validation Roadmap</span>
-        <h2>What's Next</h2>
-        <p>Subject to technical validation and security review.</p>
-      </div>
-      <div class="roadmap-grid">
-        <div class="roadmap-item">
-          <span class="roadmap-phase done">✓ V0.1 — Done</span>
-          <h3>Local Contract & AI Task Receipt Demo</h3>
-          <p>Full payment flow verified on local Hardhat. ERC20 payments, Facilitator verification, on-chain receipts.</p>
-          <ul>
-            <li>Smart contracts compile and deploy</li>
-            <li>Backend API with x402 response</li>
-            <li>Facilitator strict verify mode</li>
-            <li>AI Task Receipt events</li>
-          </ul>
-        </div>
-        <div class="roadmap-item">
-          <span class="roadmap-phase active">⟡ V0.2 — Done</span>
-          <h3>M Hash L2 Testnet Contract Deployment & Public Receipt Recording</h3>
-          <p>M Hash L2 Testnet contract deployment, AI Task Receipt recording, and public explorer verification. Completed.</p>
-          <ul>
-            <li>M Hash L2 testnet deployment</li>
-            <li>Real wallet MetaMask flow</li>
-            <li>Live explorer tx verification</li>
-            <li>Facilitator on testnet</li>
-          </ul>
-        </div>
-        <div class="roadmap-item">
-          <span class="roadmap-phase next">○ V0.3 — In Development</span>
-          <h3>Real HTTP 402, Browser Wallet Authorization & Facilitator Verification</h3>
-          <p>Browser wallet authorization, HTTP 402 challenge/response flow, and Facilitator on-chain settlement verification. In active development.</p>
-          <ul>
-            <li>MetaMask / browser wallet connection</li>
-            <li>HTTP 402 challenge and retry flow</li>
-            <li>Facilitator verify / settle workflow</li>
-            <li>End-to-end user authorization flow</li>
-          </ul>
-        </div>
-        <div class="roadmap-item">
-          <span class="roadmap-phase next">○ V0.4 — Research</span>
-          <h3>x402 Compatibility Testing & B402 / Binance x402 Service Model Research</h3>
-          <p>Research and validation in progress.</p>
-          <ul>
-            <li>x402 compatibility testing</li>
-            <li>B402 service model research</li>
-          </ul>
-        </div>
-        <div class="roadmap-item">
-          <span class="roadmap-phase next">○ V0.5 — Planned</span>
-          <h3>Stablecoin Settlement, MAGNE Phone Secure Authorization & Security Audit</h3>
-          <p>Planned.</p>
-          <ul>
-            <li>Stablecoin settlement support</li>
-            <li>MAGNE Phone secure authorization</li>
-            <li>Security audit preparation</li>
-          </ul>
-        </div>
-        <div class="roadmap-item">
-          <span class="roadmap-phase next">○ V1.0 — Planned</span>
-          <h3>Production Deployment After Security & Compliance Assessment</h3>
-          <p>Subject to security audit, compliance assessment, and governance approval. Planned.</p>
-          <ul>
-            <li>Security audit</li>
-            <li>MHA as settlement asset</li>
-            <li>Production Facilitator SLA</li>
-            <li>x402 spec compliance review</li>
-          </ul>
-        </div>
-      </div>
-      <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">This roadmap describes product and technical validation directions and may be adjusted based on security review, technical results, protocol evolution, regulatory factors, and governance decisions. It does not constitute a commitment to feature launch timelines, partnerships, transaction support, or commercial outcomes.</p>
-    </div>
-  </section>
-
-
-    <!-- SECURITY NOTICE -->
-    <section style="background: rgba(248,81,73,0.05); border-top: 1px solid rgba(248,81,73,0.15); border-bottom: 1px solid rgba(248,81,73,0.15);">
-      <div class="container" style="padding: 3rem 2rem;">
-        <div style="max-width: 900px; margin: 0 auto;">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.75rem;">⚠ Security Notice</div>
-          <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8;">
-            The currently disclosed testnet deployment is provided for <strong style="color: var(--text-primary);">developer demonstration purposes only</strong>. Production deployment will require controlled signing infrastructure, security review, contract administration procedures, and applicable compliance assessment. This demonstration uses a temporary test key — do not use for production. MHA and mMHA are test tokens with no mainnet value.
-          </p>
+        <div class="agentpay-btn-group" style="margin-top: 2rem;">
+          <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="ps-btn ps-btn-secondary" target="_blank">View Full Demo Repo</a>
+          <a href="developers.html" class="ps-btn ps-btn-secondary">Developer Docs</a>
         </div>
       </div>
     </section>
 
+    <div class="agentpay-divider"></div>
+
+    <!-- STATUS -->
+    <section class="agentpay-section">
+      <div class="ps-container">
+        <div class="agentpay-section-header">
+          <div class="agentpay-eyebrow">Verification Status</div>
+          <h2>Contract Deployment Verification</h2>
+          <p class="agentpay-section-sub">All verified items are supported by on-chain data. All pending items are actively being developed.</p>
+        </div>
+        <div class="agentpay-status-grid">
+          <div class="agentpay-status-box agentpay-status-box-verified">
+            <h3>✓ Verified</h3>
+            <ul>
+              <li>✓ M Hash L2 Testnet contract deployment</li>
+              <li>✓ MockMHA test token contract<br><code>0x13fadbC67B25870cF93DBa44f570f355dE456A2E</code></li>
+              <li>✓ AITaskReceipt contract<br><code>0xa0Fe7AD300152eeDC4ca0c17514A1001D6afA408</code></li>
+              <li>✓ AI Task Receipt transaction reference<br><code>tx: 0x07bc0ca32a037ab755b4516641fba45fe93ac33ed8864bdd9928d7ac152390fd (block 8603)</code></li>
+              <li>✓ Public explorer links available</li>
+            </ul>
+          </div>
+          <div class="agentpay-status-box agentpay-status-box-dev">
+            <h3>⏳ In Development</h3>
+            <ul>
+              <li>⏳ Real HTTP 402 challenge and retry flow</li>
+              <li>⏳ Browser wallet authorization</li>
+              <li>⏳ Facilitator verify / settle workflow</li>
+              <li>⏳ Stablecoin settlement support</li>
+              <li>⏳ Formal x402 compatibility review</li>
+              <li>⏳ Production security review</li>
+            </ul>
+          </div>
+        </div>
+        <div class="agentpay-security-notice">
+          <p><strong>⚠ Security Notice:</strong> The currently disclosed testnet deployment is provided for developer demonstration purposes only. Production deployment will require controlled signing infrastructure, security review, contract administration procedures, and applicable compliance assessment.</p>
+        </div>
+        <div class="agentpay-warning-notice">
+          <p><strong>Archived Deployment:</strong> The previously disclosed deployment at MockMHA <code>0x5FbDB2315678afecb367f032d93F642f64180aa3</code> / AITaskReceipt <code>0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512</code> used a publicly-known test key. A new secure deployment has been completed at the addresses listed above. Do not use exposed-key deployments for any purpose beyond demonstration.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="agentpay-divider"></div>
+
+    <!-- WHERE MAGNE FITS -->
+    <section class="agentpay-section" id="where-magne-fits">
+      <div class="ps-container">
+        <div class="agentpay-section-header">
+          <div class="agentpay-eyebrow">Ecosystem Position</div>
+          <h2>Where MAGNE Fits in the Agent Payment Landscape</h2>
+          <p class="agentpay-section-sub">MAGNE is not competing with Coinbase, OKX, or Binance. It focuses on a specific layer: secure mobile authorization and verifiable AI Task Receipts on M Hash L2.</p>
+        </div>
+        <div class="agentpay-compat-table">
+          <div class="agentpay-compat-row header">
+            <div class="agentpay-compat-cell">Protocol</div>
+            <div class="agentpay-compat-cell">Core Focus</div>
+            <div class="agentpay-compat-cell">MAGNE Alignment</div>
+          </div>
+          <div class="agentpay-compat-row">
+            <div class="agentpay-compat-cell agentpay-compat-cell.mono">x402 Foundation</div>
+            <div class="agentpay-compat-cell">Open payment protocol under Linux Foundation. Original design by Coinbase.</div>
+            <div class="agentpay-compat-cell">MAGNE references emerging x402-compatible patterns. No official integration.</div>
+          </div>
+          <div class="agentpay-compat-row">
+            <div class="agentpay-compat-cell agentpay-compat-cell.mono">OKX APP</div>
+            <div class="agentpay-compat-cell">Agent commercial workflow: intents, brokers, escrow, metering, disputes</div>
+            <div class="agentpay-compat-cell">Reference only — different scope</div>
+          </div>
+          <div class="agentpay-compat-row">
+            <div class="agentpay-compat-cell agentpay-compat-cell.mono">Binance x402</div>
+            <div class="agentpay-compat-cell">BNB Chain implementation for programmable payments</div>
+            <div class="agentpay-compat-cell">Reference only — different chain ecosystem</div>
+          </div>
+          <div class="agentpay-compat-row highlight">
+            <div class="agentpay-compat-cell agentpay-compat-cell.mono">MAGNE Agent Pay</div>
+            <div class="agentpay-compat-cell">Secure mobile authorization + facilitator verification + AI Task Receipt on M Hash L2</div>
+            <div class="agentpay-compat-cell">Core focus — our differentiation</div>
+          </div>
+        </div>
+        <div class="agentpay-ecosystem-links">
+          <span class="ps-mono">x402 Foundation:</span>
+          <a href="https://x402.org" target="_blank">x402.org</a> ·
+          <a href="https://www.linuxfoundation.org/" target="_blank">Linux Foundation</a> ·
+          <a href="https://developers.cloudflare.com/agents/agentic-payments/x402/" target="_blank">Cloudflare x402</a>
+        </div>
+        <p class="agentpay-compliance-note">References to Coinbase, OKX, Binance, x402 Foundation, and BNB Chain are for ecosystem comparison only and do not imply partnership, endorsement, integration, or affiliation.</p>
+      </div>
+    </section>
+
+    <div class="agentpay-divider"></div>
+
+    <!-- ECOSYSTEM POSITIONING -->
+    <section class="agentpay-section">
+      <div class="ps-container">
+        <div class="agentpay-section-header">
+          <div class="agentpay-eyebrow">Ecosystem Positioning</div>
+          <h2>Technical Research Reference</h2>
+          <p class="agentpay-section-sub">For technical research reference only. Does not indicate any partnership or official integration.</p>
+        </div>
+        <div class="agentpay-compat-grid">
+          <div>
+            <div class="agentpay-tier-title agentpay-tier-p0">P0 — Open Protocol</div>
+            <div class="agentpay-compat-item">
+              <div class="agentpay-compat-item-header">
+                <span class="agentpay-compat-name">x402</span>
+                <span class="agentpay-compat-badge p0">P0</span>
+              </div>
+              <p>HTTP 402-based open payment protocol for agent payments, initiated by Coinbase and transferred to the Linux Foundation in April 2026. Research reference for AI agent payment workflow; formal compatibility pending validation.</p>
+            </div>
+          </div>
+          <div>
+            <div class="agentpay-tier-title agentpay-tier-p1">P1 — Industry Reference</div>
+            <div class="agentpay-compat-item">
+              <div class="agentpay-compat-item-header">
+                <span class="agentpay-compat-name">B402 / Binance x402</span>
+                <span class="agentpay-compat-badge p1">P1</span>
+              </div>
+              <p>Binance's x402-compatible payment verification and submission service on supported chains. Included as a public industry reference; does not indicate MAGNE is integrated with Binance services.</p>
+            </div>
+            <div class="agentpay-compat-item">
+              <div class="agentpay-compat-item-header">
+                <span class="agentpay-compat-name">Google AP2</span>
+                <span class="agentpay-compat-badge p1">P1</span>
+              </div>
+              <p>Google's agent-to-agent payment authorization protocol addressing liability, trust chains, and delegation for AI agents. Concept reference for mobile secure authorization.</p>
+            </div>
+          </div>
+          <div>
+            <div class="agentpay-tier-title agentpay-tier-self">Self-developed</div>
+            <div class="agentpay-compat-item">
+              <div class="agentpay-compat-item-header">
+                <span class="agentpay-compat-name">MAGNE Agent Pay</span>
+                <span class="agentpay-compat-badge self">P0</span>
+              </div>
+              <p>Contracts and AI Task Receipt demonstration on M Hash L2 testnet. Focus on mobile secure authorization and on-chain receipt recording.</p>
+            </div>
+          </div>
+        </div>
+        <div class="agentpay-compat-summary">
+          <h3>Positioning Note</h3>
+          <p>This table is for reference only, describing publicly available technical directions and MAGNE Agent Pay's research positioning. It does not indicate that MAGNE.AI has any partnership, endorsement, or official integration with Coinbase, Linux Foundation, Binance, Google, or any third party, nor does it indicate completion of compatibility certification for any protocol or service.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="agentpay-divider"></div>
+
+    <!-- ROADMAP -->
+    <section class="agentpay-section">
+      <div class="ps-container">
+        <div class="agentpay-section-header">
+          <div class="agentpay-eyebrow">Technical Validation Roadmap</div>
+          <h2>What's Next</h2>
+          <p class="agentpay-section-sub">Subject to technical validation and security review.</p>
+        </div>
+        <div class="agentpay-roadmap-grid">
+          <div class="agentpay-roadmap-item">
+            <span class="agentpay-roadmap-phase done">✓ V0.1 — Done</span>
+            <h3>Local Contract & AI Task Receipt Demo</h3>
+            <p>Full payment flow verified on local Hardhat. ERC20 payments, Facilitator verification, on-chain receipts.</p>
+            <ul>
+              <li>Smart contracts compile and deploy</li>
+              <li>Backend API with x402 response</li>
+              <li>Facilitator strict verify mode</li>
+              <li>AI Task Receipt events</li>
+            </ul>
+          </div>
+          <div class="agentpay-roadmap-item">
+            <span class="agentpay-roadmap-phase active">⟡ V0.2 — Done</span>
+            <h3>M Hash L2 Testnet Contract Deployment & Public Receipt Recording</h3>
+            <p>M Hash L2 Testnet contract deployment, AI Task Receipt recording, and public explorer verification. Completed.</p>
+            <ul>
+              <li>M Hash L2 testnet deployment</li>
+              <li>Real wallet MetaMask flow</li>
+              <li>Live explorer tx verification</li>
+              <li>Facilitator on testnet</li>
+            </ul>
+          </div>
+          <div class="agentpay-roadmap-item">
+            <span class="agentpay-roadmap-phase next">○ V0.3 — In Development</span>
+            <h3>Real HTTP 402, Browser Wallet Authorization & Facilitator Verification</h3>
+            <p>Browser wallet authorization, HTTP 402 challenge/response flow, and Facilitator on-chain settlement verification. In active development.</p>
+            <ul>
+              <li>MetaMask / browser wallet connection</li>
+              <li>HTTP 402 challenge and retry flow</li>
+              <li>Facilitator verify / settle workflow</li>
+              <li>End-to-end user authorization flow</li>
+            </ul>
+          </div>
+          <div class="agentpay-roadmap-item">
+            <span class="agentpay-roadmap-phase next">○ V0.4 — Research</span>
+            <h3>x402 Compatibility Testing & B402 / Binance x402 Service Model Research</h3>
+            <p>Research and validation in progress.</p>
+            <ul>
+              <li>x402 compatibility testing</li>
+              <li>B402 service model research</li>
+            </ul>
+          </div>
+          <div class="agentpay-roadmap-item">
+            <span class="agentpay-roadmap-phase next">○ V0.5 — Planned</span>
+            <h3>Stablecoin Settlement, MAGNE Phone Secure Authorization & Security Audit</h3>
+            <p>Planned.</p>
+            <ul>
+              <li>Stablecoin settlement support</li>
+              <li>MAGNE Phone secure authorization</li>
+              <li>Security audit preparation</li>
+            </ul>
+          </div>
+          <div class="agentpay-roadmap-item">
+            <span class="agentpay-roadmap-phase next">○ V1.0 — Planned</span>
+            <h3>Production Deployment After Security & Compliance Assessment</h3>
+            <p>Subject to security audit, compliance assessment, and governance approval. Planned.</p>
+            <ul>
+              <li>Security audit</li>
+              <li>MHA as settlement asset</li>
+              <li>Production Facilitator SLA</li>
+              <li>x402 spec compliance review</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--ps-text-secondary);">This roadmap describes product and technical validation directions and may be adjusted based on security review, technical results, protocol evolution, regulatory factors, and governance decisions. It does not constitute a commitment to feature launch timelines, partnerships, transaction support, or commercial outcomes.</p>
+      </div>
+    </section>
+
+    <div class="agentpay-divider"></div>
+
+    <!-- SECURITY NOTICE -->
+    <div class="agentpay-security-section">
+      <div class="ps-container">
+        <div class="agentpay-security-section-inner">
+          <div class="agentpay-security-label">⚠ Security Notice</div>
+          <p>The currently disclosed testnet deployment is provided for <strong>developer demonstration purposes only</strong>. Production deployment will require controlled signing infrastructure, security review, contract administration procedures, and applicable compliance assessment. This demonstration uses a temporary test key — do not use for production. MHA and mMHA are test tokens with no mainnet value.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="agentpay-divider"></div>
+
     <!-- CTA -->
-<!-- CTA -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Start Building.</h2>
-      <p>Read the SKILL.md, fork the demo, and ship your first agent payment integration.</p>
-      <div class="btn-group">
-        <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="btn btn-primary" target="_blank">Fork the Demo</a>
-        <a href="developers.html" class="btn btn-secondary">Developer Docs</a>
-        <a href="transparency.html" class="btn btn-secondary">Transparency Center</a>
+    <section class="agentpay-cta-section">
+      <div class="ps-container">
+        <h2>Start Building.</h2>
+        <p>Read the SKILL.md, fork the demo, and ship your first agent payment integration.</p>
+        <div class="agentpay-cta-btn-group">
+          <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="ps-btn ps-btn-primary" target="_blank">Fork the Demo</a>
+          <a href="developers.html" class="ps-btn ps-btn-secondary">Developer Docs</a>
+          <a href="transparency.html" class="ps-btn ps-btn-secondary">Transparency Center</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="portal-shell-footer">
+    <div class="portal-shell-footer-inner">
+      <div class="portal-shell-footer-grid">
+        <div class="portal-shell-footer-brand">
+          <img src="./assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-footer-logo">
+          <p class="portal-shell-footer-tagline">
+            Secure mobile authorization, M Hash L2 settlement, and AI Task Receipts for emerging agent payment workflows.
+          </p>
+          <div class="portal-shell-social">
+            <a href="https://github.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="Twitter">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Products</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./agent-pay.html" class="portal-shell-footer-link">Agent Pay</a></li>
+            <li><a href="./network.html" class="portal-shell-footer-link">Network</a></li>
+            <li><a href="./ecosystem.html" class="portal-shell-footer-link">Ecosystem</a></li>
+            <li><a href="./learn.html" class="portal-shell-footer-link">Learn</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Developers</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./developers.html" class="portal-shell-footer-link">Docs</a></li>
+            <li><a href="./developers-contract.html" class="portal-shell-footer-link">Contracts</a></li>
+            <li><a href="./developers-connect.html" class="portal-shell-footer-link">Connect</a></li>
+            <li><a href="./developers-app.html" class="portal-shell-footer-link">Build DApp</a></li>
+            <li><a href="https://github.com/magne-ai" target="_blank" class="portal-shell-footer-link">GitHub ↗</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Resources</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./token.html" class="portal-shell-footer-link">Token</a></li>
+            <li><a href="./transparency.html" class="portal-shell-footer-link">Transparency</a></li>
+            <li><a href="./faq.html" class="portal-shell-footer-link">FAQ</a></li>
+            <li><a href="./version-history.html" class="portal-shell-footer-link">Version History</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Network</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="portal-shell-footer-link">L2 Explorer ↗</a></li>
+            <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank" class="portal-shell-footer-link">M-Hash-L2 ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="portal-shell-footer-bottom">
+        <div class="portal-shell-legal">
+          MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited and is currently in the registration process (USPTO Serial No. 99311528).
+        </div>
+        <div class="portal-shell-legal">
+          © 2026 MAGNE.AI. All rights reserved.
+        </div>
+        <div class="portal-shell-legal-links">
+          <a href="https://magne.ai/privacy-policy.html" target="_blank" class="portal-shell-legal-link">Privacy Policy</a>
+          <a href="https://magne.ai/magne-contact.html" target="_blank" class="portal-shell-legal-link">Contact</a>
+          <a href="https://magne.ai/media-kit.html" target="_blank" class="portal-shell-legal-link">Media Kit</a>
+        </div>
       </div>
     </div>
-  </section>
+  </footer>
 
-</main>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="./"><img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" style="height:28px;width:auto;display:block;margin-bottom:0.5rem;"></a>
-        <p>Secure mobile authorization, M Hash L2 settlement, and AI Task Receipts for emerging agent payment workflows.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Product</h4>
-        <ul>
-          <li><a href="./agent-pay.html" class="active">Agent Pay</a></li>
-          <li><a href="./network.html">Network</a></li>
-          <li><a href="./ecosystem.html">Ecosystem</a></li>
-          <li><a href="./learn.html">Learn</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Developers</h4>
-        <ul>
-          <li><a href="./developers.html">Docs</a></li>
-          <li><a href="./developers-contract.html">Contracts</a></li>
-          <li><a href="./developers-connect.html">Connect</a></li>
-          <li><a href="./developers-app.html">Build DApp</a></li>
-          <li><a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank">GitHub ↗</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <ul>
-          <li><a href="./token.html">Token</a></li>
-          <li><a href="./transparency.html">Transparency</a></li>
-          <li><a href="./faq.html">FAQ</a></li>
-          <li><a href="./version-history.html">Version History</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Network</h4>
-        <ul>
-          <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank">L2 Explorer ↗</a></li>
-          <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M-Hash-L2 ↗</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-social">
-        <a href="https://x.com/magneai" target="_blank" class="social-icon" title="X"><img src="https://cdn.simpleicons.org/x/white" alt="X"></a>
-        <a href="https://t.me/magneai" target="_blank" class="social-icon" title="Telegram"><img src="https://cdn.simpleicons.org/telegram/white" alt="Telegram"></a>
-        <a href="https://discord.gg/magneai" target="_blank" class="social-icon" title="Discord"><img src="https://cdn.simpleicons.org/discord/white" alt="Discord"></a>
-        <a href="https://github.com/magne-ai" target="_blank" class="social-icon" title="GitHub"><img src="https://cdn.simpleicons.org/github/white" alt="GitHub"></a>
-        <a href="https://youtube.com/@magneai" target="_blank" class="social-icon" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube"></a>
-        <a href="https://magne.ai/media-kit.html" target="_blank" class="social-icon" title="Media Kit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></a>
-      </div>
-      <div class="footer-links">
-        <a href="https://magne.ai/privacy-policy.html" target="_blank">Privacy Policy</a>
-        <a href="https://magne.ai/magne-contact.html" target="_blank">Contact Us</a>
-        <a href="https://magne.ai/media-kit.html" target="_blank">Media Kit</a>
-      </div>
-      <p class="footer-trademark">MAGNE.AI™ is a commercial designation of Magical Hash Global Tech Limited and is currently in trademark registration proceedings (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO Serial No. 99311528</a>).</p>
-      <p class="footer-copyright">© 2026 MAGNE.AI. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // Standard mobile menu toggle
-  (function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (!mobileMenuBtn || !mobileMenu) return;
-
-    let menuOpen = false;
-
-    function setMenu(open) {
-      menuOpen = open;
-      mobileMenu.classList.toggle('open', menuOpen);
-      mobileMenuBtn.setAttribute('aria-expanded', String(menuOpen));
-      document.body.classList.toggle('menu-open', menuOpen);
-    }
-
-    mobileMenuBtn.addEventListener('click', function() {
-      setMenu(!menuOpen);
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        setMenu(false);
-      });
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && menuOpen) {
-        setMenu(false);
-        mobileMenuBtn.focus();
-      }
-    });
-  })();
-</script>
-
+  <script src="./assets/js/portal-shell.js"></script>
 </body>
 </html>
