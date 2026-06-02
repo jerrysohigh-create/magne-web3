@@ -738,8 +738,23 @@ body {
     height: 24px;
   }
 
-  .portal-shell-cta {
+  .portal-shell-toggle {
+    display: flex;
+  }
+
+  /* Hide CTA in header actions only, not in mobile menu */
+  .portal-shell-header .portal-shell-actions .portal-shell-cta,
+  .portal-shell-header .portal-shell-actions .portal-shell-phone {
     display: none;
+  }
+
+  /* Show CTA in mobile menu */
+  .portal-shell-mobile .portal-shell-cta,
+  .portal-shell-mobile .portal-shell-phone {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 
   .portal-shell-mobile {
