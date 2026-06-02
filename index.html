@@ -7,1098 +7,728 @@
   <meta name="description" content="MAGNE.AI connects secure mobile authorization, M Hash L2 settlement, and AI Task Receipts for emerging agent payment workflows.">
   <link rel="icon" type="image/png" href="assets/logo-icon-circle.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/portal-shell.css">
+  <link rel="stylesheet" href="./assets/css/portal-components.css">
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="en" href="https://jerrysohigh-create.github.io/magne-web3/index.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web3/tc/index.html">
+  <link rel="alternate" hreflang="x-default" href="https://jerrysohigh-create.github.io/magne-web3/index.html">
+  <link rel="canonical" href="https://jerrysohigh-create.github.io/magne-web3/index.html">
   <style>
-    :root {
-      --bg: #070910;
-      --surface: #0d1520;
-      --surface-2: #111d2e;
-      --border: #1a2a3a;
-      --border-bright: #2a3f5a;
-      --text-primary: #e6edf3;
-      --text-secondary: #8b949e;
-      --text-muted: #484f58;
-      --accent-cyan: #39d0d6;
-      --accent-purple: #a371f7;
-      --accent-green: #3fb950;
-      --accent-yellow: #d29922;
-      --accent-red: #f85149;
-      --glow: rgba(57,208,214,0.12);
+    /* Home page specific styles - using .home-* prefix */
+    .home-hero {
+      padding: 10rem 0 6rem;
+      position: relative;
+      z-index: 1;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text-primary);
-      font-family: 'Inter', system-ui, sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
+    .home-hero-content {
+      max-width: 720px;
     }
-    body.menu-open { overflow: hidden; }
-    .grid-bg {
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(57,208,214,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(57,208,214,0.025) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none; z-index: 0;
-    }
-    .radial-glow {
-      position: fixed;
-      top: -10%; left: 50%;
-      transform: translateX(-50%);
-      width: 100vw; height: 70vh;
-      background: radial-gradient(ellipse at center, rgba(57,208,214,0.05) 0%, transparent 65%);
-      pointer-events: none; z-index: 0;
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-    section { padding: 6rem 0; }
-    .divider { height: 1px; background: var(--border); }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(7,9,16,0.9);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-    nav .container {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px; gap: 1rem;
-    }
-    .nav-logo {
+    .home-hero-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem; font-weight: 700;
-      color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; flex-shrink: 0;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: var(--ps-text);
     }
-    .nav-logo span { color: var(--accent-cyan); }
-    .nav-brand { display: flex; align-items: center; }
-    .nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-    .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
-    .nav-links a {
-      color: var(--text-secondary); text-decoration: none;
-      font-size: 0.8rem; font-weight: 500;
-      padding: 0.35rem 0.65rem; border-radius: 4px;
-      transition: color 0.2s, background 0.2s; letter-spacing: 0.02em; white-space: nowrap;
+    .home-hero-title .ps-accent { color: var(--ps-accent); }
+    .home-hero-title .ps-dim { color: var(--ps-text-secondary); }
+    .home-hero-sub {
+      font-size: 1.1rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 600px;
     }
-    .nav-links a:hover { color: var(--text-primary); background: var(--surface); }
-    .nav-links a.active { color: var(--accent-cyan); }
-    .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-    .lang-toggle { display: flex; gap: 0.25rem; }
-    .lang-toggle a {
-      color: var(--text-muted); text-decoration: none;
-      font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.5rem;
-      border-radius: 3px; transition: all 0.2s;
-    }
-    .lang-toggle a:hover { color: var(--text-secondary); }
-    .lang-toggle a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.08); }
-    .github-icon {
-      display: flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px; border-radius: 6px;
-      border: 1px solid var(--border); background: var(--surface);
-      color: var(--text-secondary); text-decoration: none;
-      transition: all 0.2s; font-size: 1rem;
-    }
-    .github-icon:hover { border-color: var(--border-bright); color: var(--text-primary); }
-    .nav-cta {
-      background: var(--accent-cyan); color: #000;
-      padding: 0.4rem 1rem; border-radius: 5px;
-      font-size: 0.8rem; font-weight: 700; text-decoration: none;
-      transition: opacity 0.2s; white-space: nowrap;
-    }
-    .nav-cta:hover { opacity: 0.85; }
-    .mobile-menu-btn {
-      display: none; background: none; border: 1px solid var(--border);
-      color: var(--text-primary); font-size: 1.2rem;
-      padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer;
-    }
-
-    /* Mobile menu overlay */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 58px;
-      left: 0;
-      right: 0;
-      min-height: calc(100dvh - 58px);
-      background: rgba(7,9,16,0.98);
-      backdrop-filter: blur(18px);
-      z-index: 999;
-      overflow-y: auto;
-      padding: 1.5rem 1.125rem 2rem;
-      flex-direction: column;
-      gap: 0;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu-links {
+    .home-hero-actions {
       display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-      list-style: none;
-      flex: 1;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
-    .mobile-menu-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.6rem 0.5rem;
-      border-radius: 4px;
-      transition: color 0.2s, background 0.2s;
-      border-bottom: 1px solid var(--border);
+    .home-divider {
+      height: 1px;
+      background: var(--ps-border);
+      position: relative;
+      z-index: 1;
     }
-    .mobile-menu-links a:hover,
-    .mobile-menu-links a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.06); }
-    .mobile-menu-divider { height: 1px; background: var(--border); margin: 0.75rem 0; }
-    .mobile-menu-footer {
+    .home-section {
+      padding: 6rem 0;
+      position: relative;
+      z-index: 1;
+    }
+    .home-section-header {
+      margin-bottom: 3rem;
+    }
+    .home-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--ps-accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .home-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: var(--ps-text);
+    }
+    .home-sub {
+      font-size: 1rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+    .home-product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--ps-border);
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .home-product-card {
+      background: var(--ps-surface);
+      padding: 2rem 1.75rem;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-      padding-top: 0.75rem;
     }
-    .mobile-menu-footer .lang-toggle { justify-content: flex-start; }
-    .mobile-menu-footer .github-icon {
-      width: auto;
-      height: auto;
-      padding: 0.35rem 0.75rem;
+    .home-product-icon { font-size: 1.75rem; }
+    .home-product-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ps-accent);
+      font-weight: 700;
+    }
+    .home-product-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ps-text);
+    }
+    .home-product-desc {
+      font-size: 0.85rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.65;
+    }
+    .home-product-link {
+      margin-top: auto;
       font-size: 0.8rem;
-      gap: 0.4rem;
-    }
-
-    /* Desktop nav: hide lang/github in nav-right when mobile menu is present */
-    @media (max-width: 1024px) {
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: absolute; top: 60px; left: 0; right: 0;
-        background: var(--bg); border-bottom: 1px solid var(--border);
-        padding: 1rem; gap: 0.25rem;
-      }
-      .mobile-menu-btn { display: block; }
-    }
-
-    @media (max-width: 768px) {
-      .nav-right .lang-toggle,
-      .nav-right .github-icon,
-      .nav-right > .nav-cta { display: none; }
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 0;
-        flex-shrink: 0;
-      }
-      .nav-brand { min-width: 0; }
-      .mobile-menu-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 42px;
-        height: 42px;
-        flex-shrink: 0;
-      }
-    }
-
-    /* ── SECTION LABEL ── */
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--accent-cyan); margin-bottom: 0.75rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .section-label::before { content: ''; display: inline-block; width: 16px; height: 1px; background: var(--accent-cyan); }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh; display: flex; align-items: center;
-      padding-top: 80px; padding-bottom: 4rem;
-    }
-    .hero-content { max-width: 820px; }
-    .hero-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
-      font-weight: 700; line-height: 1.08;
-      letter-spacing: -0.03em; color: var(--text-primary);
-      margin-bottom: 1.75rem;
-    }
-    .hero-title .accent { color: var(--accent-cyan); }
-    .hero-title .dim { color: var(--text-secondary); }
-    .hero-sub {
-      font-size: 1.15rem; color: var(--text-secondary);
-      max-width: 660px; line-height: 1.75; margin-bottom: 2.5rem;
-    }
-    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--accent-cyan); color: #000;
-      padding: 0.7rem 1.5rem; border-radius: 5px;
-      font-weight: 700; font-size: 0.875rem; text-decoration: none; transition: all 0.2s;
-    }
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: transparent; color: var(--text-primary);
-      padding: 0.7rem 1.5rem; border-radius: 5px;
-      font-weight: 600; font-size: 0.875rem; text-decoration: none;
-      border: 1px solid var(--border-bright); transition: all 0.2s;
-    }
-    .btn-secondary:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
-
-    /* ── PRODUCT GRID ── */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
-    }
-    @media (max-width: 768px) {
-      .product-grid,
-      .feature-grid,
-      .link-grid {
-        grid-template-columns: 1fr;
-      }
-      .product-card,
-      .feature-card,
-      .link-card {
-        padding: 1.25rem 1rem;
-      }
-    }
-    .product-card {
-      background: var(--surface); padding: 2rem 1.75rem;
-      display: flex; flex-direction: column; gap: 0.75rem;
-    }
-    .product-icon { font-size: 1.75rem; }
-    .product-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--accent-cyan); font-weight: 700;
-    }
-    .product-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.05rem; font-weight: 700; color: var(--text-primary);
-    }
-    .product-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; }
-    .product-link {
-      margin-top: auto; font-size: 0.8rem; font-weight: 600;
-      color: var(--accent-cyan); text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-weight: 600;
+      color: var(--ps-accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
       transition: gap 0.2s;
     }
-    .product-link:hover { gap: 0.6rem; }
-
-    /* ── TERMINAL ── */
-    .terminal {
-      background: #010108; border: 1px solid var(--border);
-      border-radius: 8px; overflow: hidden; font-family: 'JetBrains Mono', monospace;
+    .home-product-link:hover { gap: 0.6rem; }
+    .home-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--ps-border);
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+      overflow: hidden;
     }
-    .terminal-header {
-      display: flex; align-items: center; gap: 0.5rem;
-      padding: 0.65rem 1rem; background: var(--surface); border-bottom: 1px solid var(--border);
+    .home-feature-card {
+      background: var(--ps-surface);
+      padding: 2rem 1.75rem;
+    }
+    .home-feature-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .home-feature-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ps-text);
+      margin-bottom: 0.5rem;
+    }
+    .home-feature-desc {
+      font-size: 0.85rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.65;
+    }
+    .home-link-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--ps-border);
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .home-link-card {
+      background: var(--ps-surface);
+      padding: 1.5rem;
+      text-decoration: none;
+      display: block;
+      transition: background 0.2s;
+    }
+    .home-link-card:hover { background: var(--ps-surface-2); }
+    .home-link-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ps-text);
+      margin-bottom: 0.4rem;
+    }
+    .home-link-sub { font-size: 0.8rem; color: var(--ps-text-secondary); }
+    .home-link-badge {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 3px;
+    }
+    .home-badge-cyan {
+      background: rgba(57,208,214,0.1);
+      color: var(--ps-accent);
+      border: 1px solid rgba(57,208,214,0.2);
+    }
+    .home-badge-purple {
+      background: rgba(163,113,247,0.1);
+      color: var(--ps-purple);
+      border: 1px solid rgba(163,113,247,0.2);
+    }
+    .home-badge-green {
+      background: rgba(63,185,80,0.1);
+      color: var(--ps-green);
+      border: 1px solid rgba(63,185,80,0.2);
+    }
+    .home-status-table {
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+      overflow: hidden;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+    }
+    .home-status-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      border-bottom: 1px solid var(--ps-border);
+    }
+    .home-status-row:last-child { border-bottom: none; }
+    .home-status-row > div { padding: 0.75rem 1.25rem; }
+    .home-status-label { color: var(--ps-text-secondary); }
+    .home-status-value { text-align: right; font-size: 0.78rem; }
+    .home-verified { color: var(--ps-green); }
+    .home-pending { color: var(--ps-yellow); }
+    .home-available { color: var(--ps-green); }
+    .home-in-dev { color: var(--ps-yellow); }
+    .home-validation { color: var(--ps-purple); }
+    .home-planned { color: var(--ps-text-secondary); }
+    .home-mt-3 { margin-top: 1.5rem; }
+    .home-btn-group {
+      display: flex;
+      gap: 0.75rem;
       flex-wrap: wrap;
     }
-    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .terminal-dot.red{background:#ff5f56}.terminal-dot.yellow{background:#ffbd2e}.terminal-dot.green{background:#27c93f}
-    .terminal-title { font-size: 0.72rem; color: var(--text-muted); margin-left: 0.5rem; }
-    .terminal-badge {
+    /* Terminal demo */
+    .home-terminal {
+      background: #010108;
+      border: 1px solid var(--ps-border);
+      border-radius: 8px;
+      overflow: hidden;
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 1.5rem;
+    }
+    .home-terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1rem;
+      background: var(--ps-surface);
+      border-bottom: 1px solid var(--ps-border);
+    }
+    .home-terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .home-terminal-dot.red { background: #ff5f56; }
+    .home-terminal-dot.yellow { background: #ffbd2e; }
+    .home-terminal-dot.green { background: #27c93f; }
+    .home-terminal-title {
+      font-size: 0.72rem;
+      color: var(--ps-text-muted);
+      margin-left: 0.5rem;
+    }
+    .home-terminal-badge {
       margin-left: auto;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.6rem;
-      color: var(--accent-yellow);
+      color: var(--ps-yellow);
       background: rgba(210,153,34,0.1);
       padding: 0.2rem 0.5rem;
       border-radius: 2px;
       white-space: nowrap;
     }
-    .terminal-body {
-      padding: 1.25rem 1.5rem; font-size: 0.82rem;
-      line-height: 1.85; color: var(--accent-green);
-      overflow-x: hidden;
+    .home-terminal-body {
+      padding: 1.25rem 1.5rem;
+      font-size: 0.82rem;
+      line-height: 1.85;
+      color: var(--ps-green);
+      overflow-x: auto;
     }
-    .terminal-body .cmd{color:var(--text-primary)}.terminal-body .output{color:var(--accent-green)}
-    .terminal-body .info{color:var(--text-secondary)}.terminal-body .accent{color:var(--accent-cyan)}
-    .terminal-body .purple{color:var(--accent-purple)}.terminal-body .error{color:var(--accent-red)}
-    .terminal-body .line{display:block;margin-bottom:0.2rem;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
-    .terminal-body .line:empty{margin-bottom:0.6rem}
-
-    /* ── FEATURE GRID ── */
-    .feature-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+    .home-terminal-line {
+      display: block;
+      margin-bottom: 0.2rem;
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
     }
-    .feature-card { background: var(--surface); padding: 2rem 1.75rem; }
-    .feature-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
-    .feature-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem;
-    }
-    .feature-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; }
-
-    /* ── STATUS TABLE ── */
-    .status-table {
-      border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
-      font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
-    }
-    .status-row {
-      display: grid; grid-template-columns: 1fr auto auto;
-      border-bottom: 1px solid var(--border);
-    }
-    .status-row:last-child { border-bottom: none; }
-    .status-row > div { padding: 0.75rem 1.25rem; }
-    .status-label { color: var(--text-secondary); }
-    .status-value { text-align: right; font-size: 0.78rem; }
-    .verified { color: var(--accent-green); }
-    .pending { color: var(--accent-yellow); }
-    .available { color: var(--accent-green); }
-    .in-dev { color: var(--accent-yellow); }
-    .validation { color: #a855f7; }
-    .planned { color: var(--text-secondary); }
-
-    /* ── LINK GRID ── */
-    .link-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
-    }
-    .link-card {
-      background: var(--surface); padding: 1.5rem;
-      text-decoration: none; display: block;
-      transition: background 0.2s;
-    }
-    .link-card:hover { background: var(--surface-2); }
-    .link-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.4rem;
-    }
-    .link-sub { font-size: 0.8rem; color: var(--text-secondary); }
-    .link-badge {
-      display: inline-block; margin-top: 0.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 0.2rem 0.5rem; border-radius: 3px;
-    }
-    .badge-cyan { background: rgba(57,208,214,0.1); color: var(--accent-cyan); border: 1px solid rgba(57,208,214,0.2); }
-    .badge-purple { background: rgba(163,113,247,0.1); color: var(--accent-purple); border: 1px solid rgba(163,113,247,0.2); }
-    .badge-green { background: rgba(63,185,80,0.1); color: var(--accent-green); border: 1px solid rgba(63,185,80,0.2); }
-    .badge-yellow { background: rgba(210,153,34,0.1); color: var(--accent-yellow); border: 1px solid rgba(210,153,34,0.2); }
-
-    /* ── SECTION HEAD ── */
-    .section-headline {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.75rem, 3vw, 2.5rem);
-      font-weight: 700; line-height: 1.15;
-      letter-spacing: -0.02em; color: var(--text-primary);
-      margin-bottom: 0.75rem; max-width: 680px;
-    }
-    .section-sub { font-size: 1rem; color: var(--text-secondary); max-width: 600px; line-height: 1.7; margin-bottom: 2.5rem; }
-
-    /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); padding: 3rem 0 2rem; position: relative; z-index: 1; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 2rem; }
-    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
-    .footer-brand p { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.7; margin-top: 0.75rem; }
-    .footer-col h4 { font-size: 0.7rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.85rem; }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 0.4rem; }
-    .footer-col a { color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
-    .footer-col a:hover { color: var(--accent-cyan); }
-    .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
-    .footer-social { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-    .social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
-    .social-icon:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
-    .social-icon img { width: 16px; height: 16px; }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-    .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--accent-cyan); }
-    .footer-trademark { color: var(--text-muted); font-size: 0.75rem; text-align: center; line-height: 1.6; }
-    .footer-trademark a { color: #5795ef; text-decoration: none; }
-    .footer-copyright { color: var(--text-muted); font-size: 0.75rem; text-align: center; }
-
-    .mt-1 { margin-top: 1rem; }
-    .mt-2 { margin-top: 2rem; }
-    .mt-3 { margin-top: 3rem; }
-    .mt-4 { margin-top: 4rem; }
-
-    /* campaign notice */
-    .campaign-notice {
-      background: rgba(210,153,34,0.06); border: 1px solid rgba(210,153,34,0.2);
-      border-radius: 6px; padding: 1rem 1.25rem;
-      font-size: 0.82rem; color: var(--accent-yellow); line-height: 1.6;
-    }
-
-    /* ═══════════════════════════════════════
-       MOBILE RESPONSIVE (<= 768px)
-    ═══════════════════════════════════════ */
+    .home-terminal-line:empty { margin-bottom: 0.6rem; }
+    .home-terminal .ps-cmd { color: var(--ps-text); }
+    .home-terminal .ps-output { color: var(--ps-green); }
+    .home-terminal .ps-info { color: var(--ps-text-secondary); }
+    .home-terminal .ps-accent-text { color: var(--ps-accent); }
+    .home-terminal .ps-error { color: var(--ps-red); }
     @media (max-width: 768px) {
-      .container { padding: 0 1.125rem; }
-      section { padding: 3.5rem 0; }
-      #hero {
-        min-height: auto;
-        padding-top: 92px;
-        padding-bottom: 3.25rem;
+      .home-hero {
+        padding: 8rem 0 4rem;
       }
-      .hero-title {
-        font-size: clamp(1.9rem, 8.6vw, 2.3rem);
-        line-height: 1.25;
-        letter-spacing: -0.015em;
+      .home-section {
+        padding: 4rem 0;
       }
-      .hero-sub {
-        font-size: 0.95rem;
-        line-height: 1.75;
-      }
-      .hero-actions {
-        display: grid;
+      .home-product-grid,
+      .home-feature-grid,
+      .home-link-grid {
         grid-template-columns: 1fr;
       }
-      .hero-actions .btn-primary,
-      .hero-actions .btn-secondary {
+      .home-hero-actions {
+        flex-direction: column;
+      }
+      .home-hero-actions .ps-btn {
         width: 100%;
-        min-height: 48px;
         justify-content: center;
       }
-    }
-
-    @media (max-width: 390px) {
-      .container { padding: 0 1rem; }
-    }
-
-    @media (max-width: 640px) {
-      .status-row {
+      .home-status-row {
         grid-template-columns: 1fr;
       }
-      .status-row > div { padding: 0.85rem 1rem; }
-      .status-value { text-align: left; }
+      .home-status-row > div { padding: 0.85rem 1rem; }
+      .home-status-value { text-align: left; }
     }
-
-    @media (max-width: 560px) {
-      .footer-grid { grid-template-columns: 1fr; gap: 1.6rem; }
-      footer { padding: 2.5rem 0 1.5rem; }
-    }
-
-    @media (max-width: 480px) {
-      .terminal-badge {
-        margin-left: 0;
-        margin-top: 0.4rem;
-        width: 100%;
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .terminal-body {
-        padding: 0.95rem 0.8rem;
-        font-size: 0.7rem;
-      }
-    }
-
-/* === Standard mobile navigation: synced from index.html / tc/index.html === */
-:root {
-  --nav-bg: var(--bg, var(--bg-primary, #070910));
-  --nav-surface: var(--surface, var(--bg-card, #0d1520));
-  --nav-border: var(--border, rgba(255,255,255,0.08));
-  --nav-border-bright: var(--border-bright, rgba(57,208,214,0.32));
-  --nav-text-primary: var(--text-primary, #e6edf3);
-  --nav-text-secondary: var(--text-secondary, #8b949e);
-  --nav-text-muted: var(--text-muted, rgba(139,148,158,0.65));
-  --nav-accent: var(--accent-cyan, var(--accent, #39d0d6));
-}
-body.menu-open { overflow: hidden; }
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 0;
-  background: rgba(7,9,16,0.9);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--nav-border);
-}
-nav .container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  gap: 1rem;
-}
-.nav-brand { display: flex; align-items: center; min-width: 0; flex: 0 0 auto; }
-.nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-.nav-links {
-  display: flex;
-  gap: 0.25rem;
-  list-style: none;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
-.nav-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 0.35rem 0.65rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  min-width: 0;
-  text-transform: none;
-}
-.nav-links a:hover { color: var(--nav-text-primary); background: var(--nav-surface); }
-.nav-links a.active { color: var(--nav-accent); }
-.nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-.lang-toggle { display: flex; gap: 0.25rem; align-items: center; }
-.lang-toggle a {
-  color: var(--nav-text-muted);
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  transition: all 0.2s;
-}
-.lang-toggle a:hover { color: var(--nav-text-secondary); }
-.lang-toggle a.active { color: var(--nav-accent); background: rgba(57,208,214,0.08); }
-.nav-link {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.nav-link:hover { color: var(--nav-accent); }
-.github-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  border: 1px solid var(--nav-border);
-  background: var(--nav-surface);
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  transition: all 0.2s;
-  font-size: 1rem;
-}
-.github-icon:hover { border-color: var(--nav-border-bright); color: var(--nav-text-primary); }
-.nav-cta {
-  background: var(--nav-accent);
-  color: #000 !important;
-  padding: 0.4rem 1rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: opacity 0.2s;
-  white-space: nowrap;
-}
-.nav-cta:hover { opacity: 0.85; }
-.nav-toggle { display: none !important; }
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: 1px solid var(--nav-border);
-  color: var(--nav-text-primary);
-  font-size: 1.2rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 58px;
-  left: 0;
-  right: 0;
-  min-height: calc(100dvh - 58px);
-  background: rgba(7,9,16,0.98);
-  backdrop-filter: blur(18px);
-  z-index: 999;
-  overflow-y: auto;
-  padding: 1.5rem 1.125rem 2rem;
-  flex-direction: column;
-  gap: 0;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  list-style: none;
-  flex: 1;
-  margin: 0;
-  padding: 0;
-}
-.mobile-menu-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 0.6rem 0.5rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  border-bottom: 1px solid var(--nav-border);
-}
-.mobile-menu-links a:hover,
-.mobile-menu-links a.active { color: var(--nav-accent); background: rgba(57,208,214,0.06); }
-.mobile-menu-divider { height: 1px; background: var(--nav-border); margin: 0.75rem 0; }
-.mobile-menu-footer { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 0.75rem; }
-.mobile-menu-footer .lang-toggle { justify-content: flex-start; }
-.mobile-menu-footer .github-icon { width: auto; height: auto; padding: 0.35rem 0.75rem; font-size: 0.8rem; gap: 0.4rem; }
-@media (max-width: 1024px) {
-  .nav-links { display: none; }
-  .mobile-menu-btn { display: block; }
-}
-@media (max-width: 1320px) {
-  .nav-right > .nav-link { display: none; }
-}
-@media (max-width: 768px) {
-  nav .container { padding: 0 1.125rem; gap: 0.75rem; }
-  .nav-right .lang-toggle,
-  .nav-right > .nav-cta,
-  .nav-right .github-icon,
-  .nav-right > .nav-link { display: none; }
-  .nav-logo-img { height: 26px; max-width: calc(100vw - 88px); object-fit: contain; }
-  .nav-right { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
-  .mobile-menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; flex-shrink: 0; }
-}
-/* === End standard mobile navigation === */
-
   </style>
 </head>
-<body>
+<body class="portal-shell">
+  <!-- Background Effects -->
+  <div class="portal-shell-grid"></div>
+  <div class="portal-shell-glow"></div>
 
-<div class="grid-bg"></div>
-<div class="radial-glow"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="container">
-    <div class="nav-brand">
-      <a href="./">
-        <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
+  <!-- HEADER -->
+  <header class="portal-shell-header">
+    <div class="portal-shell-header-inner">
+      <a href="./index.html" class="portal-shell-brand">
+        <img src="./assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-logo">
       </a>
+      <nav aria-label="Main navigation">
+        <ul class="portal-shell-nav">
+          <li><a href="./index.html" class="portal-shell-nav-link active">HOME</a></li>
+          <li><a href="./agent-pay.html" class="portal-shell-nav-link">AGENT PAY</a></li>
+          <li><a href="./network.html" class="portal-shell-nav-link">NETWORK</a></li>
+          <li><a href="./developers.html" class="portal-shell-nav-link">DEVELOPERS</a></li>
+          <li><a href="./token.html" class="portal-shell-nav-link">TOKEN</a></li>
+        </ul>
+      </nav>
+      <div class="portal-shell-actions">
+        <div class="portal-shell-language" id="psLangDropdown">
+          <button class="portal-shell-language-btn" id="psLangBtn" aria-expanded="false" aria-haspopup="true">
+            EN <span class="ps-chevron">▼</span>
+          </button>
+          <ul class="portal-shell-language-menu" role="menu">
+            <li><a href="./index.html" class="portal-shell-language-option active" data-lang="en" data-url="./index.html">English</a></li>
+            <li><a href="./tc/index.html" class="portal-shell-language-option" data-lang="zh-Hant" data-url="./tc/index.html">繁中</a></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="ja">日本語 <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="ko">한국어 <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="fr">Français <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="es">Español <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="vi">Tiếng Việt <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="id">Bahasa Indonesia <span class="ps-soon">Coming soon</span></span></li>
+          </ul>
+        </div>
+        <a href="https://magne.ai/index.html" target="_blank" rel="noopener noreferrer" class="portal-shell-phone">Phone Portal ↗</a>
+        <a href="https://github.com/magneai" target="_blank" class="portal-shell-github" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://payment.magne.ai/buy" target="_blank" class="portal-shell-cta">Preorder</a>
+        <button class="portal-shell-toggle" id="psMobileToggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+      </div>
     </div>
-    <ul class="nav-links">
-      <li><a href="./" class="active">HOME</a></li>
-      <li><a href="./agent-pay.html">AGENT PAY</a></li>
-      <li><a href="./network.html">NETWORK</a></li>
-      <li><a href="./developers.html">DEVELOPERS</a></li>
-      <li><a href="./token.html">TOKEN</a></li>
-      <li><a href="./ecosystem.html">ECOSYSTEM</a></li>
-      <li><a href="./transparency.html">TRANSPARENCY</a></li>
-      <li><a href="./faq.html">FAQ</a></li>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <nav class="portal-shell-mobile" id="psMobileMenu" aria-label="Mobile navigation">
+    <ul class="portal-shell-mobile-links">
+      <li><a href="./index.html" class="portal-shell-mobile-link active">HOME</a></li>
+      <li><a href="./agent-pay.html" class="portal-shell-mobile-link">AGENT PAY</a></li>
+      <li><a href="./network.html" class="portal-shell-mobile-link">NETWORK</a></li>
+      <li><a href="./developers.html" class="portal-shell-mobile-link">DEVELOPERS</a></li>
+      <li><a href="./token.html" class="portal-shell-mobile-link">TOKEN</a></li>
+      <li><a href="./ecosystem.html" class="portal-shell-mobile-link">ECOSYSTEM</a></li>
+      <li><a href="./transparency.html" class="portal-shell-mobile-link">TRANSPARENCY</a></li>
+      <li><a href="./faq.html" class="portal-shell-mobile-link">FAQ</a></li>
     </ul>
-    <div class="nav-right">
-      <div class="lang-toggle">
-        <a href="./" class="active">EN</a>
-        <a href="./tc/index.html">繁中</a>
+    <div class="portal-shell-mobile-divider"></div>
+    <div class="portal-shell-mobile-footer">
+      <div class="portal-shell-mobile-lang">
+        <a href="./index.html" class="portal-shell-mobile-lang-btn active">EN</a>
+        <a href="./tc/index.html" class="portal-shell-mobile-lang-btn">繁中</a>
+        <span class="portal-shell-mobile-lang-btn disabled">日本語</span>
+        <span class="portal-shell-mobile-lang-btn disabled">한국어</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Français</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Español</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Tiếng Việt</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Bahasa Indonesia</span>
       </div>
-      <a href="https://magne.ai/index.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-      <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">Preorder</a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+      <a href="https://magne.ai/index.html" target="_blank" rel="noopener noreferrer" class="portal-shell-phone" style="width:100%;text-align:center;margin-bottom:0.5rem;">Phone Portal ↗</a>
+      <a href="https://payment.magne.ai/buy" target="_blank" rel="noopener noreferrer" class="portal-shell-cta" style="width:100%;text-align:center;">Preorder</a>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- MOBILE MENU OVERLAY -->
-<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
-  <ul class="mobile-menu-links">
-    <li><a href="./" class="active">HOME</a></li>
-    <li><a href="./agent-pay.html">AGENT PAY</a></li>
-    <li><a href="./network.html">NETWORK</a></li>
-    <li><a href="./developers.html">DEVELOPERS</a></li>
-    <li><a href="./token.html">TOKEN</a></li>
-    <li><a href="./ecosystem.html">ECOSYSTEM</a></li>
-    <li><a href="./transparency.html">TRANSPARENCY</a></li>
-    <li><a href="./faq.html">FAQ</a></li>
-  </ul>
-  <div class="mobile-menu-divider"></div>
-  <div class="mobile-menu-footer">
-    <div class="lang-toggle">
-      <a href="./" class="active">EN</a>
-      <a href="./tc/index.html">繁中</a>
-    </div>
-    <a href="https://magne.ai/index.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-  </div>
-</div>
-<!-- HERO -->
-<section id="hero">
-  <div class="container">
-    <div class="hero-content">
-      <h1 class="hero-title">
-        <span class="dim">Agents can think.</span><br>
-        <span class="accent">They still need secure authorization and verifiable payment rails.</span>
-      </h1>
-      <p class="hero-sub">
-        MAGNE.AI connects secure mobile authorization, M Hash L2 settlement, and AI Task Receipts for emerging agent payment workflows.
-      </p>
-      <div class="hero-actions">
-        <a href="./agent-pay.html" class="btn-primary">→ View Agent Pay Demo</a>
-        <a href="./network.html" class="btn-secondary">Explore Network</a>
-        <a href="./transparency.html" class="btn-secondary">Transparency Center</a>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- MAIN CONTENT -->
+  <main style="padding-top: 60px; position: relative; z-index: 1;">
 
-<div class="divider"></div>
+    <!-- HERO -->
+    <section class="home-hero">
+      <div class="ps-container">
+        <div class="home-hero-content">
+          <h1 class="home-hero-title">
+            <span class="ps-dim">Agents can think.</span><br>
+            <span class="ps-accent">They still need secure authorization and verifiable payment rails.</span>
+          </h1>
+          <p class="home-hero-sub">
+            MAGNE.AI connects secure mobile authorization, M Hash L2 settlement, and AI Task Receipts for emerging agent payment workflows.
+          </p>
+          <div class="home-hero-actions">
+            <a href="./agent-pay.html" class="ps-btn ps-btn-primary">→ View Agent Pay Demo</a>
+            <a href="./network.html" class="ps-btn ps-btn-secondary">Explore Network</a>
+            <a href="./transparency.html" class="ps-btn ps-btn-secondary">Transparency Center</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- FLAGSHIP: AGENT PAY -->
-<section id="agent-pay">
-  <div class="container">
-    <div class="section-label">Flagship Product</div>
-    <h2 class="section-headline">Agent Pay — programmable payment rails for AI agents.</h2>
-    <p class="section-sub">
-      MAGNE Agent Pay is a verified testnet-stage demonstration featuring M Hash L2 contract deployment and AI Task Receipt recording. Full HTTP 402 payment flow, browser wallet authorization, and Facilitator verify/settle remain in development. Formal x402 compatibility remains under validation.
-    </p>
+    <div class="home-divider"></div>
 
-    <div class="terminal mt-3">
-      <div class="terminal-header">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">magne — agent-pay-demo</span>
-        <span class="terminal-badge">⚠ Workflow Illustration</span>
+    <!-- AGENT PAY -->
+    <section class="home-section" id="agent-pay">
+      <div class="ps-container">
+        <div class="home-section-header">
+          <div class="home-label">Flagship Product</div>
+          <h2 class="home-headline">Agent Pay — programmable payment rails for AI agents.</h2>
+          <p class="home-sub">
+            MAGNE Agent Pay is a verified testnet-stage demonstration featuring M Hash L2 contract deployment and AI Task Receipt recording. Full HTTP 402 payment flow, browser wallet authorization, and Facilitator verify/settle remain in development. Formal x402 compatibility remains under validation.
+          </p>
+        </div>
+        <div class="home-terminal">
+          <div class="home-terminal-header">
+            <div class="home-terminal-dot red"></div>
+            <div class="home-terminal-dot yellow"></div>
+            <div class="home-terminal-dot green"></div>
+            <span class="home-terminal-title">magne — agent-pay-demo</span>
+            <span class="home-terminal-badge">⚠ Workflow Illustration</span>
+          </div>
+          <div class="home-terminal-body">
+            <span class="home-terminal-line"><span class="ps-cmd">$</span> magne agent task create "wallet risk analysis" --network mhash-l2-testnet</span>
+            <span class="home-terminal-line"><span class="ps-output">✓</span> task created — task_20260522_001</span>
+            <span class="home-terminal-line"><span class="ps-info">  chain:</span> M Hash L2 Testnet (20250827)</span>
+            <span class="home-terminal-line"><span class="ps-info">  agent:</span> MAGNE-Agent-001</span>
+            <span class="home-terminal-line">&nbsp;</span>
+            <span class="home-terminal-line"><span class="ps-cmd">$</span> magne api call wallet-risk --wallet 0x742d35Cc6634C0532...8c34 --network mhash-l2</span>
+            <span class="home-terminal-line"><span class="ps-error">✕ 402 Payment Required</span></span>
+            <span class="home-terminal-line"><span class="ps-info">  amount:</span> 0.01 mMHA  |  recipient: 0xf39...2266</span>
+            <span class="home-terminal-line">&nbsp;</span>
+            <span class="home-terminal-line"><span class="ps-cmd">$</span> magne pay settle --tx 0x130ba003e19e8... --network mhash-l2</span>
+            <span class="home-terminal-line"><span class="ps-output">✓</span> payment verified — tx: 0x130b...701e</span>
+            <span class="home-terminal-line">&nbsp;</span>
+            <span class="home-terminal-line"><span class="ps-cmd">$</span> magne receipt create --task task_20260522_001 --network mhash-l2</span>
+            <span class="home-terminal-line"><span class="ps-output">✓</span> AI Task Receipt minted</span>
+            <span class="home-terminal-line"><span class="ps-accent-text">  →</span> https://l2-explorer.testnet.magicalhash.com/tx/0x428d...</span>
+          </div>
+        </div>
+        <p style="margin-top:0.75rem;font-size:0.72rem;color:var(--ps-text-muted);text-align:center;">⚠ Illustrative target workflow. Currently verified public evidence is limited to disclosed testnet contract deployment and AI Task Receipt recording.</p>
+        <div class="home-product-grid home-mt-3">
+          <div class="home-product-card">
+            <div class="home-product-icon">🔐</div>
+            <div class="home-product-label">Authorization</div>
+            <h3 class="home-product-title">Secure Phone Authorization</h3>
+            <p class="home-product-desc">TEE + Secure Element is designed to turn a phone into a hardware-level authorization endpoint, with signing keys protected within dedicated secure hardware.</p>
+            <a href="./agent-pay.html#phone" class="home-product-link">Learn more →</a>
+          </div>
+          <div class="home-product-card">
+            <div class="home-product-icon">⚡</div>
+            <div class="home-product-label">Settlement</div>
+            <h3 class="home-product-title">M Hash L2 Settlement</h3>
+            <p class="home-product-desc">M Hash L2 testnet settlement with ERC-20 tokens. Facilitator verification and on-chain settlement flow in active development.</p>
+            <a href="./network.html" class="home-product-link">Explore network →</a>
+          </div>
+          <div class="home-product-card">
+            <div class="home-product-icon">📋</div>
+            <div class="home-product-label">Receipt Layer</div>
+            <h3 class="home-product-title">AI Task Receipts</h3>
+            <p class="home-product-desc">AI Task Receipts are generated for completed demo workflows on M Hash L2, providing immutable, verifiable on-chain records.</p>
+            <a href="./agent-pay.html#receipts" class="home-product-link">View event spec →</a>
+          </div>
+        </div>
+        <div class="home-btn-group home-mt-3">
+          <a href="./agent-pay.html" class="ps-btn ps-btn-primary">→ Full Agent Pay Demo</a>
+          <a href="./developers.html" class="ps-btn ps-btn-secondary">Developer Docs →</a>
+        </div>
       </div>
-      <div class="terminal-body">
-        <span class="line cmd">$ magne agent task create "wallet risk analysis" --network mhash-l2-testnet</span>
-        <span class="line output">✓ task created — task_20260522_001</span>
-        <span class="line info">  chain: M Hash L2 Testnet (20250827)</span>
-        <span class="line info">  agent: MAGNE-Agent-001</span>
-        <span class="line"></span>
-        <span class="line cmd">$ magne api call wallet-risk --wallet 0x742d35Cc6634C0532...8c34 --network mhash-l2</span>
-        <span class="line error">✕ 402 Payment Required</span>
-        <span class="line info">  amount: 0.01 mMHA  |  recipient: 0xf39...2266</span>
-        <span class="line"></span>
-        <span class="line cmd">$ magne pay settle --tx 0x130ba003e19e8... --network mhash-l2</span>
-        <span class="line output">✓ payment verified — tx: 0x130b...701e</span>
-        <span class="line"></span>
-        <span class="line cmd">$ magne receipt create --task task_20260522_001 --network mhash-l2</span>
-        <span class="line output">✓ AI Task Receipt minted</span>
-        <span class="line accent">  → https://l2-explorer.testnet.magicalhash.com/tx/0x428d...</span>
-      </div>
-    </div>
+    </section>
 
-    <p style="margin-top:0.75rem;font-size:0.72rem;color:var(--text-muted);text-align:center;">⚠ Illustrative target workflow. Currently verified public evidence is limited to disclosed testnet contract deployment and AI Task Receipt recording.</p>
+    <div class="home-divider"></div>
 
-    <div class="product-grid mt-3">
-      <div class="product-card">
-        <div class="product-icon">🔐</div>
-        <div class="product-label">Authorization</div>
-        <h3 class="product-title">Secure Phone Authorization</h3>
-        <p class="product-desc">TEE + Secure Element is designed to turn a phone into a hardware-level authorization endpoint, with signing keys protected within dedicated secure hardware.</p>
-        <a href="./agent-pay.html#phone" class="product-link">Learn more →</a>
+    <!-- PHONE -->
+    <section class="home-section" id="phone">
+      <div class="ps-container">
+        <div class="home-section-header">
+          <div class="home-label">Hardware Authorization</div>
+          <h2 class="home-headline">Turn secure mobile hardware into an authorization endpoint for agent payments.</h2>
+          <p class="home-sub">
+            MAGNE.AI Phone integrates a Secure Element (eSE) and TEE runtime. Authorization requests are signed cryptographically — without exposing private keys.
+          </p>
+        </div>
+        <div class="home-feature-grid home-mt-3">
+          <div class="home-feature-card">
+            <div class="home-feature-icon">🔐</div>
+            <h3 class="home-feature-title">Secure Element (eSE)</h3>
+            <p class="home-feature-desc">Hardware-level key storage within the secure chip. Signing keys are designed to remain within secure hardware. Authorization is cryptographically enforced.</p>
+          </div>
+          <div class="home-feature-card">
+            <div class="home-feature-icon">📱</div>
+            <h3 class="home-feature-title">TEE Runtime</h3>
+            <p class="home-feature-desc">Trusted Execution Environment. Authorization logic is intended to run within an isolated execution environment, designed to reduce exposure to the main operating system and applications.</p>
+          </div>
+          <div class="home-feature-card">
+            <div class="home-feature-icon">🔑</div>
+            <h3 class="home-feature-title">x402 Compatible</h3>
+            <p class="home-feature-desc">Designed for future interoperability with x402-compatible APIs, subject to implementation and compatibility testing.</p>
+          </div>
+          <div class="home-feature-card">
+            <div class="home-feature-icon">👤</div>
+            <h3 class="home-feature-title">Human Override</h3>
+            <p class="home-feature-desc">Designed to allow the account holder to review and approve each authorization request. Authorization workflows are intended to be user-controlled.</p>
+          </div>
+        </div>
       </div>
-      <div class="product-card">
-        <div class="product-icon">⚡</div>
-        <div class="product-label">Settlement</div>
-        <h3 class="product-title">M Hash L2 Settlement</h3>
-        <p class="product-desc">M Hash L2 testnet settlement with ERC-20 tokens. Facilitator verification and on-chain settlement flow in active development.</p>
-        <a href="./network.html" class="product-link">Explore network →</a>
-      </div>
-      <div class="product-card">
-        <div class="product-icon">📋</div>
-        <div class="product-label">Receipt Layer</div>
-        <h3 class="product-title">AI Task Receipts</h3>
-        <p class="product-desc">AI Task Receipts are generated for completed demo workflows on M Hash L2, providing immutable, verifiable on-chain records.</p>
-        <a href="./agent-pay.html#receipts" class="product-link">View event spec →</a>
-      </div>
-    </div>
+    </section>
 
-    <div class="mt-3" style="display:flex;gap:0.75rem;flex-wrap:wrap">
-      <a href="./agent-pay.html" class="btn-primary">→ Full Agent Pay Demo</a>
-      <a href="./developers.html" class="btn-secondary">Developer Docs →</a>
-    </div>
-  </div>
-</section>
+    <div class="home-divider"></div>
 
-<div class="divider"></div>
+    <!-- NETWORK -->
+    <section class="home-section" id="network">
+      <div class="ps-container">
+        <div class="home-section-header">
+          <div class="home-label">Infrastructure</div>
+          <h2 class="home-headline">M Hash L2 — the testnet settlement environment for disclosed Agent Pay demo workflows.</h2>
+          <p class="home-sub">
+            M Hash L2 is the Magical Capital M Hash blockchain L2 network providing the testnet environment for disclosed contract deployments, token transfer experiments and AI Task Receipt recording. Production settlement workflows remain subject to further development and validation.
+          </p>
+        </div>
+        <div class="home-link-grid home-mt-3">
+          <a href="./network.html" class="home-link-card">
+            <div class="home-link-title">M Hash L2 Network</div>
+            <div class="home-link-sub">Chain ID 20250827 · Testnet active · EVM compatible</div>
+            <span class="home-link-badge home-badge-cyan">Explorer →</span>
+          </a>
+          <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="home-link-card">
+            <div class="home-link-title">Block Explorer</div>
+            <div class="home-link-sub">View transactions, receipts, and contract deployments on M Hash L2 Testnet</div>
+            <span class="home-link-badge home-badge-cyan">Open ↗</span>
+          </a>
+          <a href="https://github.com/magne-ai/M-Hash-L2" target="_blank" class="home-link-card">
+            <div class="home-link-title">M-Hash-L2 on GitHub</div>
+            <div class="home-link-sub">Open-source L2 protocol specification and reference implementation</div>
+            <span class="home-link-badge home-badge-purple">Source ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-<!-- SECURE PHONE -->
-<section id="phone">
-  <div class="container">
-    <div class="section-label">Hardware Authorization</div>
-    <h2 class="section-headline">Turn secure mobile hardware into an authorization endpoint for agent payments.</h2>
-    <p class="section-sub">
-      MAGNE.AI Phone integrates a Secure Element (eSE) and TEE runtime. Authorization requests are signed cryptographically — without exposing private keys.
-    </p>
-    <div class="feature-grid mt-3">
-      <div class="feature-card">
-        <div class="feature-icon">🔐</div>
-        <h3 class="feature-title">Secure Element (eSE)</h3>
-        <p class="feature-desc">Hardware-level key storage within the secure chip. Signing keys are designed to remain within secure hardware. Authorization is cryptographically enforced.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📱</div>
-        <h3 class="feature-title">TEE Runtime</h3>
-        <p class="feature-desc">Trusted Execution Environment. Authorization logic is intended to run within an isolated execution environment, designed to reduce exposure to the main operating system and applications.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔑</div>
-        <h3 class="feature-title">x402 Compatible</h3>
-        <p class="feature-desc">Designed for future interoperability with x402-compatible APIs, subject to implementation and compatibility testing.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">👤</div>
-        <div class="feature-title">Human Override</div>
-        <p class="feature-desc">Designed to allow the account holder to review and approve each authorization request. Authorization workflows are intended to be user-controlled.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="home-divider"></div>
 
-<div class="divider"></div>
+    <!-- DEVELOPERS -->
+    <section class="home-section" id="developers">
+      <div class="ps-container">
+        <div class="home-section-header">
+          <div class="home-label">For Developers</div>
+          <h2 class="home-headline">Build on MAGNE.AI.</h2>
+          <p class="home-sub">
+            SKILL.md defines agent-callable services. Smart contracts handle settlement. Developer documentation covers integration patterns, API references, and deployment guides.
+          </p>
+        </div>
+        <div class="home-link-grid home-mt-3">
+          <a href="./developers.html" class="home-link-card">
+            <div class="home-link-title">Developer Hub</div>
+            <div class="home-link-sub">Full documentation, integration guides, and API reference</div>
+            <span class="home-link-badge home-badge-cyan">Docs →</span>
+          </a>
+          <a href="./developers-contract.html" class="home-link-card">
+            <div class="home-link-title">Smart Contracts</div>
+            <div class="home-link-sub">Deploy and interact with MAGNE contracts on M Hash L2</div>
+            <span class="home-link-badge home-badge-green">Contracts →</span>
+          </a>
+          <a href="./developers-connect.html" class="home-link-card">
+            <div class="home-link-title">Connect to Testnets</div>
+            <div class="home-link-sub">Configure wallets and RPC endpoints for M Hash L2 Testnet</div>
+            <span class="home-link-badge home-badge-green">Connect →</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-<!-- NETWORK -->
-<section id="network">
-  <div class="container">
-    <div class="section-label">Infrastructure</div>
-    <h2 class="section-headline">M Hash L2 — the testnet settlement environment for disclosed Agent Pay demo workflows.</h2>
-    <p class="section-sub">
-      M Hash L2 is the Magical Capital M Hash blockchain L2 network providing the testnet environment for disclosed contract deployments, token transfer experiments and AI Task Receipt recording. Production settlement workflows remain subject to further development and validation.
-    </p>
-    <div class="link-grid mt-3">
-      <a href="./network.html" class="link-card">
-        <div class="link-title">M Hash L2 Network</div>
-        <div class="link-sub">Chain ID 20250827 · Testnet active · EVM compatible</div>
-        <span class="link-badge badge-cyan">Explorer →</span>
-      </a>
-      <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="link-card">
-        <div class="link-title">Block Explorer</div>
-        <div class="link-sub">View transactions, receipts, and contract deployments on M Hash L2 Testnet</div>
-        <span class="link-badge badge-cyan">Open ↗</span>
-      </a>
-      <a href="https://github.com/magne-ai/M-Hash-L2" target="_blank" class="link-card">
-        <div class="link-title">M-Hash-L2 on GitHub</div>
-        <div class="link-sub">Open-source L2 protocol specification and reference implementation</div>
-        <span class="link-badge badge-purple">Source ↗</span>
-      </a>
-    </div>
-  </div>
-</section>
+    <div class="home-divider"></div>
 
-<div class="divider"></div>
+    <!-- TOKEN -->
+    <section class="home-section" id="token">
+      <div class="ps-container">
+        <div class="home-section-header">
+          <div class="home-label">Token</div>
+          <h2 class="home-headline">MHA and mMHA — the planned native utility tokens of the MAGNE ecosystem.</h2>
+          <p class="home-sub">
+            MHA is described as the planned native utility token for the MAGNE ecosystem, with intended roles including network utility, governance participation, and ecosystem functionality, subject to launch configuration, governance approval, and applicable terms. mMHA is a testnet/demo ERC-20 token referenced in disclosed Agent Pay demonstration workflows — it has no monetary value and does not represent a production settlement asset.
+          </p>
+        </div>
+        <div class="home-product-grid home-mt-3">
+          <div class="home-product-card">
+            <div class="home-product-icon">🪙</div>
+            <div class="home-product-label">Native Token</div>
+            <h3 class="home-product-title">MHA</h3>
+            <p class="home-product-desc">Planned native utility token of the MAGNE ecosystem, intended for network utility, governance participation and ecosystem functionality, subject to launch configuration and governance approval.</p>
+            <a href="./token.html" class="home-product-link">Token details →</a>
+          </div>
+          <div class="home-product-card">
+            <div class="home-product-icon">🪙</div>
+            <div class="home-product-label">Settlement Token</div>
+            <h3 class="home-product-title">mMHA (ERC-20)</h3>
+            <p class="home-product-desc">Testnet/demo ERC-20 token referenced in disclosed Agent Pay demonstration workflows. Has no monetary value and does not represent a production settlement asset.</p>
+            <a href="./token.html" class="home-product-link">Token details →</a>
+          </div>
+          <div class="home-product-card">
+            <div class="home-product-icon">📜</div>
+            <div class="home-product-label">Disclosure</div>
+            <h3 class="home-product-title">Tokenomics & Disclosures</h3>
+            <p class="home-product-desc">Full token allocation, vesting schedules, and risk disclosures are published in the Transparency Center.</p>
+            <a href="./transparency.html" class="home-product-link">Transparency Center →</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- DEVELOPERS -->
-<section id="developers">
-  <div class="container">
-    <div class="section-label">For Developers</div>
-    <h2 class="section-headline">Build on MAGNE.AI.</h2>
-    <p class="section-sub">
-      SKILL.md defines agent-callable services. Smart contracts handle settlement. Developer documentation covers integration patterns, API references, and deployment guides.
-    </p>
-    <div class="link-grid mt-3">
-      <a href="./developers.html" class="link-card">
-        <div class="link-title">Developer Hub</div>
-        <div class="link-sub">Full documentation, integration guides, and API reference</div>
-        <span class="link-badge badge-cyan">Docs →</span>
-      </a>
-      <a href="./developers-contract.html" class="link-card">
-        <div class="link-title">Smart Contracts</div>
-        <div class="link-sub">Deploy and interact with MAGNE contracts on M Hash L2</div>
-        <span class="link-badge badge-green">Contracts →</span>
-      </a>
-      <a href="./developers-connect.html" class="link-card">
-        <div class="link-title">Connect to Testnets</div>
-        <div class="link-sub">Configure wallets and RPC endpoints for M Hash L2 Testnet</div>
-        <span class="link-badge badge-green">Connect →</span>
-      </a>
-    </div>
-  </div>
-</section>
+    <div class="home-divider"></div>
 
-<div class="divider"></div>
+    <!-- TRANSPARENCY -->
+    <section class="home-section" id="transparency">
+      <div class="ps-container">
+        <div class="home-section-header">
+          <div class="home-label">Accountability</div>
+          <h2 class="home-headline">Transparency Center — what we know, what we don't, and what we're working on.</h2>
+          <p class="home-sub">
+            MAGNE.AI publishes honest status reports, code verification evidence, and decision logs. Nothing on this site constitutes financial advice.
+          </p>
+        </div>
+        <div class="home-status-table home-mt-3">
+          <div class="home-status-row"><div class="home-status-label">M Hash L2 testnet contract deployment</div><div class="home-status-value home-verified">[✓ Verified Demo]</div></div>
+          <div class="home-status-row"><div class="home-status-label">AI Task Receipt recording</div><div class="home-status-value home-verified">[✓ Verified Demo]</div></div>
+          <div class="home-status-row"><div class="home-status-label">Public explorer evidence</div><div class="home-status-value home-available">[✓ Available]</div></div>
+          <div class="home-status-row"><div class="home-status-label">HTTP 402 payment flow</div><div class="home-status-value home-in-dev">[⏳ In Development]</div></div>
+          <div class="home-status-row"><div class="home-status-label">Browser wallet authorization</div><div class="home-status-value home-in-dev">[⏳ In Development]</div></div>
+          <div class="home-status-row"><div class="home-status-label">Facilitator verify / settle</div><div class="home-status-value home-in-dev">[⏳ In Development]</div></div>
+          <div class="home-status-row"><div class="home-status-label">Formal x402 compatibility</div><div class="home-status-value home-validation">[🔍 Under Validation]</div></div>
+          <div class="home-status-row"><div class="home-status-label">Production deployment</div><div class="home-status-value home-planned">[📋 Planned]</div></div>
+        </div>
+        <div class="home-btn-group home-mt-3">
+          <a href="./transparency.html" class="ps-btn ps-btn-primary">→ Transparency Center</a>
+          <a href="./version-history.html" class="ps-btn ps-btn-secondary">Version History →</a>
+        </div>
+      </div>
+    </section>
 
-<!-- TOKEN -->
-<section id="token">
-  <div class="container">
-    <div class="section-label">Token</div>
-    <h2 class="section-headline">MHA and mMHA — the planned native utility tokens of the MAGNE ecosystem.</h2>
-    <p class="section-sub">
-      MHA is described as the planned native utility token for the MAGNE ecosystem, with intended roles including network utility, governance participation, and ecosystem functionality, subject to launch configuration, governance approval, and applicable terms. mMHA is a testnet/demo ERC-20 token referenced in disclosed Agent Pay demonstration workflows — it has no monetary value and does not represent a production settlement asset.
-    </p>
-    <div class="product-grid mt-3">
-      <div class="product-card">
-        <div class="product-icon">🪙</div>
-        <div class="product-label">Native Token</div>
-        <h3 class="product-title">MHA</h3>
-        <p class="product-desc">Planned native utility token of the MAGNE ecosystem, intended for network utility, governance participation and ecosystem functionality, subject to launch configuration and governance approval.</p>
-        <a href="./token.html" class="product-link">Token details →</a>
-      </div>
-      <div class="product-card">
-        <div class="product-icon">🪙</div>
-        <div class="product-label">Settlement Token</div>
-        <h3 class="product-title">mMHA (ERC-20)</h3>
-        <p class="product-desc">Testnet/demo ERC-20 token referenced in disclosed Agent Pay demonstration workflows. Has no monetary value and does not represent a production settlement asset.</p>
-        <a href="./token.html" class="product-link">Token details →</a>
-      </div>
-      <div class="product-card">
-        <div class="product-icon">📜</div>
-        <div class="product-label">Disclosure</div>
-        <h3 class="product-title">Tokenomics & Disclosures</h3>
-        <p class="product-desc">Full token allocation, vesting schedules, and risk disclosures are published in the Transparency Center.</p>
-        <a href="./transparency.html" class="product-link">Transparency Center →</a>
-      </div>
-    </div>
-  </div>
-</section>
+  </main>
 
-<div class="divider"></div>
-
-<!-- TRANSPARENCY -->
-<section id="transparency">
-  <div class="container">
-    <div class="section-label">Accountability</div>
-    <h2 class="section-headline">Transparency Center — what we know, what we don't, and what we're working on.</h2>
-    <p class="section-sub">
-      MAGNE.AI publishes honest status reports, code verification evidence, and decision logs. Nothing on this site constitutes financial advice.
-    </p>
-    <div class="status-table mt-3">
-      <div class="status-row">
-        <div class="status-label">M Hash L2 testnet contract deployment</div>
-        <div class="status-value verified">[✓ Verified Demo]</div>
+  <!-- FOOTER -->
+  <footer class="portal-shell-footer">
+    <div class="portal-shell-footer-inner">
+      <div class="portal-shell-footer-grid">
+        <div class="portal-shell-footer-brand">
+          <img src="./assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-footer-logo">
+          <p class="portal-shell-footer-tagline">
+            Secure mobile authorization, M Hash L2 settlement, and AI Task Receipts for emerging agent payment workflows.
+          </p>
+          <div class="portal-shell-social">
+            <a href="https://github.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="Twitter">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Products</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./agent-pay.html" class="portal-shell-footer-link">Agent Pay</a></li>
+            <li><a href="./network.html" class="portal-shell-footer-link">Network</a></li>
+            <li><a href="./ecosystem.html" class="portal-shell-footer-link">Ecosystem</a></li>
+            <li><a href="./learn.html" class="portal-shell-footer-link">Learn</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Developers</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./developers.html" class="portal-shell-footer-link">Docs</a></li>
+            <li><a href="./developers-contract.html" class="portal-shell-footer-link">Contracts</a></li>
+            <li><a href="./developers-connect.html" class="portal-shell-footer-link">Connect</a></li>
+            <li><a href="./developers-app.html" class="portal-shell-footer-link">Build DApp</a></li>
+            <li><a href="https://github.com/magne-ai" target="_blank" class="portal-shell-footer-link">GitHub ↗</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Resources</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./token.html" class="portal-shell-footer-link">Token</a></li>
+            <li><a href="./transparency.html" class="portal-shell-footer-link">Transparency</a></li>
+            <li><a href="./faq.html" class="portal-shell-footer-link">FAQ</a></li>
+            <li><a href="./version-history.html" class="portal-shell-footer-link">Version History</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Network</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="portal-shell-footer-link">L2 Explorer ↗</a></li>
+            <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank" class="portal-shell-footer-link">M-Hash-L2 ↗</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="status-row">
-        <div class="status-label">AI Task Receipt recording</div>
-        <div class="status-value verified">[✓ Verified Demo]</div>
-      </div>
-      <div class="status-row">
-        <div class="status-label">Public explorer evidence</div>
-        <div class="status-value available">[✓ Available]</div>
-      </div>
-      <div class="status-row">
-        <div class="status-label">HTTP 402 payment flow</div>
-        <div class="status-value in-dev">[⏳ In Development]</div>
-      </div>
-      <div class="status-row">
-        <div class="status-label">Browser wallet authorization</div>
-        <div class="status-value in-dev">[⏳ In Development]</div>
-      </div>
-      <div class="status-row">
-        <div class="status-label">Facilitator verify / settle</div>
-        <div class="status-value in-dev">[⏳ In Development]</div>
-      </div>
-      <div class="status-row">
-        <div class="status-label">Formal x402 compatibility</div>
-        <div class="status-value validation">[🔍 Under Validation]</div>
-      </div>
-      <div class="status-row">
-        <div class="status-label">Production deployment</div>
-        <div class="status-value planned">[📋 Planned]</div>
-      </div>
-    </div>
-    <div class="mt-3" style="display:flex;gap:0.75rem;flex-wrap:wrap">
-      <a href="./transparency.html" class="btn-primary">→ Transparency Center</a>
-      <a href="./version-history.html" class="btn-secondary">Version History →</a>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="./"><img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" style="height:28px;width:auto;display:block;margin-bottom:0.5rem;"></a>
-        <p>Secure mobile authorization, M Hash L2 settlement, and AI Task Receipts for emerging agent payment workflows.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Product</h4>
-        <ul>
-          <li><a href="./agent-pay.html">Agent Pay</a></li>
-          <li><a href="./network.html">Network</a></li>
-          <li><a href="./ecosystem.html">Ecosystem</a></li>
-          <li><a href="./learn.html">Learn</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Developers</h4>
-        <ul>
-          <li><a href="./developers.html">Docs</a></li>
-          <li><a href="./developers-contract.html">Contracts</a></li>
-          <li><a href="./developers-connect.html">Connect</a></li>
-          <li><a href="./developers-app.html">Build DApp</a></li>
-          <li><a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank">GitHub ↗</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <ul>
-          <li><a href="./token.html">Token</a></li>
-          <li><a href="./transparency.html">Transparency</a></li>
-          <li><a href="./faq.html">FAQ</a></li>
-          <li><a href="./version-history.html">Version History</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Network</h4>
-        <ul>
-          <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank">L2 Explorer ↗</a></li>
-          <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M-Hash-L2 ↗</a></li>
-        </ul>
+      <div class="portal-shell-footer-bottom">
+        <div class="portal-shell-legal">
+          MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited and is currently in the registration process (USPTO Serial No. 99311528).
+        </div>
+        <div class="portal-shell-legal">
+          © 2026 MAGNE.AI. All rights reserved.
+        </div>
+        <div class="portal-shell-legal-links">
+          <a href="https://magne.ai/privacy-policy.html" target="_blank" class="portal-shell-legal-link">Privacy Policy</a>
+          <a href="https://magne.ai/magne-contact.html" target="_blank" class="portal-shell-legal-link">Contact</a>
+          <a href="https://magne.ai/media-kit.html" target="_blank" class="portal-shell-legal-link">Media Kit</a>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-social">
-        <a href="https://x.com/magneai" target="_blank" class="social-icon" title="X"><img src="https://cdn.simpleicons.org/x/white" alt="X"></a>
-        <a href="https://t.me/magneai" target="_blank" class="social-icon" title="Telegram"><img src="https://cdn.simpleicons.org/telegram/white" alt="Telegram"></a>
-        <a href="https://discord.gg/magneai" target="_blank" class="social-icon" title="Discord"><img src="https://cdn.simpleicons.org/discord/white" alt="Discord"></a>
-        <a href="https://github.com/magne-ai" target="_blank" class="social-icon" title="GitHub"><img src="https://cdn.simpleicons.org/github/white" alt="GitHub"></a>
-        <a href="https://youtube.com/@magneai" target="_blank" class="social-icon" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube"></a>
-        <a href="https://magne.ai/media-kit.html" target="_blank" class="social-icon" title="Media Kit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></a>
-      </div>
-      <div class="footer-links">
-        <a href="https://magne.ai/privacy-policy.html" target="_blank">Privacy Policy</a>
-        <a href="https://magne.ai/magne-contact.html" target="_blank">Contact Us</a>
-        <a href="https://magne.ai/media-kit.html" target="_blank">Media Kit</a>
-      </div>
-      <p class="footer-trademark">MAGNE.AI™ is a commercial designation of Magical Hash Global Tech Limited and is currently in trademark registration proceedings (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO Serial No. 99311528</a>).</p>
-      <p class="footer-copyright">© 2026 MAGNE.AI. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  // Standard mobile menu toggle
-  (function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (!mobileMenuBtn || !mobileMenu) return;
-
-    let menuOpen = false;
-
-    function setMenu(open) {
-      menuOpen = open;
-      mobileMenu.classList.toggle('open', menuOpen);
-      mobileMenuBtn.setAttribute('aria-expanded', String(menuOpen));
-      document.body.classList.toggle('menu-open', menuOpen);
-    }
-
-    mobileMenuBtn.addEventListener('click', function() {
-      setMenu(!menuOpen);
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        setMenu(false);
-      });
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && menuOpen) {
-        setMenu(false);
-        mobileMenuBtn.focus();
-      }
-    });
-  })();
-</script>
-
+  <script src="./assets/js/portal-shell.js"></script>
 </body>
 </html>
