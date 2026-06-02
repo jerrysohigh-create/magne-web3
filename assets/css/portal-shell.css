@@ -582,8 +582,13 @@ body {
   padding-top: 32px;
   margin-top: 32px;
   border-top: 1px solid var(--portal-shell-border);
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 24px;
+  flex-wrap: nowrap;
+}
+
+.portal-shell-footer-bottom .portal-shell-legal + .portal-shell-legal,
+.portal-shell-footer-bottom .portal-shell-legal + .portal-shell-legal-links {
+  margin-left: 8px;
 }
 
 .portal-shell-legal {
@@ -753,15 +758,20 @@ body {
 
   .portal-shell-footer-bottom {
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .portal-shell-footer-bottom .portal-shell-legal + .portal-shell-legal,
+  .portal-shell-footer-bottom .portal-shell-legal + .portal-shell-legal-links {
+    margin-left: 0;
   }
 
   .portal-shell-legal-links {
     flex-wrap: wrap;
     gap: 16px;
   }
-}
 
 /* ==========================================================================
    ANIMATIONS
