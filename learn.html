@@ -4,346 +4,488 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAGNE.AI Web3 | Learn</title>
-
-  <!-- SEO Metadata -->
   <meta name="description" content="Learn about MAGNE.AI Web3 infrastructure, blockchain technology, and decentralized AI. Understanding DePIN, Layer 1 and Layer 2 architectures.">
-  <!-- Open Graph -->
   <meta property="og:title" content="MAGNE.AI Web3 | Learn">
-  <meta property="og:description" content="Learn about MAGNE.AI Web3 infrastructure, blockchain technology, and decentralized AI. Understanding DePIN, Layer 1 and Layer 2 architectures.">
+  <meta property="og:description" content="Learn about MAGNE.AI Web3 infrastructure, blockchain technology, and decentralized AI.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://web3.magne.ai/learn.html">
-  <meta property="og:site_name" content="MAGNE.AI Web3">
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MAGNE.AI Web3 | Learn">
-  <meta name="twitter:description" content="Learn about MAGNE.AI Web3 infrastructure, blockchain technology, and decentralized AI. Understanding DePIN, Layer 1 and Layer 2 architectures.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-primary: #0a0a0c;
-      --bg-secondary: #0f0f12;
-      --bg-card: rgba(255, 255, 255, 0.03);
-      --border: rgba(255, 255, 255, 0.06);
-      --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.5);
-      --accent: #FFD700;
+      --bg: #070910;
+      --surface: #0d1520;
+      --surface-2: #111d2e;
+      --border: rgba(88,166,255,0.08);
+      --border-bright: rgba(57,208,214,0.32);
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --text-muted: rgba(139,148,158,0.65);
+      --accent: #39d0d6;
+      --accent-dim: rgba(57,208,214,0.15);
+      --accent-glow: rgba(57,208,214,0.2);
+      --green: #3fb950;
+      --yellow: #d29922;
+      --red: #f85149;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { max-width: 100%; overflow-x: hidden; }
     body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg-primary);
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: var(--bg);
       color: var(--text-primary);
       line-height: 1.6;
+    }
+
+    /* Grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(88,166,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(88,166,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
     }
 
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 10, 12, 0.95);
-      backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 0;
+      background: rgba(7,9,16,0.9);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
-    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
-    .nav-logo-img { height: 20px; }
-    .nav-links { display: flex; gap: 0 0.75rem; list-style: none; justify-content: center; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; padding: 0.4rem 0.5rem; text-align: center; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; font-kerning: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; min-width: 4.5rem; }
-    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-    .nav-cta { background: var(--accent); color: #000 !important; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; }
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      gap: 1rem;
+    }
+    .nav-brand { display: flex; align-items: center; min-width: 0; }
+    .nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+      list-style: none;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.35rem 0.65rem;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--text-primary); background: var(--surface); }
+    .nav-links a.active { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+    .lang-toggle { display: flex; gap: 0.25rem; align-items: center; }
+    .lang-toggle a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.25rem 0.5rem;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    .lang-toggle a:hover { color: var(--text-secondary); }
+    .lang-toggle a.active { color: var(--accent); background: rgba(57,208,214,0.08); }
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--accent); }
+    .github-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.2s;
+      font-size: 1rem;
+    }
+    .github-icon:hover { border-color: var(--border-bright); color: var(--text-primary); }
+    .nav-cta {
+      background: var(--accent);
+      color: #000 !important;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 58px;
+      left: 0;
+      right: 0;
+      min-height: calc(100dvh - 58px);
+      background: rgba(7,9,16,0.98);
+      backdrop-filter: blur(18px);
+      z-index: 999;
+      overflow-y: auto;
+      padding: 1.5rem 1.125rem 2rem;
+      flex-direction: column;
+      gap: 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      list-style: none;
+      flex: 1;
+      margin: 0;
+      padding: 0;
+    }
+    .mobile-menu-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.6rem 0.5rem;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu-links a:hover,
+    .mobile-menu-links a.active { color: var(--accent); background: rgba(57,208,214,0.06); }
+    .mobile-menu-divider { height: 1px; background: var(--border); margin: 0.75rem 0; }
+    .mobile-menu-footer { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 0.75rem; }
+    .mobile-menu-footer .lang-toggle { justify-content: flex-start; }
+    .mobile-menu-footer .github-icon { width: auto; height: auto; padding: 0.35rem 0.75rem; font-size: 0.8rem; gap: 0.4rem; }
 
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-secondary); margin: 5px 0; transition: 0.3s; }
-
-    main { position: relative; z-index: 1; padding-top: 80px; }
+    main { position: relative; z-index: 1; padding-top: 60px; }
     .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
 
-    section { padding: 5rem 0; }
-    section:nth-child(even) { background: var(--bg-secondary); }
-
-    h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; }
-    h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; }
-    h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; }
-    p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.75; }
-
+    /* === HERO === */
     .hero {
-      text-align: center;
+      position: relative;
       padding: 8rem 2rem 5rem;
-      background: radial-gradient(ellipse at center top, rgba(255,215,0,0.06) 0%, transparent 60%);
+      text-align: left;
+      background: radial-gradient(ellipse at 30% 0%, rgba(57,208,214,0.08) 0%, transparent 50%);
     }
-    .hero h1 { margin-bottom: 1.5rem; }
-    .hero p { max-width: 700px; margin: 0 auto; font-size: 1.2rem; }
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero-label::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 640px;
+      line-height: 1.75;
+    }
 
-    .section-header { margin-bottom: 2.5rem; text-align: center; }
-    .section-header h2 { margin-bottom: 0.75rem; }
-    .section-header p { max-width: 650px; margin: 0 auto; }
+    /* === TERMINAL BLOCK === */
+    .terminal {
+      background: #010108;
+      border: 1px solid rgba(57,208,214,0.15);
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1rem;
+      background: rgba(57,208,214,0.05);
+      border-bottom: 1px solid rgba(57,208,214,0.1);
+    }
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .terminal-dot.red { background: #ff5f57; }
+    .terminal-dot.yellow { background: #ffbd2e; }
+    .terminal-dot.green { background: #28c840; }
+    .terminal-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-left: 0.5rem;
+    }
+    .terminal-body {
+      padding: 1.25rem 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: #c9d1d9;
+    }
+    .terminal-body .prompt { color: var(--accent); }
+    .terminal-body .comment { color: var(--text-muted); }
+    .terminal-body .success { color: var(--green); }
+    .terminal-body .warning { color: var(--yellow); }
+    .terminal-body .error { color: var(--red); }
 
-    .grid { display: grid; gap: 1.5rem; }
-    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    /* === SECTIONS === */
+    section { padding: 5rem 0; }
+    section:nth-child(even) { background: var(--surface); }
 
-    .card {
-      background: var(--bg-card);
+    .section-header { margin-bottom: 3rem; }
+    .section-header h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .section-header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 600px;
+    }
+
+    /* === DATA CARDS (terminal style, no rounded corners) === */
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .data-card {
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      transition: all 0.3s;
+      border-radius: 2px;
+      padding: 1.25rem 1.5rem;
+      transition: border-color 0.2s;
     }
-    .card:hover { border-color: rgba(255,215,0,0.2); transform: translateY(-4px); }
-    .card-icon { font-size: 2.5rem; margin-bottom: 1.25rem; }
-    .card h3 { margin-bottom: 0.75rem; }
-    .card p { font-size: 0.95rem; }
+    .data-card:hover { border-color: var(--border-bright); }
+    .data-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .data-card-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--accent-dim);
+      border-radius: 2px;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .data-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .data-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
 
+    /* === CONTENT BLOCKS === */
     .content-block {
-      background: var(--bg-card);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2.5rem;
+      border-radius: 2px;
+      padding: 2rem 2.5rem;
       margin-bottom: 2rem;
     }
-    .content-block h2 { border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem; }
-    .content-block h3 { color: var(--accent); margin-top: 1.5rem; margin-bottom: 0.5rem; }
-    .content-block p { margin-bottom: 1rem; }
+    .content-block h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: -0.01em;
+    }
+    .content-block h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .content-block p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .content-block strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
 
+    /* === STATUS LABELS === */
+    .status-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+    }
+    .status-label::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+    .status-label.live { background: rgba(63,185,80,0.1); color: var(--green); }
+    .status-label.live::before { background: var(--green); box-shadow: 0 0 6px var(--green); }
+    .status-label.dev { background: rgba(210,153,34,0.1); color: var(--yellow); }
+    .status-label.dev::before { background: var(--yellow); }
+    .status-label.plan { background: rgba(248,81,73,0.1); color: var(--red); }
+    .status-label.plan::before { background: var(--red); }
+
+    /* === CTA === */
+    .cta-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
     .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.25rem;
+      border-radius: 2px;
+      font-size: 0.8rem;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s;
-      font-size: 0.9rem;
+      transition: all 0.2s;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
     }
-    .btn-primary { background: var(--accent); color: #000; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(255,215,0,0.2); }
-    .btn-secondary { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover { background: #4dd9dd; }
+    .btn-secondary {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+    .btn-secondary:hover { border-color: var(--border-bright); color: var(--text-primary); }
 
+    /* === FOOTER === */
     footer {
-      text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border);
-      color: var(--text-secondary); font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border);
     }
-    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
-    footer a:hover { color: var(--accent); }
-    .footer-brand-logo { margin-bottom: 1.5rem; }
+    .footer-brand { margin-bottom: 1.5rem; }
     .footer-brand-img { height: 24px; margin-bottom: 0.5rem; }
-    .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; }
+    .footer-brand p { color: var(--text-muted); font-size: 0.85rem; }
     .footer-socials { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
-    .footer-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); transition: all 0.2s; }
-    .footer-icon:hover { border-color: var(--accent); color: var(--accent); }
-    .footer-icon svg { width: 18px; height: 18px; }
-    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
-    .trademark-notice { font-size: 0.8rem; margin-top: 1rem; }
-    .trademark-notice a { color: var(--accent); }
-    .copyright { margin-top: 1.5rem; opacity: 0.5; }
-
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links {
-        display: none;
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: rgba(10, 10, 12, 0.98);
-        flex-direction: column; padding: 1.5rem; gap: 1rem;
-        border-bottom: 1px solid var(--border);
-      }
-      .nav-links.active { display: flex; }
-      .nav-toggle { display: block; }
-      h1 { font-size: 2rem; }
-      h2 { font-size: 1.5rem; }
-      .hero { padding: 6rem 1.5rem 4rem; }
-      .content-block { padding: 1.5rem; }
-      .card { padding: 1.5rem; }
+    .footer-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 2px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      transition: all 0.2s;
     }
+    .footer-icon:hover { border-color: var(--border-bright); color: var(--accent); }
+    .footer-icon svg { width: 18px; height: 18px; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .trademark-notice { font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem; }
+    .trademark-notice a { color: var(--accent); }
+    .copyright { margin-top: 1.5rem; opacity: 0.4; font-size: 0.8rem; }
 
-
-
-/* === Standard mobile navigation: synced from index.html / tc/index.html === */
-:root {
-  --nav-bg: var(--bg, var(--bg-primary, #070910));
-  --nav-surface: var(--surface, var(--bg-card, #0d1520));
-  --nav-border: var(--border, rgba(255,255,255,0.08));
-  --nav-border-bright: var(--border-bright, rgba(57,208,214,0.32));
-  --nav-text-primary: var(--text-primary, #e6edf3);
-  --nav-text-secondary: var(--text-secondary, #8b949e);
-  --nav-text-muted: var(--text-muted, rgba(139,148,158,0.65));
-  --nav-accent: var(--accent-cyan, var(--accent, #39d0d6));
-}
-body.menu-open { overflow: hidden; }
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 0;
-  background: rgba(7,9,16,0.9);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--nav-border);
-}
-nav .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  gap: 1rem;
-}
-.nav-brand { display: flex; align-items: center; min-width: 0; }
-.nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-.nav-links {
-  display: flex;
-  gap: 0.25rem;
-  list-style: none;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
-.nav-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 0.35rem 0.65rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  min-width: 0;
-  text-transform: none;
-}
-.nav-links a:hover { color: var(--nav-text-primary); background: var(--nav-surface); }
-.nav-links a.active { color: var(--nav-accent); }
-.nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-.lang-toggle { display: flex; gap: 0.25rem; align-items: center; }
-.lang-toggle a {
-  color: var(--nav-text-muted);
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  transition: all 0.2s;
-}
-.lang-toggle a:hover { color: var(--nav-text-secondary); }
-.lang-toggle a.active { color: var(--nav-accent); background: rgba(57,208,214,0.08); }
-.nav-link {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.nav-link:hover { color: var(--nav-accent); }
-.github-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  border: 1px solid var(--nav-border);
-  background: var(--nav-surface);
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  transition: all 0.2s;
-  font-size: 1rem;
-}
-.github-icon:hover { border-color: var(--nav-border-bright); color: var(--nav-text-primary); }
-.nav-cta {
-  background: var(--nav-accent);
-  color: #000 !important;
-  padding: 0.4rem 1rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: opacity 0.2s;
-  white-space: nowrap;
-}
-.nav-cta:hover { opacity: 0.85; }
-.nav-toggle { display: none !important; }
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: 1px solid var(--nav-border);
-  color: var(--nav-text-primary);
-  font-size: 1.2rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 58px;
-  left: 0;
-  right: 0;
-  min-height: calc(100dvh - 58px);
-  background: rgba(7,9,16,0.98);
-  backdrop-filter: blur(18px);
-  z-index: 999;
-  overflow-y: auto;
-  padding: 1.5rem 1.125rem 2rem;
-  flex-direction: column;
-  gap: 0;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  list-style: none;
-  flex: 1;
-  margin: 0;
-  padding: 0;
-}
-.mobile-menu-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 0.6rem 0.5rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  border-bottom: 1px solid var(--nav-border);
-}
-.mobile-menu-links a:hover,
-.mobile-menu-links a.active { color: var(--nav-accent); background: rgba(57,208,214,0.06); }
-.mobile-menu-divider { height: 1px; background: var(--nav-border); margin: 0.75rem 0; }
-.mobile-menu-footer { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 0.75rem; }
-.mobile-menu-footer .lang-toggle { justify-content: flex-start; }
-.mobile-menu-footer .github-icon { width: auto; height: auto; padding: 0.35rem 0.75rem; font-size: 0.8rem; gap: 0.4rem; }
-@media (max-width: 1024px) {
-  .nav-links { display: none; }
-  .mobile-menu-btn { display: block; }
-}
-@media (max-width: 768px) {
-  nav .container { padding: 0 1.125rem; gap: 0.75rem; }
-  .nav-right .lang-toggle,
-  .nav-right > .nav-cta,
-  .nav-right .github-icon,
-  .nav-right > .nav-link { display: none; }
-  .nav-logo-img { height: 26px; max-width: calc(100vw - 88px); object-fit: contain; }
-  .nav-right { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
-  .mobile-menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; flex-shrink: 0; }
-}
-/* === End standard mobile navigation === */
-
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+    }
+    @media (max-width: 768px) {
+      nav .container { padding: 0 1.125rem; }
+      .nav-right .lang-toggle,
+      .nav-right > .nav-cta,
+      .nav-right .github-icon,
+      .nav-right > .nav-link { display: none; }
+      .nav-logo-img { height: 26px; max-width: calc(100vw - 88px); object-fit: contain; }
+      .hero { padding: 5rem 1.5rem 3rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .content-block { padding: 1.5rem; }
+      .data-card { padding: 1rem 1.25rem; }
+      .terminal-body { padding: 1rem; font-size: 0.75rem; }
+    }
   </style>
-
-  <link rel="alternate" hreflang="en" href="https://web3.magne.ai/learn.html">
-  <link rel="alternate" hreflang="zh-Hant" href="https://web3.magne.ai/coming-soon.html">
-  <link rel="alternate" hreflang="x-default" href="https://web3.magne.ai/learn.html">
 </head>
 <body>
 <nav>
@@ -370,13 +512,12 @@ nav .container {
       </div>
       <a href="https://magne.ai/index.html" target="_blank" class="nav-link">Phone Portal ↗</a>
       <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">Preorder</a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">☰</button>
     </div>
   </div>
 </nav>
 
-<!-- MOBILE MENU OVERLAY -->
-<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+<div class="mobile-menu" id="mobileMenu">
   <ul class="mobile-menu-links">
     <li><a href="./" class="active">HOME</a></li>
     <li><a href="./agent-pay.html">AGENT PAY</a></li>
@@ -396,204 +537,284 @@ nav .container {
     <a href="https://magne.ai/index.html" target="_blank" class="nav-link">Phone Portal ↗</a>
   </div>
 </div>
+
 <main>
-    <!-- Hero -->
-    <section class="hero">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-label">Documentation</div>
       <h1>What is MAGNE.AI?</h1>
       <p>MAGNE.AI is a Web3-native AI smartphone and blockchain infrastructure project combining secure mobile hardware, MAGNE L1, M Hash L2, and decentralized AI compute participation.</p>
-    </section>
 
-    <!-- Thesis -->
-    <section>
-      <div class="container">
-        <div class="content-block">
-          <h2>The Web3-Native AI Smartphone Thesis</h2>
-          <p>Most smartphones today are optimized for content consumption. MAGNE.AI is optimized for digital asset ownership — with security architecture designed in from the start, not layered on top.</p>
-          <p>The convergence of secure mobile hardware, native blockchain integration, and AI compute participation creates a new category of device: the Web3-native AI smartphone.</p>
-          <h3>Key Principles</h3>
-          <p><strong>Hardware-secured ownership:</strong> Private keys protected through dedicated secure element architecture — not software-based storage.</p>
-          <p><strong>Native Web3 access:</strong> Wallet, swap, stake, bridge — integrated directly through a secure Web3 space, not separate apps.</p>
-          <p><strong>Private AI workflows:</strong> On-device AI processing keeps your intelligence on your device, not in the cloud.</p>
-          <p><strong>Device-based incentives:</strong> Participate in future governance-approved network contribution programs through the devices you already use, subject to applicable terms.</p>
+      <div class="terminal" style="margin-top: 3rem;">
+        <div class="terminal-header">
+          <div class="terminal-dot red"></div>
+          <div class="terminal-dot yellow"></div>
+          <div class="terminal-dot green"></div>
+          <span class="terminal-title">magne-cli — learn</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="prompt">$</span> magne device info</div>
+          <div><span class="success">✓</span> MAGNE.AI Phone Gen1</div>
+          <div><span class="comment">  secure-element:</span> CC EAL6+ HyperSeed N60</div>
+          <div><span class="comment">  tee:</span> CC EAL2+ TEE</div>
+          <div><span class="comment">  network:</span> MAGNE L1 + M Hash L2</div>
+          <div>&nbsp;</div>
+          <div><span class="prompt">$</span> magne network status</div>
+          <div><span class="success">✓</span> MAGNE L1 Testnet — live</div>
+          <div><span class="success">✓</span> M Hash L2 Testnet — live</div>
+          <div><span class="comment">  chain-id:</span> 20250810 (L1) / 20250827 (L2)</div>
+          <div>&nbsp;</div>
+          <div><span class="prompt">$</span> magne DePIN status</div>
+          <div><span class="warning">⏳</span> Device participation — in planning</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Architecture -->
-    <section>
-      <div class="container">
-        <div class="section-header">
-          <h2>MAGNE.AI Architecture</h2>
-          <p>Four integrated layers from secure device to decentralized infrastructure</p>
+  <!-- Thesis -->
+  <section>
+    <div class="container">
+      <div class="content-block">
+        <h2>The Web3-Native AI Smartphone Thesis</h2>
+        <p>Most smartphones today are optimized for content consumption. MAGNE.AI is optimized for digital asset ownership — with security architecture designed in from the start, not layered on top.</p>
+        <p>The convergence of secure mobile hardware, native blockchain integration, and AI compute participation creates a new category of device: the Web3-native AI smartphone.</p>
+
+        <h3>Key Principles</h3>
+        <p><strong>Hardware-secured ownership:</strong> Private keys protected through dedicated secure element architecture — not software-based storage.</p>
+        <p><strong>Native Web3 access:</strong> Wallet, swap, stake, bridge — integrated directly through a secure Web3 space, not separate apps.</p>
+        <p><strong>Private AI workflows:</strong> On-device AI processing keeps your intelligence on your device, not in the cloud.</p>
+        <p><strong>Device-based incentives:</strong> Participate in future governance-approved network contribution programs through the devices you already use, subject to applicable terms.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <h2>Architecture Overview</h2>
+        <p>Four integrated layers from secure device to decentralized infrastructure</p>
+      </div>
+      <div class="data-grid">
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-icon">📱</div>
+            <div>
+              <h3>Secure Device Layer</h3>
+              <span class="status-label live">Live</span>
+            </div>
+          </div>
+          <p>MAGNE.AI Phone Gen1 provides hardware-secured Web3 access with private dual-space architecture and NFC-based encrypted asset backup.</p>
         </div>
-        <div class="grid grid-2">
-          <div class="card">
-            <div class="card-icon">📱</div>
-            <h3>Secure Device Layer</h3>
-            <p>MAGNE.AI Phone Gen1 provides hardware-secured Web3 access with private dual-space architecture and NFC-based encrypted asset backup.</p>
-          </div>
 
-          <div class="card">
-            <div class="card-icon">⛓️</div>
-            <h3>MAGNE L1</h3>
-            <p>EVM-compatible base network designed for native Web3 applications, asset ownership, and ecosystem coordination.</p>
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-icon">⛓️</div>
+            <div>
+              <h3>MAGNE L1</h3>
+              <span class="status-label live">Testnet Live</span>
+            </div>
           </div>
+          <p>EVM-compatible base network designed for native Web3 applications, asset ownership, and ecosystem coordination.</p>
+        </div>
 
-          <div class="card">
-            <div class="card-icon">🚀</div>
-            <h3>M Hash L2</h3>
-            <p>OP Stack-based Layer 2 for scalable smart contracts, lower-cost transactions, and developer experimentation.</p>
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-icon">🚀</div>
+            <div>
+              <h3>M Hash L2</h3>
+              <span class="status-label live">Testnet Live</span>
+            </div>
           </div>
+          <p>OP Stack-based Layer 2 for scalable smart contracts, lower-cost transactions, and developer experimentation.</p>
+        </div>
 
-          <div class="card">
-            <div class="card-icon">🌐</div>
-            <h3>DePIN + AI Compute</h3>
-            <p>Device-based infrastructure participation, AI compute contribution, and governance-approved incentive programs.</p>
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-icon">🌐</div>
+            <div>
+              <h3>DePIN + AI Compute</h3>
+              <span class="status-label plan">Planning</span>
+            </div>
           </div>
+          <p>Device-based infrastructure participation, AI compute contribution, and governance-approved incentive programs.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Why Hardware Matters -->
-    <section>
-      <div class="container">
-        <div class="content-block">
-          <h2>Why Hardware Matters</h2>
-          <p>Software wallets can be compromised through malware, phishing, or keylogging. Hardware wallets provide superior security by isolating private keys in dedicated secure hardware.</p>
-          <h3>Security Architecture</h3>
-          <p>MAGNE.AI Phone Gen1 implements a multi-layer security approach:</p>
-          <p><strong>CC EAL2+ TEE:</strong> Trusted Execution Environment provides process isolation at the operating system level.</p>
-          <p><strong>CC EAL6+ HyperSeed N60:</strong> Dedicated secure element for private key storage and transaction signing operations.</p>
-          <p><strong>CC EAL6+ HyperSeed 72B NFC Backup Card:</strong> Encrypted offline backup and physical recovery extend protection beyond the device.</p>
-          <h3>Private Dual-Space System</h3>
-          <p>The dual-space architecture separates everyday Web2 use from Web3 operations. A hidden Web3 space isolates wallet operations, signing flows, and blockchain interactions from the main mobile experience.</p>
+  <!-- Why Hardware Matters -->
+  <section>
+    <div class="container">
+      <div class="content-block">
+        <h2>Why Hardware Matters</h2>
+        <p>Software wallets can be compromised through malware, phishing, or keylogging. Hardware wallets provide superior security by isolating private keys in dedicated secure hardware.</p>
+
+        <h3>Security Architecture</h3>
+        <p>MAGNE.AI Phone Gen1 implements a multi-layer security approach:</p>
+
+        <div class="terminal" style="margin: 1.5rem 0;">
+          <div class="terminal-header">
+            <div class="terminal-dot red"></div>
+            <div class="terminal-dot yellow"></div>
+            <div class="terminal-dot green"></div>
+            <span class="terminal-title">security — hardware modules</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="prompt">[✓]</span> CC EAL2+ TEE</div>
+            <div><span class="comment">    Trusted Execution Environment — process isolation at OS level</span></div>
+            <div>&nbsp;</div>
+            <div><span class="prompt">[✓]</span> CC EAL6+ HyperSeed N60</div>
+            <div><span class="comment">    Secure element — private key storage + tx signing</span></div>
+            <div>&nbsp;</div>
+            <div><span class="prompt">[✓]</span> CC EAL6+ HyperSeed 72B NFC Backup Card</div>
+            <div><span class="comment">    Encrypted offline backup + physical recovery</span></div>
+          </div>
         </div>
+
+        <h3>Private Dual-Space System</h3>
+        <p>The dual-space architecture separates everyday Web2 use from Web3 operations. A hidden Web3 space isolates wallet operations, signing flows, and blockchain interactions from the main mobile experience.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- What Users Can Do -->
-    <section>
-      <div class="container">
-        <div class="section-header">
-          <h2>What Users Can Do</h2>
-          <p>Participate in the MAGNE.AI ecosystem</p>
-        </div>
-        <div class="grid grid-3">
-          <div class="card">
-            <div class="card-icon">🔐</div>
+  <!-- What Users Can Do -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <h2>What Users Can Do</h2>
+        <p>Participate in the MAGNE.AI ecosystem</p>
+      </div>
+      <div class="data-grid">
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-icon">🔐</div>
             <h3>Secure Wallet</h3>
-            <p>Use the hardware-secured wallet for storing digital assets with hardware-backed key protection.</p>
           </div>
+          <p>Use the hardware-secured wallet for storing digital assets with hardware-backed key protection.</p>
+        </div>
 
-          <div class="card">
-            <div class="card-icon">🌐</div>
-            <h3>Access DApps</h3>
-            <p>Connect to decentralized applications through the integrated Web3 space. In development.</p>
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-icon">🌐</div>
+            <div>
+              <h3>Access DApps</h3>
+              <span class="status-label dev">In Dev</span>
+            </div>
           </div>
+          <p>Connect to decentralized applications through the integrated Web3 space.</p>
+        </div>
 
-          <div class="card">
-            <div class="card-icon">🔗</div>
-            <h3>Join Testnet</h3>
-            <p>Participate in MAGNE L1 and M Hash L2 testnets. Testnet is live and accessible.</p>
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-icon">🔗</div>
+            <div>
+              <h3>Join Testnet</h3>
+              <span class="status-label live">Live</span>
+            </div>
           </div>
+          <p>Participate in MAGNE L1 and M Hash L2 testnets. Testnet is live and accessible.</p>
+        </div>
 
-          <div class="card">
-            <div class="card-icon">📱</div>
-            <h3>Device Participation</h3>
-            <p>Contribute to network security through device operation in future governance-approved programs, subject to eligibility rules and applicable terms.</p>
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-icon">📱</div>
+            <div>
+              <h3>Device Participation</h3>
+              <span class="status-label plan">Planning</span>
+            </div>
           </div>
+          <p>Contribute to network security through device operation in future governance-approved programs.</p>
+        </div>
 
-          <div class="card">
-            <div class="card-icon">🤖</div>
-            <h3>AI Compute</h3>
-            <p>Participate in AI compute networks by contributing device resources. In planning.</p>
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-icon">🤖</div>
+            <div>
+              <h3>AI Compute</h3>
+              <span class="status-label plan">Planning</span>
+            </div>
           </div>
+          <p>Participate in AI compute networks by contributing device resources.</p>
+        </div>
 
-          <div class="card">
-            <div class="card-icon">🗳️</div>
+        <div class="data-card">
+          <div class="data-card-header">
+            <div class="data-card-icon">🗳️</div>
             <h3>Governance</h3>
-            <p>Vote on protocol upgrades and ecosystem fund allocations through on-chain governance.</p>
           </div>
+          <p>Vote on protocol upgrades and ecosystem fund allocations through on-chain governance.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Get Started -->
-    <section>
-      <div class="container" style="text-align: center; padding: 5rem 2rem;">
+  <!-- Get Started -->
+  <section>
+    <div class="container" style="text-align: center; padding: 5rem 2rem;">
+      <div class="section-header" style="text-align: center;">
         <h2>Get Started</h2>
-        <p style="max-width: 600px; margin: 1rem auto 2rem;">Ready to learn more? Explore our developer documentation, network status, or token economics.</p>
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-          <a href="developers.html" class="btn btn-primary">Developer Docs</a>
-          <a href="network.html" class="btn btn-secondary">Network Status</a>
-          <a href="token.html" class="btn btn-secondary">Token Economics</a>
-          <a href="ecosystem.html" class="btn btn-secondary">Ecosystem</a>
-        </div>
+        <p style="max-width: 500px; margin: 0.75rem auto 0;">Ready to learn more? Explore developer documentation, network status, or token economics.</p>
       </div>
-    </section>
-  </main>
+      <div class="cta-row" style="justify-content: center;">
+        <a href="developers.html" class="btn btn-primary">Developer Docs</a>
+        <a href="network.html" class="btn btn-secondary">Network Status</a>
+        <a href="token.html" class="btn btn-secondary">Token Economics</a>
+        <a href="ecosystem.html" class="btn btn-secondary">Ecosystem</a>
+      </div>
+    </div>
+  </section>
+</main>
 
-  <footer>
-    <div class="footer-brand-logo">
-      <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
-      <p>The Web3-native AI Phone</p>
-    </div>
-    <div class="footer-socials">
-      <a href="https://x.com/Magne_Ai" target="_blank" class="footer-icon" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-      <a href="https://t.me/MagneAI" target="_blank" class="footer-icon" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
-      <a href="https://discord.gg/tX2xRAkd" target="_blank" class="footer-icon" aria-label="Discord"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg></a>
-    </div>
+<footer>
+  <div class="footer-brand">
+    <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="footer-brand-img">
+    <p>The Web3-native AI Phone</p>
+  </div>
+  <div class="footer-socials">
+    <a href="https://x.com/Magne_Ai" target="_blank" class="footer-icon" aria-label="X">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <a href="https://t.me/MagneAI" target="_blank" class="footer-icon" aria-label="Telegram">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    </a>
+    <a href="https://discord.gg/tX2xRAkd" target="_blank" class="footer-icon" aria-label="Discord">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+    </a>
+  </div>
+  <div class="footer-links">
+    <a href="https://magne.ai/privacy-policy.html">Privacy Policy</a>
+    <a href="https://magne.ai/magne-contact.html">Contact</a>
+    <a href="https://magne.ai/media-kit.html">Media Kit</a>
+  </div>
+  <p class="trademark-notice">
+    MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process
+    (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO Serial: 99311528</a>).
+  </p>
+  <p class="copyright">© 2026 MAGNE.AI. All rights reserved.</p>
+</footer>
 
-    <div class="footer-lang">
-      <a href="#" class="lang-link active">English</a>
-      <a href="coming-soon.html" class="lang-link inactive">繁體中文</a>
-    </div>
-    <div class="footer-links">
-      <a href="https://magne.ai/privacy-policy.html">Privacy Policy</a>
-      <a href="https://magne.ai/magne-contact.html">Contact</a>
-      <a href="https://magne.ai/media-kit.html">Media Kit</a>
-    </div>
-    <p class="trademark-notice">
-      MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited, currently in registration process
-      (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO Serial: 99311528</a>).
-    </p>
-    <p class="copyright">© 2026 MAGNE.AI. All rights reserved.</p>
-  </footer>
 <script>
-  // Standard mobile menu toggle
   (function() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     if (!mobileMenuBtn || !mobileMenu) return;
-
     let menuOpen = false;
-
     function setMenu(open) {
       menuOpen = open;
       mobileMenu.classList.toggle('open', menuOpen);
       mobileMenuBtn.setAttribute('aria-expanded', String(menuOpen));
       document.body.classList.toggle('menu-open', menuOpen);
     }
-
-    mobileMenuBtn.addEventListener('click', function() {
-      setMenu(!menuOpen);
-    });
-
+    mobileMenuBtn.addEventListener('click', function() { setMenu(!menuOpen); });
     mobileMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        setMenu(false);
-      });
+      link.addEventListener('click', function() { setMenu(false); });
     });
-
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && menuOpen) {
-        setMenu(false);
-        mobileMenuBtn.focus();
-      }
+      if (e.key === 'Escape' && menuOpen) { setMenu(false); mobileMenuBtn.focus(); }
     });
   })();
 </script>
-
 </body>
 </html>
-
