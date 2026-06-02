@@ -3,6 +3,18 @@
    Multilingual Unified Shell Prototype
    ========================================================================== */
 
+/* ── Global Reset ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
 /* ── CSS Variables ── */
 .portal-shell {
   --ps-bg: #070910;
