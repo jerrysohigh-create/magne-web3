@@ -539,11 +539,35 @@
    RESPONSIVE
    ========================================================================== */
 
-/* Medium: 900px - 1319px */
-@media (max-width: 1319px) {
+/* Large Desktop: 1320px+ - Full desktop layout */
+@media (min-width: 1320px) {
+  .portal-shell-nav {
+    display: flex;
+  }
+  .portal-shell-toggle {
+    display: none;
+  }
+  .portal-shell-phone,
+  .portal-shell-github {
+    display: flex;
+  }
+}
+
+/* Desktop to Medium: 1024px - 1319px */
+@media (max-width: 1319px) and (min-width: 1024px) {
   .portal-shell-header-inner {
     max-width: 100%;
     padding: 0 1.5rem;
+  }
+
+  .portal-shell-nav {
+    display: flex;
+    gap: 0.15rem;
+  }
+
+  .portal-shell-nav-link {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
   }
 
   .portal-shell-footer-grid {
@@ -563,8 +587,42 @@
   }
 }
 
+/* Medium to Tablet: 900px - 1023px - Compact mode */
+@media (max-width: 1023px) and (min-width: 900px) {
+  .portal-shell-header-inner {
+    padding: 0 1.25rem;
+    gap: 0.75rem;
+  }
+
+  .portal-shell-nav {
+    display: flex;
+    gap: 0.1rem;
+  }
+
+  .portal-shell-nav-link {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.4rem;
+  }
+
+  .portal-shell-phone {
+    display: none;
+  }
+
+  .portal-shell-footer-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .portal-shell-footer-brand {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+}
+
 /* Tablet: 768px - 899px */
-@media (max-width: 899px) {
+@media (max-width: 899px) and (min-width: 768px) {
   .portal-shell-nav,
   .portal-shell-phone,
   .portal-shell-github {

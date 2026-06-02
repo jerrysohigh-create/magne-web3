@@ -85,6 +85,19 @@
         if (langBtn) langBtn.setAttribute('aria-expanded', 'false');
       }
     }
+
+    // Close mobile menu on outside click
+    if (mobileMenu && mobileMenu.classList.contains('open')) {
+      // Don't close if clicking on the toggle button itself
+      if (e.target !== mobileToggle && !mobileToggle.contains(e.target)) {
+        // Don't close if clicking inside mobile menu
+        if (!mobileMenu.contains(e.target)) {
+          mobileMenu.classList.remove('open');
+          if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+          document.body.classList.remove('ps-menu-open');
+        }
+      }
+    }
   });
 
   // ── Body scroll lock for mobile menu ──
