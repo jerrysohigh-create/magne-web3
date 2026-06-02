@@ -643,6 +643,67 @@
       .agentpay-cta-btn-group { flex-direction: column; }
       .agentpay-cta-btn-group .ps-btn { width: 100%; justify-content: center; }
     }
+    @media (max-width: 767px) {
+      .agentpay-page,
+      .agentpay-hero,
+      .agentpay-hero-inner,
+      .agentpay-section,
+      .agentpay-grid-3,
+      .agentpay-compat-grid,
+      .agentpay-roadmap-grid,
+      .agentpay-compat-row,
+      .agentpay-receipt-grid,
+      .agentpay-status-grid,
+      .agentpay-flow-diagram,
+      .agentpay-flow-step,
+      .agentpay-terminal,
+      .agentpay-terminal-bar,
+      .agentpay-terminal-body,
+      .agentpay-receipt,
+      .agentpay-panel,
+      .agentpay-card,
+      .agentpay-warning-panel,
+      .agentpay-security-section,
+      .agentpay-security-section-inner,
+      .agentpay-cta-section {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+      .agentpay-flow-step {
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+      .agentpay-flow-diagram {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      .agentpay-flow-arrow {
+        transform: rotate(90deg);
+        text-align: center;
+      }
+      .agentpay-terminal {
+        overflow-x: auto;
+      }
+      .agentpay-terminal-body {
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .agentpay-cta-btn-group {
+        flex-direction: column;
+        width: 100%;
+      }
+      .agentpay-cta-btn-group .ps-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body class="portal-shell">

@@ -706,8 +706,37 @@ body {
 
 /* Tablet: 768px - 899px */
 @media (max-width: 899px) and (min-width: 768px) {
-  .portal-shell-nav,
-  .portal-shell-phone,
+  /* Hide desktop nav, phone, github in header actions */
+  .portal-shell-header .portal-shell-actions .portal-shell-nav,
+  .portal-shell-header .portal-shell-actions .portal-shell-phone,
+  .portal-shell-header .portal-shell-actions .portal-shell-github {
+    display: none;
+  }
+
+  .portal-shell-nav {
+    display: none;
+    width: 0;
+    min-width: 0;
+    max-width: 0;
+    flex: 0 0 0;
+    flex-basis: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .portal-shell-phone {
+    display: none;
+    width: 0;
+    min-width: 0;
+    max-width: 0;
+    flex: 0 0 0;
+    flex-basis: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
   .portal-shell-github {
     display: none;
     width: 0;
@@ -718,6 +747,15 @@ body {
     flex-shrink: 1;
     overflow: hidden;
     pointer-events: none;
+  }
+
+  /* Show phone/cta in mobile menu */
+  .portal-shell-mobile .portal-shell-phone,
+  .portal-shell-mobile .portal-shell-cta {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 
   .portal-shell-toggle {
