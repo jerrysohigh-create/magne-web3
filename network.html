@@ -668,6 +668,50 @@ nav .container {
 }
 /* === End standard mobile navigation === */
 
+
+    /* Terminal Web Style */
+    .terminal-card {
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .terminal-card .data-card-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+    }
+    .terminal-card h3 {
+      font-family: 'Space Mono', 'Courier New', monospace;
+      font-size: 1.1rem;
+    }
+    .terminal-card .status-label {
+      font-family: 'Space Mono', 'Courier New', monospace;
+      font-size: 0.75rem;
+    }
+    .terminal-disclaimer {
+      border: 1px solid rgba(210, 153, 34, 0.3);
+      background: rgba(210, 153, 34, 0.05);
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+    }
+    .terminal-disclaimer p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .mono {
+      font-family: 'Space Mono', 'Courier New', monospace;
+      font-size: 0.85rem;
+    }
+    .section-header h2 {
+      font-family: 'Space Mono', 'Courier New', monospace;
+    }
+    .btn.btn-primary, .btn.btn-secondary {
+      font-family: 'Space Mono', 'Courier New', monospace;
+      font-size: 0.8rem;
+    }
+
   </style>
 </head>
 <body>
@@ -686,7 +730,7 @@ nav .container {
     <ul class="nav-links">
       <li><a href="./">HOME</a></li>
       <li><a href="./agent-pay.html">AGENT PAY</a></li>
-      <li><a href="./network.html" class="active">NETWORK</a></li>
+      <li><a href="./network.html">NETWORK</a></li>
       <li><a href="./developers.html">DEVELOPERS</a></li>
       <li><a href="./token.html">TOKEN</a></li>
       <li><a href="./ecosystem.html">ECOSYSTEM</a></li>
@@ -710,7 +754,7 @@ nav .container {
   <ul class="mobile-menu-links">
     <li><a href="./">HOME</a></li>
     <li><a href="./agent-pay.html">AGENT PAY</a></li>
-    <li><a href="./network.html" class="active">NETWORK</a></li>
+    <li><a href="./network.html">NETWORK</a></li>
     <li><a href="./developers.html">DEVELOPERS</a></li>
     <li><a href="./token.html">TOKEN</a></li>
     <li><a href="./ecosystem.html">ECOSYSTEM</a></li>
@@ -731,27 +775,30 @@ nav .container {
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <div class="hero-label">Network</div>
+      <div class="hero-label">// Network</div>
       <h1>Network Status</h1>
-      <p>Current status of MAGNE L1 and M Hash L2 networks, including testnet information and developer resources.</p>
+      <p>Live monitoring of MAGNE L1 and M Hash L2 testnets. Node operators, validators, and developers — all in one place.</p>
 
       <div class="terminal" style="margin-top: 3rem;">
         <div class="terminal-header">
           <div class="terminal-dot red"></div>
           <div class="terminal-dot yellow"></div>
           <div class="terminal-dot green"></div>
-          <span class="terminal-title">magne-cli — network</span>
+          <span class="terminal-title">magne-cli — network monitor</span>
         </div>
         <div class="terminal-body">
-          <div><span class="prompt">$</span> magne network list</div>
-          <div><span class="success">✓</span> MAGNE L1 — testnet live</div>
-          <div><span class="comment">  chain-id:</span> 20250810</div>
-          <div><span class="success">✓</span> M Hash L2 — testnet live</div>
-          <div><span class="comment">  chain-id:</span> 20250827</div>
+          <div><span class="prompt">$</span> <span class="accent">magne</span> network list</div>
+          <div><span class="success">✓</span> <span class="accent">MAGNE L1</span> — testnet <span class="success">LIVE</span></div>
+          <div><span class="comment">  chain-id:</span> <span class="value">20250810</span></div>
+          <div><span class="comment">  rpc:</span> <span class="value">rpc.testnet.magicalhash.com</span></div>
+          <div><span class="success">✓</span> <span class="accent">M Hash L2</span> — testnet <span class="success">LIVE</span></div>
+          <div><span class="comment">  chain-id:</span> <span class="value">20250827</span></div>
+          <div><span class="comment">  rpc:</span> <span class="value">l2-rpc.testnet.magicalhash.com</span></div>
           <div>&nbsp;</div>
-          <div><span class="prompt">$</span> magne mainnet status</div>
-          <div><span class="warning">⏳</span> Mainnet — in planning</div>
-          <div><span class="comment">  token:</span> MHA</div>
+          <div><span class="prompt">$</span> <span class="accent">magne</span> mainnet status</div>
+          <div><span class="warning">⏳</span> <span class="accent">Mainnet</span> — <span class="warning">IN PLANNING</span></div>
+          <div><span class="comment">  token:</span> <span class="value">MHA</span></div>
+          <div><span class="comment">  launch:</span> <span class="warning">TBD</span></div>
         </div>
       </div>
     </div>
@@ -761,76 +808,76 @@ nav .container {
   <section>
     <div class="container">
       <div class="section-header">
-        <h2>Live Testnets</h2>
-        <p>Currently available testnets and their configuration parameters</p>
+        <h2>&gt; Live Testnets</h2>
+        <p>Active testnet deployments ready for developer integration</p>
       </div>
 
       <div class="data-grid">
         <!-- MAGNE L1 -->
-        <div class="data-card">
+        <div class="data-card terminal-card">
           <div class="data-card-header">
             <div class="data-card-icon">⛓️</div>
             <div>
-              <h3>MAGNE L1 Testnet</h3>
-              <span class="status-label live">Testnet Live</span>
+              <h3>MAGNE L1</h3>
+              <span class="status-label live">// testnet live</span>
             </div>
           </div>
-          <p>EVM-compatible foundation network designed for native Web3 applications, asset ownership, and ecosystem coordination.</p>
+          <p>EVM-compatible L1 blockchain for native Web3 applications, asset ownership, and ecosystem coordination.</p>
           <table class="info-table">
             <tr>
-              <td>Chain ID</td>
+              <td><span class="comment">chain-id</span></td>
               <td class="value">20250810</td>
             </tr>
             <tr>
-              <td>Token Symbol</td>
+              <td><span class="comment">token</span></td>
               <td class="value">MHA</td>
             </tr>
             <tr>
-              <td>RPC</td>
-              <td class="value">https://rpc.testnet.magicalhash.com</td>
+              <td><span class="comment">rpc</span></td>
+              <td class="value mono">rpc.testnet.magicalhash.com</td>
             </tr>
             <tr>
-              <td>Explorer</td>
-              <td class="value">https://explorer.testnet.magicalhash.com</td>
+              <td><span class="comment">explorer</span></td>
+              <td class="value mono">explorer.testnet.magicalhash.com</td>
             </tr>
           </table>
           <div class="cta-row">
-            <a href="https://explorer.testnet.magicalhash.com" target="_blank" class="btn btn-primary">Block Explorer</a>
-            <a href="../developers.html" class="btn btn-secondary">View Setup</a>
+            <a href="https://explorer.testnet.magicalhash.com" target="_blank" class="btn btn-primary">$ explorer</a>
+            <a href="../developers.html" class="btn btn-secondary">$ docs</a>
           </div>
         </div>
 
         <!-- M Hash L2 -->
-        <div class="data-card">
+        <div class="data-card terminal-card">
           <div class="data-card-header">
             <div class="data-card-icon">🚀</div>
             <div>
-              <h3>M Hash L2 Testnet</h3>
-              <span class="status-label live">Testnet Live</span>
+              <h3>M Hash L2</h3>
+              <span class="status-label live">// testnet live</span>
             </div>
           </div>
-          <p>OP Stack-based Layer 2 supporting scalable smart contracts, lower-cost transactions, and developer experimentation.</p>
+          <p>OP Stack-based Layer 2 with validity proofs. Scalable smart contracts, lower-cost transactions, EVM equivalent.</p>
           <table class="info-table">
             <tr>
-              <td>Chain ID</td>
+              <td><span class="comment">chain-id</span></td>
               <td class="value">20250827</td>
             </tr>
             <tr>
-              <td>Token Symbol</td>
+              <td><span class="comment">token</span></td>
               <td class="value">MHA</td>
             </tr>
             <tr>
-              <td>RPC</td>
-              <td class="value">https://l2-rpc.testnet.magicalhash.com</td>
+              <td><span class="comment">rpc</span></td>
+              <td class="value mono">l2-rpc.testnet.magicalhash.com</td>
             </tr>
             <tr>
-              <td>Explorer</td>
-              <td class="value">https://l2-explorer.testnet.magicalhash.com</td>
+              <td><span class="comment">explorer</span></td>
+              <td class="value mono">l2-explorer.testnet.magicalhash.com</td>
             </tr>
           </table>
           <div class="cta-row">
-            <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="btn btn-primary">Block Explorer</a>
-            <a href="../developers.html" class="btn btn-secondary">View Setup</a>
+            <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="btn btn-primary">$ explorer</a>
+            <a href="../developers.html" class="btn btn-secondary">$ docs</a>
           </div>
         </div>
       </div>
@@ -841,36 +888,36 @@ nav .container {
   <section>
     <div class="container">
       <div class="section-header">
-        <h2>Mainnet Status</h2>
-        <p>Current planning status for MAGNE mainnet</p>
+        <h2>&gt; Mainnet</h2>
+        <p>Production network launch timeline and parameters</p>
       </div>
 
-      <div class="data-card" style="max-width: 600px;">
+      <div class="data-card terminal-card" style="max-width: 600px;">
         <div class="data-card-header">
           <div class="data-card-icon">🏗️</div>
           <div>
             <h3>Mainnet</h3>
-            <span class="status-label plan">In Planning</span>
+            <span class="status-label plan">// in planning</span>
           </div>
         </div>
-        <p>Mainnet is currently in the planning and development stage. Specific timelines and launch details will be announced through official channels.</p>
+        <p>Mainnet launch is subject to technical development completion, security audits, regulatory review, and governance approval.</p>
         <table class="info-table">
           <tr>
-            <td>Status</td>
-            <td class="value">In Planning</td>
+            <td><span class="comment">status</span></td>
+            <td class="value warning">PLANNING</td>
           </tr>
           <tr>
-            <td>RPC</td>
-            <td>TBD</td>
+            <td><span class="comment">rpc</span></td>
+            <td class="value">TBD</td>
           </tr>
           <tr>
-            <td>Chain ID</td>
-            <td>TBD</td>
+            <td><span class="comment">chain-id</span></td>
+            <td class="value">TBD</td>
           </tr>
         </table>
 
-        <div class="disclaimer">
-          <p><strong>Disclaimer:</strong> Testnet parameters are subject to change. Do not use testnet endpoints for production purposes. Mainnet launch is subject to technical development, security audits, regulatory factors, and governance approval.</p>
+        <div class="disclaimer terminal-disclaimer">
+          <p><span class="warning">⚠</span> <strong>DISCLAIMER:</strong> Testnet parameters are subject to change. Do not use testnet endpoints for production. Mainnet launch requires technical completion, security audits, regulatory clarity, and governance approval.</p>
         </div>
       </div>
     </div>
@@ -880,44 +927,44 @@ nav .container {
   <section>
     <div class="container">
       <div class="section-header">
-        <h2>Developer Resources</h2>
-        <p>Tools and services for building on the MAGNE network</p>
+        <h2>&gt; Developer Resources</h2>
+        <p>Tools and services for building on MAGNE</p>
       </div>
 
       <div class="tools-grid">
-        <div class="tool-card">
+        <div class="tool-card terminal-card">
           <div class="tool-icon">🔍</div>
           <h4>L1 Explorer</h4>
-          <p>MAGNE L1 block explorer</p>
+          <p>Block explorer for MAGNE L1 testnet</p>
           <div class="cta-row" style="justify-content: center; margin-top: 1rem;">
-            <a href="https://explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary">Open</a>
+            <a href="https://explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary">$ open</a>
           </div>
         </div>
 
-        <div class="tool-card">
+        <div class="tool-card terminal-card">
           <div class="tool-icon">🔍</div>
           <h4>L2 Explorer</h4>
-          <p>M Hash L2 block explorer</p>
+          <p>Block explorer for M Hash L2 testnet</p>
           <div class="cta-row" style="justify-content: center; margin-top: 1rem;">
-            <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary">Open</a>
+            <a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="btn btn-secondary">$ open</a>
           </div>
         </div>
 
-        <div class="tool-card">
+        <div class="tool-card terminal-card">
           <div class="tool-icon">💧</div>
           <h4>Faucet</h4>
           <p>Get testnet MHA tokens</p>
           <div class="cta-row" style="justify-content: center; margin-top: 1rem;">
-            <a href="#" class="btn btn-secondary">Coming Soon</a>
+            <a href="#" class="btn btn-secondary disabled">$ coming soon</a>
           </div>
         </div>
 
-        <div class="tool-card">
+        <div class="tool-card terminal-card">
           <div class="tool-icon">📂</div>
           <h4>Documentation</h4>
-          <p>Developer guides and documentation</p>
+          <p>Guides, SDKs, and API references</p>
           <div class="cta-row" style="justify-content: center; margin-top: 1rem;">
-            <a href="../developers.html" class="btn btn-secondary">View Docs</a>
+            <a href="../developers.html" class="btn btn-secondary">$ docs</a>
           </div>
         </div>
       </div>
