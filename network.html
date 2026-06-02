@@ -83,9 +83,9 @@
       white-space: nowrap;
     }
     .nav-links a:hover { color: var(--text-primary); background: var(--surface); }
-    .nav-links a.active { color: var(--accent); }
+    .nav-links a.active { color: var(--accent-cyan); }
     .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-    .lang-toggle { display: flex; gap: 0.25rem; align-items: center; }
+    .lang-toggle { display: flex; gap: 0.25rem; }
     .lang-toggle a {
       color: var(--text-muted);
       text-decoration: none;
@@ -96,7 +96,7 @@
       transition: all 0.2s;
     }
     .lang-toggle a:hover { color: var(--text-secondary); }
-    .lang-toggle a.active { color: var(--accent); background: rgba(57,208,214,0.08); }
+    .lang-toggle a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.08); }
     .nav-link {
       color: var(--text-secondary);
       text-decoration: none;
@@ -106,10 +106,8 @@
     }
     .nav-link:hover { color: var(--accent); }
     .nav-cta {
-      background: var(--accent);
-      color: #000 !important;
-      padding: 0.4rem 1rem;
-      border-radius: 4px;
+      background: var(--accent-cyan); color: #000;
+      padding: 0.4rem 1rem; border-radius: 5px;
       font-size: 0.8rem;
       font-weight: 700;
       text-decoration: none;
@@ -194,7 +192,7 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--accent);
+      background: var(--accent-cyan);
       box-shadow: 0 0 8px var(--accent-glow);
     }
     .hero h1 {
@@ -379,7 +377,7 @@
       font-family: 'Space Grotesk', system-ui, sans-serif;
     }
     .btn-primary {
-      background: var(--accent);
+      background: var(--accent-cyan);
       color: #000;
     }
     .btn-primary:hover { background: #4dd9dd; }
