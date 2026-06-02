@@ -1,0 +1,418 @@
+/* ==========================================================================
+   MAGNE.AI Portal Components - Terminal Web Style
+   Reusable UI Components for Portal Shell
+   ========================================================================== */
+
+/* ==========================================================================
+   LAYOUT
+   ========================================================================== */
+
+.ps-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ps-section {
+  padding: 6rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.ps-divider {
+  height: 1px;
+  background: var(--ps-border);
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.ps-hero {
+  padding: 10rem 0 6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.ps-hero-content {
+  max-width: 720px;
+}
+
+.ps-hero-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--ps-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.ps-hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  color: var(--ps-text);
+}
+
+.ps-hero-title .ps-accent {
+  color: var(--ps-accent);
+}
+
+.ps-hero-title .ps-dim {
+  color: var(--ps-text-secondary);
+}
+
+.ps-hero-sub {
+  font-size: 1.1rem;
+  color: var(--ps-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.ps-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+.ps-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+.ps-btn-primary {
+  background: var(--ps-accent);
+  color: #000;
+}
+
+.ps-btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.ps-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--ps-border);
+  color: var(--ps-text-secondary);
+}
+
+.ps-btn-secondary:hover {
+  border-color: var(--ps-accent);
+  color: var(--ps-accent);
+}
+
+.ps-btn-ghost {
+  background: transparent;
+  color: var(--ps-text-secondary);
+}
+
+.ps-btn-ghost:hover {
+  color: var(--ps-accent);
+}
+
+/* ==========================================================================
+   TERMINAL CARD
+   ========================================================================== */
+
+.ps-terminal {
+  border: 1px solid var(--ps-border);
+  background: var(--ps-surface);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.ps-terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: var(--ps-surface-2);
+  border-bottom: 1px solid var(--ps-border);
+}
+
+.ps-terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ps-terminal-dot.red { background: #ff5f56; }
+.ps-terminal-dot.yellow { background: #ffbd2e; }
+.ps-terminal-dot.green { background: #27c93f; }
+
+.ps-terminal-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ps-text-muted);
+  margin-left: 0.5rem;
+}
+
+.ps-terminal-badge {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ps-accent);
+  background: var(--ps-accent-dim);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+}
+
+.ps-terminal-body {
+  padding: 1.25rem 1.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.85;
+  color: var(--ps-green);
+  overflow-x: auto;
+}
+
+.ps-terminal-line {
+  display: block;
+  margin-bottom: 0.2rem;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.ps-terminal-line:empty {
+  margin-bottom: 0.6rem;
+}
+
+.ps-terminal .ps-cmd { color: var(--ps-text); }
+.ps-terminal .ps-output { color: var(--ps-green); }
+.ps-terminal .ps-info { color: var(--ps-text-secondary); }
+.ps-terminal .ps-accent-text { color: var(--ps-accent); }
+.ps-terminal .ps-error { color: var(--ps-red); }
+.ps-terminal .ps-prompt { color: var(--ps-accent); margin-right: 0.5rem; }
+
+/* ==========================================================================
+   CARDS
+   ========================================================================== */
+
+.ps-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.ps-card {
+  border: 1px solid var(--ps-border);
+  background: var(--ps-surface);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.ps-card:hover {
+  border-color: var(--ps-border-bright);
+  transform: translateY(-2px);
+}
+
+.ps-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: var(--ps-accent-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.ps-card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ps-text);
+  margin-bottom: 0.5rem;
+}
+
+.ps-card-sub {
+  font-size: 0.8rem;
+  color: var(--ps-accent);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 0.75rem;
+}
+
+.ps-card-desc {
+  font-size: 0.85rem;
+  color: var(--ps-text-secondary);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   SECTION HEADERS
+   ========================================================================== */
+
+.ps-section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--ps-accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.ps-section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--ps-text);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.ps-section-sub {
+  font-size: 1rem;
+  color: var(--ps-text-secondary);
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+.ps-section-header {
+  margin-bottom: 3rem;
+}
+
+/* ==========================================================================
+   BADGES & TAGS
+   ========================================================================== */
+
+.ps-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  background: var(--ps-accent-dim);
+  color: var(--ps-accent);
+}
+
+.ps-badge-green {
+  background: rgba(63, 185, 80, 0.15);
+  color: var(--ps-green);
+}
+
+.ps-badge-yellow {
+  background: rgba(210, 153, 34, 0.15);
+  color: var(--ps-yellow);
+}
+
+.ps-badge-red {
+  background: rgba(248, 81, 73, 0.15);
+  color: var(--ps-red);
+}
+
+.ps-badge-purple {
+  background: rgba(163, 113, 247, 0.15);
+  color: var(--ps-purple);
+}
+
+/* ==========================================================================
+   GRID LISTS
+   ========================================================================== */
+
+.ps-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.ps-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.ps-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .ps-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .ps-grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .ps-grid-4,
+  .ps-grid-3,
+  .ps-grid-2 { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   FEATURE LIST
+   ========================================================================== */
+
+.ps-feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ps-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--ps-text-secondary);
+}
+
+.ps-feature-check {
+  color: var(--ps-accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .ps-container {
+    padding: 0 1rem;
+  }
+
+  .ps-section {
+    padding: 4rem 0;
+  }
+
+  .ps-hero {
+    padding: 8rem 0 4rem;
+  }
+
+  .ps-hero-actions {
+    flex-direction: column;
+  }
+
+  .ps-hero-actions .ps-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

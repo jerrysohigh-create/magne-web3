@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE.AI — Web3 Portal (Shell Test)</title>
+  <meta name="description" content="MAGNE.AI combines secure mobile authorization, M Hash L2 testnet settlement, and AI task receipts for the emerging agent payment workflow.">
+  <link rel="icon" type="image/png" href="assets/logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/portal-shell.css">
+  <link rel="stylesheet" href="assets/css/portal-components.css">
+  <!-- hreflang preloads -->
+  <link rel="alternate" hreflang="en" href="./shell-test.html">
+  <link rel="alternate" hreflang="zh-Hant" href="./tc/shell-test.html">
+  <link rel="alternate" hreflang="x-default" href="./shell-test.html">
+</head>
+<body class="portal-shell">
+  <!-- Background Effects -->
+  <div class="portal-shell-grid"></div>
+  <div class="portal-shell-glow"></div>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="portal-shell-header">
+    <div class="portal-shell-header-inner">
+      <!-- Brand -->
+      <a href="./" class="portal-shell-brand">
+        <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-logo">
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav aria-label="Main navigation">
+        <ul class="portal-shell-nav">
+          <li class="portal-shell-nav-item">
+            <a href="./index.html" class="portal-shell-nav-link">HOME</a>
+          </li>
+          <li class="portal-shell-nav-item">
+            <a href="./agent-pay.html" class="portal-shell-nav-link">AGENT PAY</a>
+          </li>
+          <li class="portal-shell-nav-item">
+            <a href="./network.html" class="portal-shell-nav-link">NETWORK</a>
+          </li>
+          <li class="portal-shell-nav-item">
+            <a href="./developers.html" class="portal-shell-nav-link">DEVELOPERS</a>
+          </li>
+          <li class="portal-shell-nav-item">
+            <a href="./token.html" class="portal-shell-nav-link">TOKEN</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Actions -->
+      <div class="portal-shell-actions">
+        <!-- Language Dropdown -->
+        <div class="portal-shell-language" id="psLangDropdown">
+          <button class="portal-shell-language-btn" id="psLangBtn" aria-expanded="false" aria-haspopup="true">
+            EN <span class="ps-chevron">▼</span>
+          </button>
+          <ul class="portal-shell-language-menu" role="menu">
+            <li class="portal-shell-language-item">
+              <a href="./shell-test.html" class="portal-shell-language-option active" data-lang="en" data-url="./shell-test.html">English</a>
+            </li>
+            <li class="portal-shell-language-item">
+              <a href="./tc/shell-test.html" class="portal-shell-language-option" data-lang="zh-Hant" data-url="./tc/shell-test.html">繁中</a>
+            </li>
+            <li class="portal-shell-language-item">
+              <span class="portal-shell-language-option disabled" data-lang="ja">日本語 <span class="ps-soon">Coming soon</span></span>
+            </li>
+            <li class="portal-shell-language-item">
+              <span class="portal-shell-language-option disabled" data-lang="ko">한국어 <span class="ps-soon">Coming soon</span></span>
+            </li>
+            <li class="portal-shell-language-item">
+              <span class="portal-shell-language-option disabled" data-lang="fr">Français <span class="ps-soon">Coming soon</span></span>
+            </li>
+            <li class="portal-shell-language-item">
+              <span class="portal-shell-language-option disabled" data-lang="es">Español <span class="ps-soon">Coming soon</span></span>
+            </li>
+            <li class="portal-shell-language-item">
+              <span class="portal-shell-language-option disabled" data-lang="vi">Tiếng Việt <span class="ps-soon">Coming soon</span></span>
+            </li>
+            <li class="portal-shell-language-item">
+              <span class="portal-shell-language-option disabled" data-lang="id">Bahasa Indonesia <span class="ps-soon">Coming soon</span></span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Phone Portal -->
+        <a href="https://magne.ai/index.html" target="_blank" class="portal-shell-phone">Phone Portal ↗</a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/magneai" target="_blank" class="portal-shell-github" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+
+        <!-- CTA -->
+        <a href="https://payment.magne.ai/buy" target="_blank" class="portal-shell-cta">Preorder</a>
+
+        <!-- Mobile Toggle -->
+        <button class="portal-shell-toggle" id="psMobileToggle" aria-expanded="false" aria-label="Toggle menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ MOBILE MENU ═══ -->
+  <nav class="portal-shell-mobile" id="psMobileMenu" aria-label="Mobile navigation">
+    <ul class="portal-shell-mobile-links">
+      <li><a href="./index.html" class="portal-shell-mobile-link">HOME</a></li>
+      <li><a href="./agent-pay.html" class="portal-shell-mobile-link">AGENT PAY</a></li>
+      <li><a href="./network.html" class="portal-shell-mobile-link">NETWORK</a></li>
+      <li><a href="./developers.html" class="portal-shell-mobile-link">DEVELOPERS</a></li>
+      <li><a href="./token.html" class="portal-shell-mobile-link">TOKEN</a></li>
+      <li><a href="./ecosystem.html" class="portal-shell-mobile-link">ECOSYSTEM</a></li>
+      <li><a href="./transparency.html" class="portal-shell-mobile-link">TRANSPARENCY</a></li>
+      <li><a href="./faq.html" class="portal-shell-mobile-link">FAQ</a></li>
+    </ul>
+    <div class="portal-shell-mobile-divider"></div>
+    <div class="portal-shell-mobile-footer">
+      <div class="portal-shell-mobile-lang">
+        <a href="./shell-test.html" class="portal-shell-mobile-lang-btn active">EN</a>
+        <a href="./tc/shell-test.html" class="portal-shell-mobile-lang-btn">繁中</a>
+        <span class="portal-shell-mobile-lang-btn disabled">日本語</span>
+        <span class="portal-shell-mobile-lang-btn disabled">한국어</span>
+      </div>
+      <a href="https://payment.magne.ai/buy" target="_blank" class="portal-shell-cta" style="width:100%;text-align:center;">Preorder</a>
+    </div>
+  </nav>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main style="padding-top: 60px; position: relative; z-index: 1;">
+
+    <!-- HERO -->
+    <section class="ps-hero">
+      <div class="ps-container">
+        <div class="ps-hero-content">
+          <div class="ps-hero-label">// MAGNE.AI PORTAL SHELL</div>
+          <h1 class="ps-hero-title">
+            <span class="ps-dim">Agents can think.</span><br>
+            <span class="ps-accent">They still need secure authorization.</span>
+          </h1>
+          <p class="ps-hero-sub">
+            MAGNE.AI combines secure mobile authorization, M Hash L2 testnet settlement,
+            and AI task receipts for the emerging agent payment workflow.
+          </p>
+          <div class="ps-hero-actions">
+            <a href="./agent-pay.html" class="ps-btn ps-btn-primary">→ Agent Pay Demo</a>
+            <a href="./network.html" class="ps-btn ps-btn-secondary">Explore Network</a>
+            <a href="./transparency.html" class="ps-btn ps-btn-secondary">Transparency</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ps-divider"></div>
+
+    <!-- TERMINAL CARD -->
+    <section class="ps-section">
+      <div class="ps-container">
+        <div class="ps-terminal">
+          <div class="ps-terminal-header">
+            <div class="ps-terminal-dot red"></div>
+            <div class="ps-terminal-dot yellow"></div>
+            <div class="ps-terminal-dot green"></div>
+            <span class="ps-terminal-title">magne-cli — developer</span>
+            <span class="ps-terminal-badge">TESTNET</span>
+          </div>
+          <div class="ps-terminal-body">
+            <span class="ps-terminal-line"><span class="ps-prompt">$</span> magne dev init</span>
+            <span class="ps-terminal-line"><span class="ps-accent-text">✓</span> MAGNE Dev Environment</span>
+            <span class="ps-terminal-line"><span class="ps-info">  network:</span> MAGNE L1 + M Hash L2</span>
+            <span class="ps-terminal-line"><span class="ps-info">  chain-id:</span> 20250810 (L1) / 20250827 (L2)</span>
+            <span class="ps-terminal-line"><span class="ps-info">  tools:</span> Hardhat, Foundry, ethers.js</span>
+            <span class="ps-terminal-line">&nbsp;</span>
+            <span class="ps-terminal-line"><span class="ps-prompt">$</span> magne dev start</span>
+            <span class="ps-terminal-line"><span class="ps-accent-text">✓</span> Connected to testnet</span>
+            <span class="ps-terminal-line"><span class="ps-info">  rpc:</span> https://rpc.testnet.magicalhash.com</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ps-divider"></div>
+
+    <!-- CARDS SECTION -->
+    <section class="ps-section">
+      <div class="ps-container">
+        <div class="ps-section-header">
+          <div class="ps-section-label">// FEATURES</div>
+          <h2 class="ps-section-title">Core Components</h2>
+          <p class="ps-section-sub">Essential building blocks for the MAGNE.AI ecosystem.</p>
+        </div>
+
+        <div class="ps-card-grid">
+          <div class="ps-card">
+            <div class="ps-card-icon">🔐</div>
+            <h3 class="ps-card-title">Secure Authorization</h3>
+            <div class="ps-card-sub">AUTH LAYER</div>
+            <p class="ps-card-desc">
+              Hardware-level key storage within secure chip. Signing keys remain within secure hardware.
+              Authorization is cryptographically enforced.
+            </p>
+          </div>
+
+          <div class="ps-card">
+            <div class="ps-card-icon">⚡</div>
+            <h3 class="ps-card-title">Agent Pay</h3>
+            <div class="ps-card-sub">PAYMENT RAILS</div>
+            <p class="ps-card-desc">
+              Programmable payment轨道 for AI agents. HTTP 402 compatible flow with browser wallet
+              authorization and facilitator verification.
+            </p>
+          </div>
+
+          <div class="ps-card">
+            <div class="ps-card-icon">🔗</div>
+            <h3 class="ps-card-title">M Hash L2</h3>
+            <div class="ps-card-sub">SETTLEMENT NETWORK</div>
+            <p class="ps-card-desc">
+              Magical Capital M Hash blockchain L2 network providing testnet environment for contract
+              deployments and AI task receipt recording.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="portal-shell-footer">
+    <div class="portal-shell-footer-inner">
+      <div class="portal-shell-footer-grid">
+        <!-- Brand Column -->
+        <div class="portal-shell-footer-brand">
+          <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-footer-logo">
+          <p class="portal-shell-footer-tagline">
+            Secure authorization and verifiable payment rails for AI agents.
+            Building the infrastructure for agent-native payments.
+          </p>
+          <div class="portal-shell-social">
+            <a href="https://github.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="Twitter">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Products</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./agent-pay.html" class="portal-shell-footer-link">Agent Pay</a></li>
+            <li><a href="./network.html" class="portal-shell-footer-link">Network</a></li>
+            <li><a href="https://magne.ai/index.html" target="_blank" class="portal-shell-footer-link">Phone Portal ↗</a></li>
+          </ul>
+        </div>
+
+        <!-- Developers -->
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Developers</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./developers.html" class="portal-shell-footer-link">Documentation</a></li>
+            <li><a href="./developers-connect.html" class="portal-shell-footer-link">RPC & Chain ID</a></li>
+            <li><a href="./developers-contract.html" class="portal-shell-footer-link">Contracts</a></li>
+            <li><a href="./developers-app.html" class="portal-shell-footer-link">DApp Dev</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Resources</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./ecosystem.html" class="portal-shell-footer-link">Ecosystem</a></li>
+            <li><a href="./learn.html" class="portal-shell-footer-link">Learn</a></li>
+            <li><a href="./faq.html" class="portal-shell-footer-link">FAQ</a></li>
+            <li><a href="./version-history.html" class="portal-shell-footer-link">Version History</a></li>
+          </ul>
+        </div>
+
+        <!-- Network -->
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Network</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./transparency.html" class="portal-shell-footer-link">Transparency</a></li>
+            <li><a href="./token.html" class="portal-shell-footer-link">Token</a></li>
+            <li><a href="./tokenomics-detail.html" class="portal-shell-footer-link">Tokenomics</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="portal-shell-footer-bottom">
+        <div class="portal-shell-legal">
+          © 2025 MAGNE.AI. All rights reserved. For informational purposes only.
+          Not financial advice.
+        </div>
+        <div class="portal-shell-legal-links">
+          <a href="./privacy.html" class="portal-shell-legal-link">Privacy</a>
+          <a href="./terms.html" class="portal-shell-legal-link">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/portal-shell.js"></script>
+</body>
+</html>

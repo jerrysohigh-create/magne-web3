@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAGNE.AI — Web3 入口 (Shell 測試)</title>
+  <meta name="description" content="MAGNE.AI 結合安全行動端授權、M Hash L2 測試網結算與 AI 任務收據，服務於正在形成的代理支付工作流程。">
+  <link rel="icon" type="image/png" href="../assets/logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/portal-shell.css">
+  <link rel="stylesheet" href="../assets/css/portal-components.css">
+  <!-- hreflang preloads -->
+  <link rel="alternate" hreflang="en" href="../shell-test.html">
+  <link rel="alternate" hreflang="zh-Hant" href="./shell-test.html">
+  <link rel="alternate" hreflang="x-default" href="../shell-test.html">
+</head>
+<body class="portal-shell">
+  <!-- Background Effects -->
+  <div class="portal-shell-grid"></div>
+  <div class="portal-shell-glow"></div>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="portal-shell-header">
+    <div class="portal-shell-header-inner">
+      <!-- Brand -->
+      <a href="./index.html" class="portal-shell-brand">
+        <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-logo">
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav aria-label="主導航">
+        <ul class="portal-shell-nav">
+          <li class="portal-shell-nav-item">
+            <a href="./index.html" class="portal-shell-nav-link">首頁</a>
+          </li>
+          <li class="portal-shell-nav-item">
+            <a href="./agent-pay.html" class="portal-shell-nav-link">AGENT PAY</a>
+          </li>
+          <li class="portal-shell-nav-item">
+            <a href="./network.html" class="portal-shell-nav-link">網絡</a>
+          </li>
+          <li class="portal-shell-nav-item">
+            <a href="./developers.html" class="portal-shell-nav-link">開發者</a>
+          </li>
+          <li class="portal-shell-nav-item">
+            <a href="./token.html" class="portal-shell-nav-link">代幣</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Actions -->
+      <div class="portal-shell-actions">
+        <!-- Language Dropdown -->
+        <div class="portal-shell-language" id="psLangDropdown">
+          <button class="portal-shell-language-btn" id="psLangBtn" aria-expanded="false" aria-haspopup="true">
+            繁中 <span class="ps-chevron">▼</span>
+          </button>
+          <ul class="portal-shell-language-menu" role="menu">
+            <li class="portal-shell-language-item">
+              <a href="../shell-test.html" class="portal-shell-language-option" data-lang="en" data-url="../shell-test.html">English</a>
+            </li>
+            <li class="portal-shell-language-item">
+              <a href="./shell-test.html" class="portal-shell-language-option active" data-lang="zh-Hant" data-url="./shell-test.html">繁中</a>
+            </li>
+            <li class="portal-shell-language-item">
+              <span class="portal-shell-language-option disabled" data-lang="ja">日本語 <span class="ps-soon">即將推出</span></span>
+            </li>
+            <li class="portal-shell-language-item">
+              <span class="portal-shell-language-option disabled" data-lang="ko">한국어 <span class="ps-soon">即將推出</span></span>
+            </li>
+            <li class="portal-shell-language-item">
+              <span class="portal-shell-language-option disabled" data-lang="fr">Français <span class="ps-soon">即將推出</span></span>
+            </li>
+            <li class="portal-shell-language-item">
+              <span class="portal-shell-language-option disabled" data-lang="es">Español <span class="ps-soon">即將推出</span></span>
+            </li>
+            <li class="portal-shell-language-item">
+              <span class="portal-shell-language-option disabled" data-lang="vi">Tiếng Việt <span class="ps-soon">即將推出</span></span>
+            </li>
+            <li class="portal-shell-language-item">
+              <span class="portal-shell-language-option disabled" data-lang="id">Bahasa Indonesia <span class="ps-soon">即將推出</span></span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Phone Portal -->
+        <a href="https://magne.ai/index.html" target="_blank" class="portal-shell-phone">Phone Portal ↗</a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/magneai" target="_blank" class="portal-shell-github" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+
+        <!-- CTA -->
+        <a href="https://payment.magne.ai/buy" target="_blank" class="portal-shell-cta">預購</a>
+
+        <!-- Mobile Toggle -->
+        <button class="portal-shell-toggle" id="psMobileToggle" aria-expanded="false" aria-label="切換選單">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ MOBILE MENU ═══ -->
+  <nav class="portal-shell-mobile" id="psMobileMenu" aria-label=" mobile navigation">
+    <ul class="portal-shell-mobile-links">
+      <li><a href="./index.html" class="portal-shell-mobile-link">首頁</a></li>
+      <li><a href="./agent-pay.html" class="portal-shell-mobile-link">AGENT PAY</a></li>
+      <li><a href="./network.html" class="portal-shell-mobile-link">網絡</a></li>
+      <li><a href="./developers.html" class="portal-shell-mobile-link">開發者</a></li>
+      <li><a href="./token.html" class="portal-shell-mobile-link">代幣</a></li>
+      <li><a href="./ecosystem.html" class="portal-shell-mobile-link">生態</a></li>
+      <li><a href="./transparency.html" class="portal-shell-mobile-link">透明中心</a></li>
+      <li><a href="./faq.html" class="portal-shell-mobile-link">常見問題</a></li>
+    </ul>
+    <div class="portal-shell-mobile-divider"></div>
+    <div class="portal-shell-mobile-footer">
+      <div class="portal-shell-mobile-lang">
+        <a href="../shell-test.html" class="portal-shell-mobile-lang-btn">EN</a>
+        <a href="./shell-test.html" class="portal-shell-mobile-lang-btn active">繁中</a>
+        <span class="portal-shell-mobile-lang-btn disabled">日本語</span>
+        <span class="portal-shell-mobile-lang-btn disabled">한국어</span>
+      </div>
+      <a href="https://payment.magne.ai/buy" target="_blank" class="portal-shell-cta" style="width:100%;text-align:center;">預購</a>
+    </div>
+  </nav>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main style="padding-top: 60px; position: relative; z-index: 1;">
+
+    <!-- HERO -->
+    <section class="ps-hero">
+      <div class="ps-container">
+        <div class="ps-hero-content">
+          <div class="ps-hero-label">// MAGNE.AI PORTAL SHELL</div>
+          <h1 class="ps-hero-title">
+            <span class="ps-dim">AI 代理能思考。</span><br>
+            <span class="ps-accent">但仍需要安全授權與可驗證的支付軌道。</span>
+          </h1>
+          <p class="ps-hero-sub">
+            MAGNE.AI 連接安全行動端授權、M Hash L2 測試網結算環境與 AI 任務收據記錄，
+            服務於正在形成的 AI Agent 支付工作流程。
+          </p>
+          <div class="ps-hero-actions">
+            <a href="./agent-pay.html" class="ps-btn ps-btn-primary">→ 查看 Agent Pay 演示</a>
+            <a href="./network.html" class="ps-btn ps-btn-secondary">探索網絡</a>
+            <a href="./transparency.html" class="ps-btn ps-btn-secondary">透明中心</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ps-divider"></div>
+
+    <!-- TERMINAL CARD -->
+    <section class="ps-section">
+      <div class="ps-container">
+        <div class="ps-terminal">
+          <div class="ps-terminal-header">
+            <div class="ps-terminal-dot red"></div>
+            <div class="ps-terminal-dot yellow"></div>
+            <div class="ps-terminal-dot green"></div>
+            <span class="ps-terminal-title">magne-cli — 開發者</span>
+            <span class="ps-terminal-badge">測試網</span>
+          </div>
+          <div class="ps-terminal-body">
+            <span class="ps-terminal-line"><span class="ps-prompt">$</span> magne dev init</span>
+            <span class="ps-terminal-line"><span class="ps-accent-text">✓</span> MAGNE 開發環境</span>
+            <span class="ps-terminal-line"><span class="ps-info">  網絡：</span> MAGNE L1 + M Hash L2</span>
+            <span class="ps-terminal-line"><span class="ps-info">  鏈 ID：</span> 20250810 (L1) / 20250827 (L2)</span>
+            <span class="ps-terminal-line"><span class="ps-info">  工具：</span> Hardhat, Foundry, ethers.js</span>
+            <span class="ps-terminal-line">&nbsp;</span>
+            <span class="ps-terminal-line"><span class="ps-prompt">$</span> magne dev start</span>
+            <span class="ps-terminal-line"><span class="ps-accent-text">✓</span> 已連接測試網</span>
+            <span class="ps-terminal-line"><span class="ps-info">  RPC：</span> https://rpc.testnet.magicalhash.com</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ps-divider"></div>
+
+    <!-- CARDS SECTION -->
+    <section class="ps-section">
+      <div class="ps-container">
+        <div class="ps-section-header">
+          <div class="ps-section-label">// 核心功能</div>
+          <h2 class="ps-section-title">主要組件</h2>
+          <p class="ps-section-sub">MAGNE.AI 生態系統的基本構建塊。</p>
+        </div>
+
+        <div class="ps-card-grid">
+          <div class="ps-card">
+            <div class="ps-card-icon">🔐</div>
+            <h3 class="ps-card-title">安全授權</h3>
+            <div class="ps-card-sub">認證層</div>
+            <p class="ps-card-desc">
+              安全晶片內的硬體級金鑰存儲。簽署金鑰設計為保留在安全硬體內。
+              授權透過密碼學強制執行。
+            </p>
+          </div>
+
+          <div class="ps-card">
+            <div class="ps-card-icon">⚡</div>
+            <h3 class="ps-card-title">Agent Pay</h3>
+            <div class="ps-card-sub">支付軌道</div>
+            <p class="ps-card-desc">
+              為 AI 代理設計的可編程支付軌道。HTTP 402 相容流程，支援瀏覽器錢包
+              授權和促進者驗證。
+            </p>
+          </div>
+
+          <div class="ps-card">
+            <div class="ps-card-icon">🔗</div>
+            <h3 class="ps-card-title">M Hash L2</h3>
+            <div class="ps-card-sub">結算網絡</div>
+            <p class="ps-card-desc">
+              Magical Capital M Hash 區塊鏈 L2 網絡，提供測試網環境用於合約
+              部署和 AI 任務收據記錄。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="portal-shell-footer">
+    <div class="portal-shell-footer-inner">
+      <div class="portal-shell-footer-grid">
+        <!-- Brand Column -->
+        <div class="portal-shell-footer-brand">
+          <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-footer-logo">
+          <p class="portal-shell-footer-tagline">
+            為 AI 代理提供安全授權和可驗證的支付軌道。
+            打造代理原生支付的基礎設施。
+          </p>
+          <div class="portal-shell-social">
+            <a href="https://github.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="GitHub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="Twitter">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Products -->
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">產品</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./agent-pay.html" class="portal-shell-footer-link">Agent Pay</a></li>
+            <li><a href="./network.html" class="portal-shell-footer-link">網絡</a></li>
+            <li><a href="https://magne.ai/index.html" target="_blank" class="portal-shell-footer-link">Phone Portal ↗</a></li>
+          </ul>
+        </div>
+
+        <!-- Developers -->
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">開發者</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./developers.html" class="portal-shell-footer-link">文檔</a></li>
+            <li><a href="./developers-connect.html" class="portal-shell-footer-link">RPC 與鏈 ID</a></li>
+            <li><a href="./developers-contract.html" class="portal-shell-footer-link">合約</a></li>
+            <li><a href="./developers-app.html" class="portal-shell-footer-link">DApp 開發</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">資源</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./ecosystem.html" class="portal-shell-footer-link">生態</a></li>
+            <li><a href="./learn.html" class="portal-shell-footer-link">學習</a></li>
+            <li><a href="./faq.html" class="portal-shell-footer-link">常見問題</a></li>
+            <li><a href="./version-history.html" class="portal-shell-footer-link">版本歷史</a></li>
+          </ul>
+        </div>
+
+        <!-- Network -->
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">網絡</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./transparency.html" class="portal-shell-footer-link">透明中心</a></li>
+            <li><a href="./token.html" class="portal-shell-footer-link">代幣</a></li>
+            <li><a href="./tokenomics-detail.html" class="portal-shell-footer-link">代幣經濟學</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="portal-shell-footer-bottom">
+        <div class="portal-shell-legal">
+          © 2025 MAGNE.AI. 版權所有。此資訊僅供參考，不構成財務建議。
+        </div>
+        <div class="portal-shell-legal-links">
+          <a href="./privacy.html" class="portal-shell-legal-link">隱私</a>
+          <a href="./terms.html" class="portal-shell-legal-link">條款</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/portal-shell.js"></script>
+</body>
+</html>
