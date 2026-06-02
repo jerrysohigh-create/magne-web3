@@ -710,6 +710,14 @@ body {
   .portal-shell-phone,
   .portal-shell-github {
     display: none;
+    width: 0;
+    min-width: 0;
+    max-width: 0;
+    flex: 0 0 0;
+    flex-basis: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+    pointer-events: none;
   }
 
   .portal-shell-toggle {
@@ -722,21 +730,28 @@ body {
     justify-content: space-between;
     width: 100%;
     max-width: 100%;
+    min-width: 0;
     box-sizing: border-box;
     padding: 0 16px;
+    overflow: hidden;
   }
 
   .portal-shell-actions {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: auto;
+    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
+    flex: 0 0 44px;
+    flex-shrink: 0;
     margin-left: auto;
-    position: static;
-    transform: none;
+    position: relative;
     right: auto;
     left: auto;
+    transform: none;
     gap: 0;
+    overflow: visible;
   }
 
   .portal-shell-footer-grid {
@@ -762,7 +777,19 @@ body {
     padding: 0 16px;
     height: 56px;
     box-sizing: border-box;
-    overflow: visible;
+    overflow: hidden;
+  }
+
+  .portal-shell-nav {
+    display: none;
+    width: 0;
+    min-width: 0;
+    max-width: 0;
+    flex: 0 0 0;
+    flex-basis: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+    pointer-events: none;
   }
 
   .portal-shell-logo {
@@ -771,23 +798,28 @@ body {
   }
 
   .portal-shell-brand {
-    flex: 0 1 auto;
+    flex: 1 1 auto;
     min-width: 0;
+    max-width: calc(100% - 60px);
+    overflow: hidden;
   }
 
   .portal-shell-actions {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: auto;
+    width: 44px;
     min-width: 44px;
+    max-width: 44px;
+    flex: 0 0 44px;
+    flex-shrink: 0;
     margin-left: auto;
-    position: static;
-    transform: none;
+    position: relative;
     right: auto;
     left: auto;
+    transform: none;
     gap: 0;
-    flex-shrink: 0;
+    overflow: visible;
   }
 
   .portal-shell-actions > *:not(.portal-shell-toggle) {
@@ -803,10 +835,9 @@ body {
     justify-content: center;
     position: relative;
     z-index: 1002;
-  }
-
-  .portal-shell-toggle {
-    display: flex;
+    right: auto;
+    left: auto;
+    transform: none;
   }
 
   /* Hide CTA in header actions only, not in mobile menu */
