@@ -5,606 +5,646 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAGNE.AI Web3 | 透明中心</title>
   <meta name="description" content="MAGNE.AI 透明中心。獲取法律意見、審計報告、代幣披露、風險披露和歸檔材料。">
-  <meta property="og:title" content="MAGNE.AI Web3 | 透明中心">
-  <meta property="og:description" content="MAGNE.AI 透明中心。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://web3.magne.ai/tc/transparency.html">
-  <meta property="og:site_name" content="MAGNE.AI Web3">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MAGNE.AI Web3 | 透明中心">
-  <meta name="twitter:description" content="MAGNE.AI 透明中心。">
-  <link rel="alternate" hreflang="en" href="https://web3.magne.ai/transparency.html">
-  <link rel="alternate" hreflang="zh-Hant" href="https://web3.magne.ai/tc/transparency.html">
-  <link rel="alternate" hreflang="x-default" href="https://web3.magne.ai/transparency.html">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../assets/logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/portal-shell.css">
+  <link rel="stylesheet" href="../assets/css/portal-components.css">
+  <link rel="canonical" href="https://jerrysohigh-create.github.io/magne-web3/tc/transparency.html">
+  <link rel="alternate" hreflang="en" href="https://jerrysohigh-create.github.io/magne-web3/transparency.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web3/tc/transparency.html">
+  <link rel="alternate" hreflang="x-default" href="https://jerrysohigh-create.github.io/magne-web3/transparency.html">
   <style>
-    :root { --bg-primary: #0a0a0c; --bg-secondary: #0f0f12; --bg-card: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.06); --text-primary: #ffffff; --text-secondary: rgba(255, 255, 255, 0.5); --accent: #FFD700; --accent-cyan: #39d0d6; --cyan: #39d0d6;
-      --text-muted: #484f58;
-      --surface: #0d1520;
-      --surface-2: #111d2e;
-      --border-bright: #2a3f5a;
+    /* ==========================================================================
+       Transparency Page (TC) — .transparency-page scoped styles
+       ========================================================================== */
+
+    .transparency-page { }
+
+    /* Hero */
+    .transparency-hero {
+      padding: 10rem 0 5rem;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,215,0,0.06) 0%, transparent 60%);
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { max-width: 100%; overflow-x: hidden; }
-    body { font-family: 'Outfit', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 10, 12, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
-    .nav-brand a { color: var(--text-secondary); text-decoration: none; }
-    .nav-logo-img { height: 20px; }
-    .nav-links { display: flex; gap: 0 0.75rem; list-style: none; justify-content: center; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; padding: 0.4rem 0.5rem; text-align: center; font-weight: 600; letter-spacing: 0.03em; min-width: 4.5rem; }
-    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-    .lang-switch { display: flex; align-items: center; gap: 0.5rem; margin-left: 1rem; }
-    .lang-btn { padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; text-decoration: none; transition: all 0.2s; }
-    .lang-btn.active { background: var(--accent); color: #000; }
-    .lang-btn.inactive { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
-    .lang-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .nav-cta { background: var(--accent); color: #000 !important; padding: 0.6rem 1.4rem; border-radius: 8px; font-weight: 600; text-decoration: none; }
-    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
-    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-secondary); margin: 5px 0; }
-    main { position: relative; z-index: 1; padding-top: 80px; }
-    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
-    section { padding: 5rem 0; }
-    section:nth-child(even) { background: var(--bg-secondary); }
-    h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
-    h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--accent); }
-    p { color: var(--text-secondary); font-size: 1rem; line-height: 1.75; }
-    .hero { text-align: center; padding: 6rem 2rem 4rem; background: radial-gradient(ellipse at center top, rgba(255,215,0,0.06) 0%, transparent 60%); }
-    .hero h1 { margin-bottom: 1rem; }
-    .hero p { max-width: 650px; margin: 0 auto; }
-    .doc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-    .doc-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
-    .doc-card h3 { font-size: 1.05rem; margin-bottom: 0.75rem; }
-    .doc-card p { font-size: 0.9rem; margin-bottom: 1rem; }
-    .doc-status { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.75rem; }
-    .status-available { background: rgba(0,255,136,0.1); color: #00ff88; border: 1px solid rgba(0,255,136,0.3); }
-    .status-coming { background: rgba(255,215,0,0.1); color: var(--accent); border: 1px solid rgba(255,215,0,0.3); }
-    .status-archived { background: rgba(255,255,255,0.05); color: var(--text-secondary); border: 1px solid var(--border); }
-    .btn { display: inline-block; padding: 0.65rem 1.25rem; border-radius: 6px; font-weight: 600; text-decoration: none; transition: all 0.3s; font-size: 0.85rem; }
-    .btn-secondary { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-    .notice { background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.15); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
-    .notice p { font-size: 0.9rem; }
-    .security-notice { background: rgba(255, 100, 100, 0.05); border: 1px solid rgba(255, 100, 100, 0.2); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
-    .security-notice h3 { color: #ff6462; margin-bottom: 0.75rem; font-size: 1rem; }
-    .security-notice p { font-size: 0.9rem; }
-    footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.9rem; }
-    footer a { color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
-    footer a:hover { color: var(--accent); }
-    .footer-brand-logo { margin-bottom: 1.5rem; }
-    .footer-brand-img { height: 24px; margin-bottom: 0.5rem; }
-    .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; }
-    .footer-socials { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
-    .footer-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); transition: all 0.2s; }
-    .footer-icon:hover { border-color: var(--accent); color: var(--accent); }
-    .footer-icon svg { width: 18px; height: 18px; }
-    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1rem; }
-    .footer-lang { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; }
-    .lang-link { padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600; text-decoration: none; }
-    .lang-link.active { background: var(--accent); color: #000; }
-    .lang-link.inactive { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
-    .trademark-notice { font-size: 0.8rem; margin-top: 1rem; }
-    .copyright { margin-top: 1.5rem; opacity: 0.5; }
-    @media (max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10, 10, 12, 0.98); flex-direction: column; padding: 1.5rem; gap: 0.5rem; border-bottom: 1px solid var(--border); }
-      .nav-links.active { display: flex; }
-      .nav-toggle { display: block; }
-      .lang-switch { margin-left: 0; margin-top: 1rem; }
-      h1 { font-size: 2rem; }
-      .hero { padding: 5rem 1.5rem 3rem; }
+    .transparency-hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      color: var(--ps-text);
+    }
+    .transparency-hero-sub {
+      font-size: 1.1rem;
+      color: var(--ps-text-secondary);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.75;
     }
 
-
-/* Footer CSS synced from tc/index.html */
-    footer { border-top: 1px solid var(--border); padding: 3rem 0 2rem; position: relative; z-index: 1; text-align: left; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 2rem; }
-    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
-    .footer-brand p { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.7; margin-top: 0.75rem; }
-    .footer-col h4 { font-size: 0.7rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.85rem; }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 0.4rem; }
-    .footer-col a { color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
-    .footer-col a:hover { color: var(--accent); }
-    .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
-    .footer-social { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-    .social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
-    .social-icon:hover { border-color: var(--accent); color: var(--accent); }
-    .social-icon img { width: 16px; height: 16px; }
-    .footer-trademark { color: var(--text-muted); font-size: 0.75rem; text-align: center; line-height: 1.6; }
-    .footer-trademark a { color: #5795ef; text-decoration: none; }
-    .footer-copyright { color: var(--text-muted); font-size: 0.75rem; text-align: center; }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-    .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--accent); }
-    @media (max-width: 560px) {
-      .footer-grid { grid-template-columns: 1fr; gap: 1.6rem; }
-      footer { padding: 2.5rem 0 1.5rem; }
+    /* Sections */
+    .transparency-section {
+      padding: 4.5rem 0;
+      position: relative;
+      z-index: 1;
+    }
+    .transparency-section-alt {
+      background: var(--ps-surface);
+    }
+    .transparency-divider {
+      height: 1px;
+      background: var(--ps-border);
+      position: relative;
+      z-index: 1;
+    }
+    .transparency-section-header {
+      margin-bottom: 2.5rem;
+    }
+    .transparency-section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+      color: var(--ps-text);
+    }
+    .transparency-section-sub {
+      color: var(--ps-text-secondary);
+      font-size: 0.95rem;
+      max-width: 600px;
+      line-height: 1.7;
     }
 
-/* === Standard mobile navigation: synced from index.html / tc/index.html === */
-:root {
-  --nav-bg: var(--bg, var(--bg-primary, #070910));
-  --nav-surface: var(--surface, var(--bg-card, #0d1520));
-  --nav-border: var(--border, rgba(255,255,255,0.08));
-  --nav-border-bright: var(--border-bright, rgba(57,208,214,0.32));
-  --nav-text-primary: var(--text-primary, #e6edf3);
-  --nav-text-secondary: var(--text-secondary, #8b949e);
-  --nav-text-muted: var(--text-muted, rgba(139,148,158,0.65));
-  --nav-accent: var(--accent-cyan, var(--accent, #39d0d6));
-}
-body.menu-open { overflow: hidden; }
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 0;
-  background: rgba(7,9,16,0.9);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--nav-border);
-}
-nav .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  gap: 1rem;
-}
-.nav-brand { display: flex; align-items: center; min-width: 0; }
-.nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-.nav-links {
-  display: flex;
-  gap: 0.25rem;
-  list-style: none;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
-.nav-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 0.35rem 0.65rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  min-width: 0;
-  text-transform: none;
-}
-.nav-links a:hover { color: var(--nav-text-primary); background: var(--nav-surface); }
-.nav-links a.active { color: var(--nav-accent); }
-.nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-.lang-toggle { display: flex; gap: 0.25rem; align-items: center; }
-.lang-toggle a {
-  color: var(--nav-text-muted);
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  transition: all 0.2s;
-}
-.lang-toggle a:hover { color: var(--nav-text-secondary); }
-.lang-toggle a.active { color: var(--nav-accent); background: rgba(57,208,214,0.08); }
-.nav-link {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.nav-link:hover { color: var(--nav-accent); }
-.github-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  border: 1px solid var(--nav-border);
-  background: var(--nav-surface);
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  transition: all 0.2s;
-  font-size: 1rem;
-}
-.github-icon:hover { border-color: var(--nav-border-bright); color: var(--nav-text-primary); }
-.nav-cta {
-  background: var(--nav-accent);
-  color: #000 !important;
-  padding: 0.4rem 1rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: opacity 0.2s;
-  white-space: nowrap;
-}
-.nav-cta:hover { opacity: 0.85; }
-.nav-toggle { display: none !important; }
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: 1px solid var(--nav-border);
-  color: var(--nav-text-primary);
-  font-size: 1.2rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 58px;
-  left: 0;
-  right: 0;
-  min-height: calc(100dvh - 58px);
-  background: rgba(7,9,16,0.98);
-  backdrop-filter: blur(18px);
-  z-index: 999;
-  overflow-y: auto;
-  padding: 1.5rem 1.125rem 2rem;
-  flex-direction: column;
-  gap: 0;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  list-style: none;
-  flex: 1;
-  margin: 0;
-  padding: 0;
-}
-.mobile-menu-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 0.6rem 0.5rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  border-bottom: 1px solid var(--nav-border);
-}
-.mobile-menu-links a:hover,
-.mobile-menu-links a.active { color: var(--nav-accent); background: rgba(57,208,214,0.06); }
-.mobile-menu-divider { height: 1px; background: var(--nav-border); margin: 0.75rem 0; }
-.mobile-menu-footer { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 0.75rem; }
-.mobile-menu-footer .lang-toggle { justify-content: flex-start; }
-.mobile-menu-footer .github-icon { width: auto; height: auto; padding: 0.35rem 0.75rem; font-size: 0.8rem; gap: 0.4rem; }
-@media (max-width: 1024px) {
-  .nav-links { display: none; }
-  .mobile-menu-btn { display: block; }
-}
-@media (max-width: 768px) {
-  nav .container { padding: 0 1.125rem; gap: 0.75rem; }
-  .nav-right .lang-toggle,
-  .nav-right > .nav-cta,
-  .nav-right .github-icon,
-  .nav-right > .nav-link { display: none; }
-  .nav-logo-img { height: 26px; max-width: calc(100vw - 88px); object-fit: contain; }
-  .nav-right { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
-  .mobile-menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; flex-shrink: 0; }
-}
-/* === End standard mobile navigation === */
+    /* Cards */
+    .transparency-card {
+      background: var(--ps-surface);
+      border: 1px solid var(--ps-border);
+      border-radius: 2px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    .transparency-card:hover { border-color: var(--ps-border-bright); }
+    .transparency-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .transparency-card h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ps-text);
+      margin: 0;
+    }
+    .transparency-card p {
+      font-size: 0.85rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.65;
+    }
 
+    /* Status badges */
+    .transparency-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .transparency-status::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+    .transparency-status.available { background: rgba(63,185,80,0.1); color: var(--ps-green); }
+    .transparency-status.available::before { background: var(--ps-green); box-shadow: 0 0 6px var(--ps-green); }
+    .transparency-status.archived { background: rgba(255,255,255,0.05); color: var(--ps-text-muted); }
+    .transparency-status.archived::before { background: var(--ps-text-muted); }
+    .transparency-status.planned { background: rgba(210,153,34,0.1); color: var(--ps-yellow); }
+    .transparency-status.planned::before { background: var(--ps-yellow); }
+    .transparency-status.in-review { background: rgba(168,85,247,0.1); color: var(--ps-purple); }
+    .transparency-status.in-review::before { background: var(--ps-purple); }
+    .transparency-status.latest { background: rgba(57,208,214,0.1); color: var(--ps-accent); }
+    .transparency-status.latest::before { background: var(--ps-accent); box-shadow: 0 0 6px var(--ps-accent); }
+
+    /* Grid */
+    .transparency-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .transparency-grid-full {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    /* Buttons */
+    .transparency-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      margin-top: 0.75rem;
+    }
+    .transparency-btn-primary {
+      background: var(--ps-accent);
+      color: #000;
+    }
+    .transparency-btn-primary:hover { background: #4dd9dd; }
+    .transparency-btn-secondary {
+      background: var(--ps-surface);
+      border: 1px solid var(--ps-border);
+      color: var(--ps-text-secondary);
+    }
+    .transparency-btn-secondary:hover { border-color: var(--ps-border-bright); color: var(--ps-text); }
+
+    /* Disclaimer / Notice */
+    .transparency-disclaimer {
+      background: rgba(255,215,0,0.05);
+      border: 1px solid rgba(255,215,0,0.15);
+      border-radius: 2px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .transparency-disclaimer h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ps-accent);
+      margin-bottom: 0.75rem;
+    }
+    .transparency-disclaimer p {
+      font-size: 0.85rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Risk card */
+    .transparency-risk {
+      background: var(--ps-surface);
+      border: 1px solid var(--ps-border);
+      border-radius: 2px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .transparency-risk h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ps-text);
+      margin-bottom: 0.5rem;
+    }
+    .transparency-risk p {
+      font-size: 0.85rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.65;
+    }
+
+    /* Version History */
+    .transparency-version {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--ps-border);
+    }
+    .transparency-version-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--ps-text);
+    }
+    .transparency-version-item {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--ps-border);
+    }
+    .transparency-version-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ps-accent);
+      min-width: 100px;
+      padding-top: 0.1rem;
+    }
+    .transparency-version-item h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--ps-text);
+    }
+    .transparency-version-item p {
+      font-size: 0.85rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* CTA section */
+    .transparency-cta-section {
+      text-align: center;
+      padding: 4rem 0;
+    }
+    .transparency-cta-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--ps-text);
+    }
+    .transparency-cta-section p {
+      font-size: 0.95rem;
+      color: var(--ps-text-secondary);
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.7;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .transparency-hero { padding: 8rem 0 3.5rem; }
+      .transparency-section { padding: 3.5rem 0; }
+      .transparency-card { padding: 1.1rem 1.25rem; }
+      .transparency-version-item { flex-direction: column; gap: 0.4rem; }
+      .transparency-cta-section { padding: 3.5rem 0; }
+    }
   </style>
 </head>
-<body>
-<nav>
-  <div class="container">
-    <div class="nav-brand">
-      <a href="./index.html">
-        <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
+<body class="portal-shell">
+  <!-- Background Effects -->
+  <div class="portal-shell-grid"></div>
+  <div class="portal-shell-glow"></div>
+
+  <!-- HEADER -->
+  <header class="portal-shell-header">
+    <div class="portal-shell-header-inner">
+      <a href="./index.html" class="portal-shell-brand">
+        <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-logo">
       </a>
+      <nav aria-label="主導航">
+        <ul class="portal-shell-nav">
+          <li><a href="./index.html" class="portal-shell-nav-link">首頁</a></li>
+          <li><a href="./agent-pay.html" class="portal-shell-nav-link">AGENT PAY</a></li>
+          <li><a href="./network.html" class="portal-shell-nav-link">網絡</a></li>
+          <li><a href="./developers.html" class="portal-shell-nav-link">開發者</a></li>
+          <li><a href="./token.html" class="portal-shell-nav-link">代幣</a></li>
+          <li><a href="./ecosystem.html" class="portal-shell-nav-link">生態</a></li>
+          <li><a href="./transparency.html" class="portal-shell-nav-link active">透明中心</a></li>
+        </ul>
+      </nav>
+      <div class="portal-shell-actions">
+        <div class="portal-shell-language" id="psLangDropdown">
+          <button class="portal-shell-language-btn" id="psLangBtn" aria-expanded="false" aria-haspopup="true">
+            繁中 <span class="ps-chevron">▼</span>
+          </button>
+          <ul class="portal-shell-language-menu" role="menu">
+            <li><a href="../transparency.html" class="portal-shell-language-option" data-lang="en" data-url="../transparency.html">English</a></li>
+            <li><a href="./transparency.html" class="portal-shell-language-option active" data-lang="zh-Hant" data-url="./transparency.html">繁中</a></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="ja">日本語 <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="ko">한국어 <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="fr">Français <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="es">Español <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="vi">Tiếng Việt <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="id">Bahasa Indonesia <span class="ps-soon">Coming soon</span></span></li>
+          </ul>
+        </div>
+        <a href="https://magne.ai/index.html" target="_blank" rel="noopener noreferrer" class="portal-shell-phone">Phone Portal ↗</a>
+        <a href="https://github.com/magneai" target="_blank" class="portal-shell-github" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://payment.magne.ai/buy" target="_blank" class="portal-shell-cta">預購</a>
+        <button class="portal-shell-toggle" id="psMobileToggle" aria-expanded="false" aria-label="切換導航選單">☰</button>
+      </div>
     </div>
-    <ul class="nav-links">
-      <li><a href="./index.html">首頁</a></li>
-      <li><a href="./agent-pay.html">AGENT PAY</a></li>
-      <li><a href="./network.html">網絡</a></li>
-      <li><a href="./developers.html">開發者</a></li>
-      <li><a href="./token.html">代幣</a></li>
-      <li><a href="./ecosystem.html">生態</a></li>
-      <li><a href="./transparency.html" class="active">透明中心</a></li>
-      <li><a href="./faq.html">常見問題</a></li>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <nav class="portal-shell-mobile" id="psMobileMenu" aria-label="移動端導航">
+    <ul class="portal-shell-mobile-links">
+      <li><a href="./index.html" class="portal-shell-mobile-link">首頁</a></li>
+      <li><a href="./agent-pay.html" class="portal-shell-mobile-link">AGENT PAY</a></li>
+      <li><a href="./network.html" class="portal-shell-mobile-link">網絡</a></li>
+      <li><a href="./developers.html" class="portal-shell-mobile-link">開發者</a></li>
+      <li><a href="./token.html" class="portal-shell-mobile-link">代幣</a></li>
+      <li><a href="./ecosystem.html" class="portal-shell-mobile-link">生態</a></li>
+      <li><a href="./transparency.html" class="portal-shell-mobile-link active">透明中心</a></li>
+      <li><a href="./faq.html" class="portal-shell-mobile-link">常見問題</a></li>
     </ul>
-    <div class="nav-right">
-      <div class="lang-toggle">
-        <a href="../transparency.html">EN</a>
-        <a href="./transparency.html" class="active">繁中</a>
+    <div class="portal-shell-mobile-divider"></div>
+    <div class="portal-shell-mobile-footer">
+      <div class="portal-shell-mobile-lang">
+        <a href="../transparency.html" class="portal-shell-mobile-lang-btn">English</a>
+        <a href="./transparency.html" class="portal-shell-mobile-lang-btn active">繁中</a>
+        <span class="portal-shell-mobile-lang-btn disabled">日本語</span>
+        <span class="portal-shell-mobile-lang-btn disabled">한국어</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Français</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Español</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Tiếng Việt</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Bahasa Indonesia</span>
       </div>
-      <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-      <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">預購</a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="切換導航選單" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+      <a href="https://magne.ai/index.html" target="_blank" rel="noopener noreferrer" class="portal-shell-phone" style="width:100%;text-align:center;margin-bottom:0.5rem;">Phone Portal ↗</a>
+      <a href="https://payment.magne.ai/buy" target="_blank" rel="noopener noreferrer" class="portal-shell-cta" style="width:100%;text-align:center;">預購</a>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- MOBILE MENU OVERLAY -->
-<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="流動版導航">
-  <ul class="mobile-menu-links">
-    <li><a href="./index.html">首頁</a></li>
-    <li><a href="./agent-pay.html">AGENT PAY</a></li>
-    <li><a href="./network.html">網絡</a></li>
-    <li><a href="./developers.html">開發者</a></li>
-    <li><a href="./token.html">代幣</a></li>
-    <li><a href="./ecosystem.html">生態</a></li>
-    <li><a href="./transparency.html" class="active">透明中心</a></li>
-    <li><a href="./faq.html">常見問題</a></li>
-  </ul>
-  <div class="mobile-menu-divider"></div>
-  <div class="mobile-menu-footer">
-    <div class="lang-toggle">
-      <a href="../transparency.html">EN</a>
-      <a href="./transparency.html" class="active">繁中</a>
-    </div>
-    <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-  </div>
-</div>
-<main>
-    <section class="hero">
-      <h1>透明中心</h1>
-      <p>存取法律文件、審計報告、代幣披露、風險披露和歸檔材料。</p>
+  <!-- MAIN CONTENT -->
+  <main class="transparency-page" style="padding-top: 60px; position: relative; z-index: 1;">
+
+    <!-- HERO -->
+    <section class="transparency-hero">
+      <div class="ps-container">
+        <h1 class="transparency-hero-title">透明中心</h1>
+        <p class="transparency-hero-sub">存取法律文件、審計報告、代幣披露、風險披露和歸檔材料。</p>
+      </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>法律文件</h2>
-        <div class="doc-grid">
-          <div class="doc-card">
-            <span class="doc-status status-archived">歸檔</span>
-            <h3>📄 歸檔白皮書 V1.0</h3>
-            <p>歷史參考用途。可能無法反映當前結構。</p>
-            <a href="#" class="btn btn-secondary">查看文檔</a>
+    <div class="transparency-divider"></div>
+
+    <!-- 法律文件 -->
+    <section class="transparency-section">
+      <div class="ps-container">
+        <div class="transparency-section-header">
+          <h2 class="transparency-section-title">法律文件</h2>
+        </div>
+        <div class="transparency-grid">
+          <div class="transparency-card">
+            <div class="transparency-card-header">
+              <h3>📄 歸檔白皮書 V1.0</h3>
+              <span class="transparency-status archived">歸檔</span>
+            </div>
+            <p>記錄項目願景、技術架構和代幣經濟學的原始文檔。僅供歷史透明度參考，可能無法反映當前狀態。</p>
+            <a href="#" class="transparency-btn transparency-btn-secondary">查看文檔</a>
           </div>
-          <div class="doc-card">
-            <span class="doc-status status-coming">待上傳或應要求提供</span>
-            <h3>⚖️ 法律意見書 — GS LEGAL LLC</h3>
-            <p>基於出具時審閱的材料。請聯繫我們獲取詳情。</p>
-            <a href="https://magne.ai/magne-contact.html" class="btn btn-secondary">聯繫我們</a>
+
+          <div class="transparency-card">
+            <div class="transparency-card-header">
+              <h3>⚖️ 法律意見書 — GS LEGAL LLC</h3>
+              <span class="transparency-status archived">歸檔</span>
+            </div>
+            <p>基於出具時審閱的材料提供獨立法律意見。材料僅供歷史透明度用途。</p>
+            <a href="https://magne.ai/magne-contact.html" class="transparency-btn transparency-btn-secondary">聯繫我們</a>
+          </div>
+
+          <div class="transparency-card">
+            <div class="transparency-card-header">
+              <h3>🔍 智能合約審計報告 1</h3>
+              <span class="transparency-status in-review">審核中</span>
+            </div>
+            <p>MAGNE L1 智能合約安全審計。報告將於審計完成後發布，需待審計範圍確認及專業審查。</p>
+          </div>
+
+          <div class="transparency-card">
+            <div class="transparency-card-header">
+              <h3>🔍 智能合約審計報告 2</h3>
+              <span class="transparency-status in-review">審核中</span>
+            </div>
+            <p>M Hash L2 智能合約安全審計。報告將於審計完成後發布，需待審計範圍確認及專業審查。</p>
+          </div>
+
+          <div class="transparency-card">
+            <div class="transparency-card-header">
+              <h3>📜 代幣披露</h3>
+              <span class="transparency-status available">可用</span>
+            </div>
+            <p>$MHA 代幣披露已可用，包含規劃分配、實用框架、歸屬原則、合約狀態、審計狀態及風險披露。</p>
+            <a href="./token.html" class="transparency-btn transparency-btn-secondary">查看代幣披露</a>
+          </div>
+
+          <div class="transparency-card">
+            <div class="transparency-card-header">
+              <h3>🔗 活動與鏈上身份披露</h3>
+              <span class="transparency-status available">可用</span>
+            </div>
+            <p>MAGNE.AI 可能為符合條件的活動參與者建立鏈上身份或資格記錄。相關記錄不代表任何保證代幣分配、投資權益、收益、回報或交易所上架，並將受活動規則、TGE 時間表、資格驗證、合規審查及治理安排約束。</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>智能合約審計</h2>
-        <div class="doc-grid">
-          <div class="doc-card">
-            <span class="doc-status status-coming">待上傳或應要求提供</span>
-            <h3>🔍 智能合約審計報告 1</h3>
-            <p>特定範圍審閱材料。</p>
-            <a href="#" class="btn btn-secondary">即將推出</a>
+    <div class="transparency-divider"></div>
+
+    <!-- 風險披露 -->
+    <section class="transparency-section transparency-section-alt">
+      <div class="ps-container">
+        <div class="transparency-section-header">
+          <h2 class="transparency-section-title">風險披露</h2>
+        </div>
+        <div class="transparency-grid-full">
+          <div class="transparency-risk">
+            <h3>一般風險披露</h3>
+            <p>區塊鏈和 Web3 項目涉及重大風險，包括但不限於：技術風險、監管不確定性、市場波動性、智能合約漏洞及資金損失。參與者在做出任何決定前應自行研究並諮詢專業顧問。</p>
           </div>
-          <div class="doc-card">
-            <span class="doc-status status-coming">待上傳或應要求提供</span>
-            <h3>🔍 智能合約審計報告 2</h3>
-            <p>補充審閱材料。</p>
-            <a href="#" class="btn btn-secondary">即將推出</a>
+          <div class="transparency-risk">
+            <h3>代幣相關風險</h3>
+            <p>本網站提供的代幣資訊僅供技術和生態系統溝通用途。$MHA 代幣不構成投資機會、證券發行或金融工具。代幣實用性、價值及獎勵受治理決策約束，可能被修改或終止。過往表現不代表未來結果。</p>
+          </div>
+          <div class="transparency-risk">
+            <h3>前瞻性聲明</h3>
+            <p>關於未來計劃、開發和時間表的聲明均為前瞻性陳述，可能因技術進展、監管環境、市場狀況及治理決策而變更。主網上線、DePIN 實施和生態系統功能均在規劃中，但不構成保證。</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>代幣與風險披露</h2>
-        <div class="doc-grid">
-          <div class="doc-card">
-            <span class="doc-status status-available">可用</span>
-            <h3>🗂️ 技術證據存檔</h3>
-            <p>M Hash L2 測試網合約地址、AI 任務收據記錄及獨立驗證參考。</p>
-            <a href="evidence.html" class="btn btn-secondary">查看</a>
+    <div class="transparency-divider"></div>
+
+    <!-- 重要法律免責聲明 -->
+    <section class="transparency-section">
+      <div class="ps-container">
+        <div class="transparency-disclaimer">
+          <h3>⚠️ 重要法律免責聲明</h3>
+          <p>
+            歸檔白皮書及法律意見書僅供<strong>歷史透明度用途</strong>。法律意見書乃基於出具時審閱的材料，不應被解讀為對後續網站更新、未來產品功能、代幣市場活動或第三方決策的法律認可。<br><br>
+            本網站可能包含已更新、修改或與最初經法律顧問審閱的材料不同的資訊。使用者不應依賴歸檔文件作為當前項目狀態、代幣經濟學或法律合規狀態的代表。<br><br>
+            如需盡職調查，請直接聯繫我們以核實當前文件及項目狀態。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="transparency-divider"></div>
+
+    <!-- 版本歷史 -->
+    <section class="transparency-section transparency-section-alt">
+      <div class="ps-container">
+        <div class="transparency-version">
+          <h2 class="transparency-version-title">版本歷史</h2>
+          <div class="transparency-version-item">
+            <div class="transparency-version-date">2026-05-01</div>
+            <div>
+              <h4>網站重組</h4>
+              <p>完整重新設計 web3.magne.ai，推出新結構。增加透明中心、優化合規措辭、移除無法驗證的聲明。</p>
+            </div>
           </div>
-          <div class="doc-card">
-            <span class="doc-status status-available">可用</span>
-            <h3>💱 代幣狀態與澄清說明</h3>
-            <p>MHA 與 mMHA 的狀態、用途方向及限制。</p>
-            <a href="token-status.html" class="btn btn-secondary">查看</a>
+          <div class="transparency-version-item">
+            <div class="transparency-version-date">2025-Q4</div>
+            <div>
+              <h4>測試網上線</h4>
+              <p>MAGNE L1 測試網和 M Hash L2 測試網上線。原始文檔已歸檔。</p>
+            </div>
           </div>
-          <div class="doc-card">
-            <span class="doc-status status-available">可用</span>
-            <h3>📜 代幣披露</h3>
-            <p>技術和生態系統溝通用途。</p>
-            <a href="../token.html" class="btn btn-secondary">查看</a>
-          </div>
-          <div class="doc-card">
-            <span class="doc-status status-available">可用</span>
-            <h3>📋 網站版本歷史</h3>
-            <p>解釋歸檔與當前內容的關係。</p>
-            <a href="version-history.html" class="btn btn-secondary">查看</a>
+          <div class="transparency-version-item">
+            <div class="transparency-version-date">2025-Q2</div>
+            <div>
+              <h4>初始文檔</h4>
+              <p>原始白皮書及 GS LEGAL LLC 法律意見書發布。</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>活動與鏈上身份披露</h2>
-        <div class="doc-grid">
-          <div class="doc-card">
-            <span class="doc-status status-available">可用</span>
-            <h3>🔗 鏈上身份與資格記錄</h3>
-            <p>MAGNE.AI 可能為符合條件的活動參與者建立鏈上身份或資格記錄，包括 Genesis SBT、錢包綁定記錄、活動參與記錄或未來生態資格追蹤。相關記錄不代表任何保證代幣分配、投資權益、收益、回報或交易所上架，並將受活動規則、TGE 時間表、資格驗證、合規審查及治理安排約束。</p>
+    <div class="transparency-divider"></div>
+
+    <!-- Agent Pay 測試網演示證據 -->
+    <section class="transparency-section">
+      <div class="ps-container">
+        <div class="transparency-section-header">
+          <h2 class="transparency-section-title">Agent Pay：已驗證測試網演示證據</h2>
+        </div>
+        <p class="transparency-section-sub" style="max-width: 640px; margin: 0 auto 2rem; text-align: center;">當前披露的演示包含 M Hash L2 測試網合約部署及 AI 任務收據記錄，可通過已發布的測試網瀏覽器參考進行獨立驗證。</p>
+        <div class="transparency-grid">
+          <div class="transparency-card">
+            <h3>測試網演示證據</h3>
+            <p>通過 AITaskReceipt 智能合約在 M Hash L2 上生成的 AI 任務收據記錄。每條記錄包含：receiptId、taskId、user、provider、amount、token、paymentTxHash 和 timestamp。當前演示為測試網階段演示，非生產系統。</p>
           </div>
+          <div class="transparency-card">
+            <h3>HTTP 402 支付流程</h3>
+            <p>HTTP 402 支付流程、瀏覽器錢包授權、Facilitator 驗證/結算邏輯及正式 x402 兼容性，不作為已完成的生产能力展示，目前仍在開發或驗證中。</p>
+          </div>
+          <div class="transparency-card">
+            <h3>獨立驗證</h3>
+            <p>任何方可通過已發布的測試網瀏覽器參考進行驗證。M Hash L2 chainId：20250827。這是測試網階段演示——主網部署需待安全審計及治理批准。</p>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <a href="./agent-pay.html" class="transparency-btn transparency-btn-primary">查看 Agent Pay 演示</a>
+          <a href="https://github.com/jerrysohigh-create/magne-agent-pay-demo" class="transparency-btn transparency-btn-secondary" target="_blank">查看 GitHub ↗</a>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>風險披露</h2>
-        <div class="doc-grid">
-          <div class="doc-card">
-            <span class="doc-status status-available">可用</span>
-            <h3>⚠️ 一般風險披露</h3>
-            <p>一般風險和前瞻性信息聲明。</p>
-            <a href="#" class="btn btn-secondary">閱讀聲明</a>
-          </div>
-          <div class="doc-card">
-            <span class="doc-status status-available">可用</span>
-            <h3>📌 前瞻性聲明</h3>
-            <p>關於未來計劃和預期的聲明。</p>
-            <a href="#" class="btn btn-secondary">閱讀聲明</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <h2>版本歷史</h2>
-        <div class="doc-card">
-          <h3>🕐 網站版本歷史與歸檔材料</h3>
-          <p>了解 MAGNE.AI Web3 網站從舊版白皮書結構到當前網站重組的內容演變。</p>
-          <a href="version-history.html" class="btn btn-secondary" style="margin-top: 1rem;">查看版本歷史</a>
-        </div>
-      </div>
-    </section>
+    <div class="transparency-divider"></div>
 
     <!-- 外部活動參考 -->
-    <section>
-      <div class="container">
-        <div class="section-header">
-          <h2>外部活動參考</h2>
+    <section class="transparency-section transparency-section-alt">
+      <div class="ps-container">
+        <div class="transparency-section-header">
+          <h2 class="transparency-section-title">外部活動參考</h2>
         </div>
-        <div class="card" style="max-width: 700px; margin: 0 auto; text-align: center;">
-          <h3>📱 MAGNE.AI Phone Gen1 Campaign</h3>
+        <div class="transparency-card" style="max-width: 700px; margin: 0 auto; text-align: center;">
+          <h3>MAGNE.AI Phone Gen1 Campaign</h3>
           <p>Ecosystem 頁面所引用的 MAGNE.AI Phone Gen1 Campaign 為外部且獨立的活動頁面。該活動不構成 MAGNE 主網上線、MHA 發行、代幣上架、Agent Pay 正式部署、協議收入、投資回報或未來代幣保證分發之證明。</p>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>盡職調查聯繫</h2>
-        <div class="doc-card">
-          <h3>🏛️ 法律、交易所或機構盡職調查</h3>
-          <p>如需法律、交易所、審計或機構盡職調查，請通過官方聯繫渠道聯繫 MAGNE.AI 團隊。</p>
-          <a href="https://magne.ai/magne-contact.html" class="btn btn-secondary" style="margin-top: 1rem;">聯繫我們</a>
+    <div class="transparency-divider"></div>
+
+    <!-- 盡職調查聯繫 -->
+    <section class="transparency-section">
+      <div class="ps-container">
+        <div class="transparency-cta-section">
+          <h2>盡職調查聯繫</h2>
+          <p>如需法律、交易所或機構盡職調查，請通過官方聯繫渠道聯繫我們。</p>
+          <a href="https://magne.ai/magne-contact.html" target="_blank" class="transparency-btn transparency-btn-primary">聯繫我們</a>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <div class="security-notice">
-          <h3>⚠️ 重要說明</h3>
-          <p>本網站僅供技術、生態與資訊披露用途。本網站內容不構成投資建議、財務建議、公開發售、招攬或邀約，亦不對任何獎勵、收入、利潤、流動性、交易所上架或代幣價值作出保證。</p>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="./index.html"><img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" style="height:28px;width:auto;display:block;margin-bottom:0.5rem;"></a>
-        <p>安全行動端授權、M Hash L2 測試網演示與 AI 任務收據記錄，服務於正在形成的代理支付工作流程。</p>
+  <!-- FOOTER -->
+  <footer class="portal-shell-footer">
+    <div class="portal-shell-footer-inner">
+      <div class="portal-shell-footer-grid">
+        <div class="portal-shell-footer-brand">
+          <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-footer-logo">
+          <p class="portal-shell-footer-tagline">
+            安全行動端授權、M Hash L2 測試網演示與 AI 任務收據記錄，服務於正在形成的代理支付工作流程。
+          </p>
+          <div class="portal-shell-social">
+            <a href="https://github.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="Twitter">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://t.me/magneai" target="_blank" class="portal-shell-social-link" aria-label="Telegram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </a>
+            <a href="https://youtube.com/@magneai" target="_blank" class="portal-shell-social-link" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">產品</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./agent-pay.html" class="portal-shell-footer-link">Agent Pay</a></li>
+            <li><a href="./network.html" class="portal-shell-footer-link">網絡</a></li>
+            <li><a href="./ecosystem.html" class="portal-shell-footer-link">生態</a></li>
+            <li><a href="./learn.html" class="portal-shell-footer-link">學習</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">開發者</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./developers.html" class="portal-shell-footer-link">文檔</a></li>
+            <li><a href="./developers-contract.html" class="portal-shell-footer-link">合約</a></li>
+            <li><a href="./developers-connect.html" class="portal-shell-footer-link">連接</a></li>
+            <li><a href="./developers-app.html" class="portal-shell-footer-link">構建 DApp</a></li>
+            <li><a href="https://github.com/magne-ai" target="_blank" class="portal-shell-footer-link">GitHub ↗</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">資源</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./token.html" class="portal-shell-footer-link">代幣</a></li>
+            <li><a href="./transparency.html" class="portal-shell-footer-link active">透明中心</a></li>
+            <li><a href="./faq.html" class="portal-shell-footer-link">常見問題</a></li>
+            <li><a href="./version-history.html" class="portal-shell-footer-link">版本歷史</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">網絡</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="portal-shell-footer-link">L2 瀏覽器 ↗</a></li>
+            <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank" class="portal-shell-footer-link">M-Hash-L2 ↗</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>產品</h4>
-        <ul>
-          <li><a href="./agent-pay.html">Agent Pay</a></li>
-          <li><a href="./network.html">網絡</a></li>
-          <li><a href="./ecosystem.html">生態</a></li>
-          <li><a href="./learn.html">學習</a></li>
-        </ul>
+      <div class="portal-shell-footer-bottom">
+        <div class="portal-shell-legal">
+          MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（USPTO 序號：99311528）。
+        </div>
+        <div class="portal-shell-legal">
+          © 2026 MAGNE.AI. 版權所有。
+        </div>
+        <div class="portal-shell-legal-links">
+          <a href="https://magne.ai/privacy-policy.html" target="_blank" class="portal-shell-legal-link">隱私政策</a>
+          <a href="https://magne.ai/magne-contact.html" target="_blank" class="portal-shell-legal-link">聯繫我們</a>
+          <a href="https://magne.ai/media-kit.html" target="_blank" class="portal-shell-legal-link">媒體資料</a>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>開發者</h4>
-        <ul>
-          <li><a href="./developers.html">文檔</a></li>
-          <li><a href="./developers-contract.html">合約</a></li>
-          <li><a href="./developers-connect.html">連接</a></li>
-          <li><a href="./developers-app.html">構建 DApp</a></li>
-          <li><a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank">GitHub ↗</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>資源</h4>
-        <ul>
-          <li><a href="./token.html">代幣</a></li>
-          <li><a href="./transparency.html">透明中心</a></li>
-          <li><a href="./faq.html">常見問題</a></li>
-          <li><a href="./version-history.html">版本歷史</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>網絡</h4>
-        <ul>
-          <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank">L2 瀏覽器 ↗</a></li>
-          <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M-Hash-L2 ↗</a></li>
-        </ul>
-      </div>
-
     </div>
-    <div class="footer-bottom">
-      <div class="footer-social">
-        <a href="https://x.com/magneai" target="_blank" class="social-icon" title="X"><img src="https://cdn.simpleicons.org/x/white" alt="X"></a>
-        <a href="https://t.me/magneai" target="_blank" class="social-icon" title="Telegram"><img src="https://cdn.simpleicons.org/telegram/white" alt="Telegram"></a>
-        <a href="https://discord.gg/magneai" target="_blank" class="social-icon" title="Discord"><img src="https://cdn.simpleicons.org/discord/white" alt="Discord"></a>
-        <a href="https://github.com/magne-ai" target="_blank" class="social-icon" title="GitHub"><img src="https://cdn.simpleicons.org/github/white" alt="GitHub"></a>
-        <a href="https://youtube.com/@magneai" target="_blank" class="social-icon" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube"></a>
-        <a href="./press-kit.html" class="social-icon" title="新聞稿"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></a>
-      </div>
-      <div class="footer-links">
-        <a href="https://magne.ai/privacy-policy.html" target="_blank">隱私政策</a>
-        <a href="https://magne.ai/magne-contact.html" target="_blank">聯繫我們</a>
-        <a href="https://magne.ai/media-kit.html" target="_blank">媒體資料</a>
-      </div>
-      <p class="footer-trademark">MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO 序號：99311528</a>）。</p>
-      <p class="footer-copyright">© 2026 MAGNE.AI. 版權所有。</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  // Standard mobile menu toggle
-  (function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (!mobileMenuBtn || !mobileMenu) return;
-
-    let menuOpen = false;
-
-    function setMenu(open) {
-      menuOpen = open;
-      mobileMenu.classList.toggle('open', menuOpen);
-      mobileMenuBtn.setAttribute('aria-expanded', String(menuOpen));
-      document.body.classList.toggle('menu-open', menuOpen);
-    }
-
-    mobileMenuBtn.addEventListener('click', function() {
-      setMenu(!menuOpen);
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        setMenu(false);
-      });
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && menuOpen) {
-        setMenu(false);
-        mobileMenuBtn.focus();
-      }
-    });
-  })();
-</script>
-
+  <script src="../assets/js/portal-shell.js"></script>
 </body>
 </html>
