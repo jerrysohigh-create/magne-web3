@@ -5,234 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAGNE.AI Web3 | 生態</title>
   <meta name="description" content="MAGNE.AI 生態系統概覽。探索 Web3 原生 AI 智能手機生態系統、去中心化基礎設施與社區計劃。">
-  <meta property="og:title" content="MAGNE.AI Web3 | 生態">
-  <meta property="og:description" content="MAGNE.AI 生態系統概覽。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://web3.magne.ai/tc/ecosystem.html">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="alternate" hreflang="en" href="https://web3.magne.ai/ecosystem.html">
-  <link rel="alternate" hreflang="zh-Hant" href="https://web3.magne.ai/tc/ecosystem.html">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../assets/logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/portal-shell.css">
+  <link rel="stylesheet" href="../assets/css/portal-components.css">
+  <link rel="canonical" href="https://jerrysohigh-create.github.io/magne-web3/tc/ecosystem.html">
+  <link rel="alternate" hreflang="en" href="https://jerrysohigh-create.github.io/magne-web3/ecosystem.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web3/tc/ecosystem.html">
+  <link rel="alternate" hreflang="x-default" href="https://jerrysohigh-create.github.io/magne-web3/ecosystem.html">
   <style>
-    :root {
-      --bg: #070910;
-      --surface: #0d1520;
-      --surface-2: #111d2e;
-      --border: rgba(88,166,255,0.08);
-      --border-bright: rgba(57,208,214,0.32);
-      --text-primary: #e6edf3;
-      --text-secondary: #8b949e;
-      --text-muted: rgba(139,148,158,0.65);
-      --accent: #39d0d6;
-      --accent-cyan: #39d0d6;
-      --accent-dim: rgba(57,208,214,0.15);
-      --accent-glow: rgba(57,208,214,0.2);
-      --green: #3fb950;
-      --yellow: #d29922;
-      --red: #f85149;
-      --purple: #a371f7;
-    }
+    /* ==========================================================================
+       Ecosystem Page (TC) — .ecosystem-page scoped styles
+       ========================================================================== */
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { max-width: 100%; overflow-x: hidden; }
-    body {
-      font-family: 'Space Grotesk', system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
+    .ecosystem-page { }
 
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image:
-        linear-gradient(rgba(88,166,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(88,166,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      padding: 0;
-      background: rgba(7,9,16,0.9);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-    nav .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 60px;
-      gap: 1rem;
-    }
-    .nav-brand { display: flex; align-items: center; min-width: 0; }
-    .nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-    .nav-links {
-      display: flex;
-      gap: 0.25rem;
-      list-style: none;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-    }
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 500;
-      padding: 0.35rem 0.65rem;
-      border-radius: 4px;
-      transition: color 0.2s, background 0.2s;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--text-primary); background: var(--surface); }
-    .nav-links a.active { color: var(--accent); }
-    .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-    .lang-toggle { display: flex; gap: 0.25rem; align-items: center; }
-    .lang-toggle a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.75rem;
-      font-weight: 500;
-      padding: 0.25rem 0.5rem;
-      border-radius: 3px;
-      transition: all 0.2s;
-    }
-    .lang-toggle a:hover { color: var(--text-secondary); }
-    .lang-toggle a.active { color: var(--accent); background: rgba(57,208,214,0.08); }
-    .nav-link {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .nav-link:hover { color: var(--accent); }
-    .nav-cta {
-      background: var(--accent);
-      color: #000 !important;
-      padding: 0.4rem 1rem;
-      border-radius: 4px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: opacity 0.2s;
-      white-space: nowrap;
-    }
-    .nav-cta:hover { opacity: 0.85; }
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-      font-size: 1.2rem;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 58px;
-      left: 0;
-      right: 0;
-      min-height: calc(100dvh - 58px);
-      background: rgba(7,9,16,0.98);
-      backdrop-filter: blur(18px);
-      z-index: 999;
-      overflow-y: auto;
-      padding: 1.5rem 1.125rem 2rem;
-      flex-direction: column;
-      gap: 0;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-      list-style: none;
-      flex: 1;
-      margin: 0;
-      padding: 0;
-    }
-    .mobile-menu-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.6rem 0.5rem;
-      border-radius: 4px;
-      transition: color 0.2s, background 0.2s;
-      border-bottom: 1px solid var(--border);
-    }
-    .mobile-menu-links a:hover,
-    .mobile-menu-links a.active { color: var(--accent); background: rgba(57,208,214,0.06); }
-    .mobile-menu-divider { height: 1px; background: var(--border); margin: 0.75rem 0; }
-    .mobile-menu-footer { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 0.75rem; }
-    .mobile-menu-footer .lang-toggle { justify-content: flex-start; }
-
-    main { position: relative; z-index: 1; padding-top: 60px; }
-    .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
-
-    .hero {
+    /* Hero */
+    .ecosystem-hero {
+      padding: 10rem 0 6rem;
       position: relative;
-      padding: 8rem 2rem 5rem;
-      text-align: left;
+      z-index: 1;
       background: radial-gradient(ellipse at 30% 0%, rgba(57,208,214,0.08) 0%, transparent 50%);
     }
-    .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+    .ecosystem-hero-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--ps-accent);
       margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-    .hero-label::before {
+    .ecosystem-hero-label::before {
       content: '';
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent-glow);
+      background: var(--ps-accent);
+      box-shadow: 0 0 8px var(--ps-accent-glow);
     }
-    .hero h1 {
-      font-size: 3.5rem;
+    .ecosystem-hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 700;
       line-height: 1.1;
       margin-bottom: 1.5rem;
       letter-spacing: -0.02em;
+      color: var(--ps-text);
     }
-    .hero p {
+    .ecosystem-hero-sub {
       font-size: 1.15rem;
-      color: var(--text-secondary);
+      color: var(--ps-text-secondary);
       max-width: 640px;
       line-height: 1.75;
     }
 
-    .terminal {
+    /* Terminal */
+    .ecosystem-terminal {
       background: #010108;
       border: 1px solid rgba(57,208,214,0.15);
       border-radius: 2px;
       overflow: hidden;
-      margin: 2rem 0;
+      margin-top: 3rem;
     }
-    .terminal-header {
+    .ecosystem-terminal-header {
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -240,92 +79,112 @@
       background: rgba(57,208,214,0.05);
       border-bottom: 1px solid rgba(57,208,214,0.1);
     }
-    .terminal-dot {
+    .ecosystem-terminal-dot {
       width: 10px;
       height: 10px;
       border-radius: 50%;
+      flex-shrink: 0;
     }
-    .terminal-dot.red { background: #ff5f57; }
-    .terminal-dot.yellow { background: #ffbd2e; }
-    .terminal-dot.green { background: #28c840; }
-    .terminal-title {
+    .ecosystem-terminal-dot.red { background: #ff5f57; }
+    .ecosystem-terminal-dot.yellow { background: #ffbd2e; }
+    .ecosystem-terminal-dot.green { background: #28c840; }
+    .ecosystem-terminal-title {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.7rem;
-      color: var(--text-muted);
+      color: var(--ps-text-muted);
       margin-left: 0.5rem;
     }
-    .terminal-body {
+    .ecosystem-terminal-body {
       padding: 1.25rem 1.5rem;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.8rem;
       line-height: 1.8;
       color: #c9d1d9;
     }
-    .terminal-body .prompt { color: var(--accent); }
-    .terminal-body .comment { color: var(--text-muted); }
-    .terminal-body .success { color: var(--green); }
-    .terminal-body .warning { color: var(--yellow); }
+    .ecosystem-terminal-body .eco-prompt { color: var(--ps-accent); }
+    .ecosystem-terminal-body .eco-success { color: var(--ps-green); }
+    .ecosystem-terminal-body .eco-comment { color: var(--ps-text-muted); }
+    .ecosystem-terminal-body .eco-warning { color: var(--ps-yellow); }
 
-    section { padding: 5rem 0; }
-    section:nth-child(even) { background: var(--surface); }
-
-    .section-header { margin-bottom: 3rem; }
-    .section-header h2 {
+    /* Sections */
+    .ecosystem-section {
+      padding: 5rem 0;
+      position: relative;
+      z-index: 1;
+    }
+    .ecosystem-section-alt {
+      background: var(--ps-surface);
+    }
+    .ecosystem-divider {
+      height: 1px;
+      background: var(--ps-border);
+      position: relative;
+      z-index: 1;
+    }
+    .ecosystem-section-header {
+      margin-bottom: 3rem;
+    }
+    .ecosystem-section-title {
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 1.6rem;
       font-weight: 700;
       margin-bottom: 0.75rem;
       letter-spacing: -0.01em;
+      color: var(--ps-text);
     }
-    .section-header p {
-      color: var(--text-secondary);
+    .ecosystem-section-sub {
+      color: var(--ps-text-secondary);
       font-size: 1rem;
       max-width: 600px;
+      line-height: 1.7;
     }
 
-    .data-grid {
+    /* Data Grid / Cards */
+    .ecosystem-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1rem;
     }
-    .data-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+    .ecosystem-card {
+      background: var(--ps-surface);
+      border: 1px solid var(--ps-border);
       border-radius: 2px;
       padding: 1.25rem 1.5rem;
       transition: border-color 0.2s;
     }
-    .data-card:hover { border-color: var(--border-bright); }
-    .data-card-header {
+    .ecosystem-card:hover { border-color: var(--ps-border-bright); }
+    .ecosystem-card-header {
       display: flex;
       align-items: flex-start;
       gap: 0.75rem;
       margin-bottom: 0.75rem;
     }
-    .data-card-icon {
+    .ecosystem-card-icon {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 36px;
       height: 36px;
-      background: var(--accent-dim);
+      background: var(--ps-accent-dim);
       border-radius: 2px;
-      color: var(--accent);
+      color: var(--ps-accent);
       font-size: 1.1rem;
       flex-shrink: 0;
     }
-    .data-card h3 {
+    .ecosystem-card h3 {
       font-size: 0.95rem;
       font-weight: 600;
-      color: var(--text-primary);
+      color: var(--ps-text);
       margin-bottom: 0.25rem;
     }
-    .data-card p {
+    .ecosystem-card p {
       font-size: 0.85rem;
-      color: var(--text-secondary);
+      color: var(--ps-text-secondary);
       line-height: 1.6;
     }
 
-    .status-label {
+    /* Status Labels */
+    .ecosystem-status {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
@@ -337,28 +196,29 @@
       padding: 0.2rem 0.5rem;
       border-radius: 2px;
     }
-    .status-label::before {
+    .ecosystem-status::before {
       content: '';
       width: 5px;
       height: 5px;
       border-radius: 50%;
     }
-    .status-label.live { background: rgba(63,185,80,0.1); color: var(--green); }
-    .status-label.live::before { background: var(--green); box-shadow: 0 0 6px var(--green); }
-    .status-label.dev { background: rgba(168,85,247,0.1); color: var(--purple); }
-    .status-label.dev::before { background: var(--purple); }
-    .status-label.plan { background: rgba(248,81,73,0.1); color: var(--red); }
-    .status-label.plan::before { background: var(--red); }
-    .status-label.ext { background: rgba(210,153,34,0.1); color: var(--yellow); }
-    .status-label.ext::before { background: var(--yellow); }
+    .ecosystem-status.live { background: rgba(63,185,80,0.1); color: var(--ps-green); }
+    .ecosystem-status.live::before { background: var(--ps-green); box-shadow: 0 0 6px var(--ps-green); }
+    .ecosystem-status.dev { background: rgba(168,85,247,0.1); color: var(--ps-purple); }
+    .ecosystem-status.dev::before { background: var(--ps-purple); }
+    .ecosystem-status.plan { background: rgba(248,81,73,0.1); color: var(--ps-red); }
+    .ecosystem-status.plan::before { background: var(--ps-red); }
+    .ecosystem-status.ext { background: rgba(210,153,34,0.1); color: var(--ps-yellow); }
+    .ecosystem-status.ext::before { background: var(--ps-yellow); }
 
-    .cta-row {
+    /* CTA Row */
+    .ecosystem-cta-row {
       display: flex;
       gap: 0.75rem;
       flex-wrap: wrap;
       margin-top: 1.5rem;
     }
-    .btn {
+    .ecosystem-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
@@ -370,500 +230,531 @@
       transition: all 0.2s;
       font-family: 'Space Grotesk', system-ui, sans-serif;
     }
-    .btn-primary {
-      background: var(--accent);
+    .ecosystem-btn-primary {
+      background: var(--ps-accent);
       color: #000;
     }
-    .btn-primary:hover { background: #4dd9dd; }
-    .btn-secondary {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
+    .ecosystem-btn-primary:hover { background: #4dd9dd; }
+    .ecosystem-btn-secondary {
+      background: var(--ps-surface);
+      border: 1px solid var(--ps-border);
+      color: var(--ps-text-secondary);
     }
-    .btn-secondary:hover { border-color: var(--border-bright); color: var(--text-primary); }
+    .ecosystem-btn-secondary:hover { border-color: var(--ps-border-bright); color: var(--ps-text); }
 
-    .roadmap-grid {
+    /* Roadmap */
+    .ecosystem-roadmap-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1rem;
     }
-    .roadmap-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
+    .ecosystem-roadmap-item {
+      background: var(--ps-surface);
+      border: 1px solid var(--ps-border);
       border-radius: 2px;
       padding: 1.25rem 1.5rem;
     }
-    .roadmap-time {
+    .ecosystem-roadmap-time {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--ps-accent);
       margin-bottom: 0.5rem;
     }
-    .roadmap-item h4 {
+    .ecosystem-roadmap-item h4 {
       font-size: 0.95rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
+      color: var(--ps-text);
     }
-    .roadmap-item p {
+    .ecosystem-roadmap-item p {
       font-size: 0.85rem;
-      color: var(--text-secondary);
+      color: var(--ps-text-secondary);
       line-height: 1.6;
     }
 
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      padding: 3rem 0 2rem;
-    }
-    .footer-grid {
-      max-width: 1000px;
+    /* External Campaign Card */
+    .ecosystem-panel {
+      background: var(--ps-surface);
+      border: 1px solid rgba(210,153,34,0.2);
+      border-radius: 2px;
+      padding: 1.5rem;
+      max-width: 700px;
       margin: 0 auto;
-      padding: 0 2rem;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-      gap: 2rem;
+      text-align: center;
     }
-    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
-    @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } footer { padding: 2.5rem 0 1.5rem; } }
-    .footer-brand p { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.7; margin-top: 0.75rem; }
-    .footer-col h4 { font-size: 0.7rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.85rem; }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 0.4rem; }
-    .footer-col a { color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
-    .footer-col a:hover { color: var(--accent); }
-    .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
-    .footer-social { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-    .social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 2px; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
-    .social-icon:hover { border-color: var(--accent); color: var(--accent); }
-    .social-icon img { width: 16px; height: 16px; }
-    .footer-trademark { color: var(--text-muted); font-size: 0.75rem; text-align: center; line-height: 1.6; }
-    .footer-trademark a { color: var(--accent); }
-    .footer-copyright { color: var(--text-muted); font-size: 0.75rem; text-align: center; }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-    .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--accent); }
+    .ecosystem-panel h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ps-text);
+      margin-bottom: 0.5rem;
+    }
+    .ecosystem-panel p {
+      font-size: 0.85rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.6;
+    }
+    .ecosystem-panel .ecosystem-italic {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--ps-text-muted);
+      font-style: italic;
+    }
 
-    @media (max-width: 1024px) {
-      .nav-links { display: none; }
-      .mobile-menu-btn { display: block; }
+    /* CTA Section */
+    .ecosystem-cta-section {
+      text-align: center;
+      padding: 5rem 0;
     }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      nav .container { padding: 0 1.125rem; }
-      .nav-right .lang-toggle,
-      .nav-right > .nav-cta,
-      .nav-right .github-icon,
-      .nav-right > .nav-link { display: none; }
-      .nav-logo-img { height: 26px; max-width: calc(100vw - 88px); object-fit: contain; }
-      .hero { padding: 5rem 1.5rem 3rem; }
-      .hero h1 { font-size: 2.2rem; }
-      .data-card { padding: 1rem 1.25rem; }
-      .terminal-body { padding: 1rem; font-size: 0.75rem; }
+      .ecosystem-hero { padding: 8rem 0 4rem; }
+      .ecosystem-section { padding: 3.5rem 0; }
+      .ecosystem-card { padding: 1rem 1.25rem; }
+      .ecosystem-terminal-body { padding: 1rem; font-size: 0.75rem; }
+      .ecosystem-cta-section { padding: 3.5rem 0; }
     }
   </style>
 </head>
-<body>
-<nav>
-  <div class="container">
-    <div class="nav-brand">
-      <a href="./index.html">
-        <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
+<body class="portal-shell">
+  <!-- Background Effects -->
+  <div class="portal-shell-grid"></div>
+  <div class="portal-shell-glow"></div>
+
+  <!-- HEADER -->
+  <header class="portal-shell-header">
+    <div class="portal-shell-header-inner">
+      <a href="./index.html" class="portal-shell-brand">
+        <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-logo">
       </a>
+      <nav aria-label="主導航">
+        <ul class="portal-shell-nav">
+          <li><a href="./index.html" class="portal-shell-nav-link">首頁</a></li>
+          <li><a href="./agent-pay.html" class="portal-shell-nav-link">AGENT PAY</a></li>
+          <li><a href="./network.html" class="portal-shell-nav-link">網絡</a></li>
+          <li><a href="./developers.html" class="portal-shell-nav-link">開發者</a></li>
+          <li><a href="./token.html" class="portal-shell-nav-link">代幣</a></li>
+          <li><a href="./ecosystem.html" class="portal-shell-nav-link active">生態</a></li>
+        </ul>
+      </nav>
+      <div class="portal-shell-actions">
+        <div class="portal-shell-language" id="psLangDropdown">
+          <button class="portal-shell-language-btn" id="psLangBtn" aria-expanded="false" aria-haspopup="true">
+            繁中 <span class="ps-chevron">▼</span>
+          </button>
+          <ul class="portal-shell-language-menu" role="menu">
+            <li><a href="../ecosystem.html" class="portal-shell-language-option" data-lang="en" data-url="../ecosystem.html">English</a></li>
+            <li><a href="./ecosystem.html" class="portal-shell-language-option active" data-lang="zh-Hant" data-url="./ecosystem.html">繁中</a></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="ja">日本語 <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="ko">한국어 <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="fr">Français <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="es">Español <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="vi">Tiếng Việt <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="id">Bahasa Indonesia <span class="ps-soon">Coming soon</span></span></li>
+          </ul>
+        </div>
+        <a href="https://magne.ai/index.html" target="_blank" rel="noopener noreferrer" class="portal-shell-phone">Phone Portal ↗</a>
+        <a href="https://github.com/magneai" target="_blank" class="portal-shell-github" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://payment.magne.ai/buy" target="_blank" class="portal-shell-cta">預購</a>
+        <button class="portal-shell-toggle" id="psMobileToggle" aria-expanded="false" aria-label="切換導航選單">☰</button>
+      </div>
     </div>
-    <ul class="nav-links">
-      <li><a href="./index.html">首頁</a></li>
-      <li><a href="./agent-pay.html">AGENT PAY</a></li>
-      <li><a href="./network.html">網絡</a></li>
-      <li><a href="./developers.html">開發者</a></li>
-      <li><a href="./token.html">代幣</a></li>
-      <li><a href="./ecosystem.html" class="active">生態</a></li>
-      <li><a href="./transparency.html">透明中心</a></li>
-      <li><a href="./faq.html">常見問題</a></li>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <nav class="portal-shell-mobile" id="psMobileMenu" aria-label="移動端導航">
+    <ul class="portal-shell-mobile-links">
+      <li><a href="./index.html" class="portal-shell-mobile-link">首頁</a></li>
+      <li><a href="./agent-pay.html" class="portal-shell-mobile-link">AGENT PAY</a></li>
+      <li><a href="./network.html" class="portal-shell-mobile-link">網絡</a></li>
+      <li><a href="./developers.html" class="portal-shell-mobile-link">開發者</a></li>
+      <li><a href="./token.html" class="portal-shell-mobile-link">代幣</a></li>
+      <li><a href="./ecosystem.html" class="portal-shell-mobile-link active">生態</a></li>
+      <li><a href="./transparency.html" class="portal-shell-mobile-link">透明中心</a></li>
+      <li><a href="./faq.html" class="portal-shell-mobile-link">常見問題</a></li>
     </ul>
-    <div class="nav-right">
-      <div class="lang-toggle">
-        <a href="../ecosystem.html">EN</a>
-        <a href="./ecosystem.html" class="active">繁中</a>
+    <div class="portal-shell-mobile-divider"></div>
+    <div class="portal-shell-mobile-footer">
+      <div class="portal-shell-mobile-lang">
+        <a href="../ecosystem.html" class="portal-shell-mobile-lang-btn">English</a>
+        <a href="./ecosystem.html" class="portal-shell-mobile-lang-btn active">繁中</a>
+        <span class="portal-shell-mobile-lang-btn disabled">日本語</span>
+        <span class="portal-shell-mobile-lang-btn disabled">한국어</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Français</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Español</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Tiếng Việt</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Bahasa Indonesia</span>
       </div>
-      <a href="https://magne.ai/index.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-      <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">預購</a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="切換導航選單">☰</button>
+      <a href="https://magne.ai/index.html" target="_blank" rel="noopener noreferrer" class="portal-shell-phone" style="width:100%;text-align:center;margin-bottom:0.5rem;">Phone Portal ↗</a>
+      <a href="https://payment.magne.ai/buy" target="_blank" rel="noopener noreferrer" class="portal-shell-cta" style="width:100%;text-align:center;">預購</a>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <ul class="mobile-menu-links">
-    <li><a href="./index.html">首頁</a></li>
-    <li><a href="./agent-pay.html">AGENT PAY</a></li>
-    <li><a href="./network.html">網絡</a></li>
-    <li><a href="./developers.html">開發者</a></li>
-    <li><a href="./token.html">代幣</a></li>
-    <li><a href="./ecosystem.html" class="active">生態</a></li>
-    <li><a href="./transparency.html">透明中心</a></li>
-    <li><a href="./faq.html">常見問題</a></li>
-  </ul>
-  <div class="mobile-menu-divider"></div>
-  <div class="mobile-menu-footer">
-    <div class="lang-toggle">
-      <a href="../ecosystem.html">EN</a>
-      <a href="./ecosystem.html" class="active">繁中</a>
-    </div>
-    <a href="https://magne.ai/index.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-  </div>
-</div>
+  <!-- MAIN CONTENT -->
+  <main class="ecosystem-page" style="padding-top: 60px; position: relative; z-index: 1;">
 
-<main>
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-label">Ecosystem</div>
-      <h1>生態系統</h1>
-      <p>MAGNE.AI 生態系統涵蓋安全硬件、原生 L1/L2 區塊鏈、DePIN 基礎設施與 AI 驅動的開發者平台——所有組件均為协同運作而設計。</p>
+    <!-- HERO -->
+    <section class="ecosystem-hero">
+      <div class="ps-container">
+        <div class="ecosystem-hero-label">Ecosystem</div>
+        <h1 class="ecosystem-hero-title">生態系統</h1>
+        <p class="ecosystem-hero-sub">MAGNE.AI 生態系統涵蓋安全硬件，原生 L1/L2 區塊鏈、DePIN 基礎設施與 AI 驅動的開發者平台——所有組件均為协同運作而設計。</p>
 
-      <div class="terminal" style="margin-top: 3rem;">
-        <div class="terminal-header">
-          <div class="terminal-dot red"></div>
-          <div class="terminal-dot yellow"></div>
-          <div class="terminal-dot green"></div>
-          <span class="terminal-title">magne-cli — ecosystem</span>
-        </div>
-        <div class="terminal-body">
-          <div><span class="prompt">$</span> magne ecosystem list</div>
-          <div><span class="success">✓</span> MAGNE.AI Phone Gen1 — live</div>
-          <div><span class="success">✓</span> MAGNE L1 Testnet — live</div>
-          <div><span class="success">✓</span> M Hash L2 Testnet — live</div>
-          <div><span class="warning">⏳</span> DePIN Network — planning</div>
-          <div>&nbsp;</div>
-          <div><span class="prompt">$</span> magne device status</div>
-          <div><span class="comment">  chain:</span> M Hash L2 (20250827)</div>
-          <div><span class="comment">  role:</span> secure-authorization-endpoint</div>
-          <div><span class="comment">  tee:</span> CC EAL2+</div>
-          <div><span class="comment">  se:</span> CC EAL6+ HyperSeed N60</div>
+        <div class="ecosystem-terminal">
+          <div class="ecosystem-terminal-header">
+            <div class="ecosystem-terminal-dot red"></div>
+            <div class="ecosystem-terminal-dot yellow"></div>
+            <div class="ecosystem-terminal-dot green"></div>
+            <span class="ecosystem-terminal-title">magne-cli — ecosystem</span>
+          </div>
+          <div class="ecosystem-terminal-body">
+            <div><span class="eco-prompt">$</span> magne ecosystem list</div>
+            <div><span class="eco-success">✓</span> MAGNE.AI Phone Gen1 — live</div>
+            <div><span class="eco-success">✓</span> MAGNE L1 Testnet — live</div>
+            <div><span class="eco-success">✓</span> M Hash L2 Testnet — live</div>
+            <div><span class="eco-warning">⏳</span> DePIN Network — planning</div>
+            <div>&nbsp;</div>
+            <div><span class="eco-prompt">$</span> magne device status</div>
+            <div><span class="eco-comment">  chain:</span> M Hash L2 (20250827)</div>
+            <div><span class="eco-comment">  role:</span> secure-authorization-endpoint</div>
+            <div><span class="eco-comment">  tee:</span> CC EAL2+</div>
+            <div><span class="eco-comment">  se:</span> CC EAL6+ HyperSeed N60</div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Core Products -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>核心產品</h2>
-        <p>為原生 Web3 訪問而設計的硬件與軟件</p>
-      </div>
-      <div class="data-grid">
-        <div class="data-card">
-          <div class="data-card-header">
-            <div class="data-card-icon">📱</div>
-            <div>
-              <h3>MAGNE.AI Phone Gen1</h3>
-              <span class="status-label live">已上線</span>
+    <div class="ecosystem-divider"></div>
+
+    <!-- 核心產品 -->
+    <section class="ecosystem-section">
+      <div class="ps-container">
+        <div class="ecosystem-section-header">
+          <h2 class="ecosystem-section-title">核心產品</h2>
+          <p class="ecosystem-section-sub">為原生 Web3 訪問而設計的硬件與軟件</p>
+        </div>
+        <div class="ecosystem-grid">
+          <div class="ecosystem-card">
+            <div class="ecosystem-card-header">
+              <div class="ecosystem-card-icon">📱</div>
+              <div>
+                <h3>MAGNE.AI Phone Gen1</h3>
+                <span class="ecosystem-status live">已上線</span>
+              </div>
+            </div>
+            <p>MAGNE.AI Phone Gen1 定位為 Web3 原生 AI 智能手機，整合硬件安全保障的錢包訪問、雙空間架構與未來 DePIN 參與能力。</p>
+            <div class="ecosystem-cta-row">
+              <a href="https://magne.ai" class="ecosystem-btn ecosystem-btn-secondary" target="_blank">了解更多</a>
             </div>
           </div>
-          <p>MAGNE.AI Phone Gen1 定位為 Web3 原生 AI 智能手機，整合硬件安全保障的錢包訪問、雙空間架構與未來 DePIN 參與能力。</p>
-          <div class="cta-row">
-            <a href="https://magne.ai" class="btn btn-secondary" target="_blank">了解更多</a>
+
+          <div class="ecosystem-card">
+            <div class="ecosystem-card-header">
+              <div class="ecosystem-card-icon">🔐</div>
+              <div>
+                <h3>MAGNE 安全錢包</h3>
+                <span class="ecosystem-status dev">開發中</span>
+              </div>
+            </div>
+            <p>由 TEE 與安全元件架構提供技術支持的硬件級密鑰保護。私鑰通過專用安全元件保護，而非軟件式存儲。</p>
+          </div>
+
+          <div class="ecosystem-card">
+            <div class="ecosystem-card-header">
+              <div class="ecosystem-card-icon">🚀</div>
+              <div>
+                <h3>MAGNE Portal / DApp 中心</h3>
+                <span class="ecosystem-status plan">計劃中</span>
+              </div>
+            </div>
+            <p>整合的 Web3 DApp 瀏覽器與生態系統訪問入口。錢包、Swap、質押、跨鏈——通過安全的 Web3 空間直接整合。</p>
+          </div>
+
+          <div class="ecosystem-card">
+            <div class="ecosystem-card-header">
+              <div class="ecosystem-card-icon">🤖</div>
+              <div>
+                <h3>AI 代理框架</h3>
+                <span class="ecosystem-status dev">開發中</span>
+              </div>
+            </div>
+            <p>具有隱私敏感工作流程的設備端 AI 能力。NPU 支援本地 AI 處理，無需將數據發送至雲端。</p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="data-card">
-          <div class="data-card-header">
-            <div class="data-card-icon">🔐</div>
-            <div>
-              <h3>MAGNE 安全錢包</h3>
-              <span class="status-label dev">開發中</span>
+    <div class="ecosystem-divider"></div>
+
+    <!-- 區塊鏈基礎設施 -->
+    <section class="ecosystem-section ecosystem-section-alt">
+      <div class="ps-container">
+        <div class="ecosystem-section-header">
+          <h2 class="ecosystem-section-title">區塊鏈基礎設施</h2>
+          <p class="ecosystem-section-sub">為 MAGNE 生態系統設計的原生 L1 與 L2 網絡</p>
+        </div>
+        <div class="ecosystem-grid">
+          <div class="ecosystem-card">
+            <div class="ecosystem-card-header">
+              <div class="ecosystem-card-icon">⛓️</div>
+              <div>
+                <h3>MAGNE L1</h3>
+                <span class="ecosystem-status live">測試網已上線</span>
+              </div>
+            </div>
+            <p>EVM 兼容的基礎網絡，專為原生 Web3 應用、資產所有權與生態系統協調而設計。</p>
+            <div class="ecosystem-cta-row">
+              <a href="./network.html" class="ecosystem-btn ecosystem-btn-secondary">查看網絡</a>
             </div>
           </div>
-          <p>由 TEE 與安全元件架構提供技術支持的硬件級密鑰保護。私鑰通過專用安全元件保護，而非軟件式存儲。</p>
-        </div>
 
-        <div class="data-card">
-          <div class="data-card-header">
-            <div class="data-card-icon">🚀</div>
-            <div>
-              <h3>MAGNE Portal / DApp 中心</h3>
-              <span class="status-label plan">計劃中</span>
+          <div class="ecosystem-card">
+            <div class="ecosystem-card-header">
+              <div class="ecosystem-card-icon">🚀</div>
+              <div>
+                <h3>M Hash L2</h3>
+                <span class="ecosystem-status live">測試網已上線</span>
+              </div>
+            </div>
+            <p>基於 OP Stack 的 Layer 2，支援可擴展智能合約、更低成本交易與開發者實驗。</p>
+            <div class="ecosystem-cta-row">
+              <a href="./network.html" class="ecosystem-btn ecosystem-btn-secondary">查看網絡</a>
             </div>
           </div>
-          <p>整合的 Web3 DApp 瀏覽器與生態系統訪問入口。錢包、Swap、質押、跨鏈——通過安全的 Web3 空間直接整合。</p>
         </div>
+      </div>
+    </section>
 
-        <div class="data-card">
-          <div class="data-card-header">
-            <div class="data-card-icon">🤖</div>
-            <div>
-              <h3>AI 代理框架</h3>
-              <span class="status-label dev">開發中</span>
+    <div class="ecosystem-divider"></div>
+
+    <!-- DePIN 算力網絡 -->
+    <section class="ecosystem-section">
+      <div class="ps-container">
+        <div class="ecosystem-section-header">
+          <h2 class="ecosystem-section-title">DePIN 算力網絡</h2>
+          <p class="ecosystem-section-sub">基於設備的基礎設施參與與 AI 算力貢獻</p>
+        </div>
+        <div class="ecosystem-grid">
+          <div class="ecosystem-card">
+            <div class="ecosystem-card-header">
+              <div class="ecosystem-card-icon">📡</div>
+              <h3>設備激勵</h3>
+            </div>
+            <p>參與未來治理批准的網絡貢獻計劃，需遵守技術可用性、資格要求、適用條款、監管因素與市場條件。</p>
+          </div>
+
+          <div class="ecosystem-card">
+            <div class="ecosystem-card-header">
+              <div class="ecosystem-card-icon">🤖</div>
+              <h3>AI 算力</h3>
+            </div>
+            <p>通過貢獻設備資源參與未來 AI 算力計劃，需遵守技術可用性、治理批准的規則、資格要求與適用條款。</p>
+          </div>
+
+          <div class="ecosystem-card">
+            <div class="ecosystem-card-header">
+              <div class="ecosystem-card-icon">🛡️</div>
+              <h3>合規架構</h3>
+            </div>
+            <p>內置合規功能，包括針對受監管市場與企業採用的 KYC 架構考慮。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ecosystem-divider"></div>
+
+    <!-- 開發者生態 -->
+    <section class="ecosystem-section ecosystem-section-alt">
+      <div class="ps-container">
+        <div class="ecosystem-section-header">
+          <h2 class="ecosystem-section-title">開發者生態</h2>
+          <p class="ecosystem-section-sub">在 MAGNE 上構建的工具與資源</p>
+        </div>
+        <div class="ecosystem-grid">
+          <div class="ecosystem-card">
+            <div class="ecosystem-card-header">
+              <div class="ecosystem-card-icon">📂</div>
+              <h3>開發者文檔</h3>
+            </div>
+            <p>網絡配置、快速入門指南與在 MAGNE L1 與 L2 上構建的代碼示例。</p>
+            <div class="ecosystem-cta-row">
+              <a href="./developers.html" class="ecosystem-btn ecosystem-btn-secondary">查看文檔</a>
             </div>
           </div>
-          <p>具有隱私敏感工作流程的設備端 AI 能力。NPU 支援本地 AI 處理，無需將數據發送至雲端。</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Blockchain Infrastructure -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>區塊鏈基礎設施</h2>
-        <p>為 MAGNE 生態系統設計的原生 L1 與 L2 網絡</p>
-      </div>
-      <div class="data-grid">
-        <div class="data-card">
-          <div class="data-card-header">
-            <div class="data-card-icon">⛓️</div>
-            <div>
-              <h3>MAGNE L1</h3>
-              <span class="status-label live">測試網已上線</span>
+          <div class="ecosystem-card">
+            <div class="ecosystem-card-header">
+              <div class="ecosystem-card-icon">🔧</div>
+              <h3>開發工具</h3>
             </div>
+            <p>Hardhat、Foundry、ethers.js 與其他標準 Web3 開發工具。測試網已上線，水龍頭使用需視開發者安排而定。</p>
           </div>
-          <p>EVM 兼容的基礎網絡，專為原生 Web3 應用、資產所有權與生態系統協調而設計。</p>
-          <div class="cta-row">
-            <a href="../network.html" class="btn btn-secondary">查看網絡</a>
-          </div>
-        </div>
 
-        <div class="data-card">
-          <div class="data-card-header">
-            <div class="data-card-icon">🚀</div>
-            <div>
-              <h3>M Hash L2</h3>
-              <span class="status-label live">測試網已上線</span>
+          <div class="ecosystem-card">
+            <div class="ecosystem-card-header">
+              <div class="ecosystem-card-icon">📱</div>
+              <div>
+                <h3>SDK / API</h3>
+                <span class="ecosystem-status plan">計劃中</span>
+              </div>
             </div>
-          </div>
-          <p>基於 OP Stack 的 Layer 2，支援可擴展智能合約、更低成本交易與開發者實驗。</p>
-          <div class="cta-row">
-            <a href="../network.html" class="btn btn-secondary">查看網絡</a>
+            <p>用於與 MAGNE 服務整合的軟件開發工具包與 API。</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- DePIN Network -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>DePIN 算力網絡</h2>
-        <p>基於設備的基礎設施參與與 AI 算力貢獻</p>
-      </div>
-      <div class="data-grid">
-        <div class="data-card">
-          <div class="data-card-header">
-            <div class="data-card-icon">📡</div>
-            <h3>設備激勵</h3>
-          </div>
-          <p>參與未來治理批准的網絡貢獻計劃，需遵守技術可用性、資格要求、適用條款、監管因素與市場條件。</p>
+    <div class="ecosystem-divider"></div>
+
+    <!-- 生態系統路線圖 -->
+    <section class="ecosystem-section">
+      <div class="ps-container">
+        <div class="ecosystem-section-header">
+          <h2 class="ecosystem-section-title">生態系統路線圖</h2>
+          <p class="ecosystem-section-sub">計劃里程碑——以技術、監管與市場條件為準</p>
         </div>
-
-        <div class="data-card">
-          <div class="data-card-header">
-            <div class="data-card-icon">🤖</div>
-            <h3>AI 算力</h3>
+        <div class="ecosystem-roadmap-grid">
+          <div class="ecosystem-roadmap-item">
+            <div class="ecosystem-roadmap-time">2026 Q2</div>
+            <h4>手機發布</h4>
+            <p>MAGNE.AI Phone Gen1 量產與初始設備激勵先導計劃。</p>
           </div>
-          <p>通過貢獻設備資源參與未來 AI 算力計劃，需遵守技術可用性、治理批准的規則、資格要求與適用條款。</p>
-        </div>
-
-        <div class="data-card">
-          <div class="data-card-header">
-            <div class="data-card-icon">🛡️</div>
-            <h3>合規架構</h3>
+          <div class="ecosystem-roadmap-item">
+            <div class="ecosystem-roadmap-time">2026 Q3</div>
+            <h4>DePIN 網絡</h4>
+            <p>DePIN 算力網絡上線與設備激勵分配。以治理批准為準。</p>
           </div>
-          <p>內置合規功能，包括針對受監管市場與企業採用的 KYC 架構考慮。</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Developer Ecosystem -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>開發者生態</h2>
-        <p>在 MAGNE 上構建的工具與資源</p>
-      </div>
-      <div class="data-grid">
-        <div class="data-card">
-          <div class="data-card-header">
-            <div class="data-card-icon">📂</div>
-            <h3>開發者文檔</h3>
-          </div>
-          <p>網絡配置、快速入門指南與在 MAGNE L1 與 L2 上構建的代碼示例。</p>
-          <div class="cta-row">
-            <a href="../developers.html" class="btn btn-secondary">查看文檔</a>
+          <div class="ecosystem-roadmap-item">
+            <div class="ecosystem-roadmap-time">2026 Q4+</div>
+            <h4>主網與生態</h4>
+            <p>主網上線、擴展 DApp 生態與合作夥伴整合。詳情以技術進展為準。</p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="data-card">
-          <div class="data-card-header">
-            <div class="data-card-icon">🔧</div>
-            <h3>開發工具</h3>
+    <div class="ecosystem-divider"></div>
+
+    <!-- 外部活動 -->
+    <section class="ecosystem-section ecosystem-section-alt">
+      <div class="ps-container">
+        <div class="ecosystem-section-header">
+          <span class="ecosystem-status ext">外部活動</span>
+          <h2 class="ecosystem-section-title" style="margin-top: 1rem;">獨立社群活動</h2>
+        </div>
+        <div class="ecosystem-panel">
+          <div class="ecosystem-card-header" style="justify-content: center;">
+            <div class="ecosystem-card-icon">📱</div>
           </div>
-          <p>Hardhat、Foundry、ethers.js 與其他標準 Web3 開發工具。測試網已上線，水龍頭使用需視開發者安排而定。</p>
-        </div>
-
-        <div class="data-card">
-          <div class="data-card-header">
-            <div class="data-card-icon">📱</div>
-            <div>
-              <h3>SDK / API</h3>
-              <span class="status-label plan">計劃中</span>
-            </div>
+          <h3>MAGNE.AI Phone Gen1 Campaign</h3>
+          <p>目前另有一項以手機為核心的社群活動，透過外部 MAGNE.AI 活動頁面展示。</p>
+          <p class="ecosystem-panel ecosystem-italic">此外部活動與 MAGNE 網絡技術披露、Agent Pay 開發者演示、M Hash L2 測試網證據及 MHA 代幣披露相互獨立。參與條件、資格要求及任何活動相關安排，均以適用活動頁面及規則為準。</p>
+          <div class="ecosystem-cta-row" style="justify-content: center;">
+            <a href="https://jerrysohigh-create.github.io/magne-web/lottery-dashboard.html" class="ecosystem-btn ecosystem-btn-secondary" target="_blank" rel="noopener noreferrer">查看 Phone Gen1 Campaign ↗</a>
           </div>
-          <p>用於與 MAGNE 服務整合的軟件開發工具包與 API。</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Roadmap -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>生態系統路線圖</h2>
-        <p>計劃里程碑——以技術、監管與市場條件為準</p>
-      </div>
-      <div class="roadmap-grid">
-        <div class="roadmap-item">
-          <div class="roadmap-time">2026 Q2</div>
-          <h4>手機發布</h4>
-          <p>MAGNE.AI Phone Gen1 量產與初始設備激勵先導計劃。</p>
-        </div>
-        <div class="roadmap-item">
-          <div class="roadmap-time">2026 Q3</div>
-          <h4>DePIN 網絡</h4>
-          <p>DePIN 算力網絡上線與設備激勵分配。以治理批准為準。</p>
-        </div>
-        <div class="roadmap-item">
-          <div class="roadmap-time">2026 Q4+</div>
-          <h4>主網與生態</h4>
-          <p>主網上線、擴展 DApp 生態與合作夥伴整合。詳情以技術進展為準。</p>
+    <!-- 合作諮詢 -->
+    <section class="ecosystem-section">
+      <div class="ps-container">
+        <div class="ecosystem-cta-section">
+          <div class="ecosystem-section-header" style="text-align: center;">
+            <h2 class="ecosystem-section-title">合作諮詢</h2>
+            <p class="ecosystem-section-sub" style="max-width: 500px; margin: 0.75rem auto 0;">有興趣在 MAGNE 上構建或探索合作機會？我們歡迎與開發者、項目方與企業進行討論。</p>
+          </div>
+          <div class="ecosystem-cta-row" style="justify-content: center;">
+            <a href="https://magne.ai/magne-contact.html" class="ecosystem-btn ecosystem-btn-primary">聯繫我們</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- External Campaign -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <span class="status-label ext">外部活動</span>
-        <h2 style="margin-top: 1rem;">獨立社群活動</h2>
-      </div>
-      <div class="data-card" style="max-width: 700px; margin: 0 auto; text-align: center;">
-        <div class="data-card-header" style="justify-content: center;">
-          <div class="data-card-icon">📱</div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="portal-shell-footer">
+    <div class="portal-shell-footer-inner">
+      <div class="portal-shell-footer-grid">
+        <div class="portal-shell-footer-brand">
+          <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-footer-logo">
+          <p class="portal-shell-footer-tagline">
+            安全行動端授權、M Hash L2 測試網演示與 AI 任務收據記錄，服務於正在形成的代理支付工作流程。
+          </p>
+          <div class="portal-shell-social">
+            <a href="https://github.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="Twitter">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://t.me/magneai" target="_blank" class="portal-shell-social-link" aria-label="Telegram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </a>
+            <a href="https://youtube.com/@magneai" target="_blank" class="portal-shell-social-link" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
         </div>
-        <h3>MAGNE.AI Phone Gen1 Campaign</h3>
-        <p>目前另有一項以手機為核心的社群活動，透過外部 MAGNE.AI 活動頁面展示。</p>
-        <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); font-style: italic;">此外部活動與 MAGNE 網絡技術披露、Agent Pay 開發者演示、M Hash L2 測試網證據及 MHA 代幣披露相互獨立。參與條件、資格要求及任何活動相關安排，均以適用活動頁面及規則為準。</p>
-        <div class="cta-row" style="justify-content: center;">
-          <a href="https://jerrysohigh-create.github.io/magne-web/lottery-dashboard.html" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">查看 Phone Gen1 Campaign ↗</a>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">產品</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./agent-pay.html" class="portal-shell-footer-link">Agent Pay</a></li>
+            <li><a href="./network.html" class="portal-shell-footer-link">網絡</a></li>
+            <li><a href="./ecosystem.html" class="portal-shell-footer-link active">生態</a></li>
+            <li><a href="./learn.html" class="portal-shell-footer-link">學習</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">開發者</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./developers.html" class="portal-shell-footer-link">文檔</a></li>
+            <li><a href="./developers-contract.html" class="portal-shell-footer-link">合約</a></li>
+            <li><a href="./developers-connect.html" class="portal-shell-footer-link">連接</a></li>
+            <li><a href="./developers-app.html" class="portal-shell-footer-link">構建 DApp</a></li>
+            <li><a href="https://github.com/magne-ai" target="_blank" class="portal-shell-footer-link">GitHub ↗</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">資源</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./token.html" class="portal-shell-footer-link">代幣</a></li>
+            <li><a href="./transparency.html" class="portal-shell-footer-link">透明中心</a></li>
+            <li><a href="./faq.html" class="portal-shell-footer-link">常見問題</a></li>
+            <li><a href="./version-history.html" class="portal-shell-footer-link">版本歷史</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">網絡</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="portal-shell-footer-link">L2 瀏覽器 ↗</a></li>
+            <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank" class="portal-shell-footer-link">M-Hash-L2 ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="portal-shell-footer-bottom">
+        <div class="portal-shell-legal">
+          MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（USPTO 序號：99311528）。
+        </div>
+        <div class="portal-shell-legal">
+          © 2026 MAGNE.AI. 版權所有。
+        </div>
+        <div class="portal-shell-legal-links">
+          <a href="https://magne.ai/privacy-policy.html" target="_blank" class="portal-shell-legal-link">隱私政策</a>
+          <a href="https://magne.ai/magne-contact.html" target="_blank" class="portal-shell-legal-link">聯繫我們</a>
+          <a href="https://magne.ai/media-kit.html" target="_blank" class="portal-shell-legal-link">媒體資料</a>
         </div>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <!-- CTA -->
-  <section>
-    <div class="container" style="text-align: center; padding: 5rem 2rem;">
-      <div class="section-header" style="text-align: center;">
-        <h2>合作諮詢</h2>
-        <p style="max-width: 500px; margin: 0.75rem auto 0;">有興趣在 MAGNE 上構建或探索合作機會？我們歡迎與開發者、項目方與企業進行討論。</p>
-      </div>
-      <div class="cta-row" style="justify-content: center;">
-        <a href="https://magne.ai/magne-contact.html" class="btn btn-primary">聯繫我們</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a href="./index.html"><img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" style="height:28px;width:auto;display:block;margin-bottom:0.5rem;"></a>
-      <p>安全行動端授權、M Hash L2 測試網演示與 AI 任務收據記錄，服務於正在形成的代理支付工作流程。</p>
-    </div>
-    <div class="footer-col">
-      <h4>產品</h4>
-      <ul>
-        <li><a href="./agent-pay.html">Agent Pay</a></li>
-        <li><a href="./network.html">網絡</a></li>
-        <li><a href="./ecosystem.html">生態</a></li>
-        <li><a href="./learn.html">學習</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>開發者</h4>
-      <ul>
-        <li><a href="./developers.html">文檔</a></li>
-        <li><a href="./developers-contract.html">合約</a></li>
-        <li><a href="./developers-connect.html">連接</a></li>
-        <li><a href="./developers-app.html">構建 DApp</a></li>
-        <li><a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank">GitHub ↗</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>資源</h4>
-      <ul>
-        <li><a href="./token.html">代幣</a></li>
-        <li><a href="./transparency.html">透明中心</a></li>
-        <li><a href="./faq.html">常見問題</a></li>
-        <li><a href="./version-history.html">版本歷史</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>網絡</h4>
-      <ul>
-        <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank">L2 瀏覽器 ↗</a></li>
-        <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M-Hash-L2 ↗</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-social">
-      <a href="https://x.com/magneai" target="_blank" class="social-icon" title="X"><img src="https://cdn.simpleicons.org/x/white" alt="X"></a>
-      <a href="https://t.me/magneai" target="_blank" class="social-icon" title="Telegram"><img src="https://cdn.simpleicons.org/telegram/white" alt="Telegram"></a>
-      <a href="https://discord.gg/magneai" target="_blank" class="social-icon" title="Discord"><img src="https://cdn.simpleicons.org/discord/white" alt="Discord"></a>
-      <a href="https://github.com/magne-ai" target="_blank" class="social-icon" title="GitHub"><img src="https://cdn.simpleicons.org/github/white" alt="GitHub"></a>
-      <a href="https://youtube.com/@magneai" target="_blank" class="social-icon" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube"></a>
-      <a href="./press-kit.html" class="social-icon" title="新聞稿"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></a>
-    </div>
-    <div class="footer-links">
-      <a href="https://magne.ai/privacy-policy.html" target="_blank">隱私政策</a>
-      <a href="https://magne.ai/magne-contact.html" target="_blank">聯繫我們</a>
-      <a href="https://magne.ai/media-kit.html" target="_blank">媒體資料</a>
-    </div>
-    <p class="footer-trademark">MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO 序號：99311528</a>）。</p>
-    <p class="footer-copyright">© 2026 MAGNE.AI. 版權所有。</p>
-  </div>
-</footer>
-
-<script>
-  (function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (!mobileMenuBtn || !mobileMenu) return;
-    let menuOpen = false;
-    function setMenu(open) {
-      menuOpen = open;
-      mobileMenu.classList.toggle('open', menuOpen);
-      mobileMenuBtn.setAttribute('aria-expanded', String(menuOpen));
-      document.body.classList.toggle('menu-open', menuOpen);
-    }
-    mobileMenuBtn.addEventListener('click', function() { setMenu(!menuOpen); });
-    mobileMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() { setMenu(false); });
-    });
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && menuOpen) { setMenu(false); mobileMenuBtn.focus(); }
-    });
-  })();
-</script>
+  <script src="../assets/js/portal-shell.js"></script>
 </body>
 </html>
