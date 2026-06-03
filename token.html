@@ -4,650 +4,398 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MAGNE.AI Web3 | $MHA Token Disclosure</title>
-
-  <!-- SEO Metadata -->
   <meta name="description" content="$MHA Token Disclosure: Planned allocation, utility framework, vesting principles, contract status, and audit progress of $MHA in the MAGNE.AI ecosystem.">
-  <!-- Open Graph -->
-  <meta property="og:title" content="MAGNE.AI Web3 | $MHA Token Disclosure">
-  <meta property="og:description" content="$MHA Token Disclosure: Transparent disclosure of planned allocation, utility framework, vesting principles, contract status, and audit progress.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://web3.magne.ai/token.html">
-  <meta property="og:site_name" content="MAGNE.AI Web3">
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="MAGNE.AI Web3 | $MHA Token Disclosure">
-  <meta name="twitter:description" content="$MHA Token Disclosure: Planned allocation, utility framework, vesting principles, contract status, and audit progress.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔗</text></svg>">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo-icon-circle.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@200;300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/portal-shell.css">
+  <link rel="stylesheet" href="./assets/css/portal-components.css">
+  <link rel="canonical" href="https://jerrysohigh-create.github.io/magne-web3/token.html">
+  <link rel="alternate" hreflang="en" href="https://jerrysohigh-create.github.io/magne-web3/token.html">
+  <link rel="alternate" hreflang="zh-Hant" href="https://jerrysohigh-create.github.io/magne-web3/tc/token.html">
+  <link rel="alternate" hreflang="x-default" href="https://jerrysohigh-create.github.io/magne-web3/token.html">
   <style>
-/* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(7,9,16,0.9);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-    nav .container {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px; gap: 1rem;
-    }
-    .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem; font-weight: 700;
-      color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; flex-shrink: 0;
-    }
-    .nav-logo span { color: var(--accent-cyan); }
-    .nav-brand { display: flex; align-items: center; }
-    .nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-    .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
-    .nav-links a {
-      color: var(--text-secondary); text-decoration: none;
-      font-size: 0.8rem; font-weight: 500;
-      padding: 0.35rem 0.65rem; border-radius: 4px;
-      transition: color 0.2s, background 0.2s; letter-spacing: 0.02em; white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--text-primary); background: var(--surface); }
-    .nav-links a.active { color: var(--accent-cyan); }
-    .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-    .lang-toggle { display: flex; gap: 0.25rem; }
-    .lang-toggle a {
-      color: var(--text-muted); text-decoration: none;
-      font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.5rem;
-      border-radius: 3px; transition: all 0.2s;
-    }
-    .lang-toggle a:hover { color: var(--text-secondary); }
-    .lang-toggle a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.08); }
-    .github-icon {
-      display: flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px; border-radius: 6px;
-      border: 1px solid var(--border); background: var(--surface);
-      color: var(--text-secondary); text-decoration: none;
-      transition: all 0.2s; font-size: 1rem;
-    }
-    .github-icon:hover { border-color: var(--border-bright); color: var(--text-primary); }
-    .nav-cta {
-      background: var(--accent-cyan); color: #000;
-      padding: 0.4rem 1rem; border-radius: 5px;
-      font-size: 0.8rem; font-weight: 700; text-decoration: none;
-      transition: opacity 0.2s; white-space: nowrap;
-    }
-    .nav-cta:hover { opacity: 0.85; }
-    .mobile-menu-btn {
-      display: none; background: none; border: 1px solid var(--border);
-      color: var(--text-primary); font-size: 1.2rem;
-      padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer;
+    /* ==========================================================================
+       Token Page — .token-page scoped styles
+       ========================================================================== */
+
+    .token-page {
+      font-family: 'Outfit', var(--ps-font), system-ui, sans-serif;
     }
 
-    /* Mobile menu overlay */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 58px;
-      left: 0;
-      right: 0;
-      min-height: calc(100dvh - 58px);
-      background: rgba(7,9,16,0.98);
-      backdrop-filter: blur(18px);
-      z-index: 999;
-      overflow-y: auto;
-      padding: 1.5rem 1.125rem 2rem;
-      flex-direction: column;
-      gap: 0;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-      list-style: none;
-      flex: 1;
-    }
-    .mobile-menu-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.6rem 0.5rem;
-      border-radius: 4px;
-      transition: color 0.2s, background 0.2s;
-      border-bottom: 1px solid var(--border);
-    }
-    .mobile-menu-links a:hover,
-    .mobile-menu-links a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.06); }
-    .mobile-menu-divider { height: 1px; background: var(--border); margin: 0.75rem 0; }
-    .mobile-menu-footer {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      padding-top: 0.75rem;
-    }
-    .mobile-menu-footer .lang-toggle { justify-content: flex-start; }
-    .mobile-menu-footer .github-icon {
-      width: auto;
-      height: auto;
-      padding: 0.35rem 0.75rem;
-      font-size: 0.8rem;
-      gap: 0.4rem;
-    }
-
-    /* Desktop nav: hide lang/github in nav-right when mobile menu is present */
-    @media (max-width: 1024px) {
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: absolute; top: 60px; left: 0; right: 0;
-        background: var(--bg); border-bottom: 1px solid var(--border);
-        padding: 1rem; gap: 0.25rem;
-      }
-      .mobile-menu-btn { display: block; }
-    }
-
-    @media (max-width: 768px) {
-      .nav-right .lang-toggle,
-      .nav-right .github-icon,
-      .nav-right > .nav-cta { display: none; }
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 0;
-        flex-shrink: 0;
-      }
-      .nav-brand { min-width: 0; }
-      .mobile-menu-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 42px;
-        height: 42px;
-        flex-shrink: 0;
-      }
-    }
-
-    
-    :root {
-      --bg-primary: #0a0a0c;
-      --bg-secondary: #0f0f12;
-      --bg-card: rgba(255, 255, 255, 0.03);
-      --border: rgba(255, 255, 255, 0.06);
-      --text-primary: #ffffff;
-      --text-secondary: rgba(255, 255, 255, 0.5);
-      --text-muted: rgba(255, 255, 255, 0.35);
-      --surface: var(--bg-card);
-      --accent: #FFD700;
-      --accent-cyan: #39d0d6;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { max-width: 100%; overflow-x: hidden; }
-    body {
-      font-family: 'Outfit', sans-serif;
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
-
-    main { position: relative; z-index: 1; padding-top: 80px; }
-    .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
-
-    section { padding: 5rem 0; }
-    section:nth-child(even) { background: var(--bg-secondary); }
-
-    h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 1rem; }
-    h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
-    h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; }
-    p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.75; }
-
-    .hero {
+    /* Hero */
+    .token-hero {
+      padding: 10rem 0 6rem;
       text-align: center;
-      padding: 8rem 2rem 5rem;
+      position: relative;
+      z-index: 1;
       background: radial-gradient(ellipse at center top, rgba(255,215,0,0.06) 0%, transparent 60%);
     }
-    .hero h1 { margin-bottom: 0.5rem; }
-    .hero-eyebrow { font-size: 0.85rem; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
-
-    .token-symbol {
+    .token-hero-eyebrow {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 1.5rem;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-    }
-
-    .section-header { margin-bottom: 2.5rem; }
-    .section-header h2 { border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
-
-    .grid { display: grid; gap: 1.5rem; }
-    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.75rem;
-      transition: all 0.3s;
-    }
-    .card:hover { border-color: rgba(255,215,0,0.2); }
-    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
-    .card h3 { margin-bottom: 0.5rem; }
-    .card p { font-size: 0.95rem; }
-
-    .allocation-table,
-    .doc-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 2rem 0;
-    }
-    pre, code { white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; }
-    .allocation-table th,
-    .allocation-table td,
-    .doc-table th,
-    .doc-table td {
-      padding: 1rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-    .allocation-table th,
-    .doc-table th {
-      color: var(--text-secondary);
-      font-weight: 500;
-      font-size: 0.9rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .allocation-table td:first-child,
-    .doc-table td:first-child { color: var(--text-primary); }
-    .allocation-table td:last-child,
-    .doc-table td:last-child {
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--accent);
-      text-align: right;
-    }
-    .allocation-table tr:hover,
-    .doc-table tr:hover { background: rgba(255,255,255,0.02); }
-    .token-badge { display: inline-flex; align-items: center; border: 1px solid rgba(255,215,0,0.25); background: rgba(255,215,0,0.08); color: var(--accent); border-radius: 999px; padding: 0.18rem 0.55rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
-    .eyebrow { font-size: 0.85rem; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
-    .notice,
-    .security-notice { background: rgba(255, 215, 0, 0.05); border: 1px solid rgba(255, 215, 0, 0.15); border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem; }
-    .security-notice { border-color: rgba(248, 81, 73, 0.22); background: rgba(248, 81, 73, 0.05); }
-
-    .bar-chart {
-      margin: 2rem 0;
-    }
-    .bar-item {
+      color: #FFD700;
       margin-bottom: 1rem;
     }
-    .bar-label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
+    .token-hero-title {
+      font-family: 'Space Grotesk', var(--ps-font), sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--ps-text);
     }
-    .bar-label span:first-child { color: var(--text-primary); }
-    .bar-label span:last-child { color: var(--accent); font-family: 'JetBrains Mono', monospace; }
-    .bar-bg {
-      height: 8px;
-      background: var(--bg-card);
-      border-radius: 4px;
-      overflow: hidden;
+    .token-hero-sub {
+      font-size: 1.05rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.75;
+      max-width: 680px;
+      margin: 0 auto;
     }
-    .bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), rgba(255,215,0,0.6));
-      border-radius: 4px;
-      transition: width 0.5s ease;
+    .token-symbol {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.4rem;
+      color: #FFD700;
+      margin-top: 1.5rem;
     }
 
-    .disclaimer {
-      background: rgba(255, 215, 0, 0.05);
-      border: 1px solid rgba(255, 215, 0, 0.15);
+    /* Sections */
+    .token-section {
+      padding: 6rem 0;
+      position: relative;
+      z-index: 1;
+    }
+    .token-section-alt {
+      background: var(--ps-surface);
+    }
+    .token-divider {
+      height: 1px;
+      background: var(--ps-border);
+      position: relative;
+      z-index: 1;
+    }
+    .token-section-header {
+      margin-bottom: 2.5rem;
+    }
+    .token-section-title {
+      font-family: 'Space Grotesk', var(--ps-font), sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--ps-text);
+      border-bottom: 1px solid var(--ps-border);
+      padding-bottom: 1rem;
+    }
+    .token-section-sub {
+      font-size: 0.95rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      margin-top: -0.5rem;
+    }
+
+    /* Grid */
+    .token-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    .token-grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    /* Cards */
+    .token-card {
+      background: var(--ps-surface);
+      border: 1px solid var(--ps-border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: border-color 0.3s;
+    }
+    .token-card:hover { border-color: rgba(255,215,0,0.2); }
+    .token-card h3 {
+      font-family: 'Space Grotesk', var(--ps-font), sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--ps-text);
+    }
+    .token-card p {
+      font-size: 0.95rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.6;
+    }
+    .token-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+    /* Tables */
+    .token-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+    .token-table th,
+    .token-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--ps-border);
+      font-size: 0.9rem;
+    }
+    .token-table th {
+      color: var(--ps-text-secondary);
+      font-weight: 500;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .token-table td:first-child { color: var(--ps-text); }
+    .token-table td:last-child {
+      font-family: 'JetBrains Mono', monospace;
+      color: #FFD700;
+      text-align: right;
+    }
+    .token-table tr:hover { background: rgba(255,255,255,0.02); }
+    .token-table-responsive {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Badges */
+    .token-badge {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(255,215,0,0.25);
+      background: rgba(255,215,0,0.08);
+      color: #FFD700;
+      border-radius: 999px;
+      padding: 0.18rem 0.55rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+    }
+
+    /* Notice / Risk panels */
+    .token-notice {
+      background: rgba(255,215,0,0.05);
+      border: 1px solid rgba(255,215,0,0.15);
       border-radius: 12px;
       padding: 1.5rem;
-      margin-top: 3rem;
+      margin-top: 1.5rem;
     }
-    .disclaimer p {
+    .token-notice p {
       font-size: 0.9rem;
+      color: var(--ps-text-secondary);
       line-height: 1.7;
     }
+    .token-notice ul {
+      margin-top: 0.75rem;
+      margin-left: 1.5rem;
+      color: var(--ps-text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+    .token-notice li { margin-bottom: 0.35rem; }
+    .token-notice strong { color: var(--ps-text); }
+    .token-risk {
+      background: rgba(248,81,73,0.05);
+      border: 1px solid rgba(248,81,73,0.22);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .token-risk h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f85149;
+      margin-bottom: 0.5rem;
+    }
+    .token-risk ul {
+      margin-top: 0.75rem;
+      margin-left: 1.5rem;
+      color: var(--ps-text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+    .token-risk li { margin-bottom: 0.35rem; }
 
-    .vesting-grid {
+    /* Vesting */
+    .token-vesting-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1rem;
       margin-top: 2rem;
     }
-    .vesting-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+    .token-vesting-item {
+      background: var(--ps-surface);
+      border: 1px solid var(--ps-border);
       border-radius: 8px;
       padding: 1.25rem;
       text-align: center;
     }
-    .vesting-item h4 { color: var(--accent); margin-bottom: 0.5rem; font-size: 0.95rem; }
-    .vesting-item p { font-size: 0.85rem; color: var(--text-secondary); }
-
-    /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); padding: 3rem 0 2rem; position: relative; z-index: 1; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 2rem; }
-    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
-    .footer-brand p { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.7; margin-top: 0.75rem; }
-    .footer-col h4 { font-size: 0.7rem; font-weight: 600; color: var(--text-primary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.85rem; }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 0.4rem; }
-    .footer-col a { color: var(--text-secondary); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
-    .footer-col a:hover { color: var(--accent-cyan); }
-    .footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
-    .footer-social { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-    .social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary); text-decoration: none; transition: all 0.2s; }
-    .social-icon:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
-    .social-icon img { width: 16px; height: 16px; }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-    .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--accent-cyan); }
-    .footer-trademark { color: var(--text-muted); font-size: 0.75rem; text-align: center; line-height: 1.6; }
-    .footer-trademark a { color: #5795ef; text-decoration: none; }
-    .footer-copyright { color: var(--text-muted); font-size: 0.75rem; text-align: center; }
-
-
-    @media (max-width: 900px) {
-      h1 { font-size: 2rem; }
-      h2 { font-size: 1.6rem; }
-      .hero { padding: 6rem 1.5rem 4rem; }
-      .allocation-table th,
-      .allocation-table td,
-      .doc-table th,
-      .doc-table td { padding: 0.75rem 0.5rem; font-size: 0.85rem; }
+    .token-vesting-item h4 {
+      color: #FFD700;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .token-vesting-item p {
+      font-size: 0.85rem;
+      color: var(--ps-text-secondary);
+      line-height: 1.5;
     }
 
+    /* Bar chart */
+    .token-bar-chart { margin: 2rem 0; }
+    .token-bar-item { margin-bottom: 1rem; }
+    .token-bar-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .token-bar-label span:first-child { color: var(--ps-text); }
+    .token-bar-label span:last-child { color: #FFD700; font-family: 'JetBrains Mono', monospace; }
+    .token-bar-bg {
+      height: 8px;
+      background: var(--ps-surface);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .token-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #FFD700, rgba(255,215,0,0.6));
+      border-radius: 4px;
+    }
+
+    /* Spacing */
+    .token-mt-3 { margin-top: 1.5rem; }
+    .token-mt-4 { margin-top: 2rem; }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      .container { padding: 0 1.125rem; }
-      section { padding: 3.5rem 0; }
-      .hero { padding: 6rem 1.125rem 3.5rem; }
-      .doc-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .token-hero { padding: 8rem 0 4rem; }
+      .token-section { padding: 4rem 0; }
+      .token-card { padding: 1.25rem; }
+      .token-section-title { font-size: 1.4rem; }
     }
-
-    @media (max-width: 560px) {
-      .footer-grid { grid-template-columns: 1fr; gap: 1.6rem; }
-      footer { padding: 2.5rem 0 1.5rem; }
-    }
-
-    @media (max-width: 480px) {
-      .footer-bottom { align-items: flex-start; }
-      .footer-social, .footer-links { justify-content: flex-start; }
-    }
-
-    @media (max-width: 390px) {
-      .container { padding: 0 1rem; }
-    }
-
-/* === Standard mobile navigation: synced from index.html / tc/index.html === */
-:root {
-  --nav-bg: var(--bg, var(--bg-primary, #070910));
-  --nav-surface: var(--surface, var(--bg-card, #0d1520));
-  --nav-border: var(--border, rgba(255,255,255,0.08));
-  --nav-border-bright: var(--border-bright, rgba(57,208,214,0.32));
-  --nav-text-primary: var(--text-primary, #e6edf3);
-  --nav-text-secondary: var(--text-secondary, #8b949e);
-  --nav-text-muted: var(--text-muted, rgba(139,148,158,0.65));
-  --nav-accent: var(--accent-cyan, var(--accent, #39d0d6));
-}
-body.menu-open { overflow: hidden; }
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 0;
-  background: rgba(7,9,16,0.9);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--nav-border);
-}
-nav .container {
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  gap: 1rem;
-}
-.nav-brand { display: flex; align-items: center; min-width: 0; flex: 0 0 auto; }
-.nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-.nav-links {
-  display: flex;
-  gap: 0.25rem;
-  list-style: none;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
-.nav-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 0.35rem 0.65rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  min-width: 0;
-  text-transform: none;
-}
-.nav-links a:hover { color: var(--nav-text-primary); background: var(--nav-surface); }
-.nav-links a.active { color: var(--nav-accent); }
-.nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-.lang-toggle { display: flex; gap: 0.25rem; align-items: center; }
-.lang-toggle a {
-  color: var(--nav-text-muted);
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  transition: all 0.2s;
-}
-.lang-toggle a:hover { color: var(--nav-text-secondary); }
-.lang-toggle a.active { color: var(--nav-accent); background: rgba(57,208,214,0.08); }
-.nav-link {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.nav-link:hover { color: var(--nav-accent); }
-.github-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  border: 1px solid var(--nav-border);
-  background: var(--nav-surface);
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  transition: all 0.2s;
-  font-size: 1rem;
-}
-.github-icon:hover { border-color: var(--nav-border-bright); color: var(--nav-text-primary); }
-.nav-cta {
-  background: var(--nav-accent);
-  color: #000 !important;
-  padding: 0.4rem 1rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: opacity 0.2s;
-  white-space: nowrap;
-}
-.nav-cta:hover { opacity: 0.85; }
-.nav-toggle { display: none !important; }
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: 1px solid var(--nav-border);
-  color: var(--nav-text-primary);
-  font-size: 1.2rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 58px;
-  left: 0;
-  right: 0;
-  min-height: calc(100dvh - 58px);
-  background: rgba(7,9,16,0.98);
-  backdrop-filter: blur(18px);
-  z-index: 999;
-  overflow-y: auto;
-  padding: 1.5rem 1.125rem 2rem;
-  flex-direction: column;
-  gap: 0;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  list-style: none;
-  flex: 1;
-  margin: 0;
-  padding: 0;
-}
-.mobile-menu-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 0.6rem 0.5rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  border-bottom: 1px solid var(--nav-border);
-}
-.mobile-menu-links a:hover,
-.mobile-menu-links a.active { color: var(--nav-accent); background: rgba(57,208,214,0.06); }
-.mobile-menu-divider { height: 1px; background: var(--nav-border); margin: 0.75rem 0; }
-.mobile-menu-footer { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 0.75rem; }
-.mobile-menu-footer .lang-toggle { justify-content: flex-start; }
-.mobile-menu-footer .github-icon { width: auto; height: auto; padding: 0.35rem 0.75rem; font-size: 0.8rem; gap: 0.4rem; }
-@media (max-width: 1024px) {
-  .nav-links { display: none; }
-  .mobile-menu-btn { display: block; }
-}
-@media (max-width: 1320px) {
-  .nav-right > .nav-link { display: none; }
-}
-@media (max-width: 768px) {
-  nav .container { padding: 0 1.125rem; gap: 0.75rem; }
-  .nav-right .lang-toggle,
-  .nav-right > .nav-cta,
-  .nav-right .github-icon,
-  .nav-right > .nav-link { display: none; }
-  .nav-logo-img { height: 26px; max-width: calc(100vw - 88px); object-fit: contain; }
-  .nav-right { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
-  .mobile-menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; flex-shrink: 0; }
-}
-/* === End standard mobile navigation === */
-
   </style>
-
-  <link rel="alternate" hreflang="en" href="https://web3.magne.ai/token.html">
-  <link rel="alternate" hreflang="zh-Hant" href="https://web3.magne.ai/coming-soon.html">
-  <link rel="alternate" hreflang="x-default" href="https://web3.magne.ai/token.html">
 </head>
-<body>
-<nav>
-  <div class="container">
-    <div class="nav-brand">
-      <a href="./">
-        <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
-      </a>
-    </div>
-    <ul class="nav-links">
-      <li><a href="./">HOME</a></li>
-      <li><a href="./agent-pay.html">AGENT PAY</a></li>
-      <li><a href="./network.html">NETWORK</a></li>
-      <li><a href="./developers.html">DEVELOPERS</a></li>
-      <li><a href="./token.html" class="active">TOKEN</a></li>
-      <li><a href="./ecosystem.html">ECOSYSTEM</a></li>
-      <li><a href="./transparency.html">TRANSPARENCY</a></li>
-      <li><a href="./faq.html">FAQ</a></li>
-    </ul>
-    <div class="nav-right">
-      <div class="lang-toggle">
-        <a href="./token.html" class="active">EN</a>
-        <a href="./tc/token.html">繁中</a>
-      </div>
-      <a href="https://magne.ai/index.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-      <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">Preorder</a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
-    </div>
-  </div>
-</nav>
+<body class="portal-shell">
+  <!-- Background Effects -->
+  <div class="portal-shell-grid"></div>
+  <div class="portal-shell-glow"></div>
 
-<!-- MOBILE MENU OVERLAY -->
-<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
-  <ul class="mobile-menu-links">
-    <li><a href="./">HOME</a></li>
-    <li><a href="./agent-pay.html">AGENT PAY</a></li>
-    <li><a href="./network.html">NETWORK</a></li>
-    <li><a href="./developers.html">DEVELOPERS</a></li>
-    <li><a href="./token.html" class="active">TOKEN</a></li>
-    <li><a href="./ecosystem.html">ECOSYSTEM</a></li>
-    <li><a href="./transparency.html">TRANSPARENCY</a></li>
-    <li><a href="./faq.html">FAQ</a></li>
-  </ul>
-  <div class="mobile-menu-divider"></div>
-  <div class="mobile-menu-footer">
-    <div class="lang-toggle">
-      <a href="./token.html" class="active">EN</a>
-      <a href="./tc/token.html">繁中</a>
+  <!-- HEADER -->
+  <header class="portal-shell-header">
+    <div class="portal-shell-header-inner">
+      <a href="./index.html" class="portal-shell-brand">
+        <img src="./assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-logo">
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="portal-shell-nav">
+          <li><a href="./index.html" class="portal-shell-nav-link">HOME</a></li>
+          <li><a href="./agent-pay.html" class="portal-shell-nav-link">AGENT PAY</a></li>
+          <li><a href="./network.html" class="portal-shell-nav-link">NETWORK</a></li>
+          <li><a href="./developers.html" class="portal-shell-nav-link">DEVELOPERS</a></li>
+          <li><a href="./token.html" class="portal-shell-nav-link active">TOKEN</a></li>
+        </ul>
+      </nav>
+      <div class="portal-shell-actions">
+        <div class="portal-shell-language" id="psLangDropdown">
+          <button class="portal-shell-language-btn" id="psLangBtn" aria-expanded="false" aria-haspopup="true">
+            EN <span class="ps-chevron">▼</span>
+          </button>
+          <ul class="portal-shell-language-menu" role="menu">
+            <li><a href="./token.html" class="portal-shell-language-option active" data-lang="en" data-url="./token.html">English</a></li>
+            <li><a href="./tc/token.html" class="portal-shell-language-option" data-lang="zh-Hant" data-url="./tc/token.html">繁中</a></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="ja">日本語 <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="ko">한국어 <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="fr">Français <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="es">Español <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="vi">Tiếng Việt <span class="ps-soon">Coming soon</span></span></li>
+            <li><span class="portal-shell-language-option disabled" data-lang="id">Bahasa Indonesia <span class="ps-soon">Coming soon</span></span></li>
+          </ul>
+        </div>
+        <a href="https://magne.ai/index.html" target="_blank" rel="noopener noreferrer" class="portal-shell-phone">Phone Portal ↗</a>
+        <a href="https://github.com/magneai" target="_blank" class="portal-shell-github" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://payment.magne.ai/buy" target="_blank" class="portal-shell-cta">Preorder</a>
+        <button class="portal-shell-toggle" id="psMobileToggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+      </div>
     </div>
-    <a href="https://magne.ai/index.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-  </div>
-</div>
-<main>
-    <section class="hero">
-      <div class="container">
-        <p class="eyebrow">Token Disclosure</p>
-        <h1>$MHA Token Disclosure</h1>
-        <p>MAGNE.AI discloses the planned allocation, utility framework, vesting principles, contract status, and audit progress of $MHA in a transparent, compliant, and verifiable manner. The information on this page may be updated subject to final legal, compliance, technical, and governance review.</p>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <nav class="portal-shell-mobile" id="psMobileMenu" aria-label="Mobile navigation">
+    <ul class="portal-shell-mobile-links">
+      <li><a href="./index.html" class="portal-shell-mobile-link">HOME</a></li>
+      <li><a href="./agent-pay.html" class="portal-shell-mobile-link">AGENT PAY</a></li>
+      <li><a href="./network.html" class="portal-shell-mobile-link">NETWORK</a></li>
+      <li><a href="./developers.html" class="portal-shell-mobile-link">DEVELOPERS</a></li>
+      <li><a href="./token.html" class="portal-shell-mobile-link active">TOKEN</a></li>
+      <li><a href="./ecosystem.html" class="portal-shell-mobile-link">ECOSYSTEM</a></li>
+      <li><a href="./transparency.html" class="portal-shell-mobile-link">TRANSPARENCY</a></li>
+      <li><a href="./faq.html" class="portal-shell-mobile-link">FAQ</a></li>
+    </ul>
+    <div class="portal-shell-mobile-divider"></div>
+    <div class="portal-shell-mobile-footer">
+      <div class="portal-shell-mobile-lang">
+        <a href="./token.html" class="portal-shell-mobile-lang-btn active">English</a>
+        <a href="./tc/token.html" class="portal-shell-mobile-lang-btn">繁中</a>
+        <span class="portal-shell-mobile-lang-btn disabled">日本語</span>
+        <span class="portal-shell-mobile-lang-btn disabled">한국어</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Français</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Español</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Tiếng Việt</span>
+        <span class="portal-shell-mobile-lang-btn disabled">Bahasa Indonesia</span>
+      </div>
+      <a href="https://magne.ai/index.html" target="_blank" rel="noopener noreferrer" class="portal-shell-phone" style="width:100%;text-align:center;margin-bottom:0.5rem;">Phone Portal ↗</a>
+      <a href="https://payment.magne.ai/buy" target="_blank" rel="noopener noreferrer" class="portal-shell-cta" style="width:100%;text-align:center;">Preorder</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="token-page" style="padding-top: 60px; position: relative; z-index: 1;">
+
+    <!-- HERO -->
+    <section class="token-hero">
+      <div class="ps-container">
+        <div class="token-hero-eyebrow">Token Disclosure</div>
+        <h1 class="token-hero-title">$MHA Token Disclosure</h1>
+        <p class="token-hero-sub">MAGNE.AI discloses the planned allocation, utility framework, vesting principles, contract status, and audit progress of $MHA in a transparent, compliant, and verifiable manner. The information on this page may be updated subject to final legal, compliance, technical, and governance review.</p>
+        <div class="token-symbol">$MHA</div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>Token Overview</h2>
-        <div class="grid-2">
-          <div class="card">
+    <div class="token-divider"></div>
+
+    <!-- TOKEN OVERVIEW -->
+    <section class="token-section">
+      <div class="ps-container">
+        <div class="token-section-header">
+          <h2 class="token-section-title">Token Overview</h2>
+        </div>
+        <div class="token-grid token-grid-2">
+          <div class="token-card">
             <h3>Token Name</h3>
             <p>MAGNE.AI</p>
           </div>
-          <div class="card">
+          <div class="token-card">
             <h3>Symbol</h3>
             <p>MHA</p>
           </div>
-          <div class="card">
+          <div class="token-card">
             <h3>Initial Network</h3>
             <p>BNB Smart Chain / BEP-20</p>
           </div>
-          <div class="card">
+          <div class="token-card">
             <h3>Future Network Plan</h3>
             <p>MAGNE Network / M Hash L2, subject to technical and governance review</p>
           </div>
-          <div class="card">
+          <div class="token-card">
             <h3>Total Supply</h3>
             <p>10,000,000,000 MHA</p>
           </div>
-          <div class="card">
+          <div class="token-card">
             <h3>Decimals</h3>
             <p>18</p>
           </div>
@@ -655,100 +403,72 @@ nav .container {
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>Planned Allocation</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">The allocation above reflects the current planning framework and may be adjusted subject to final legal, compliance, technical, market-making, exchange, and governance review.</p>
-        <table class="doc-table">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Planned</th>
-              <th>Amount (MHA)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Mining / Device Participation</td>
-              <td><span class="token-badge">30%</span></td>
-              <td>3,000,000,000</td>
-            </tr>
-            <tr>
-              <td>Staking / Network Participation</td>
-              <td><span class="token-badge">15%</span></td>
-              <td>1,500,000,000</td>
-            </tr>
-            <tr>
-              <td>Ecosystem / DAO</td>
-              <td><span class="token-badge">15%</span></td>
-              <td>1,500,000,000</td>
-            </tr>
-            <tr>
-              <td>Team</td>
-              <td><span class="token-badge">10%</span></td>
-              <td>1,000,000,000</td>
-            </tr>
-            <tr>
-              <td>VC / Strategic Investors</td>
-              <td><span class="token-badge">10%</span></td>
-              <td>1,000,000,000</td>
-            </tr>
-            <tr>
-              <td>Early Supporters</td>
-              <td><span class="token-badge">8%</span></td>
-              <td>800,000,000</td>
-            </tr>
-            <tr>
-              <td>Market Making / Liquidity</td>
-              <td><span class="token-badge">7%</span></td>
-              <td>700,000,000</td>
-            </tr>
-            <tr>
-              <td>Public Sale</td>
-              <td><span class="token-badge">3%</span></td>
-              <td>300,000,000</td>
-            </tr>
-            <tr>
-              <td>Agents</td>
-              <td><span class="token-badge">1%</span></td>
-              <td>100,000,000</td>
-            </tr>
-            <tr>
-              <td>Exchange Reserve</td>
-              <td><span class="token-badge">1%</span></td>
-              <td>100,000,000</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="token-divider"></div>
+
+    <!-- PLANNED ALLOCATION -->
+    <section class="token-section token-section-alt">
+      <div class="ps-container">
+        <div class="token-section-header">
+          <h2 class="token-section-title">Planned Allocation</h2>
+          <p class="token-section-sub">The allocation above reflects the current planning framework and may be adjusted subject to final legal, compliance, technical, market-making, exchange, and governance review.</p>
+        </div>
+        <div class="token-table-responsive">
+          <table class="token-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Planned</th>
+                <th style="text-align:right;">Amount (MHA)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Mining / Device Participation</td><td><span class="token-badge">30%</span></td><td>3,000,000,000</td></tr>
+              <tr><td>Staking / Network Participation</td><td><span class="token-badge">15%</span></td><td>1,500,000,000</td></tr>
+              <tr><td>Ecosystem / DAO</td><td><span class="token-badge">15%</span></td><td>1,500,000,000</td></tr>
+              <tr><td>Team</td><td><span class="token-badge">10%</span></td><td>1,000,000,000</td></tr>
+              <tr><td>VC / Strategic Investors</td><td><span class="token-badge">10%</span></td><td>1,000,000,000</td></tr>
+              <tr><td>Early Supporters</td><td><span class="token-badge">8%</span></td><td>800,000,000</td></tr>
+              <tr><td>Market Making / Liquidity</td><td><span class="token-badge">7%</span></td><td>700,000,000</td></tr>
+              <tr><td>Public Sale</td><td><span class="token-badge">3%</span></td><td>300,000,000</td></tr>
+              <tr><td>Agents</td><td><span class="token-badge">1%</span></td><td>100,000,000</td></tr>
+              <tr><td>Exchange Reserve</td><td><span class="token-badge">1%</span></td><td>100,000,000</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>Utility Framework</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">$MHA is intended to support selected ecosystem functions such as device-linked identity, campaign eligibility tracking, future AI agent or compute credit access, developer incentives, and governance-related participation. These features remain subject to product development, compliance review, technical validation, and governance approval.</p>
-        <div class="grid-2">
-          <div class="card">
+    <div class="token-divider"></div>
+
+    <!-- UTILITY FRAMEWORK -->
+    <section class="token-section">
+      <div class="ps-container">
+        <div class="token-section-header">
+          <h2 class="token-section-title">Utility Framework</h2>
+          <p class="token-section-sub">$MHA is intended to support selected ecosystem functions such as device-linked identity, campaign eligibility tracking, future AI agent or compute credit access, developer incentives, and governance-related participation. These features remain subject to product development, compliance review, technical validation, and governance approval.</p>
+        </div>
+        <div class="token-grid token-grid-2">
+          <div class="token-card">
             <h3>Device-Linked Identity</h3>
             <p>Planned device identity mechanism. Specific functionality to be determined based on technical validation progress.</p>
           </div>
-          <div class="card">
+          <div class="token-card">
             <h3>Campaign Eligibility Tracking</h3>
             <p>Planned campaign eligibility record and tracking system. Specific arrangements to be executed according to campaign rules and compliance requirements.</p>
           </div>
-          <div class="card">
+          <div class="token-card">
             <h3>AI Agent / Compute Credit Access</h3>
             <p>Planned AI agent and compute credit access functionality. Subject to technical development and governance arrangements.</p>
           </div>
-          <div class="card">
+          <div class="token-card">
             <h3>Network Participation</h3>
             <p>Planned network participation functionality. To be opened according to network launch schedule and technical readiness.</p>
           </div>
-          <div class="card">
+          <div class="token-card">
             <h3>Ecosystem Governance</h3>
             <p>Planned ecosystem governance voting functionality. Subject to governance mechanism launch and final approval.</p>
           </div>
-          <div class="card">
+          <div class="token-card">
             <h3>Developer & Ecosystem Incentives</h3>
             <p>Planned developer and ecosystem incentive program. Specific rules to be determined based on technical validation and governance arrangements.</p>
           </div>
@@ -756,12 +476,17 @@ nav .container {
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>Vesting & Circulation Principles</h2>
-        <div class="notice">
+    <div class="token-divider"></div>
+
+    <!-- VESTING & CIRCULATION PRINCIPLES -->
+    <section class="token-section token-section-alt">
+      <div class="ps-container">
+        <div class="token-section-header">
+          <h2 class="token-section-title">Vesting & Circulation Principles</h2>
+        </div>
+        <div class="token-notice">
           <p><strong>Vesting Principles</strong></p>
-          <ul style="margin-top: 0.75rem; margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8;">
+          <ul>
             <li><strong>Long-term alignment:</strong> Team and investor shares are subject to lock-up periods to ensure long-term alignment of interests.</li>
             <li><strong>Staged release:</strong> Tokens will be released according to planned schedules. Specific arrangements to be executed according to final agreements.</li>
             <li><strong>No guaranteed rewards:</strong> No token-related activities constitute promises of revenue, guarantees, or profit.</li>
@@ -772,32 +497,47 @@ nav .container {
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>Contract Status</h2>
-        <div class="notice">
+    <div class="token-divider"></div>
+
+    <!-- CONTRACT STATUS -->
+    <section class="token-section">
+      <div class="ps-container">
+        <div class="token-section-header">
+          <h2 class="token-section-title">Contract Status</h2>
+        </div>
+        <div class="token-notice">
           <p><strong>Contract Deployment</strong></p>
-          <p style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.9rem;">Contract deployment details will be disclosed after final technical verification, audit review, and launch readiness confirmation. Any published contract address should be verified through official MAGNE.AI channels.</p>
+          <p>Contract deployment details will be disclosed after final technical verification, audit review, and launch readiness confirmation. Any published contract address should be verified through official MAGNE.AI channels.</p>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>Audit Status</h2>
-        <div class="notice">
+    <div class="token-divider"></div>
+
+    <!-- AUDIT STATUS -->
+    <section class="token-section token-section-alt">
+      <div class="ps-container">
+        <div class="token-section-header">
+          <h2 class="token-section-title">Audit Status</h2>
+        </div>
+        <div class="token-notice">
           <p><strong>Smart Contract Audit</strong></p>
-          <p style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.9rem;">Smart contract audit status will be updated as relevant contracts are finalized and reviewed. Audit reports, once available, will be linked from this page and the Transparency Center.</p>
+          <p>Smart contract audit status will be updated as relevant contracts are finalized and reviewed. Audit reports, once available, will be linked from this page and the Transparency Center.</p>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <h2>Risk Disclosure</h2>
-        <div class="security-notice">
+    <div class="token-divider"></div>
+
+    <!-- RISK DISCLOSURE -->
+    <section class="token-section">
+      <div class="ps-container">
+        <div class="token-section-header">
+          <h2 class="token-section-title">Risk Disclosure</h2>
+        </div>
+        <div class="token-risk">
           <h3>⚠️ Risk Factors</h3>
-          <ul style="margin-top: 1rem; margin-left: 1.5rem; color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8;">
+          <ul>
             <li>$MHA is not offered as an investment product.</li>
             <li>No guaranteed rewards, profit, yield, liquidity, exchange listing, or token distribution is promised.</li>
             <li>Campaign eligibility, SBT records, device ownership, or community participation do not guarantee token allocation.</li>
@@ -810,107 +550,85 @@ nav .container {
         </div>
       </div>
     </section>
+
   </main>
 
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="./"><img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" style="height:28px;width:auto;display:block;margin-bottom:0.5rem;"></a>
-        <p>Secure mobile authorization, M Hash L2 settlement, and AI Task Receipts for emerging agent payment workflows.</p>
+  <!-- FOOTER -->
+  <footer class="portal-shell-footer">
+    <div class="portal-shell-footer-inner">
+      <div class="portal-shell-footer-grid">
+        <div class="portal-shell-footer-brand">
+          <img src="./assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="portal-shell-footer-logo">
+          <p class="portal-shell-footer-tagline">
+            Secure mobile authorization, M Hash L2 settlement, and AI Task Receipts for emerging agent payment workflows.
+          </p>
+          <div class="portal-shell-social">
+            <a href="https://github.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="GitHub">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://twitter.com/magneai" target="_blank" class="portal-shell-social-link" aria-label="Twitter">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://t.me/magneai" target="_blank" class="portal-shell-social-link" aria-label="Telegram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </a>
+            <a href="https://youtube.com/@magneai" target="_blank" class="portal-shell-social-link" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Products</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./agent-pay.html" class="portal-shell-footer-link">Agent Pay</a></li>
+            <li><a href="./network.html" class="portal-shell-footer-link">Network</a></li>
+            <li><a href="./ecosystem.html" class="portal-shell-footer-link">Ecosystem</a></li>
+            <li><a href="./learn.html" class="portal-shell-footer-link">Learn</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Developers</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./developers.html" class="portal-shell-footer-link">Docs</a></li>
+            <li><a href="./developers-contract.html" class="portal-shell-footer-link">Contracts</a></li>
+            <li><a href="./developers-connect.html" class="portal-shell-footer-link">Connect</a></li>
+            <li><a href="./developers-app.html" class="portal-shell-footer-link">Build DApp</a></li>
+            <li><a href="https://github.com/magne-ai" target="_blank" class="portal-shell-footer-link">GitHub ↗</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Resources</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="./token.html" class="portal-shell-footer-link active">Token</a></li>
+            <li><a href="./transparency.html" class="portal-shell-footer-link">Transparency</a></li>
+            <li><a href="./faq.html" class="portal-shell-footer-link">FAQ</a></li>
+            <li><a href="./version-history.html" class="portal-shell-footer-link">Version History</a></li>
+          </ul>
+        </div>
+        <div class="portal-shell-footer-col">
+          <h4 class="portal-shell-footer-col-title">Network</h4>
+          <ul class="portal-shell-footer-col-links">
+            <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank" class="portal-shell-footer-link">L2 Explorer ↗</a></li>
+            <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank" class="portal-shell-footer-link">M-Hash-L2 ↗</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Product</h4>
-        <ul>
-          <li><a href="./agent-pay.html">Agent Pay</a></li>
-          <li><a href="./network.html">Network</a></li>
-          <li><a href="./ecosystem.html">Ecosystem</a></li>
-          <li><a href="./learn.html">Learn</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Developers</h4>
-        <ul>
-          <li><a href="./developers.html">Docs</a></li>
-          <li><a href="./developers-contract.html">Contracts</a></li>
-          <li><a href="./developers-connect.html">Connect</a></li>
-          <li><a href="./developers-app.html">Build DApp</a></li>
-          <li><a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank">GitHub ↗</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <ul>
-          <li><a href="./token.html" class="active">Token</a></li>
-          <li><a href="./transparency.html">Transparency</a></li>
-          <li><a href="./faq.html">FAQ</a></li>
-          <li><a href="./version-history.html">Version History</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Network</h4>
-        <ul>
-          <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank">L2 Explorer ↗</a></li>
-          <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M-Hash-L2 ↗</a></li>
-        </ul>
+      <div class="portal-shell-footer-bottom">
+        <div class="portal-shell-legal">
+          MAGNE.AI™ is a trademark of Magical Hash Global Tech Limited and is currently in the registration process (USPTO Serial No. 99311528).
+        </div>
+        <div class="portal-shell-legal">
+          © 2026 MAGNE.AI. All rights reserved.
+        </div>
+        <div class="portal-shell-legal-links">
+          <a href="https://magne.ai/privacy-policy.html" target="_blank" class="portal-shell-legal-link">Privacy Policy</a>
+          <a href="https://magne.ai/magne-contact.html" target="_blank" class="portal-shell-legal-link">Contact</a>
+          <a href="https://magne.ai/media-kit.html" target="_blank" class="portal-shell-legal-link">Media Kit</a>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-social">
-        <a href="https://x.com/magneai" target="_blank" class="social-icon" title="X"><img src="https://cdn.simpleicons.org/x/white" alt="X"></a>
-        <a href="https://t.me/magneai" target="_blank" class="social-icon" title="Telegram"><img src="https://cdn.simpleicons.org/telegram/white" alt="Telegram"></a>
-        <a href="https://discord.gg/magneai" target="_blank" class="social-icon" title="Discord"><img src="https://cdn.simpleicons.org/discord/white" alt="Discord"></a>
-        <a href="https://github.com/magne-ai" target="_blank" class="social-icon" title="GitHub"><img src="https://cdn.simpleicons.org/github/white" alt="GitHub"></a>
-        <a href="https://youtube.com/@magneai" target="_blank" class="social-icon" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube"></a>
-        <a href="https://magne.ai/media-kit.html" target="_blank" class="social-icon" title="Media Kit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></a>
-      </div>
-      <div class="footer-links">
-        <a href="https://magne.ai/privacy-policy.html" target="_blank">Privacy Policy</a>
-        <a href="https://magne.ai/magne-contact.html" target="_blank">Contact Us</a>
-        <a href="https://magne.ai/media-kit.html" target="_blank">Media Kit</a>
-      </div>
-      <p class="footer-trademark">MAGNE.AI™ is a commercial designation of Magical Hash Global Tech Limited and is currently in trademark registration proceedings (<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO Serial No. 99311528</a>).</p>
-      <p class="footer-copyright">© 2026 MAGNE.AI. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script>
-  // Standard mobile menu toggle
-  (function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (!mobileMenuBtn || !mobileMenu) return;
-
-    let menuOpen = false;
-
-    function setMenu(open) {
-      menuOpen = open;
-      mobileMenu.classList.toggle('open', menuOpen);
-      mobileMenuBtn.setAttribute('aria-expanded', String(menuOpen));
-      document.body.classList.toggle('menu-open', menuOpen);
-    }
-
-    mobileMenuBtn.addEventListener('click', function() {
-      setMenu(!menuOpen);
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        setMenu(false);
-      });
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && menuOpen) {
-        setMenu(false);
-        mobileMenuBtn.focus();
-      }
-    });
-  })();
-</script>
-
+  <script src="./assets/js/portal-shell.js"></script>
 </body>
 </html>
