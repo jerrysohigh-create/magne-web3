@@ -57,10 +57,10 @@ for W in "${VIEWPORTS[@]}"; do
     --no-sandbox \
     --disable-setuid-sandbox \
     --disable-dev-shm-usage \
+    --disable-gpu \
     --window-size="$W,3000" \
     --screenshot="$OUT" \
     --timeout="$TIMEOUT_MS" \
-    --wait-for-navigation load \
     "$URL" \
     &>/dev/null
 
