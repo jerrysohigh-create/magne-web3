@@ -71,7 +71,7 @@ Corrected 7 messaging items on agent-pay.html:
 ## GitHub Pages Deployment
 
 - **URL:** https://jerrysohigh-create.github.io/magne-web3/
-- **Main domain:** https://web3.magne.ai (CNAME target)
+- **Main domain:** https://jerrysohigh-create.github.io/magne-web3 (CNAME target)
 - **Last rebuild:** 2026-05-22
 
 ---

@@ -1,7 +1,7 @@
 # MAGNE.AI Web3 — Website Feedback Collection
 
 **Version:** v1.1.0  
-**Website:** https://web3.magne.ai  
+**Website:** https://jerrysohigh-create.github.io/magne-web3  
 **Feedback Deadline:** Please reply within 5 business days
 
 ---

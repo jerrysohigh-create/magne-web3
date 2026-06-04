@@ -1,7 +1,7 @@
 # MAGNE.AI Web3 — 網站反饋收集
 
 **版本：** v1.1.0  
-**網站：** https://web3.magne.ai  
+**網站：** https://jerrysohigh-create.github.io/magne-web3  
 **反饋截止：** 請於收到後 5 個工作日內回覆
 
 ---

@@ -1,7 +1,7 @@
 # MAGNE.AI Web3 Infrastructure Portal
 
 **Site:** https://jerrysohigh-create.github.io/magne-web3/
-**Main Domain:** https://web3.magne.ai (redirects to GitHub Pages)
+**Main Domain:** https://jerrysohigh-create.github.io/magne-web3 (redirects to GitHub Pages)
 
 This repository contains the public Web3 infrastructure portal for MAGNE.AI.
 
@@ -105,7 +105,7 @@ The following files are retained in the repository but are not part of current p
 ## Deployment
 
 - **GitHub Pages:** https://jerrysohigh-create.github.io/magne-web3/
-- **Main domain:** https://web3.magne.ai (CNAME configured)
+- **Main domain:** https://jerrysohigh-create.github.io/magne-web3 (CNAME configured)
 - **Repository:** https://github.com/jerrysohigh-create/magne-web3
 
 ## Trademark
