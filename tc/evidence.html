@@ -353,7 +353,28 @@ nav .container {
     <section class="hero">
       <h1>鏈上證據中心</h1>
       <p>本頁匯總 MAGNE.AI 的公開鏈上活動、Session 1 金池資料、M Hash L2 測試網入口、代幣披露與風險說明。部分鏈上數據將透過 Dune 公開看板提供，方便第三方獨立驗證。</p>
-      <div class="status-badge">🟡 Dune 公開看板準備中 — 本頁內容將隨公開資料釋出陸續更新</div>
+      <div class="status-badge">🟢 Live On-chain Snapshot updated 2026-07-04 16:18 UTC (block 108,051,252) — refreshable via tc/update-stats.py</div>
+    </section>
+
+    <!-- SECTION 0: Live On-chain Snapshot (static refresh from BNB Chain RPC) -->
+    <section class="section" id="live-snapshot">
+      <div class="container">
+        <h2>Live On-chain Snapshot</h2>
+        <p class="section-sub">以下數字為直接從 BNB Chain RPC 查詢所得（snapshot time: 2026-07-04 16:18 UTC, block 108,051,252）。任何獨立第三方可在 BscScan 或自架節點上重現驗證。如需更新數字，執行 <code>tc/update-stats.py</code> 並提交。</p>
+        <div class="evidence-card">
+          <h3>📊 Session 1 Pool — Real-time State</h3>
+          <div class="tx-row"><span class="tx-label">USDT Balance</span><span class="tx-value" data-stat="usdt_balance">611,179.3059 USDT</span></div>
+          <div class="tx-row"><span class="tx-label">USDT Total Supply</span><span class="tx-value" data-stat="usdt_total_supply">9,184,992,128.6738 USDT</span></div>
+          <div class="tx-row"><span class="tx-label">BNB Balance</span><span class="tx-value" data-stat="bnb_balance">0.196972 BNB</span></div>
+          <div class="tx-row"><span class="tx-label">Outbound Tx Count</span><span class="tx-value" data-stat="tx_count">67</span></div>
+          <div class="tx-row"><span class="tx-label">Pool Type</span><span class="tx-value" data-stat="pool_type">EOA (個人錢包，非合約)</span></div>
+          <div class="tx-row"><span class="tx-label">Snapshot Block</span><span class="tx-value" data-stat="block">108,051,252 (chain tip)</span></div>
+        </div>
+        <div class="disclaimer">
+          <h3>📋 即時更新方式</h3>
+          <p>Jerry 可隨時執行 <code>python3 tc/update-stats.py</code> 刷新本 section 的數字（靜態 snapshot，GitHub Pages 沒 server 所以是手動更新機制）。或者待 Dune 8-panel dashboard 在 <code>dune.com/magneai</code> publish 後，本頁 <code>View Dune Public Profile</code> 按鈕會引導到該 dashboard（含實際折線圖、Top 50 列表等）。</p>
+        </div>
+      </div>
     </section>
 
     <!-- SECTION 1: Session 1 金池公開數據 -->
@@ -367,13 +388,14 @@ nav .container {
           <div class="tx-row"><span class="tx-label">代幣 / Token</span><span class="tx-value">USDT</span></div>
           <div class="tx-row"><span class="tx-label">USDT Contract</span><span class="tx-value"><a href="https://bscscan.com/token/0x55d398326f99059ff775485246999027b3197955" target="_blank" rel="noopener">0x55d398326f99059ff775485246999027b3197955</a></span></div>
           <div class="tx-row"><span class="tx-label">Session 1 Pool Address</span><span class="tx-value"><a href="https://bscscan.com/address/0x2598825231f9aff0018c407b46e8e50facf082d7" target="_blank" rel="noopener">0x2598825231f9aff0018c407b46e8e50facf082d7</a></span></div>
-          <div class="tx-row"><span class="tx-label">資料來源</span><span class="tx-value">BNB Chain public transfers / Dune dashboard pending</span></div>
-          <div class="tx-row"><span class="tx-label">發布狀態</span><span class="tx-value">Dune public dashboard in preparation</span></div>
+          <div class="tx-row"><span class="tx-label">資料來源</span><span class="tx-value">BNB Chain public transfers + Dune Analytics (profile: dune.com/magneai)</span></div>
+          <div class="tx-row"><span class="tx-label">發布狀態</span><span class="tx-value">Pool live on-chain refreshable via <code>tc/update-stats.py</code>; Dune dashboard publishing in progress</span></div>
         </div>
         <div class="disclaimer">
-          <h3>📋 目前 Dune 看板連結</h3>
-          <p>Dune dashboard link will be added after publication.</p>
-          <p style="margin-top:1rem;"><a href="#" class="nav-cta" aria-disabled="true" style="pointer-events:none;opacity:0.6;cursor:not-allowed;">View Dune Dashboard</a></p>
+          <h3>📋 Dune 公開看板</h3>
+          <p>MAGNE.AI 的 Dune Analytics 公開 profile（8 panel dashboard 將於 publish 後上線）：</p>
+          <p style="margin-top:1rem;"><a href="https://dune.com/magneai" target="_blank" rel="noopener" class="nav-cta">View Dune Public Profile ↗</a></p>
+          <p style="margin-top:0.75rem;color:var(--text-secondary);font-size:0.8rem;line-height:1.6;">⚠ Dune 8-panel dashboard publishing in progress — 8 個 SQL query 範本 (<code>tc/dune-queries.md</code>) 與 5 步 publish 指南 (<code>tc/dune-publish-guide.md</code>) 已在 repo 中可參考。</p>
         </div>
       </div>
     </section>
