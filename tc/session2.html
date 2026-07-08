@@ -21,11 +21,6 @@
       --accent-secondary: #00ff88;
       --accent-purple: #a855f7;
       --accent-gold: #ffd700;
-
-      --text-muted: #484f58;
-      --surface: #0d1520;
-      --surface-2: #111d2e;
-      --border-bright: #2a3f5a;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -519,8 +514,8 @@
     }
 
     .timeline-item.past .timeline-dot { background: var(--accent-secondary); }
-    .timeline-item.current .timeline-dot {
-      background: var(--accent);
+    .timeline-item.current .timeline-dot { 
+      background: var(--accent); 
       box-shadow: 0 0 20px var(--accent);
       animation: pulse 2s infinite;
     }
@@ -1634,279 +1629,34 @@
     }
     .risk-card ol { margin: 0; padding-left: 1.2rem; }
     .risk-card li { margin-bottom: 0.25rem; }
-
-/* Nav and Header CSS */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(7,9,16,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
-    nav .container { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 1rem; }
-    .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; flex-shrink: 0; }
-    .nav-logo span { color: var(--accent-cyan); }
-    .nav-brand { display: flex; align-items: center; }
-    .nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-    .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.8rem; font-weight: 500; padding: 0.35rem 0.65rem; border-radius: 4px; transition: color 0.2s, background 0.2s; letter-spacing: 0.02em; white-space: nowrap; }
-    .nav-links a:hover { color: var(--text-primary); background: var(--surface); }
-    .nav-links a.active { color: var(--accent-cyan); }
-    .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-    .lang-toggle { display: flex; gap: 0.25rem; }
-    .lang-toggle a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.5rem; border-radius: 3px; transition: all 0.2s; }
-    .lang-toggle a:hover { color: var(--text-secondary); }
-    .lang-toggle a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.08); }
-    .nav-cta { background: var(--accent-cyan); color: #000; padding: 0.4rem 1rem; border-radius: 5px; font-size: 0.8rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s; white-space: nowrap; }
-    .nav-cta:hover { opacity: 0.85; }
-    .mobile-menu-btn { display: none; background: none; border: 1px solid var(--border); color: var(--text-primary); font-size: 1.2rem; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; }
-/* === Standard mobile navigation: synced from index.html / tc/index.html === */
-:root {
-  --nav-bg: var(--bg, var(--bg-primary, #070910));
-  --nav-surface: var(--surface, var(--bg-card, #0d1520));
-  --nav-border: var(--border, rgba(255,255,255,0.08));
-  --nav-border-bright: var(--border-bright, rgba(57,208,214,0.32));
-  --nav-text-primary: var(--text-primary, #e6edf3);
-  --nav-text-secondary: var(--text-secondary, #8b949e);
-  --nav-text-muted: var(--text-muted, rgba(139,148,158,0.65));
-  --nav-accent: var(--accent-cyan, var(--accent, #39d0d6));
-}
-body.menu-open { overflow: hidden; }
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 0;
-  background: rgba(7,9,16,0.9);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--nav-border);
-}
-nav .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  gap: 1rem;
-}
-.nav-brand { display: flex; align-items: center; min-width: 0; }
-.nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-.nav-links {
-  display: flex;
-  gap: 0.25rem;
-  list-style: none;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
-.nav-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 0.35rem 0.65rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  min-width: 0;
-  text-transform: none;
-}
-.nav-links a:hover { color: var(--nav-text-primary); background: var(--nav-surface); }
-.nav-links a.active { color: var(--nav-accent); }
-.nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-.lang-toggle { display: flex; gap: 0.25rem; align-items: center; }
-.lang-toggle a {
-  color: var(--nav-text-muted);
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  transition: all 0.2s;
-}
-.lang-toggle a:hover { color: var(--nav-text-secondary); }
-.lang-toggle a.active { color: var(--nav-accent); background: rgba(57,208,214,0.08); }
-.nav-link {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.nav-link:hover { color: var(--nav-accent); }
-.github-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  border: 1px solid var(--nav-border);
-  background: var(--nav-surface);
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  transition: all 0.2s;
-  font-size: 1rem;
-}
-.github-icon:hover { border-color: var(--nav-border-bright); color: var(--nav-text-primary); }
-.nav-cta {
-  background: var(--nav-accent);
-  color: #000 !important;
-  padding: 0.4rem 1rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: opacity 0.2s;
-  white-space: nowrap;
-}
-.nav-cta:hover { opacity: 0.85; }
-.nav-toggle { display: none !important; }
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: 1px solid var(--nav-border);
-  color: var(--nav-text-primary);
-  font-size: 1.2rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 58px;
-  left: 0;
-  right: 0;
-  min-height: calc(100dvh - 58px);
-  background: rgba(7,9,16,0.98);
-  backdrop-filter: blur(18px);
-  z-index: 999;
-  overflow-y: auto;
-  padding: 1.5rem 1.125rem 2rem;
-  flex-direction: column;
-  gap: 0;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  list-style: none;
-  flex: 1;
-  margin: 0;
-  padding: 0;
-}
-.mobile-menu-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 0.6rem 0.5rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  border-bottom: 1px solid var(--nav-border);
-}
-.mobile-menu-links a:hover,
-.mobile-menu-links a.active { color: var(--nav-accent); background: rgba(57,208,214,0.06); }
-.mobile-menu-divider { height: 1px; background: var(--nav-border); margin: 0.75rem 0; }
-.mobile-menu-footer { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 0.75rem; }
-.mobile-menu-footer .lang-toggle { justify-content: flex-start; }
-.mobile-menu-footer .github-icon { width: auto; height: auto; padding: 0.35rem 0.75rem; font-size: 0.8rem; gap: 0.4rem; }
-@media (max-width: 1024px) {
-  .nav-links { display: none; }
-  .mobile-menu-btn { display: block; }
-}
-@media (max-width: 768px) {
-  nav .container { padding: 0 1.125rem; gap: 0.75rem; }
-  .nav-right .lang-toggle,
-  .nav-right > .nav-cta,
-  .nav-right .github-icon,
-  .nav-right > .nav-link { display: none; }
-  .nav-logo-img { height: 26px; max-width: calc(100vw - 88px); object-fit: contain; }
-  .nav-right { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
-  .mobile-menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; flex-shrink: 0; }
-}
-/* === Footer styles (fixed from broken first style block) === */
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 2rem; }
-.footer-brand p { color: var(--nav-text-secondary); font-size: 0.82rem; line-height: 1.7; margin-top: 0.75rem; }
-.footer-col h4 { font-size: 0.7rem; font-weight: 600; color: var(--nav-text-primary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.85rem; }
-.footer-col ul { list-style: none; }
-.footer-col li { margin-bottom: 0.4rem; }
-.footer-col a { color: var(--nav-text-secondary); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
-.footer-col a:hover { color: var(--nav-accent); }
-.footer-bottom { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--nav-border); display: flex; flex-direction: column; align-items: center; gap: 1.25rem; }
-.footer-social { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-.social-icon { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--nav-border); background: var(--nav-surface); color: var(--nav-text-secondary); text-decoration: none; transition: all 0.2s; }
-.social-icon:hover { border-color: var(--nav-accent); color: var(--nav-accent); }
-.social-icon img { width: 16px; height: 16px; }
-.footer-trademark { color: var(--nav-text-muted); font-size: 0.75rem; text-align: center; line-height: 1.6; }
-.footer-trademark a { color: #5795ef; text-decoration: none; }
-.footer-copyright { color: var(--nav-text-muted); font-size: 0.75rem; text-align: center; }
-.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
-.footer-links a { color: var(--nav-text-secondary); text-decoration: none; font-size: 0.75rem; transition: color 0.2s; }
-.footer-links a:hover { color: var(--nav-accent); }
-@media (max-width: 768px) {
-  .footer-grid { grid-template-columns: 1fr; gap: 1.6rem; }
-}
-/* === End footer styles === */
-/* === End standard mobile navigation === */
-
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="container">
-    <div class="nav-brand">
-      <a href="./index.html">
-        <img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
-      </a>
-    </div>
-    <ul class="nav-links">
-      <li><a href="./index.html">首頁</a></li>
-      <li><a href="./agent-pay.html">AGENT PAY</a></li>
-      <li><a href="./network.html" class="active">網絡</a></li>
-      <li><a href="./developers.html">開發者</a></li>
-      <li><a href="./token.html">代幣</a></li>
-      <li><a href="./ecosystem.html">生態</a></li>
-      <li><a href="./transparency.html">透明中心</a></li>
-      <li><a href="./faq.html">常見問題</a></li>
-    </ul>
-    <div class="nav-right">
-      <div class="lang-toggle">
-        <a href="../session2.html">EN</a>
-        <a href="./session2.html" class="active">繁中</a>
-      </div>
-      <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-      <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">預購</a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="切換導航選單" aria-expanded="false" aria-controls="mobileMenu">☰</button>
-    </div>
+  <div class="nav-brand">
+    <a href="./magne-home.html" class="nav-logo">MAGNE.AI</a>
   </div>
-</nav>
-
-<!-- MOBILE MENU OVERLAY -->
-<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="流動版導航">
-  <ul class="mobile-menu-links">
-    <li><a href="./index.html">首頁</a></li>
-    <li><a href="./agent-pay.html">AGENT PAY</a></li>
-    <li><a href="./network.html" class="active">網絡</a></li>
+  <ul class="nav-links">
+    <li><a href="./magne-home.html">首頁</a></li>
+    <li><a href="./learn.html">學習</a></li>
     <li><a href="./developers.html">開發者</a></li>
+    <li><a href="./network.html">網絡</a></li>
     <li><a href="./token.html">代幣</a></li>
     <li><a href="./ecosystem.html">生態</a></li>
     <li><a href="./transparency.html">透明中心</a></li>
     <li><a href="./faq.html">常見問題</a></li>
+    <li><a href="./session2.html" class="active">Session2</a></li>
   </ul>
-  <div class="mobile-menu-divider"></div>
-  <div class="mobile-menu-footer">
-    <div class="lang-toggle">
-      <a href="../session2.html">EN</a>
-      <a href="./session2.html" class="active">繁中</a>
+  <div class="nav-actions">
+    <div class="nav-lang">
+      <a href="../session2.html">EN</a> | <a href="#" class="current">繁中</a>
     </div>
-    <a href="https://jerrysohigh-create.github.io/magne-web/tc/magne-home.html" target="_blank" class="nav-link">Phone Portal ↗</a>
+    <a href="#" class="nav-cta">參加活動</a>
   </div>
-</div>
+</nav>
+
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">演示數據 — 僅供介面預覽</div>
@@ -1989,8 +1739,8 @@ nav .container {
     <div class="step-card">
       <div class="step-number">5</div>
       <div class="step-icon">🪙</div>
-      <h3>獲得 10 MS2</h3>
-      <p>每次符合資格的參與可獲得 10 枚 MS2 活動代幣。MS2 可依最終活動安排用於質押權重計算，並在流動性功能開放後提供市場交易功能。</p>
+      <h3>獲得 100 MHA + 10 MS2</h3>
+      <p>每次未中獎的符合資格參與可獲得 100 MHA + 10 MS2（即未抽中手機的參與）。中獎的參與僅獲得手機獎勵。</p>
     </div>
     <div class="step-card">
       <div class="step-number">6</div>
@@ -2016,19 +1766,19 @@ nav .container {
     </div>
     <div class="campaign-card">
       <div class="icon">🪙</div>
-      <div class="value">10 MS2</div>
-      <div class="label">每次獲得</div>
+      <div class="value">100 MHA + 10 MS2</div>
+      <div class="label">未抽中每筆獲得</div>
       <div class="sub">活動參與代幣</div>
     </div>
     <div class="campaign-card">
       <div class="icon">📱</div>
-      <div class="value">1,000 台</div>
+      <div class="value">1,600 台</div>
       <div class="label">Phone Gen1 獎品</div>
-      <div class="sub">每 100 次抽 1 台</div>
+      <div class="sub">1,600 台 / 100,000 次參與上限</div>
     </div>
     <div class="campaign-card">
       <div class="icon">🏆</div>
-      <div class="value">5000萬 MHA</div>
+      <div class="value">3500萬 MHA</div>
       <div class="label">分配池</div>
       <div class="sub">計劃按有效質押權重計算潛在分配資格</div>
     </div>
@@ -2040,9 +1790,9 @@ nav .container {
     </div>
     <div class="campaign-card">
       <div class="icon">⏱️</div>
-      <div class="value">TGE 後 2-3 個月</div>
+      <div class="value">TGE 後 7 天</div>
       <div class="label">解鎖窗口</div>
-      <div class="sub">質押活動延續至 TGE 後 2-3 個月結束，質押年化 15%</div>
+      <div class="sub">TGE 後 7 天可申請解除質押</div>
     </div>
   </div>
 </section>
@@ -2134,8 +1884,8 @@ nav .container {
     <p>質押 MS2 提升未來 MHA 分配資格</p>
   </div>
   <div class="staking-info">
-    <p>你的有效質押權重可用於計算來自 5,000 萬 MHA 分配池（總量）的潛在分配資格，最終以 TGE 規則、資格審核及適用限制為準。權重根據多項因素計算：</p>
-
+    <p>你的有效質押權重可用於計算來自 35,000,000 MHA 分配池（總量）的潛在分配資格，最終以 TGE 規則、資格審核及適用限制為準。權重根據多項因素計算：</p>
+    
     <div class="weight-formula">
       有效權重 = MS2 數量 × 質押時長係數 × 社群等級係數
     </div>
@@ -2164,36 +1914,31 @@ nav .container {
       </div>
     </div>
 
-    <h4 style="margin: 1.5rem 0 1rem;">社群等級加成（邀請貢獻）— 5 等制度，僅團隊累計只增不退</h4>
+    <h4 style="margin: 1.5rem 0 1rem;">社群等級加成（邀請貢獻）</h4>
     <div class="tier-grid">
       <div class="tier-item">
-        <div class="tier-name">Bronze</div>
-        <div class="tier-req">≥ 1,000 USDT 團隊累計</div>
-        <div class="tier-bonus">+2% APY</div>
+        <div class="tier-name">青銅</div>
+        <div class="tier-req">≥ 1,700 USDT</div>
+        <div class="tier-bonus">+2%</div>
       </div>
       <div class="tier-item">
-        <div class="tier-name">Silver</div>
-        <div class="tier-req">≥ 5,000 USDT 團隊累計</div>
-        <div class="tier-bonus">+5% APY</div>
+        <div class="tier-name">白銀</div>
+        <div class="tier-req">≥ 5,000 USDT</div>
+        <div class="tier-bonus">+5%</div>
       </div>
       <div class="tier-item">
-        <div class="tier-name">Gold</div>
-        <div class="tier-req">≥ 20,000 USDT 團隊累計</div>
-        <div class="tier-bonus">+10% APY</div>
+        <div class="tier-name">黃金</div>
+        <div class="tier-req">≥ 20,000 USDT</div>
+        <div class="tier-bonus">+10%</div>
       </div>
       <div class="tier-item">
-        <div class="tier-name">Diamond</div>
-        <div class="tier-req">≥ 100,000 USDT (≥100 部手機)</div>
-        <div class="tier-bonus">+10% APY，可分頭部用戶獎池</div>
-      </div>
-      <div class="tier-item">
-        <div class="tier-name">King</div>
-        <div class="tier-req">≥ 500,000 USDT</div>
-        <div class="tier-bonus">+10% APY，可分獎池 + 特殊分紅</div>
+        <div class="tier-name">鑽石</div>
+        <div class="tier-req">≥ 100,000 USDT</div>
+        <div class="tier-bonus">+10% 權重加成</div>
       </div>
     </div>
     <p style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-tertiary);">
-      Diamond 及 King 等級用戶可進入頭部用戶獎池前 10 名排行榜（按 40/15/10/8/7/6/5/4/3/2 比例瓜分）
+      鑽石等級可參與 Community Builder Pool 資格評估
     </p>
 
     <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">
@@ -2214,19 +1959,19 @@ nav .container {
 
     <div class="invite-cards-grid">
       <div class="invite-card">
-        <div class="ic-value">5.0 USDT</div>
-        <div class="ic-label">每位被邀請人每次有效參與</div>
-        <div class="ic-desc">每筆 17 USDT 參與，5 USDT 推薦人直接邀請獎勵</div>
+        <div class="ic-value">1.0 USDT</div>
+        <div class="ic-label">每位新好友首筆獎勵</div>
+        <div class="ic-desc">直接邀請獎勵 4 USDT 每筆有效參與</div>
       </div>
       <div class="invite-card">
-        <div class="ic-value">100%</div>
-        <div class="ic-label">邀請獎勵比例</div>
-        <div class="ic-desc">推薦人邀請 5 USDT 直接獎勵，無多級返獎</div>
+        <div class="ic-value">4 USDT</div>
+        <div class="ic-label">後續有效參與獎勵</div>
+        <div class="ic-desc">每筆符合資格的 17 USDT 參與</div>
       </div>
       <div class="invite-card">
-        <div class="ic-value">15 萬 USDT</div>
-        <div class="ic-label">頭部用戶獎池</div>
-        <div class="ic-desc">每筆 1.5 USDT 進入，Diamond / King 級前 10 名瓜分</div>
+        <div class="ic-value">10,000 USDT</div>
+        <div class="ic-label">首邀加速獎勵池</div>
+        <div class="ic-desc">最多支持 20,000 名新有效被邀請用戶</div>
       </div>
       <div class="invite-card">
         <div class="ic-value">AI Agent</div>
@@ -2240,19 +1985,29 @@ nav .container {
         <thead>
           <tr>
             <th>行為</th>
-            <th>推薦人直接邀請獎勵</th>
+            <th>基礎直接邀請獎勵</th>
+            <th>首邀加速獎勵</th>
+            <th>合計獎勵預覽</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>被邀請人每次有效參與 17 USDT</td>
-            <td>5.0 USDT / 次</td>
+            <td>好友首次有效參與 17 USDT</td>
+            <td>4 USDT</td>
+            <td>+0.5 USDT</td>
+            <td>1.0 USDT</td>
+          </tr>
+          <tr>
+            <td>同一好友第 2 次及後續有效參與</td>
+            <td>4 USDT</td>
+            <td>—</td>
+            <td>4 USDT / 次</td>
           </tr>
         </tbody>
       </table>
     </div>
     <p style="font-size: 0.8rem; color: var(--text-tertiary); text-align: center; margin-bottom: 1.5rem;">
-      直接邀請獎勵僅適用於一級邀請，無多級返獎。最終以活動規則、資格審核及風控驗證為準。
+      直接邀請獎勵：4 USDT 每筆有效參與，最終以活動規則為準。
     </p>
 
     <div class="milestone-progress">
@@ -2284,7 +2039,7 @@ nav .container {
           <tr>
             <td>1 人</td>
             <td>Referral Starter</td>
-            <td>直接邀請獎勵預覽 + 身份徽章</td>
+            <td>首邀加速獎勵預覽 + 身份徽章</td>
             <td><span class="milestone-status unlocked">✓ 已解鎖</span></td>
           </tr>
           <tr>
@@ -2336,11 +2091,11 @@ nav .container {
           <div class="ic-label">有效邀請好友</div>
         </div>
         <div class="invite-card">
-          <div class="ic-value">144 USDT</div>
+          <div class="ic-value">120 USDT</div>
           <div class="ic-label">好友有效參與總額</div>
         </div>
         <div class="invite-card">
-          <div class="ic-value">60.0 USDT</div>
+          <div class="ic-value">7.0 USDT</div>
           <div class="ic-label">待確認獎勵</div>
         </div>
         <div class="invite-card">
@@ -2363,12 +2118,14 @@ nav .container {
       <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-tertiary); line-height: 1.8;">
         <strong style="color: var(--text-secondary);">計算說明（Demo）：</strong><br>
         好友 A：完成 10 次有效參與<br>
-        &nbsp;&nbsp;10 次獎勵 = 10 × 5.0 = 50.0 USDT<br>
-        &nbsp;&nbsp;好友 A 合計 = <strong style="color: var(--accent);">50.0 USDT</strong><br><br>
+        &nbsp;&nbsp;首次參與獎勵 = 1.0 USDT<br>
+        &nbsp;&nbsp;後續 9 次獎勵 = 9 × 4 = 36 USDT<br>
+        &nbsp;&nbsp;好友 A 合計 = <strong style="color: var(--accent);">44 USDT</strong><br><br>
         好友 B：完成 2 次有效參與<br>
-        &nbsp;&nbsp;2 次獎勵 = 2 × 5.0 = 10.0 USDT<br>
-        &nbsp;&nbsp;好友 B 合計 = <strong style="color: var(--accent);">10.0 USDT</strong><br><br>
-        邀請獎勵總預覽：<strong style="color: var(--accent-secondary);">50.0 + 10.0 = 60.0 USDT</strong>
+        &nbsp;&nbsp;首次參與獎勵 = 1.0 USDT<br>
+        &nbsp;&nbsp;後續 1 次獎勵 = 4 USDT<br>
+        &nbsp;&nbsp;好友 B 合計 = <strong style="color: var(--accent);">12 USDT</strong><br><br>
+        邀請獎勵總預覽：<strong style="color: var(--accent-secondary);">44 + 12 = 56 USDT</strong>
       </div>
     </div>
     <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; justify-content: center;">
@@ -2598,8 +2355,9 @@ nav .container {
           <div style="padding: 0.6rem 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: var(--accent); font-family: 'JetBrains Mono', monospace;">17 USDT（固定）</div>
         </div>
         <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 0.8rem; color: var(--text-tertiary);">
-          <div><strong style="color: var(--text-secondary);">直接邀請獎勵：</strong>每筆 17 USDT 參與，5 USDT 推薦人獎勵</div>
-          <div style="margin-top: 0.25rem;"><strong style="color: var(--text-secondary);">說明：</strong>僅一級直接邀請，無多級返獎，無首邀加速池</div>
+          <div><strong style="color: var(--text-secondary);">基礎直接邀請獎勵：</strong>每筆 17 USDT 參與 4 USDT</div>
+          <div style="margin-top: 0.25rem;"><strong style="color: var(--text-secondary);">首邀加速獎勵：</strong>每名新被邀請人首次有效參與額外 +4 USDT</div>
+          <div style="margin-top: 0.25rem;"><strong style="color: var(--text-secondary);">說明：</strong>加速獎勵來自 10,000 USDT 首邀加速池（最多支援 20,000 名新用戶）</div>
         </div>
       </div>
       <div class="referral-result-panel">
@@ -2610,20 +2368,25 @@ nav .container {
         </div>
         <div class="referral-result-row">
           <span class="label">好友有效參與總額</span>
-          <span class="value" id="ref-res-volume">850 USDT</span>
+          <span class="value" id="ref-res-volume">500 USDT</span>
         </div>
         <div class="referral-result-row">
           <span class="label">基礎直接邀請獎勵</span>
-          <span class="value" id="ref-res-base">50.0 USDT</span>
+          <span class="value" id="ref-res-base">25.0 USDT</span>
+        </div>
+        <div class="referral-result-row">
+          <span class="label">首邀加速獎勵</span>
+          <span class="value" id="ref-res-booster">5.0 USDT</span>
         </div>
         <div class="referral-result-row highlight">
           <span class="label">潛在邀請獎勵預覽</span>
-          <span class="value" id="ref-res-final">50.0 USDT</span>
+          <span class="value" id="ref-res-final">30.0 USDT</span>
         </div>
         <div class="referral-formula-box">
           <div id="ref-formula-entries">總參與次數 = 10 人 × 5 次 = <strong>50 次</strong></div>
-          <div id="ref-formula-base">基礎獎勵 = 50 × 5 USDT = <strong>250.0 USDT</strong></div>
-          <div id="ref-formula-total" style="margin-top: 0.5rem;">合計 = <strong style="color: var(--accent-secondary)">50.0 USDT</strong></div>
+          <div id="ref-formula-base">基礎獎勵 = 50 × 0.5 = <strong>25.0 USDT</strong></div>
+          <div id="ref-formula-booster">首邀加速 = 10 × 0.5 = <strong>5.0 USDT</strong></div>
+          <div id="ref-formula-total" style="margin-top: 0.5rem;">合計 = 25.0 + 5.0 = <strong style="color: var(--accent-secondary)">30.0 USDT</strong></div>
         </div>
       </div>
     </div>
@@ -2737,40 +2500,6 @@ nav .container {
   </p>
 </section>
 
-<!-- TOP 10 DISTRIBUTION -->
-<section id="top10-distribution">
-  <div class="section-header">
-    <h2>頭部用戶獎池前 10 名分配比例</h2>
-    <p>TGE 後 2-3 個月期間，Diamond 及 King 等級用戶按以下比例瓜分頭部用戶獎池</p>
-  </div>
-  <div class="top10-distribution" style="max-width: 720px; margin: 0 auto; padding: 1.5rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px;">
-    <h4 style="margin-bottom: 1rem; color: var(--accent-gold);">前 10 名分配比例</h4>
-    <table style="width: 100%; border-collapse: collapse; font-family: 'JetBrains Mono', monospace;">
-      <thead>
-        <tr style="border-bottom: 1px solid var(--border);">
-          <th style="text-align: left; padding: 0.6rem 0.5rem; color: var(--text-secondary); font-weight: 600;">排名</th>
-          <th style="text-align: right; padding: 0.6rem 0.5rem; color: var(--text-secondary); font-weight: 600;">比例</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);"><td style="padding: 0.5rem;">1st</td><td style="text-align: right; padding: 0.5rem; color: var(--accent-gold); font-weight: 600;">40%</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);"><td style="padding: 0.5rem;">2nd</td><td style="text-align: right; padding: 0.5rem;">15%</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);"><td style="padding: 0.5rem;">3rd</td><td style="text-align: right; padding: 0.5rem;">10%</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);"><td style="padding: 0.5rem;">4th</td><td style="text-align: right; padding: 0.5rem;">8%</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);"><td style="padding: 0.5rem;">5th</td><td style="text-align: right; padding: 0.5rem;">7%</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);"><td style="padding: 0.5rem;">6th</td><td style="text-align: right; padding: 0.5rem;">6%</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);"><td style="padding: 0.5rem;">7th</td><td style="text-align: right; padding: 0.5rem;">5%</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);"><td style="padding: 0.5rem;">8th</td><td style="text-align: right; padding: 0.5rem;">4%</td></tr>
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);"><td style="padding: 0.5rem;">9th</td><td style="text-align: right; padding: 0.5rem;">3%</td></tr>
-        <tr><td style="padding: 0.5rem;">10th</td><td style="text-align: right; padding: 0.5rem;">2%</td></tr>
-      </tbody>
-    </table>
-    <p style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 1rem; line-height: 1.6;">
-      僅 Diamond 及 King 等級用戶可進入前十名排行榜。獎池總額來自每筆 1.5 USDT 頭部用戶獎池分配（1,000 部手機，預計 15 萬 USDT）。
-    </p>
-  </div>
-</section>
-
 <!-- FUND ALLOCATION -->
 <section id="allocation">
   <div class="section-header">
@@ -2780,65 +2509,60 @@ nav .container {
   <div class="allocation-grid">
     <div class="alloc-item">
       <span class="alloc-label">推薦人直接邀請獎勵</span>
-      <div class="alloc-bar"><div class="alloc-fill" style="width: 29.41%"></div></div>
-      <span class="alloc-pct">5.00 USDT — 29.41%</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 23.53%"></div></div>
+      <span class="alloc-pct">23.53% — 4.00 USDT</span>
     </div>
     <div class="alloc-item">
       <span class="alloc-label">MS2 Swap 流動性池（200 台後開池）</span>
-      <div class="alloc-bar"><div class="alloc-fill" style="width: 17.65%"></div></div>
-      <span class="alloc-pct">3.00 USDT — 17.65%</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 23.53%"></div></div>
+      <span class="alloc-pct">23.53% — 4.00 USDT</span>
     </div>
     <div class="alloc-item">
       <span class="alloc-label">頭部用戶獎池（前 10 名瓜分）</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 8.82%"></div></div>
-      <span class="alloc-pct">1.50 USDT — 8.82%</span>
+      <span class="alloc-pct">8.82% — 1.50 USDT</span>
     </div>
     <div class="alloc-item">
       <span class="alloc-label">保留（含手機獎品、運營、流動性儲備等）</span>
       <div class="alloc-bar"><div class="alloc-fill" style="width: 44.12%"></div></div>
-      <span class="alloc-pct">7.50 USDT — 44.12%</span>
+      <span class="alloc-pct">44.12% — 7.50 USDT</span>
     </div>
   </div>
   <div style="margin-top: 1rem; text-align: center; font-size: 0.85rem; color: var(--text-tertiary);">
-    滿額 100,000 次參與對應 1,700,000 USDT（每次 17 USDT）。配置以最終活動規則為準。
-    <br>PDF 未細分保留金額部分，僅列示保留金額。
+    滿額 100,000 次參與對應 1,700,000 USDT。配置以最終活動規則為準。
   </div>
 </section>
 
 <!-- MS2 BURN MECHANISM -->
 <section id="burn">
   <div class="section-header">
-    <h2>MS2 Swap 流動性與頭部用戶獎池</h2>
-    <p>MS2 流動性儲備及頭部用戶獎池的生命周期設計</p>
+    <h2>MS2 銷毀機制</h2>
+    <p>MS2 被設計為具有清晰生命周期的活動代幣</p>
   </div>
   <div class="ms2-grid">
     <div class="ms2-card">
-      <h3><span class="badge">1</span> Swap 流動性池</h3>
-      <p>每筆 17 USDT 抽獎中的 3 USDT 進入 MS2 Swap 流動性池，作為 MS2 價格穩定儲備。流動性池將在 200 台手機抽獎後開啟，實際安排以官方公告及市場條件為準。</p>
+      <h3><span class="badge">1</span> 回購與銷毀</h3>
+      <p>每筆 17 USDT 活動參與金額中的 4 USDT 將進入 MS2 Swap 流動性池（200 台手機獎勵完成後開池）。具體執行取決於市場情況、流動性狀態、活動進度、合規因素及官方公告。</p>
     </div>
     <div class="ms2-card">
-      <h3><span class="badge">2</span> 頭部用戶獎池</h3>
-      <p>每筆 17 USDT 抽獎中的 1.5 USDT 進入頭部用戶獎池。預計 1,000 部手機抽完後獎池規模約 15 萬 USDT，由 TGE 後 2-3 個月期間，前 10 名 Diamond / King 等級用戶按 40/15/10/8/7/6/5/4/3/2 比例瓜分。</p>
-    </div>
-    <div class="ms2-card">
-      <h3><span class="badge">3</span> 未釋放 MS2</h3>
+      <h3><span class="badge">2</span> 未釋放 MS2</h3>
       <p>活動結束後，未因用戶參與而釋放的 MS2 可被銷毀或永久鎖定。</p>
     </div>
     <div class="ms2-card">
-      <h3><span class="badge">4</span> 未領取 MS2 獎勵</h3>
+      <h3><span class="badge">3</span> 未領取 MS2 獎勵</h3>
       <p>領取期限結束後，未領取的 MS2 類活動獎勵可被銷毀。</p>
     </div>
     <div class="ms2-card">
-      <h3><span class="badge">5</span> 風控罰沒</h3>
+      <h3><span class="badge">4</span> 風控罰沒</h3>
       <p>因機器人、刷量、自邀請濫用、女巫攻擊或其他違規行為被取消資格的 MS2，可被銷毀或永久鎖定。</p>
     </div>
     <div class="ms2-card">
-      <h3><span class="badge">6</span> 可選改綁費</h3>
+      <h3><span class="badge">5</span> 可選改綁費</h3>
       <p>如活動允許更改邀請綁定，可能收取 500 MS2 費用並銷毀。該功能為可選功能，最終以活動規則為準。</p>
     </div>
   </div>
   <div class="mock-notice" style="margin-top: 2rem;">
-    ⚠️ Swap 流動性池及頭部用戶獎池不構成價格支撐承諾，也不代表項目方承諾維持任何 MS2 市場價值。
+    ⚠️ 回購與銷毀不構成價格支撐承諾，也不代表項目方承諾維持任何 MS2 市場價值。
   </div>
 </section>
 
@@ -2970,7 +2694,7 @@ nav .container {
           <label>社群等級</label>
           <select class="calc-select" id="calc-tier" onchange="updateCalc()">
             <option value="0">無 (0%)</option>
-            <option value="0.02">青銅 ≥1,000 USDT (+2%)</option>
+            <option value="0.02">青銅 ≥1,700 USDT (+2%)</option>
             <option value="0.05">白銀 ≥5,000 USDT (+5%)</option>
             <option value="0.1" selected>黃金 ≥20,000 USDT (+10%)</option>
             <option value="0.1">鑽石 ≥100,000 USDT (+10% 權重加成)</option>
@@ -3011,7 +2735,7 @@ nav .container {
         <div class="calc-result-box">
           <div class="result-row">
             <span class="label">全網 MHA 分配池（總量）</span>
-            <span class="value">50,000,000 MHA</span>
+            <span class="value">35,000,000 MHA</span>
           </div>
           <div class="result-row highlight">
             <span class="label">潛在 MHA 分配預覽</span>
@@ -3020,7 +2744,7 @@ nav .container {
         </div>
         <div class="calc-formula">
           有效權重 = MS2 × 時長係數 × (1 + 社群加成)<br>
-          潛在 MHA 分配 = 你的有效權重 ÷ 全網有效權重 × 50,000,000 MHA
+          潛在 MHA 分配 = 你的有效權重 ÷ 全網有效權重 × 35,000,000 MHA
         </div>
       </div>
     </div>
@@ -3056,7 +2780,7 @@ nav .container {
     <div class="step-card">
       <div class="step-number">4</div>
       <h3>解鎖期</h3>
-      <p>質押活動延續至 TGE 後 2-3 個月結束。期間，用戶可根據活動規則申請解除 MS2 質押。</p>
+      <p>TGE 後 7 天，用戶可根據活動規則申請解除 MS2 質押。</p>
     </div>
     <div class="step-card">
       <div class="step-number">5</div>
@@ -3105,9 +2829,9 @@ nav .container {
     </div>
     <div class="timeline-item">
       <div class="timeline-dot"></div>
-      <div class="timeline-date">TGE 後 2-3 個月</div>
-      <div class="timeline-title">質押結束 / MS2 解鎖窗口</div>
-      <div class="timeline-desc">質押活動結束，質押者可申請解除質押，取回 MS2。頭部用戶獎池按 40/15/10/8/7/6/5/4/3/2 比例瓜分完畢。</div>
+      <div class="timeline-date">TGE 後 +7 天</div>
+      <div class="timeline-title">MS2 解鎖窗口</div>
+      <div class="timeline-desc">質押者可開始申請解除質押，取回 MS2。</div>
     </div>
   </div>
 </section>
@@ -3129,129 +2853,125 @@ nav .container {
 
 <!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="./index.html"><img src="../assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" style="height:28px;width:auto;display:block;margin-bottom:0.5rem;"></a>
-        <p>安全行動端授權、M Hash L2 測試網演示與 AI 任務收據記錄，服務於正在形成的代理支付工作流程。</p>
-      </div>
-      <div class="footer-col">
-        <h4>產品</h4>
-        <ul>
-          <li><a href="./agent-pay.html">Agent Pay</a></li>
-          <li><a href="./network.html">網絡</a></li>
-          <li><a href="./ecosystem.html">生態</a></li>
-          <li><a href="./learn.html">學習</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>開發者</h4>
-        <ul>
-          <li><a href="./developers.html">文檔</a></li>
-          <li><a href="./developers-contract.html">合約</a></li>
-          <li><a href="./developers-connect.html">連接</a></li>
-          <li><a href="./developers-app.html">構建 DApp</a></li>
-          <li><a href="https://github.com/jerrysohigh-create/magne-web3" target="_blank">GitHub ↗</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>資源</h4>
-        <ul>
-          <li><a href="./token.html">代幣</a></li>
-          <li><a href="./transparency.html">透明中心</a></li>
-          <li><a href="./faq.html">常見問題</a></li>
-          <li><a href="./version-history.html">版本歷史</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>網絡</h4>
-        <ul>
-          <li><a href="https://l2-explorer.testnet.magicalhash.com" target="_blank">L2 瀏覽器 ↗</a></li>
-          <li><a href="https://github.com/magne-ai/M-Hash-L2" target="_blank">M-Hash-L2 ↗</a></li>
-        </ul>
-      </div>
-
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-social">
-        <a href="https://x.com/magneai" target="_blank" class="social-icon" title="X"><img src="https://cdn.simpleicons.org/x/white" alt="X"></a>
-        <a href="https://t.me/magneai" target="_blank" class="social-icon" title="Telegram"><img src="https://cdn.simpleicons.org/telegram/white" alt="Telegram"></a>
-        <a href="https://discord.gg/magneai" target="_blank" class="social-icon" title="Discord"><img src="https://cdn.simpleicons.org/discord/white" alt="Discord"></a>
-        <a href="https://github.com/magne-ai" target="_blank" class="social-icon" title="GitHub"><img src="https://cdn.simpleicons.org/github/white" alt="GitHub"></a>
-        <a href="https://youtube.com/@magneai" target="_blank" class="social-icon" title="YouTube"><img src="https://cdn.simpleicons.org/youtube/white" alt="YouTube"></a>
-        <a href="./press-kit.html" class="social-icon" title="新聞稿"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></a>
-      </div>
-      <div class="footer-links">
-        <a href="https://magne.ai/privacy-policy.html" target="_blank">隱私政策</a>
-        <a href="https://magne.ai/magne-contact.html" target="_blank">聯繫我們</a>
-        <a href="https://magne.ai/media-kit.html" target="_blank">媒體資料</a>
-      </div>
-      <p class="footer-trademark">MAGNE.AI™ 為 Magical Hash Global Tech Limited 的商業標誌，目前正在註冊程序中（<a href="https://tmsearch.uspto.gov/search/search-results/99311528" target="_blank">USPTO 序號：99311528</a>）。</p>
-      <p class="footer-copyright">© 2026 MAGNE.AI. 版權所有。</p>
-    </div>
-  </div>
+  <p>
+    <a href="./magne-home.html">MAGNE.AI</a> | 
+    <a href="./developers.html">開發者</a> | 
+    <a href="./ecosystem.html">生態</a> | 
+    <a href="./learn.html">學習</a> | 
+    <a href="#" target="_blank">Web3 入口 ↗️</a>
+  </p>
+  <p style="margin-top: 1rem;">
+    © 2026 MAGNE.AI. 版權所有。Session2 是社群增長活動，非投資機會。
+  </p>
 </footer>
 
 <script>
-  // Standard mobile menu toggle
-  (function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (!mobileMenuBtn || !mobileMenu) return;
+// Trading Simulator State
+let orderType = 'buy';
+let usdtBalance = 1000.00;
+let ms2Balance = 500.00;
+let currentPrice = 0.0984;
 
-    let menuOpen = false;
+function initChart() {
+  const chart = document.getElementById('price-chart');
+  if (!chart) return;
+  let html = '';
+  for (let i = 0; i < 50; i++) {
+    const height = Math.random() * 70 + 20;
+    const isRed = Math.random() > 0.5;
+    html += `<div class="chart-bar ${isRed ? 'red' : ''}" style="height: ${height}%"></div>`;
+  }
+  chart.innerHTML = html;
+}
 
-    function setMenu(open) {
-      menuOpen = open;
-      mobileMenu.classList.toggle('open', menuOpen);
-      mobileMenuBtn.setAttribute('aria-expanded', String(menuOpen));
-      document.body.classList.toggle('menu-open', menuOpen);
-    }
+function initOrderBook() {
+  const asksContainer = document.getElementById('orderbook-asks');
+  const bidsContainer = document.getElementById('orderbook-bids');
+  if (!asksContainer || !bidsContainer) return;
 
-    mobileMenuBtn.addEventListener('click', function() {
-      setMenu(!menuOpen);
-    });
+  let asksHtml = '';
+  for (let i = 0; i < 8; i++) {
+    const price = (currentPrice + 0.0001 * (i + 1)).toFixed(4);
+    const amount = (Math.random() * 500 + 100).toFixed(2);
+    const total = (price * amount).toFixed(2);
+    const width = 20 + Math.random() * 80;
+    asksHtml += `<div class="orderbook-row ask" style="grid-template-columns: 1fr 1fr 1fr;">
+      <span class="price">${price}</span>
+      <span style="text-align: center;">${amount}</span>
+      <span style="text-align: right;">${total}</span>
+      <div style="position: absolute; left: 0; top: 0; bottom: 0; width: ${width}%; background: rgba(248,81,73,0.08); z-index: -1;"></div>
+    </div>`;
+  }
+  asksContainer.innerHTML = asksHtml;
 
-    mobileMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        setMenu(false);
-      });
-    });
+  let bidsHtml = '';
+  for (let i = 0; i < 8; i++) {
+    const price = (currentPrice - 0.0001 * (i + 1)).toFixed(4);
+    const amount = (Math.random() * 500 + 100).toFixed(2);
+    const total = (price * amount).toFixed(2);
+    const width = 20 + Math.random() * 80;
+    bidsHtml += `<div class="orderbook-row" style="grid-template-columns: 1fr 1fr 1fr;">
+      <span class="price">${price}</span>
+      <span style="text-align: center;">${amount}</span>
+      <span style="text-align: right;">${total}</span>
+      <div style="position: absolute; left: 0; top: 0; bottom: 0; width: ${width}%; background: rgba(0,255,136,0.08); z-index: -1;"></div>
+    </div>`;
+  }
+  bidsContainer.innerHTML = bidsHtml;
+}
 
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && menuOpen) {
-        setMenu(false);
-        mobileMenuBtn.focus();
-      }
-    });
-  })();
+function setOrderType(type) {
+  orderType = type;
+  const buyTab = document.querySelector('.order-tab.buy');
+  const sellTab = document.querySelector('.order-tab.sell');
+  const orderBtn = document.getElementById('order-btn');
+  
+  if (type === 'buy') {
+    buyTab.classList.add('active');
+    sellTab.classList.remove('active');
+    orderBtn.className = 'order-btn buy';
+    orderBtn.textContent = '買入 MS2';
+  } else {
+    sellTab.classList.add('active');
+    buyTab.classList.remove('active');
+    orderBtn.className = 'order-btn sell';
+    orderBtn.textContent = '賣出 MS2';
+  }
+  updateTotal();
+}
 
-// Demo Modal
+function setAmount(percent) {
+  if (orderType === 'buy') {
+    const maxBuy = usdtBalance / currentPrice;
+    document.getElementById('order-amount').value = Math.floor(maxBuy * percent / 100);
+  } else {
+    document.getElementById('order-amount').value = Math.floor(ms2Balance * percent / 100);
+  }
+  document.getElementById('order-slider').value = percent;
+  updateTotal();
+}
+
+function updateSlider(value) {
+  setAmount(value);
+}
+
+function updateTotal() {
+  const price = parseFloat(document.getElementById('order-price').value) || 0;
+  const amount = parseFloat(document.getElementById('order-amount').value) || 0;
+  const total = price * amount;
+  document.getElementById('order-total').textContent = total.toFixed(2) + ' USDT';
+}
+
+function placeOrder() {
+  showToast('⚠️', '僅為 Demo', '不執行真實交易。');
+}
+
+// Show Demo Modal for Swap
 function showDemoModal(type) {
-  const messages = {
-    'copy-link': { title: '📋 複製我的邀請連結', msg: 'Demo 介面預覽，不會產生真實邀請連結或執行鏈上操作。' },
-    'progress': { title: '📊 查看邀請進度', msg: 'Demo 介面預覽，僅展示邀請機制模型，不代表真實邀請記錄。' },
-    'simulate': { title: '🎁 模擬邀請獎勵', msg: 'Demo 介面預覽，不會分發真實獎勵。最終以活動規則、資格審核為準。' },
-    'milestone': { title: '🏆 查看下一里程碑', msg: 'Demo 介面預覽，不代表真實身份解鎖。' },
-    'buy': { title: '模擬買入', msg: '此介面不執行真實交易，不會連接 PancakeSwap 或與任何合約互動。' },
-    'sell': { title: '模擬賣出', msg: '此介面不執行真實交易，不會連接 PancakeSwap 或與任何合約互動。' }
-  };
-  const m = messages[type] || { title: 'Demo Only', msg: '僅為 Demo 預覽。' };
-  showToast('⚠️', m.title, m.msg);
+  showToast('⚠️', '僅為 Demo', '此介面不執行真實交易，不連接 PancakeSwap，也不與任何智能合約交互。');
 }
 
-function showToast(icon, title, msg) {
-  const existing = document.getElementById('demo-toast');
-  if (existing) existing.remove();
-  const toast = document.createElement('div');
-  toast.id = 'demo-toast';
-  toast.style.cssText = 'position:fixed;top:2rem;right:2rem;z-index:9999;background:rgba(20,20,30,0.95);border:1px solid rgba(255,215,0,0.3);border-radius:12px;padding:1rem 1.5rem;max-width:380px;backdrop-filter:blur(12px);box-shadow:0 8px 32px rgba(0,0,0,0.5);';
-  toast.innerHTML = '<div style="font-weight:600;color:var(--accent-gold);margin-bottom:0.4rem;">' + icon + ' ' + title + '</div><div style="font-size:0.85rem;color:var(--text-secondary);line-height:1.5;">' + msg + '</div>';
-  document.body.appendChild(toast);
-  setTimeout(function() { toast.remove(); }, 4000);
-}
-
-// Staking Calculator
+// Update Staking Calculator
 function updateCalc() {
   const ms2 = parseFloat(document.getElementById('calc-ms2').value) || 0;
   const durationFactor = parseFloat(document.getElementById('calc-duration').value) || 1;
@@ -3262,7 +2982,7 @@ function updateCalc() {
   const adjustedWeight = baseWeight * durationFactor;
   const bonusWeight = adjustedWeight * communityBonus;
   const effectiveWeight = adjustedWeight + bonusWeight;
-  const potentialMHA = (effectiveWeight / networkWeight) * 50000000;
+  const potentialMHA = (effectiveWeight / networkWeight) * 35000000;
 
   document.getElementById('res-base').textContent = baseWeight.toLocaleString();
   document.getElementById('res-duration').textContent = durationFactor + 'x';
@@ -3272,7 +2992,7 @@ function updateCalc() {
   document.getElementById('res-mha').textContent = potentialMHA.toLocaleString() + ' MHA';
 }
 
-// Contribution Value Calculator
+// Update Contribution Value Calculator
 function updateCVCalc() {
   const referral = parseFloat(document.getElementById('cv-referral').value) || 0;
   const ms2Staked = parseFloat(document.getElementById('cv-ms2-staked').value) || 0;
@@ -3298,33 +3018,94 @@ function updateCVCalc() {
   document.getElementById('cv-formula-risk').innerHTML = '− ' + riskDeduction.toLocaleString() + '（風控）= <strong style="color:var(--accent-secondary)">' + Math.round(finalValue).toLocaleString() + ' 點</strong>';
 }
 
-// Direct Referral Rewards Calculator — PDF-aligned (flat 5 USDT per 17 USDT entry)
+// Update Direct Referral Rewards Calculator
 function updateRefCalc() {
   const invitees = parseInt(document.getElementById('ref-invitees').value) || 0;
   const avgEntries = Math.min(100, parseInt(document.getElementById('ref-avg-entries').value) || 0);
-  const entryAmount = 17; // PDF: 每筆 17 USDT
-  const rewardPerEntry = 5; // PDF: 每筆 17 USDT 抽獎，5 USDT 推薦人獎勵
-
+  const entryAmount = 17; // Fixed per campaign rules
   const totalEntries = invitees * avgEntries;
   const totalVolume = totalEntries * entryAmount;
-  const baseReward = totalEntries * rewardPerEntry; // 5 USDT per entry, no booster
-  const totalReward = baseReward;
+  const baseReward = totalEntries * 4; // 4 USDT per entry
+  const boosterReward = 0 // merged into baseReward; // merged into baseReward
+  const totalReward = baseReward + boosterReward;
 
   document.getElementById('ref-res-entries').textContent = totalEntries.toLocaleString();
   document.getElementById('ref-res-volume').textContent = totalVolume.toLocaleString() + ' USDT';
   document.getElementById('ref-res-base').textContent = baseReward.toFixed(1) + ' USDT';
+  document.getElementById('ref-res-booster').textContent = boosterReward.toFixed(1) + ' USDT';
   document.getElementById('ref-res-final').textContent = totalReward.toFixed(1) + ' USDT';
 
   document.getElementById('ref-formula-entries').innerHTML = '總參與次數 = ' + invitees + ' 人 × ' + avgEntries + ' 次 = <strong>' + totalEntries.toLocaleString() + ' 次</strong>';
-  document.getElementById('ref-formula-base').innerHTML = '基礎獎勵 = ' + totalEntries + ' × 5 USDT = <strong>' + baseReward.toFixed(1) + ' USDT</strong>';
-  document.getElementById('ref-formula-total').innerHTML = '合計 = <strong style="color: var(--accent-secondary)">' + totalReward.toFixed(1) + ' USDT</strong>';
+  document.getElementById('ref-formula-base').innerHTML = '基礎獎勵 = ' + totalEntries + ' × 0.5 = <strong>' + baseReward.toFixed(1) + ' USDT</strong>';
+  document.getElementById('ref-formula-booster').innerHTML = '首邀加速 = ' + invitees + ' × 0.5 = <strong>' + boosterReward.toFixed(1) + ' USDT</strong>';
+  document.getElementById('ref-formula-total').innerHTML = '合計 = ' + baseReward.toFixed(1) + ' + ' + boosterReward.toFixed(1) + ' = <strong style="color: var(--accent-secondary)">' + totalReward.toFixed(1) + ' USDT</strong>';
 }
 
-// Initialize on load
-document.addEventListener('DOMContentLoaded', updateCalc);
+// Initialize CV calculator on load
 document.addEventListener('DOMContentLoaded', updateCVCalc);
+
+// Initialize calculator on load
+document.addEventListener('DOMContentLoaded', updateCalc);
 document.addEventListener('DOMContentLoaded', updateRefCalc);
 
+function showDemoModal(type) {
+  const messages = {
+    'copy-link': { title: '📋 複製我的邀請連結', msg: '僅為 Demo 介面預覽。此頁面不生成真實邀請連結、不發放實際獎勵，也不執行任何鏈上操作。' },
+    'progress': { title: '📊 查看邀請進度', msg: '僅為 Demo 介面預覽。目前顯示的邀請進度、里程碑狀態及獎勵計算均為模擬數據，不構成任何承諾或保證。' },
+    'simulate': { title: '🎁 模擬邀請獎勵', msg: '僅為 Demo 介面預覽。獎勵計算結果為模擬值，所有實際獎勵若有，均須符合最終活動規則、風控驗證、資格審核及適用限制。' },
+    'milestone': { title: '🏆 查看下一里程碑', msg: '僅為 Demo 介面預覽。里程碑解鎖條件、身份升級及相關權益為模擬預覽，不構成任何獎勵或資格承諾。' }
+  };
+  const info = messages[type] || { title: 'Demo', msg: '僅為 Demo 介面預覽。' };
+  const modal = document.createElement('div');
+  modal.className = 'demo-modal-overlay';
+  modal.innerHTML = '<div class="demo-modal-box"><div class="demo-modal-title">' + info.title + '</div><div class="demo-modal-msg">' + info.msg + '</div><button class="demo-modal-close">關閉</button></div>';
+  modal.querySelector('.demo-modal-close').addEventListener('click', () => modal.remove());
+  modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+  document.body.appendChild(modal);
+}
+
+function showToast(icon, title, msg) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `
+    <div class="toast-icon">${icon}</div>
+    <div class="toast-content">
+      <div class="toast-title">${title}</div>
+      <div class="toast-msg">${msg}</div>
+    </div>
+  `;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.classList.add('show'), 10);
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initChart();
+  initOrderBook();
+  updateTotal();
+
+  const priceInput = document.getElementById('order-price');
+  const amountInput = document.getElementById('order-amount');
+  
+  if (priceInput) priceInput.addEventListener('input', updateTotal);
+  if (amountInput) amountInput.addEventListener('input', updateTotal);
+
+  setInterval(() => {
+    const change = (Math.random() - 0.5) * 0.001;
+    currentPrice = Math.max(0.08, Math.min(0.12, currentPrice + change));
+    const priceEl = document.getElementById('ms2-price');
+    const spreadEl = document.getElementById('spread-price');
+    if (priceEl) priceEl.textContent = '$' + currentPrice.toFixed(4);
+    if (spreadEl) spreadEl.textContent = '$' + currentPrice.toFixed(4);
+    if (priceInput) priceInput.value = currentPrice.toFixed(4);
+    updateTotal();
+  }, 5000);
+});
 </script>
 
 </body>

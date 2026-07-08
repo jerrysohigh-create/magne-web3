@@ -7,150 +7,6 @@
   <link rel="icon" type="image/png" href="logo-icon-circle.png">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-/* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(7,9,16,0.9);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-    nav .container {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px; gap: 1rem;
-    }
-    .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem; font-weight: 700;
-      color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em; flex-shrink: 0;
-    }
-    .nav-logo span { color: var(--accent-cyan); }
-    .nav-brand { display: flex; align-items: center; }
-    .nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-    .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
-    .nav-links a {
-      color: var(--text-secondary); text-decoration: none;
-      font-size: 0.8rem; font-weight: 500;
-      padding: 0.35rem 0.65rem; border-radius: 4px;
-      transition: color 0.2s, background 0.2s; letter-spacing: 0.02em; white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--text-primary); background: var(--surface); }
-    .nav-links a.active { color: var(--accent-cyan); }
-    .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-    .lang-toggle { display: flex; gap: 0.25rem; }
-    .lang-toggle a {
-      color: var(--text-muted); text-decoration: none;
-      font-size: 0.75rem; font-weight: 500; padding: 0.25rem 0.5rem;
-      border-radius: 3px; transition: all 0.2s;
-    }
-    .lang-toggle a:hover { color: var(--text-secondary); }
-    .lang-toggle a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.08); }
-    .github-icon {
-      display: flex; align-items: center; justify-content: center;
-      width: 32px; height: 32px; border-radius: 6px;
-      border: 1px solid var(--border); background: var(--surface);
-      color: var(--text-secondary); text-decoration: none;
-      transition: all 0.2s; font-size: 1rem;
-    }
-    .github-icon:hover { border-color: var(--border-bright); color: var(--text-primary); }
-    .nav-cta {
-      background: var(--accent-cyan); color: #000;
-      padding: 0.4rem 1rem; border-radius: 5px;
-      font-size: 0.8rem; font-weight: 700; text-decoration: none;
-      transition: opacity 0.2s; white-space: nowrap;
-    }
-    .nav-cta:hover { opacity: 0.85; }
-    .mobile-menu-btn {
-      display: none; background: none; border: 1px solid var(--border);
-      color: var(--text-primary); font-size: 1.2rem;
-      padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer;
-    }
-
-    /* Mobile menu overlay */
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 58px;
-      left: 0;
-      right: 0;
-      min-height: calc(100dvh - 58px);
-      background: rgba(7,9,16,0.98);
-      backdrop-filter: blur(18px);
-      z-index: 999;
-      overflow-y: auto;
-      padding: 1.5rem 1.125rem 2rem;
-      flex-direction: column;
-      gap: 0;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-      list-style: none;
-      flex: 1;
-    }
-    .mobile-menu-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.6rem 0.5rem;
-      border-radius: 4px;
-      transition: color 0.2s, background 0.2s;
-      border-bottom: 1px solid var(--border);
-    }
-    .mobile-menu-links a:hover,
-    .mobile-menu-links a.active { color: var(--accent-cyan); background: rgba(57,208,214,0.06); }
-    .mobile-menu-divider { height: 1px; background: var(--border); margin: 0.75rem 0; }
-    .mobile-menu-footer {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      padding-top: 0.75rem;
-    }
-    .mobile-menu-footer .lang-toggle { justify-content: flex-start; }
-    .mobile-menu-footer .github-icon {
-      width: auto;
-      height: auto;
-      padding: 0.35rem 0.75rem;
-      font-size: 0.8rem;
-      gap: 0.4rem;
-    }
-
-    /* Desktop nav: hide lang/github in nav-right when mobile menu is present */
-    @media (max-width: 1024px) {
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: absolute; top: 60px; left: 0; right: 0;
-        background: var(--bg); border-bottom: 1px solid var(--border);
-        padding: 1rem; gap: 0.25rem;
-      }
-      .mobile-menu-btn { display: block; }
-    }
-
-    @media (max-width: 768px) {
-      .nav-right .lang-toggle,
-      .nav-right .github-icon,
-      .nav-right > .nav-cta { display: none; }
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 0;
-        flex-shrink: 0;
-      }
-      .nav-brand { min-width: 0; }
-      .mobile-menu-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 42px;
-        height: 42px;
-        flex-shrink: 0;
-      }
-    }
-
-    
     :root {
       --bg-primary: #0a0a0c;
       --bg-secondary: #0f0f12;
@@ -654,8 +510,8 @@
     }
 
     .timeline-item.past .timeline-dot { background: var(--accent-secondary); }
-    .timeline-item.current .timeline-dot {
-      background: var(--accent);
+    .timeline-item.current .timeline-dot { 
+      background: var(--accent); 
       box-shadow: 0 0 20px var(--accent);
       animation: pulse 2s infinite;
     }
@@ -1776,243 +1632,36 @@
     }
     .risk-card ol { margin: 0; padding-left: 1.2rem; }
     .risk-card li { margin-bottom: 0.25rem; }
-
-/* === Standard mobile navigation: synced from index.html / tc/index.html === */
-:root {
-  --nav-bg: var(--bg, var(--bg-primary, #070910));
-  --nav-surface: var(--surface, var(--bg-card, #0d1520));
-  --nav-border: var(--border, rgba(255,255,255,0.08));
-  --nav-border-bright: var(--border-bright, rgba(57,208,214,0.32));
-  --nav-text-primary: var(--text-primary, #e6edf3);
-  --nav-text-secondary: var(--text-secondary, #8b949e);
-  --nav-text-muted: var(--text-muted, rgba(139,148,158,0.65));
-  --nav-accent: var(--accent-cyan, var(--accent, #39d0d6));
-}
-body.menu-open { overflow: hidden; }
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 0;
-  background: rgba(7,9,16,0.9);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--nav-border);
-}
-nav .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  gap: 1rem;
-}
-.nav-brand { display: flex; align-items: center; min-width: 0; }
-.nav-logo-img { height: 28px; width: auto; flex-shrink: 0; }
-.nav-links {
-  display: flex;
-  gap: 0.25rem;
-  list-style: none;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
-.nav-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 0.35rem 0.65rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  min-width: 0;
-  text-transform: none;
-}
-.nav-links a:hover { color: var(--nav-text-primary); background: var(--nav-surface); }
-.nav-links a.active { color: var(--nav-accent); }
-.nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
-.lang-toggle { display: flex; gap: 0.25rem; align-items: center; }
-.lang-toggle a {
-  color: var(--nav-text-muted);
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  transition: all 0.2s;
-}
-.lang-toggle a:hover { color: var(--nav-text-secondary); }
-.lang-toggle a.active { color: var(--nav-accent); background: rgba(57,208,214,0.08); }
-.nav-link {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-.nav-link:hover { color: var(--nav-accent); }
-.github-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  border: 1px solid var(--nav-border);
-  background: var(--nav-surface);
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  transition: all 0.2s;
-  font-size: 1rem;
-}
-.github-icon:hover { border-color: var(--nav-border-bright); color: var(--nav-text-primary); }
-.nav-cta {
-  background: var(--nav-accent);
-  color: #000 !important;
-  padding: 0.4rem 1rem;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: opacity 0.2s;
-  white-space: nowrap;
-}
-.nav-cta:hover { opacity: 0.85; }
-.nav-toggle { display: none !important; }
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: 1px solid var(--nav-border);
-  color: var(--nav-text-primary);
-  font-size: 1.2rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 58px;
-  left: 0;
-  right: 0;
-  min-height: calc(100dvh - 58px);
-  background: rgba(7,9,16,0.98);
-  backdrop-filter: blur(18px);
-  z-index: 999;
-  overflow-y: auto;
-  padding: 1.5rem 1.125rem 2rem;
-  flex-direction: column;
-  gap: 0;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  list-style: none;
-  flex: 1;
-  margin: 0;
-  padding: 0;
-}
-.mobile-menu-links a {
-  color: var(--nav-text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  padding: 0.6rem 0.5rem;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
-  border-bottom: 1px solid var(--nav-border);
-}
-.mobile-menu-links a:hover,
-.mobile-menu-links a.active { color: var(--nav-accent); background: rgba(57,208,214,0.06); }
-.mobile-menu-divider { height: 1px; background: var(--nav-border); margin: 0.75rem 0; }
-.mobile-menu-footer { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 0.75rem; }
-.mobile-menu-footer .lang-toggle { justify-content: flex-start; }
-.mobile-menu-footer .github-icon { width: auto; height: auto; padding: 0.35rem 0.75rem; font-size: 0.8rem; gap: 0.4rem; }
-@media (max-width: 1024px) {
-  .nav-links { display: none; }
-  .mobile-menu-btn { display: block; }
-}
-@media (max-width: 768px) {
-  nav .container { padding: 0 1.125rem; gap: 0.75rem; }
-  .nav-right .lang-toggle,
-  .nav-right > .nav-cta,
-  .nav-right .github-icon,
-  .nav-right > .nav-link { display: none; }
-  .nav-logo-img { height: 26px; max-width: calc(100vw - 88px); object-fit: contain; }
-  .nav-right { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
-  .mobile-menu-btn { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; flex-shrink: 0; }
-}
-/* === End standard mobile navigation === */
-
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="container">
-    <div class="nav-brand">
-      <a href="./">
-        <img src="assets/magne-logo-white-horizontal.png" alt="MAGNE.AI" class="nav-logo-img">
-      </a>
-    </div>
-    <ul class="nav-links">
-      <li><a href="./">HOME</a></li>
-      <li><a href="./agent-pay.html">AGENT PAY</a></li>
-      <li><a href="./network.html">NETWORK</a></li>
-      <li><a href="./developers.html">DEVELOPERS</a></li>
-      <li><a href="./token.html">TOKEN</a></li>
-      <li><a href="./ecosystem.html">ECOSYSTEM</a></li>
-      <li><a href="./transparency.html">TRANSPARENCY</a></li>
-      <li><a href="./faq.html">FAQ</a></li>
-    </ul>
-    <div class="nav-right">
-      <div class="lang-toggle">
-        <a href="./session2.html" class="active">EN</a>
-        <a href="./tc/session2.html">繁中</a>
-      </div>
-      <a href="https://magne.ai/index.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-      <a href="https://payment.magne.ai/buy" target="_blank" class="nav-cta">Preorder</a>
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
-    </div>
+  <div class="nav-brand">
+    <a href="/" class="nav-logo">MAGNE.AI</a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="/">HOME</a></li>
+    <li><a href="/agent-pay.html">AGENT PAY</a></li>
+    <li><a href="/network.html">NETWORK</a></li>
+    <li><a href="/developers.html">DEVELOPERS</a></li>
+    <li><a href="/token.html">TOKEN</a></li>
+    <li><a href="/ecosystem.html">ECOSYSTEM</a></li>
+    <li><a href="/transparency.html">TRANSPARENCY</a></li>
+    <li><a href="/faq.html">FAQ</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="/ecosystem.html" class="nav-cta">← Back to Portal</a>
   </div>
 </nav>
 
-<!-- MOBILE MENU OVERLAY -->
-<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
-  <ul class="mobile-menu-links">
-    <li><a href="./">HOME</a></li>
-    <li><a href="./agent-pay.html">AGENT PAY</a></li>
-    <li><a href="./network.html">NETWORK</a></li>
-    <li><a href="./developers.html">DEVELOPERS</a></li>
-    <li><a href="./token.html">TOKEN</a></li>
-    <li><a href="./ecosystem.html">ECOSYSTEM</a></li>
-    <li><a href="./transparency.html">TRANSPARENCY</a></li>
-    <li><a href="./faq.html">FAQ</a></li>
-  </ul>
-  <div class="mobile-menu-divider"></div>
-  <div class="mobile-menu-footer">
-    <div class="lang-toggle">
-      <a href="./session2.html" class="active">EN</a>
-      <a href="./tc/session2.html">繁中</a>
-    </div>
-    <a href="https://magne.ai/index.html" target="_blank" class="nav-link">Phone Portal ↗</a>
-  </div>
-</div>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">Demo Data — Interface Preview Only</div>
   <h1>MAGNE.AI Session2</h1>
   <p class="hero-sub">
-    Participate in MAGNE.AI Phone Gen1 lottery rounds, collect MS2 campaign tokens,
+    Participate in MAGNE.AI Phone Gen1 lottery rounds, collect MS2 campaign tokens, 
     stake for future MHA allocation weight, and invite community members to grow the ecosystem.
   </p>
   <div class="hero-ctas">
@@ -2077,8 +1726,8 @@ nav .container {
     <div class="step-card">
       <div class="step-number">3</div>
       <div class="step-icon">💰</div>
-      <h3>Pay 10 USDT</h3>
-      <p>Pay 10 USDT per entry. Each wallet can participate up to 100 times (1,000 USDT max).</p>
+      <h3>Pay 17 USDT</h3>
+      <p>Pay 17 USDT per entry. Each wallet can participate up to 100 times (1,700 USDT max).</p>
     </div>
     <div class="step-card">
       <div class="step-number">4</div>
@@ -2089,8 +1738,8 @@ nav .container {
     <div class="step-card">
       <div class="step-number">5</div>
       <div class="step-icon">🪙</div>
-      <h3>Receive 100 MS2</h3>
-      <p>Each eligible entry grants 100 MS2 campaign tokens. MS2 may be used for staking weight calculation per final campaign arrangements, with market trading functionality planned after liquidity launch.</p>
+      <h3>Receive 100 MHA + 10 MS2</h3>
+      <p>Each non-winning entry grants 100 MHA + 10 MS2 (non-winning = entry that did not win a phone). Winning entries receive the phone only.</p>
     </div>
     <div class="step-card">
       <div class="step-number">6</div>
@@ -2110,25 +1759,25 @@ nav .container {
   <div class="campaign-stats">
     <div class="campaign-card">
       <div class="icon">🎫</div>
-      <div class="value">10 USDT</div>
+      <div class="value">17 USDT</div>
       <div class="label">Per Entry</div>
       <div class="sub">Maximum 100 entries per wallet</div>
     </div>
     <div class="campaign-card">
       <div class="icon">🪙</div>
-      <div class="value">100 MS2</div>
-      <div class="label">Per Entry</div>
+      <div class="value">100 MHA + 10 MS2</div>
+      <div class="label">Per Non-Winning Entry</div>
       <div class="sub">Campaign participation token</div>
     </div>
     <div class="campaign-card">
       <div class="icon">📱</div>
-      <div class="value">1,000</div>
+      <div class="value">1,600</div>
       <div class="label">Phone Gen1 Rewards</div>
-      <div class="sub">1 phone per 100 entries</div>
+      <div class="sub">1,600 phones / 100,000 entries cap</div>
     </div>
     <div class="campaign-card">
       <div class="icon">🏆</div>
-      <div class="value">50M MHA</div>
+      <div class="value">35M MHA</div>
       <div class="label">Allocation Pool</div>
       <div class="sub">Planned allocation based on effective staking weight</div>
     </div>
@@ -2234,8 +1883,8 @@ nav .container {
     <p>Stake MS2 to increase future MHA allocation eligibility</p>
   </div>
   <div class="staking-info">
-    <p>Your effective staking weight may be used to calculate potential MHA allocation eligibility from the 50,000,000 MHA total network allocation pool, subject to final TGE rules, eligibility checks, and applicable restrictions. Weight is calculated based on multiple factors:</p>
-
+    <p>Your effective staking weight may be used to calculate potential MHA allocation eligibility from the 35,000,000 MHA total network allocation pool, subject to final TGE rules, eligibility checks, and applicable restrictions. Weight is calculated based on multiple factors:</p>
+    
     <div class="weight-formula">
       Effective Weight = MS2 Amount × Duration Factor × Community Tier Factor
     </div>
@@ -2268,7 +1917,7 @@ nav .container {
     <div class="tier-grid">
       <div class="tier-item">
         <div class="tier-name">Bronze</div>
-        <div class="tier-req">≥ 1,000 USDT</div>
+        <div class="tier-req">≥ 1,700 USDT</div>
         <div class="tier-bonus">+2%</div>
       </div>
       <div class="tier-item">
@@ -2292,8 +1941,8 @@ nav .container {
     </p>
 
     <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">
-      <strong style="color: var(--accent);">Note:</strong> MS2 staking is for campaign weight calculation only.
-      It does not constitute a fixed-income product or guaranteed returns.
+      <strong style="color: var(--accent);">Note:</strong> MS2 staking is for campaign weight calculation only. 
+      It does not constitute a fixed-income product or guaranteed returns. 
       All MHA allocation is subject to final TGE rules, eligibility checks, and applicable restrictions.
     </p>
   </div>
@@ -2312,12 +1961,12 @@ nav .container {
       <div class="invite-card">
         <div class="ic-value">1.0 USDT</div>
         <div class="ic-label">New Friend First Entry Reward</div>
-        <div class="ic-desc">Includes 0.5 USDT base reward + 0.5 USDT first-referral booster</div>
+        <div class="ic-desc">Direct referral reward: 4 USDT per eligible entry</div>
       </div>
       <div class="invite-card">
-        <div class="ic-value">0.5 USDT</div>
+        <div class="ic-value">4 USDT</div>
         <div class="ic-label">Subsequent Eligible Entry Reward</div>
-        <div class="ic-desc">Per each eligible 10 USDT entry</div>
+        <div class="ic-desc">Per each eligible 17 USDT entry</div>
       </div>
       <div class="invite-card">
         <div class="ic-value">10,000 USDT</div>
@@ -2343,22 +1992,22 @@ nav .container {
         </thead>
         <tbody>
           <tr>
-            <td>Friend completes first eligible 10 USDT entry</td>
-            <td>0.5 USDT</td>
+            <td>Friend completes first eligible 17 USDT entry</td>
+            <td>4 USDT</td>
             <td>+0.5 USDT</td>
             <td>1.0 USDT</td>
           </tr>
           <tr>
             <td>Same friend completes each subsequent eligible entry</td>
-            <td>0.5 USDT</td>
+            <td>4 USDT</td>
             <td>—</td>
-            <td>0.5 USDT / entry</td>
+            <td>4 USDT / entry</td>
           </tr>
         </tbody>
       </table>
     </div>
     <p style="font-size: 0.8rem; color: var(--text-tertiary); text-align: center; margin-bottom: 1.5rem;">
-      After Launch Referral Booster Pool is fully utilized: Only base 0.5 USDT direct referral reward preview remains, subject to final campaign rules.
+      Direct referral reward: 4 USDT per eligible entry, subject to final campaign rules.
     </p>
 
     <div class="milestone-progress">
@@ -2471,13 +2120,13 @@ nav .container {
         <strong style="color: var(--text-secondary);">Calculation Breakdown (Demo):</strong><br>
         Friend A: 10 eligible entries<br>
         &nbsp;&nbsp;First entry reward = 1.0 USDT<br>
-        &nbsp;&nbsp;Subsequent 9 entries = 9 × 0.5 = 4.5 USDT<br>
-        &nbsp;&nbsp;Friend A total = <strong style="color: var(--accent);">5.5 USDT</strong><br><br>
+        &nbsp;&nbsp;Subsequent 9 entries = 9 × 4 = 36 USDT<br>
+        &nbsp;&nbsp;Friend A total = <strong style="color: var(--accent);">44 USDT</strong><br><br>
         Friend B: 2 eligible entries<br>
         &nbsp;&nbsp;First entry reward = 1.0 USDT<br>
-        &nbsp;&nbsp;Subsequent 1 entry = 0.5 USDT<br>
-        &nbsp;&nbsp;Friend B total = <strong style="color: var(--accent);">1.5 USDT</strong><br><br>
-        Total Referral Reward Preview: <strong style="color: var(--accent-secondary);">5.5 + 1.5 = 7.0 USDT</strong>
+        &nbsp;&nbsp;Subsequent 1 entry = 4 USDT<br>
+        &nbsp;&nbsp;Friend B total = <strong style="color: var(--accent);">12 USDT</strong><br><br>
+        Total Referral Reward Preview: <strong style="color: var(--accent-secondary);">44 + 12 = 56 USDT</strong>
       </div>
     </div>
     <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; justify-content: center;">
@@ -2554,7 +2203,7 @@ nav .container {
     <div class="contrib-grid">
       <div class="contrib-card">
         <h4>Qualified Referral Volume</h4>
-        <p>The total eligible participation volume generated by invited wallets. Each qualified 10 USDT entry by an invited participant may add 10 contribution points.</p>
+        <p>The total eligible participation volume generated by invited wallets. Each qualified 17 USDT entry by an invited participant may add 10 contribution points.</p>
       </div>
       <div class="contrib-card">
         <h4>Qualified MS2 Staking Contribution</h4>
@@ -2704,11 +2353,11 @@ nav .container {
         </div>
         <div class="referral-input-group">
           <label>Entry Amount</label>
-          <div style="padding: 0.6rem 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: var(--accent); font-family: 'JetBrains Mono', monospace;">10 USDT (Fixed)</div>
+          <div style="padding: 0.6rem 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: var(--accent); font-family: 'JetBrains Mono', monospace;">17 USDT (Fixed)</div>
         </div>
         <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 0.8rem; color: var(--text-tertiary);">
-          <div><strong style="color: var(--text-secondary);">Base Direct Reward:</strong> 0.5 USDT per 10 USDT entry</div>
-          <div style="margin-top: 0.25rem;"><strong style="color: var(--text-secondary);">First-Referral Booster:</strong> +0.5 USDT for each new invitee's first eligible entry</div>
+          <div><strong style="color: var(--text-secondary);">Base Direct Reward:</strong> 4 USDT per 17 USDT entry</div>
+          <div style="margin-top: 0.25rem;"><strong style="color: var(--text-secondary);">First-Referral Booster:</strong> +4 USDT for each new invitee's first eligible entry</div>
           <div style="margin-top: 0.25rem;"><strong style="color: var(--text-secondary);">Note:</strong> Booster from 10,000 USDT Launch Pool (max 20,000 new users)</div>
         </div>
       </div>
@@ -2856,42 +2505,32 @@ nav .container {
 <section id="allocation">
   <div class="section-header">
     <h2>Fund Allocation</h2>
-    <p>Allocation breakdown per 10 USDT campaign participation</p>
+    <p>Allocation breakdown per 17 USDT</p>
   </div>
   <div class="allocation-grid">
     <div class="alloc-item">
-      <span class="alloc-label">Phone Reward Pool</span>
-      <div class="alloc-bar"><div class="alloc-fill" style="width: 50%"></div></div>
-      <span class="alloc-pct">50% — 5.00 USDT</span>
+      <span class="alloc-label">推荐人直接邀请奖励</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 23.53%"></div></div>
+      <span class="alloc-pct">23.53% — 4.00 USDT</span>
     </div>
     <div class="alloc-item">
-      <span class="alloc-label">MS2 Buyback & Burn Pool</span>
-      <div class="alloc-bar"><div class="alloc-fill" style="width: 20%"></div></div>
-      <span class="alloc-pct">20% — 2.00 USDT</span>
+      <span class="alloc-label">MS2 Swap 流动性池（200 台后开池）</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 23.53%"></div></div>
+      <span class="alloc-pct">23.53% — 4.00 USDT</span>
     </div>
     <div class="alloc-item">
-      <span class="alloc-label">Community Builder Pool</span>
-      <div class="alloc-bar"><div class="alloc-fill" style="width: 15%"></div></div>
-      <span class="alloc-pct">15% — 1.50 USDT</span>
+      <span class="alloc-label">头部用户奖池（前 10 名瓜分）</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 8.82%"></div></div>
+      <span class="alloc-pct">8.82% — 1.50 USDT</span>
     </div>
     <div class="alloc-item">
-      <span class="alloc-label">Base Direct Referral Rewards</span>
-      <div class="alloc-bar"><div class="alloc-fill" style="width: 5%"></div></div>
-      <span class="alloc-pct">5% — 0.50 USDT</span>
-    </div>
-    <div class="alloc-item">
-      <span class="alloc-label">Launch Referral Booster Pool</span>
-      <div class="alloc-bar"><div class="alloc-fill" style="width: 1%"></div></div>
-      <span class="alloc-pct">1% — 0.10 USDT</span>
-    </div>
-    <div class="alloc-item">
-      <span class="alloc-label">Operations / Liquidity / Risk Reserve</span>
-      <div class="alloc-bar"><div class="alloc-fill" style="width: 9%"></div></div>
-      <span class="alloc-pct">9% — 0.90 USDT</span>
+      <span class="alloc-label">保留（含手机奖品、运营、流动性储备等）</span>
+      <div class="alloc-bar"><div class="alloc-fill" style="width: 44.12%"></div></div>
+      <span class="alloc-pct">44.12% — 7.50 USDT</span>
     </div>
   </div>
   <div style="margin-top: 1rem; text-align: center; font-size: 0.85rem; color: var(--text-tertiary);">
-    Full cap of 100,000 entries corresponds to 1,000,000 USDT. Allocation subject to final campaign rules.
+    Full cap of 100,000 entries corresponds to 1,700,000 USDT. Allocation subject to final campaign rules.
   </div>
 </section>
 
@@ -2904,7 +2543,7 @@ nav .container {
   <div class="ms2-grid">
     <div class="ms2-card">
       <h3><span class="badge">1</span> Buyback & Burn</h3>
-      <p>A portion of each 10 USDT campaign entry may be allocated to the MS2 Buyback & Burn Pool. Execution depends on market conditions, liquidity status, campaign progress, compliance considerations, and official announcements.</p>
+      <p>Each 17 USDT entry allocates 4 USDT to the MS2 Swap Liquidity Pool, which opens after 200 phones are awarded.</p>
     </div>
     <div class="ms2-card">
       <h3><span class="badge">2</span> Unreleased MS2</h3>
@@ -3056,7 +2695,7 @@ nav .container {
           <label>Community Tier</label>
           <select class="calc-select" id="calc-tier" onchange="updateCalc()">
             <option value="0">None (0%)</option>
-            <option value="0.02">Bronze ≥1,000 USDT (+2%)</option>
+            <option value="0.02">Bronze ≥1,700 USDT (+2%)</option>
             <option value="0.05">Silver ≥5,000 USDT (+5%)</option>
             <option value="0.1" selected>Gold ≥20,000 USDT (+10%)</option>
             <option value="0.1">Diamond ≥100,000 USDT (+10% Weight Bonus)</option>
@@ -3097,7 +2736,7 @@ nav .container {
         <div class="calc-result-box">
           <div class="result-row">
             <span class="label">Total Network MHA Allocation Pool</span>
-            <span class="value">50,000,000 MHA</span>
+            <span class="value">35,000,000 MHA</span>
           </div>
           <div class="result-row highlight">
             <span class="label">Potential MHA Allocation</span>
@@ -3106,7 +2745,7 @@ nav .container {
         </div>
         <div class="calc-formula">
           Effective Weight = MS2 × Duration Factor × (1 + Community Bonus)<br>
-          Potential MHA = Your Effective Weight ÷ Total Network Weight × 50,000,000 MHA
+          Potential MHA = Your Effective Weight ÷ Total Network Weight × 35,000,000 MHA
         </div>
       </div>
     </div>
@@ -3216,11 +2855,11 @@ nav .container {
 <!-- FOOTER -->
 <footer>
   <p>
-    <a href="/">MAGNE.AI</a> |
-    <a href="/magne-phone.html">Phone</a> |
-    <a href="/magne-ai.html">AI</a> |
-    <a href="/magne-security.html">Security</a> |
-    <a href="https://jerrysohigh-create.github.io/magne-web3" target="_blank">Web3 Portal ↗️</a>
+    <a href="/">MAGNE.AI</a> | 
+    <a href="/magne-phone.html">Phone</a> | 
+    <a href="/magne-ai.html">AI</a> | 
+    <a href="/magne-security.html">Security</a> | 
+    <a href="index.html" target="_blank">Web3 Portal ↗️</a>
   </p>
   <p style="margin-top: 1rem;">
     © 2026 MAGNE.AI. All rights reserved. Session2 is a community growth campaign, not an investment opportunity.
@@ -3238,7 +2877,7 @@ let currentPrice = 0.0984;
 function initChart() {
   const chart = document.getElementById('price-chart');
   if (!chart) return;
-
+  
   let html = '';
   for (let i = 0; i < 50; i++) {
     const height = Math.random() * 70 + 20;
@@ -3293,7 +2932,7 @@ function setOrderType(type) {
   const buyTab = document.querySelector('.order-tab.buy');
   const sellTab = document.querySelector('.order-tab.sell');
   const orderBtn = document.getElementById('order-btn');
-
+  
   if (type === 'buy') {
     buyTab.classList.add('active');
     sellTab.classList.remove('active');
@@ -3357,7 +2996,7 @@ function updateCalc() {
   const adjustedWeight = baseWeight * durationFactor;
   const bonusWeight = adjustedWeight * communityBonus;
   const effectiveWeight = adjustedWeight + bonusWeight;
-  const potentialMHA = (effectiveWeight / networkWeight) * 50000000;
+  const potentialMHA = (effectiveWeight / networkWeight) * 35000000;
 
   document.getElementById('res-base').textContent = baseWeight.toLocaleString();
   document.getElementById('res-duration').textContent = durationFactor + 'x';
@@ -3397,12 +3036,12 @@ function updateCVCalc() {
 function updateRefCalc() {
   const invitees = parseInt(document.getElementById('ref-invitees').value) || 0;
   const avgEntries = Math.min(100, parseInt(document.getElementById('ref-avg-entries').value) || 0);
-  const entryAmount = 10; // Fixed per campaign rules
+  const entryAmount = 17; // Fixed per campaign rules
 
   const totalEntries = invitees * avgEntries;
   const totalVolume = totalEntries * entryAmount;
-  const baseReward = totalEntries * 0.5; // 0.5 USDT per entry
-  const boosterReward = invitees * 0.5; // 0.5 USDT per new invitee's first entry
+  const baseReward = totalEntries * 4; // 4 USDT per entry
+  const boosterReward = 0 // merged into baseReward; // merged into baseReward
   const totalReward = baseReward + boosterReward;
 
   document.getElementById('ref-res-entries').textContent = totalEntries.toLocaleString();
@@ -3475,7 +3114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const priceInput = document.getElementById('order-price');
   const amountInput = document.getElementById('order-amount');
-
+  
   if (priceInput) priceInput.addEventListener('input', updateTotal);
   if (amountInput) amountInput.addEventListener('input', updateTotal);
 
@@ -3491,41 +3130,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTotal();
   }, 5000);
 });
-</script>
-
-<script>
-  // Standard mobile menu toggle
-  (function() {
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (!mobileMenuBtn || !mobileMenu) return;
-
-    let menuOpen = false;
-
-    function setMenu(open) {
-      menuOpen = open;
-      mobileMenu.classList.toggle('open', menuOpen);
-      mobileMenuBtn.setAttribute('aria-expanded', String(menuOpen));
-      document.body.classList.toggle('menu-open', menuOpen);
-    }
-
-    mobileMenuBtn.addEventListener('click', function() {
-      setMenu(!menuOpen);
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        setMenu(false);
-      });
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && menuOpen) {
-        setMenu(false);
-        mobileMenuBtn.focus();
-      }
-    });
-  })();
 </script>
 
 </body>
