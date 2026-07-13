@@ -1,0 +1,37 @@
+name: Dune Season 1 Participants Growth
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'   # 每 6 小時
+  workflow_dispatch:        # 也可手動觸發
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.WORKFLOW_PAT }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch Dune Query 7913639
+        env:
+          DUNE_API_KEY: ${{ secrets.DUNE_API_KEY }}
+        run: python3 recon/fetch_dune_7913639.py
+
+      - name: Auto-commit if changed
+        run: |
+          git config user.name "dune-bot"
+          git config user.email "bot@magne.ai"
+          git add assets/data/dune/season1-participants-growth.json
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "chore(data): refresh Dune 7913639 Season 1 participants ($(date -u +%FT%TZ))"
+            git push
+          fi

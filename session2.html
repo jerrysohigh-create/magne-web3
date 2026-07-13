@@ -2852,6 +2852,129 @@
   </div>
 </section>
 
+
+<!-- SEASON 1 HISTORICAL REFERENCE -->
+<section id="season1-historical-reference" class="s1hp-section">
+  <h2 class="s1hp-h2">Season 1 Historical Reference</h2>
+  <p class="s1hp-eyebrow">On-chain participation evidence &middot; Dune Query 7913639</p>
+
+  <div class="s1hp-kpis">
+    <div class="s1hp-kpi">
+      <div class="s1hp-kpi-label">Cumulative Participating Wallets</div>
+      <div class="s1hp-kpi-value" id="s1hp-total">76,650</div>
+      <div class="s1hp-kpi-sub">as of <span id="s1hp-day">2026-07-06</span></div>
+    </div>
+    <div class="s1hp-kpi">
+      <div class="s1hp-kpi-label">Reference Period</div>
+      <div class="s1hp-kpi-value-sm">Apr 17 &ndash; Jul 06, 2026</div>
+      <div class="s1hp-kpi-sub">~80 days of Season 1 activity</div>
+    </div>
+    <div class="s1hp-kpi">
+      <div class="s1hp-kpi-label">Data Source</div>
+      <a class="s1hp-link" href="https://dune.com/yolos3565/magne" target="_blank" rel="noopener noreferrer">Dune Query 7913639 &rarr;</a>
+      <div class="s1hp-kpi-sub">Refreshed server-side via GitHub Action; not live.</div>
+    </div>
+  </div>
+
+  <div class="s1hp-chart-card">
+    <div class="s1hp-chart-title">Season 1 Cumulative Participating Wallets &mdash; daily snapshot</div>
+    <svg id="s1hp-sparkline" class="s1hp-sparkline" viewBox="0 0 800 120" preserveAspectRatio="none" role="img" aria-label="Season 1 cumulative participating wallets sparkline"></svg>
+    <div class="s1hp-axis">
+      <span id="s1hp-start">2026-04-25</span>
+      <span id="s1hp-end">2026-07-06</span>
+    </div>
+  </div>
+
+  <div class="s1hp-disclaimer">
+    <div><strong>Disclaimer:</strong> Wallet addresses are not verified unique individuals.</div>
+    <div class="s1hp-disclaimer-sub">This figure reflects on-chain wallet activity recorded during Season 1 and is provided as historical reference only. It is not a measure of verified users, real users, KYC users, or otherwise confirmed unique human participants.</div>
+  </div>
+
+  <div class="s1hp-meta">
+    <span>Metric name:</span>
+    <span class="s1hp-meta-val">Season 1 Cumulative Participating Wallets</span>
+    <span class="s1hp-dot">&middot;</span>
+    <span>Source JSON:</span>
+    <a class="s1hp-link" href="assets/data/dune/season1-participants-growth.json" target="_blank" rel="noopener noreferrer">assets/data/dune/season1-participants-growth.json</a>
+    <span class="s1hp-dot">&middot;</span>
+    <span>Refreshed:</span>
+    <span id="s1hp-refreshed" class="s1hp-meta-val">2026-07-13T12:16:00+00:00</span>
+  </div>
+</section>
+
+
+<script>
+(function(){
+  var DATA_URL = 'assets/data/dune/season1-participants-growth.json';
+  fetch(DATA_URL, { cache: 'no-store' })
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(data){
+      if (!data) return;
+      var rows = (data.rows || []).slice().sort(function(a,b){ return (a.day||'').localeCompare(b.day||''); });
+      if (!rows.length) return;
+      var last = rows[rows.length - 1];
+      var totalEl = document.getElementById('s1hp-total');
+      var dayEl   = document.getElementById('s1hp-day');
+      var startEl = document.getElementById('s1hp-start');
+      var endEl   = document.getElementById('s1hp-end');
+      var refEl   = document.getElementById('s1hp-refreshed');
+      if (totalEl && last.total_participants != null) totalEl.textContent = Number(last.total_participants).toLocaleString('en-US');
+      if (dayEl && last.day) dayEl.textContent = last.day;
+      if (startEl && rows[0].day) startEl.textContent = rows[0].day;
+      if (endEl && last.day) endEl.textContent = last.day;
+      if (refEl && data.last_result_at) refEl.textContent = data.last_result_at;
+      var svg = document.getElementById('s1hp-sparkline');
+      if (!svg) return;
+      var W = 800, H = 120, PAD = 8;
+      var minY = rows[0].total_participants, maxY = rows[rows.length-1].total_participants;
+      if (maxY === minY) maxY = minY + 1;
+      var stepX = (W - 2*PAD) / Math.max(1, rows.length - 1);
+      var pts = rows.map(function(r, i){
+        var x = PAD + i * stepX;
+        var y = PAD + (1 - (r.total_participants - minY) / (maxY - minY)) * (H - 2*PAD);
+        return [x, y, r];
+      });
+      var linePts = pts.map(function(p){ return p[0].toFixed(1)+','+p[1].toFixed(1); }).join(' ');
+      var areaPts = [PAD+','+(H-PAD)].concat(linePts.split(' ')).concat([(PAD + (rows.length-1)*stepX).toFixed(1)+','+(H-PAD)]).join(' ');
+      var dots = pts.map(function(p){
+        return '<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="1.8" fill="#00d4ff"><title>'+p[2].day+': '+Number(p[2].total_participants).toLocaleString('en-US')+'</title></circle>';
+      }).join('');
+      svg.innerHTML =
+        '<defs><linearGradient id="s1hp-grad" x1="0" y1="0" x2="0" y2="1">'+
+        '<stop offset="0%" stop-color="rgba(0,212,255,0.3)"/>'+
+        '<stop offset="100%" stop-color="rgba(0,212,255,0)"/></linearGradient></defs>'+
+        '<polygon points="'+areaPts+'" fill="url(#s1hp-grad)" stroke="none"/>'+
+        '<polyline points="'+linePts+'" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>'+
+        dots;
+    })
+    .catch(function(){ /* silent */ });
+})();
+</script>
+
+<style>
+.s1hp-section { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem 2rem; }
+.s1hp-h2 { font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 600; color: var(--text-primary); margin: 0 0 .5rem; }
+.s1hp-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: .8rem; color: var(--accent-cyan); letter-spacing: .05em; text-transform: uppercase; margin: 0 0 2rem; }
+.s1hp-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+.s1hp-kpi { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; }
+.s1hp-kpi-label { font-size: .72rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .5rem; font-family: 'JetBrains Mono', monospace; }
+.s1hp-kpi-value { font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 600; color: var(--accent-cyan); line-height: 1.1; }
+.s1hp-kpi-value-sm { font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 600; color: var(--text-primary); line-height: 1.1; }
+.s1hp-kpi-sub { font-size: .72rem; color: var(--text-secondary); margin-top: .35rem; font-family: 'Outfit', sans-serif; }
+.s1hp-link { font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 600; color: var(--accent-cyan); text-decoration: none; }
+.s1hp-link:hover { text-decoration: underline; }
+.s1hp-chart-card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+.s1hp-chart-title { font-size: .85rem; color: var(--text-secondary); margin-bottom: .75rem; font-family: 'Outfit', sans-serif; }
+.s1hp-sparkline { width: 100%; height: 120px; display: block; }
+.s1hp-axis { display: flex; justify-content: space-between; margin-top: .5rem; font-size: .7rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; }
+.s1hp-disclaimer { background: rgba(255, 184, 0, 0.08); border: 1px solid rgba(255, 184, 0, 0.3); border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; font-family: 'Outfit', sans-serif; font-size: .88rem; color: var(--text-primary); }
+.s1hp-disclaimer-sub { font-size: .78rem; color: var(--text-secondary); margin-top: .5rem; }
+.s1hp-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .75rem; margin-top: 1rem; font-size: .72rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; }
+.s1hp-meta-val { color: var(--text-primary); }
+.s1hp-dot { color: var(--text-secondary); }
+</style>
+
+
 <!-- FOOTER -->
 <footer>
   <p>
